@@ -1,0 +1,20 @@
+sensor.jesse_status:
+  entity_picture: https://pbs.twimg.com/profile_images/926968944333901824/W5qpAHbh_400x400.jpg
+
+sensor.andrew_status:
+  entity_picture: https://pbs.twimg.com/profile_images/566080067432742912/CjrIMHww_400x400.jpeg
+
+group.all_automations:
+  hidden: false 
+
+group.all_scripts:
+  hidden: false 
+
+group.all_devices:
+  hidden: false
+
+script.1514647809398:
+  can_cancel: false
+
+script.1523806783160:
+  can_cancel: false

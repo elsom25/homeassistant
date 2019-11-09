@@ -1,0 +1,124 @@
+'1514647809398':
+  alias: Goodnight
+  sequence:
+  - service: homeassistant.turn_off
+    data:
+      entity_id:
+      - group.living_room_devices
+      - group.bedroom_devices
+      - group.other_devices
+      - group.all_hue_lights
+  - service: media_player.media_pause
+    data:
+      entity_id: group.sonos_devices
+  # - data:
+  #     entity_id: climate.dining_room
+  #     temperature: 19
+  #   service: climate.set_temperature
+
+'1523806783160':
+  alias: Bedtime
+  sequence:
+  - service: homeassistant.turn_on
+    data:
+      entity_id: group.main_floor_bedroom_lights
+      brightness_pct: 70
+  - service: homeassistant.turn_on
+    data:
+      entity_id: group.bedroom_devices
+  - service: homeassistant.turn_on
+    data:
+      entity_id: group.main_floor_active_lights
+      brightness_pct: 30
+  - service: homeassistant.turn_off
+    data:
+      entity_id:
+      - group.living_room_devices
+      - group.other_devices
+      - group.basement_hue_lights
+
+good_morning:
+  alias: Good Morning
+  sequence:
+  - service: homeassistant.turn_on
+    data:
+      entity_id:
+        - group.main_floor_active_lights
+        - group.main_floor_bedroom_lights
+      brightness_pct: 80
+  - data:
+      entity_id: group.sonos_devices
+    service: media_player.media_play
+
+hutch_on:
+  alias: Hutch Lights On
+  sequence:
+  - service: homeassistant.turn_on
+    data:
+      entity_id: group.dining_room_devices
+      brightness_pct: 100
+
+hutch_on_slow:
+  alias: Hutch Lights On (over 15 min)
+  sequence:
+  - service: homeassistant.turn_on
+    data:
+      entity_id: group.main_floor_active_lights
+      brightness_pct: 100
+      transition: 1200
+
+hutch_dim:
+  alias: Hutch Lights Dim
+  sequence:
+  - service: homeassistant.turn_on
+    data:
+      entity_id: group.main_floor_active_lights
+      brightness_pct: 30
+
+media_room_on:
+  alias: Media Lights On
+  sequence:
+  - service: homeassistant.turn_on
+    data:
+      entity_id: group.basement_hue_lights
+      brightness_pct: 100
+      transition: 14
+  # - service: hue.hue_activate_scene
+  #   data:
+  #     group_name: "Media Room"
+  #     scene_name: "Media Room Normal"
+
+media_room_dim:
+  alias: Media Lights Dim
+  sequence:
+  - service: homeassistant.turn_on
+    data:
+      entity_id: group.basement_hue_lights
+      brightness_pct: 30
+      transition: 6
+  # - service: hue.hue_activate_scene
+  #   data:
+  #     group_name: "Media Room"
+  #     scene_name: "Media Room Dim"
+
+sonos_say:
+  alias: Sonos TTS Script
+  sequence:
+  - service: media_player.sonos_snapshot
+    data_template:
+      entity_id: "{{ sonos_entity }}"
+  - service: media_player.sonos_unjoin
+    data_template:
+      entity_id: "{{ sonos_entity }}"
+  - service: media_player.volume_set
+    data_template:
+      entity_id: "{{ sonos_entity }}"
+      volume_level: "{{ volume }}"
+  - service: tts.voicerss_say
+    data_template:
+      entity_id: "{{ sonos_entity }}"
+      message: "{{ message }}"
+  - delay: "{{ delay }}"
+  - service: media_player.sonos_restore
+    data_template:
+      entity_id: "{{ sonos_entity }}"

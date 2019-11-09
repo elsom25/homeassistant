@@ -1,0 +1,87 @@
+# =============================================================================
+# Media
+# -----------------------------------------------------------------------------
+
+# - alias: Media player paused/stopped (long)
+#   hide_entity: true
+#   action:
+#   - data:
+#       entity_id: scene.media_room_on
+#     service: homeassistant.turn_on
+#   condition:
+#   - condition: state
+#     entity_id: sun.sun
+#     state: below_horizon
+#   trigger:
+#   - entity_id: media_player.apple_tv
+#     from: playing
+#     platform: state
+#     to: 'off'
+#     for:
+#       seconds: 50
+#   - entity_id: media_player.apple_tv
+#     from: playing
+#     platform: state
+#     to: idle
+#     for:
+#       seconds: 50
+#   - entity_id: media_player.apple_tv
+#     from: playing
+#     platform: state
+#     to: paused
+#     for:
+#       seconds: 50
+# - alias: Media player paused/stopped (short)
+#   hide_entity: true
+#   action:
+#   - data:
+#       entity_id: scene.media_room_dim
+#     service: homeassistant.turn_on
+#   condition:
+#   - condition: state
+#     entity_id: sun.sun
+#     state: below_horizon
+#   trigger:
+#   - entity_id: media_player.apple_tv
+#     from: playing
+#     platform: state
+#     to: 'off'
+#     for:
+#       seconds: 5
+#   - entity_id: media_player.apple_tv
+#     from: playing
+#     platform: state
+#     to: idle
+#     for:
+#       seconds: 5
+#   - entity_id: media_player.apple_tv
+#     from: playing
+#     platform: state
+#     to: paused
+#     for:
+#       seconds: 5
+# - alias: Media player playing
+#   hide_entity: true
+#   action:
+#   - data:
+#       entity_id: group.basement_hue_lights
+#     service: homeassistant.turn_off
+#   trigger:
+#   - platform: state
+#     entity_id: media_player.apple_tv
+#     from: 'off'
+#     to: playing
+#     for:
+#       seconds: 5
+#   - platform: state
+#     entity_id: media_player.apple_tv
+#     from: idle
+#     to: playing
+#     for:
+#       seconds: 5
+#   - platform: state
+#     entity_id: media_player.apple_tv
+#     from: paused
+#     to: playing
+#     for:
+#       seconds: 5
