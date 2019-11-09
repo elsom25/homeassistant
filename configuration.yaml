@@ -108,8 +108,8 @@ homekit:
 
 http:
   base_url: stargatecommand.mooo.com
-  ssl_certificate: /usr/local/etc/letsencrypt/live/stargatecommand.mooo.com/fullchain.pem
-  ssl_key: /usr/local/etc/letsencrypt/live/stargatecommand.mooo.com/privkey.pem
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
   ip_ban_enabled: true
   login_attempts_threshold: 5
   # Temporary, this will be moved to be part of auth provider config
