@@ -55,6 +55,10 @@ http:
   # ip_ban_enabled: true
   # login_attempts_threshold: 5
 
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+
 sensor:
   - platform: template
     sensors:
