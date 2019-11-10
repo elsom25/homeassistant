@@ -1,123 +1,17 @@
-homeassistant:
-  name: Home
-  latitude: !secret home_latitude
-  longitude: !secret home_longitude
-  elevation: !secret home_elevation
-  unit_system: metric
-  time_zone: !secret home_time_zone
-  customize: !include customize.yaml
-  auth_providers:
-    - type: homeassistant
-    - type: trusted_networks
-      trusted_networks:
-        - 127.0.0.1
-        - ::1
-        - 192.168.1.0/24
-        - fd00::/8
-
-config:
-conversation:
-frontend:
+default_config:
 history:
-logbook:
 map:
-sun:
 system_health:
-# ios:
 
-apple_tv:
-  - name: Apple TV
-    host: !secret apple_tv_host
-    login_id: !secret apple_tv_login_id
-
-cloud:
-  alexa:
-    filter:
-      exclude_entities:
-        - group.all_automations
-        - group.all_devices
-        - group.all_input_selects
-        - group.all_remotes
-        - group.all_scripts
-        - group.all_switches
-        - group.automation_view
-        - group.default_view
-        - group.other_devices
-        - group.people
-      exclude_domains:
-        - automation
-        - media_player
-        - sensor
-    entity_config:
-      group.bedroom_devices:
-        name: Bedroom Lights
-        description: The lights in the bedroom
-        display_categories: SWITCH
-      group.living_room_devices:
-        name: Living Room Lights
-        description: The lights in the living room
-        display_categories: SWITCH
-  google_actions:
-    filter:
-      exclude_entities:
-        - group.all_automations
-        - group.all_devices
-        - group.all_input_selects
-        - group.all_remotes
-        - group.all_scripts
-        - group.all_switches
-        - group.automation_view
-        - group.default_view
-        - group.other_devices
-        - group.people
-      exclude_domains:
-        - automation
-        - media_player
-        - sensor
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
 
 device_tracker:
   - platform: ping
     hosts: 
       jesse_wifi: 192.168.1.115
       andrew_wifi: 192.168.1.135
-
-discovery:
-  ignore:
-    - plex_mediaserver
-#   enable:
-#     - homekit
-
-homekit:
-  filter:
-    exclude_entities:
-      - group.all_automations
-      - group.all_devices
-      - group.all_input_selects
-      - group.all_remotes
-      - group.all_scripts
-      - group.all_switches
-      - group.automation_view
-      - group.default_view
-      - group.other_devices
-      - group.people
-    exclude_domains:
-      - automation
-      - media_player
-      - sensor
-      - device_tracker
-
-http:
-  base_url: stargatecommand.mooo.com
-  ssl_certificate: !secret ssl_certificate
-  ssl_key: !secret ssl_key
-  ip_ban_enabled: true
-  login_attempts_threshold: 5
-  # Temporary, this will be moved to be part of auth provider config
-  # https://github.com/home-assistant/home-assistant/issues/16149
-
-hue:
-  bridges:
-    - host: 192.168.1.90
 
 input_select:
   jesse_status_dropdown:
@@ -139,24 +33,29 @@ input_select:
       - Extended Away
     initial: Home
 
-# Add to the side panel of home assistant
-panel_iframe:
-  hadashboard:
-    title: HA Dashboard
-    icon: mdi:view-dashboard-variant
-    url: http://192.168.1.51:5050
-  configurator:
-    title: Configurator
-    icon: mdi:circle-edit-outline
-    url: http://192.168.1.51:3218
-  nodered:
-    title: Node Red
-    icon: mdi:shuffle-variant
-    url: http://192.168.1.52:1880
+homeassistant:
+  name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_elevation
+  unit_system: metric
+  time_zone: !secret home_time_zone
+  customize: !include customize.yaml
+  auth_providers:
+    - type: homeassistant
+    - type: trusted_networks
+      trusted_networks:
+        - 127.0.0.1
+        - ::1
+        - 192.168.1.0/24
+        - fd00::/8
+
+http:
+  base_url: stargatecommand.duckdns.org
+  # ip_ban_enabled: true
+  # login_attempts_threshold: 5
 
 sensor:
-  # Weather prediction
-  - platform: yr
   - platform: template
     sensors:
       jesse: 
@@ -211,54 +110,8 @@ sensor:
             mdi:home
           {% endif %}
 
-sonos:
-  media_player:
-    hosts:
-      - 192.168.1.100 # Office
-      - 192.168.1.101 # Living Room
-      - 192.168.1.102 # Bedroom Right
-      - 192.168.1.103 # Bedroom Left
-      - 192.168.1.104 # Kitchen
-      - 192.168.1.105 # TV Room
-
-switch:
-  - platform: flux
-    lights:
-    - light.front_entrance_1
-    - light.front_entrance_2
-    - light.front_hall_1
-    - light.front_hall_2
-    - light.bathroom_hall_1
-    - light.bathroom_hall_2
-    - light.bedroom_1
-    - light.bedroom_2
-    - light.hutch_left
-    - light.hutch_right
-    - light.living_room_corner
-    - light.living_room_primary
-    - light.hue_color_downlight_1
-    - light.hue_color_downlight_2
-    - light.hue_color_downlight_3
-    - light.hue_color_downlight_4
-    mode: mired
-    disable_brightness_adjust: True
-
-tplink:
-  discovery: false
-  switch:
-    - host: 192.168.1.55 # Front Door
-    - host: 192.168.1.54 # Living Room Chest
-    - host: 192.168.1.56 # Office Primary
-    - host: 192.168.1.59 # Bedroom Andrew
-    - host: 192.168.1.60 # Bedroom Jesse
-
-# Text to speech
 tts:
   - platform: google_translate
-    service_name: google_say
-
-updater:
-  include_used_components: true
 
 zone:
   - name: Home
@@ -274,7 +127,3 @@ zone:
     latitude: !secret andrew_office_latitude
     longitude: !secret andrew_office_longitude
     radius: 50
-
-group: !include groups.yaml
-automation: !include automations.yaml
-script: !include scripts.yaml

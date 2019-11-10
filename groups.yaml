@@ -1,5 +1,5 @@
 default_view:
-  view: yes
+  # view: yes
   icon: mdi:home
   entities:
     - group.people
@@ -13,14 +13,14 @@ default_view:
     - group.other_devices
 
 media_view:
-  view: yes
+  # view: yes
   name: Media
   entities:
     - media_player.apple_tv
     - group.sonos_devices
 
 automation_view:
-  view: yes
+  # view: yes
   name: Automations
   entities:
     - group.all_scripts
