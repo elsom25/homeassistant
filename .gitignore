@@ -1,6 +1,11 @@
 .storage/*
 !.storage/lovelace
 
+node-red/lib
+node-red/node_modules
+node-red/nodes
+node-red/*.backup
+
 .cloud
 *.log
 *.db
