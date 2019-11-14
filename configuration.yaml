@@ -7,6 +7,51 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 
+cloud:
+  alexa:
+    filter:
+      exclude_entities:
+        - group.all_automations
+        - group.all_devices
+        - group.all_input_selects
+        - group.all_remotes
+        - group.all_scripts
+        - group.all_switches
+        - group.automation_view
+        - group.default_view
+        - group.other_devices
+        - group.people
+      exclude_domains:
+        - automation
+        - media_player
+        - sensor
+    entity_config:
+      group.bedroom_devices:
+        name: Bedroom Lights
+        description: The lights in the bedroom
+        display_categories: SWITCH
+      group.living_room_devices:
+        name: Living Room Lights
+        description: The lights in the living room
+        display_categories: SWITCH
+  google_actions:
+    filter:
+      exclude_entities:
+        - group.all_automations
+        - group.all_devices
+        - group.all_input_selects
+        - group.all_remotes
+        - group.all_scripts
+        - group.all_switches
+        - group.automation_view
+        - group.default_view
+        - group.other_devices
+        - group.people
+      exclude_domains:
+        - automation
+        - media_player
+        - sensor
+
 device_tracker:
   - platform: ping
     hosts: 
@@ -113,6 +158,28 @@ sensor:
           {% else %}
             mdi:home
           {% endif %}
+
+switch:
+  - platform: flux
+    lights:
+    - light.front_entrance_1
+    - light.front_entrance_2
+    - light.front_hall_1
+    - light.front_hall_2
+    - light.bathroom_hall_1
+    - light.bathroom_hall_2
+    - light.bedroom_1
+    - light.bedroom_2
+    - light.hutch_left
+    - light.hutch_right
+    - light.living_room_corner
+    - light.living_room_primary
+    - light.tv_room_back_left
+    - light.tv_room_front_left
+    - light.tv_room_back_right
+    - light.tv_room_front_right
+    mode: mired
+    disable_brightness_adjust: true
 
 tts:
   - platform: google_translate

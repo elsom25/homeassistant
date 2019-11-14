@@ -1,0 +1,299 @@
+{
+    "data": {
+        "config": {
+            "title": "Home",
+            "views": [
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                "sensor.home_status",
+                                "sensor.andrew_status",
+                                "sensor.jesse_status"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Awesome People",
+                            "type": "entities"
+                        },
+                        {
+                            "entity": "weather.home",
+                            "type": "weather-forecast"
+                        },
+                        {
+                            "entities": [
+                                "switch.flux"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Configurations",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "switch.living_room_chest",
+                                "light.living_room_corner",
+                                "light.living_room_primary"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Living Room",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "light.hutch_left",
+                                "light.hutch_right",
+                                "light.bathroom_hall_1",
+                                "light.bathroom_hall_2"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Dining Room",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "switch.front_door",
+                                "light.front_entrance_1",
+                                "light.front_entrance_2",
+                                "light.front_hall_1",
+                                "light.front_hall_2"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Entrance",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "switch.bedroom_lamp_left_andrew"
+                                },
+                                {
+                                    "entity": "switch.bedroom_lamp_right_jesse"
+                                },
+                                {
+                                    "entity": "light.bedroom_1"
+                                },
+                                {
+                                    "entity": "light.bedroom_2"
+                                }
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Bedroom",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.tv_room_back_left"
+                                },
+                                {
+                                    "entity": "light.tv_room_front_left"
+                                },
+                                {
+                                    "entity": "light.tv_room_back_right"
+                                },
+                                {
+                                    "entity": "light.tv_room_front_right"
+                                }
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Media Room",
+                            "type": "entities"
+                        },
+                        {
+                            "entity": "climate.dining_room",
+                            "theme": "Backend-selected",
+                            "type": "thermostat"
+                        }
+                    ],
+                    "icon": "mdi:home",
+                    "path": "default_view",
+                    "title": "default_view"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entity": "media_player.apple_tv",
+                            "type": "media-control"
+                        },
+                        {
+                            "entity": "media_player.living_room",
+                            "type": "media-control"
+                        },
+                        {
+                            "entity": "media_player.office",
+                            "type": "media-control"
+                        },
+                        {
+                            "entity": "media_player.kitchen",
+                            "type": "media-control"
+                        },
+                        {
+                            "entity": "media_player.bedroom",
+                            "type": "media-control"
+                        },
+                        {
+                            "entity": "media_player.tv_room",
+                            "type": "media-control"
+                        }
+                    ],
+                    "path": "media_view",
+                    "title": "Media"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                "script.1523806783160",
+                                "script.good_morning",
+                                "script.1514647809398",
+                                "script.hutch_dim",
+                                "script.hutch_on",
+                                "script.hutch_on_slow",
+                                "script.media_room_dim",
+                                "script.media_room_on",
+                                "script.sonos_say"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "all scripts",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.front_entrance_1"
+                                },
+                                {
+                                    "entity": "light.front_entrance_2"
+                                },
+                                {
+                                    "entity": "light.front_hall_1"
+                                },
+                                {
+                                    "entity": "light.front_hall_2"
+                                },
+                                {
+                                    "entity": "light.bathroom_hall_1"
+                                },
+                                {
+                                    "entity": "light.bathroom_hall_2"
+                                },
+                                {
+                                    "entity": "light.bedroom_1"
+                                },
+                                {
+                                    "entity": "light.bedroom_2"
+                                },
+                                {
+                                    "entity": "light.hutch_left"
+                                },
+                                {
+                                    "entity": "light.hutch_right"
+                                },
+                                {
+                                    "entity": "light.living_room_corner"
+                                },
+                                {
+                                    "entity": "light.living_room_primary"
+                                },
+                                {
+                                    "entity": "light.tv_room_back_left"
+                                },
+                                {
+                                    "entity": "light.tv_room_back_right"
+                                },
+                                {
+                                    "entity": "light.tv_room_front_left"
+                                },
+                                {
+                                    "entity": "light.tv_room_front_right"
+                                }
+                            ],
+                            "show_header_toggle": true,
+                            "title": "All Hue Lights",
+                            "type": "entities"
+                        }
+                    ],
+                    "path": "automation_view",
+                    "title": "Automations"
+                },
+                {
+                    "badges": [
+                        {
+                            "entity": "person.jesse"
+                        },
+                        {
+                            "entity": "device_tracker.andrew_wifi"
+                        },
+                        {
+                            "entity": "device_tracker.andrew_iphone"
+                        },
+                        {
+                            "entity": "person.andrew"
+                        },
+                        {
+                            "entity": "device_tracker.jesse_wifi"
+                        },
+                        {
+                            "entity": "device_tracker.jesse_iphone"
+                        }
+                    ],
+                    "cards": [
+                        {
+                            "entities": [
+                                "input_select.andrew_status_dropdown",
+                                "input_select.jesse_status_dropdown"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Home Status",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.andrew_status"
+                                },
+                                {
+                                    "entity": "sensor.andrew"
+                                },
+                                {
+                                    "entity": "device_tracker.andrew_wifi"
+                                },
+                                {
+                                    "entity": "device_tracker.andrew_iphone"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Andrew Tracking Devices",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.jesse_status"
+                                },
+                                {
+                                    "entity": "sensor.jesse"
+                                },
+                                {
+                                    "entity": "device_tracker.jesse_wifi"
+                                },
+                                {
+                                    "entity": "device_tracker.jesse_iphone"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Jesse Tracking Devices",
+                            "type": "entities"
+                        }
+                    ],
+                    "path": "locations_view",
+                    "title": "Locations"
+                }
+            ]
+        }
+    },
+    "key": "lovelace",
+    "version": 1
+}

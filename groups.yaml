@@ -1,5 +1,5 @@
 default_view:
-  # view: yes
+  view: yes
   icon: mdi:home
   entities:
     - group.people
@@ -13,14 +13,14 @@ default_view:
     - group.other_devices
 
 media_view:
-  # view: yes
+  view: yes
   name: Media
   entities:
     - media_player.apple_tv
     - group.sonos_devices
 
 automation_view:
-  # view: yes
+  view: yes
   name: Automations
   entities:
     - group.all_scripts
@@ -70,8 +70,8 @@ dining_room_devices:
 bedroom_devices:
   name: Bedroom
   entities:
-    - switch.bedroom_andrew
-    - switch.bedroom_jesse
+    - switch.bedroom_lamp_left_andrew
+    - switch.bedroom_lamp_right_jesse
     - light.bedroom_1
     - light.bedroom_2
 
@@ -109,10 +109,10 @@ all_hue_lights:
     - light.hutch_right
     - light.living_room_corner
     - light.living_room_primary
-    - light.hue_color_downlight_1
-    - light.hue_color_downlight_2
-    - light.hue_color_downlight_3
-    - light.hue_color_downlight_4
+    - light.tv_room_back_left
+    - light.tv_room_front_left
+    - light.tv_room_back_right
+    - light.tv_room_front_right
 
 main_floor_active_lights:
   name: Main Floor Lights
