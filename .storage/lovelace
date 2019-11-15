@@ -221,7 +221,7 @@
                 {
                     "badges": [
                         {
-                            "entity": "person.jesse"
+                            "entity": "person.andrew"
                         },
                         {
                             "entity": "device_tracker.andrew_wifi"
@@ -230,7 +230,7 @@
                             "entity": "device_tracker.andrew_iphone"
                         },
                         {
-                            "entity": "person.andrew"
+                            "entity": "person.jesse"
                         },
                         {
                             "entity": "device_tracker.jesse_wifi"

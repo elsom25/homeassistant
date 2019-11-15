@@ -1423,7 +1423,7 @@
   "node-red-contrib-weekday": {
    "name": "node-red-contrib-weekday",
    "version": "0.1.0",
-   "local": false,
+   "local": true,
    "nodes": {
     "weekday": {
      "name": "weekday",

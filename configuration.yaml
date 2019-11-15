@@ -96,7 +96,7 @@ homeassistant:
         - fd00::/8
 
 http:
-  base_url: stargatecommand.duckdns.org
+  base_url: https://stargatecommand.duckdns.org
   # ip_ban_enabled: true
   # login_attempts_threshold: 5
 
