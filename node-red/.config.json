@@ -1175,8 +1175,8 @@
   },
   "node-red-node-email": {
    "name": "node-red-node-email",
-   "version": "1.7.1",
-   "local": false,
+   "version": "1.7.2",
+   "local": true,
    "nodes": {
     "email": {
      "name": "email",
@@ -1185,9 +1185,9 @@
       "e-mail in"
      ],
      "enabled": true,
-     "local": false,
+     "local": true,
      "module": "node-red-node-email",
-     "file": "/opt/node_modules/node-red-node-email/61-email.js"
+     "file": "/config/node-red/node_modules/node-red-node-email/61-email.js"
     }
    }
   },
@@ -1440,7 +1440,7 @@
   "node-red-contrib-deduplicate": {
    "name": "node-red-contrib-deduplicate",
    "version": "0.2.0",
-   "local": false,
+   "local": true,
    "nodes": {
     "deduplicate": {
      "name": "deduplicate",
@@ -1465,6 +1465,9 @@
      "view-node-status": true,
      "view-node-show-label": true,
      "view-show-tips": false
+    },
+    "context": {
+     "flowRefresh": true
     }
    }
   }

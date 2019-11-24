@@ -4,6 +4,7 @@
 node-red/lib
 node-red/node_modules
 node-red/nodes
+node-red/home-assistant_v2.db*
 node-red/*.backup
 node-red/settings.js
 
