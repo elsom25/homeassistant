@@ -17,6 +17,16 @@
                             "type": "entities"
                         },
                         {
+                            "entities": [
+                                {
+                                    "entity": "input_select.light_mode_dropdown"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Configuration",
+                            "type": "entities"
+                        },
+                        {
                             "entity": "weather.home",
                             "type": "weather-forecast"
                         },

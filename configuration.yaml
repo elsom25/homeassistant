@@ -77,6 +77,12 @@ input_select:
       - Away
       - Extended Away
     initial: Home
+  light_mode_dropdown:
+    name: Light Mode
+    options:
+      - Sun
+      - Manual
+    initial: Sun
 
 homeassistant:
   name: Home
@@ -158,6 +164,8 @@ sensor:
           {% else %}
             mdi:home
           {% endif %}
+
+switch:
 
 tts:
   - platform: google_translate
