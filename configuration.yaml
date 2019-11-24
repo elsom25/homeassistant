@@ -1,6 +1,7 @@
 default_config:
 history:
 map:
+switch:
 system_health:
 
 group: !include groups.yaml
@@ -54,6 +55,7 @@ cloud:
 
 device_tracker:
   - platform: ping
+    consider_home: 60
     hosts: 
       jesse_wifi: 192.168.1.115
       andrew_wifi: 192.168.1.135
@@ -164,8 +166,6 @@ sensor:
           {% else %}
             mdi:home
           {% endif %}
-
-switch:
 
 tts:
   - platform: google_translate

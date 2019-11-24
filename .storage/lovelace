@@ -4,18 +4,30 @@
             "title": "Home",
             "views": [
                 {
-                    "badges": [],
-                    "cards": [
+                    "badges": [
                         {
-                            "entities": [
-                                "sensor.home_status",
-                                "sensor.andrew_status",
-                                "sensor.jesse_status"
-                            ],
-                            "show_header_toggle": false,
-                            "title": "Awesome People",
-                            "type": "entities"
+                            "entity": "sensor.home_status"
                         },
+                        {
+                            "entity": "person.andrew"
+                        },
+                        {
+                            "entity": "device_tracker.andrew_wifi"
+                        },
+                        {
+                            "entity": "device_tracker.andrew_iphone"
+                        },
+                        {
+                            "entity": "person.jesse"
+                        },
+                        {
+                            "entity": "device_tracker.jesse_wifi"
+                        },
+                        {
+                            "entity": "device_tracker.jesse_iphone"
+                        }
+                    ],
+                    "cards": [
                         {
                             "entities": [
                                 {
@@ -114,6 +126,26 @@
                             "entity": "climate.dining_room",
                             "theme": "Backend-selected",
                             "type": "thermostat"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.dining_room_nest_protect_online"
+                                },
+                                {
+                                    "entity": "sensor.dining_room_nest_protect_battery_health"
+                                },
+                                {
+                                    "entity": "sensor.dining_room_nest_protect_co_status"
+                                },
+                                {
+                                    "entity": "sensor.dining_room_nest_protect_smoke_status"
+                                }
+                            ],
+                            "hours_to_show": 24,
+                            "refresh_interval": 0,
+                            "title": "Nest Protect",
+                            "type": "history-graph"
                         }
                     ],
                     "icon": "mdi:home",
@@ -155,113 +187,62 @@
                     "badges": [],
                     "cards": [
                         {
-                            "entities": [
-                                "script.1523806783160",
-                                "script.good_morning",
-                                "script.1514647809398",
-                                "script.hutch_dim",
-                                "script.hutch_on",
-                                "script.hutch_on_slow",
-                                "script.media_room_dim",
-                                "script.media_room_on",
-                                "script.sonos_say"
-                            ],
-                            "show_header_toggle": false,
-                            "title": "all scripts",
-                            "type": "entities"
+                            "entity": "script.good_morning",
+                            "hold_action": {
+                                "action": "more-info"
+                            },
+                            "icon": "mdi:weather-sunset-up",
+                            "icon_height": "45px",
+                            "show_icon": true,
+                            "show_name": true,
+                            "tap_action": {
+                                "action": "toggle"
+                            },
+                            "type": "entity-button"
                         },
                         {
-                            "entities": [
-                                {
-                                    "entity": "light.front_entrance_1"
-                                },
-                                {
-                                    "entity": "light.front_entrance_2"
-                                },
-                                {
-                                    "entity": "light.front_hall_1"
-                                },
-                                {
-                                    "entity": "light.front_hall_2"
-                                },
-                                {
-                                    "entity": "light.bathroom_hall_1"
-                                },
-                                {
-                                    "entity": "light.bathroom_hall_2"
-                                },
-                                {
-                                    "entity": "light.bedroom_1"
-                                },
-                                {
-                                    "entity": "light.bedroom_2"
-                                },
-                                {
-                                    "entity": "light.hutch_left"
-                                },
-                                {
-                                    "entity": "light.hutch_right"
-                                },
-                                {
-                                    "entity": "light.living_room_corner"
-                                },
-                                {
-                                    "entity": "light.living_room_primary"
-                                },
-                                {
-                                    "entity": "light.tv_room_back_left"
-                                },
-                                {
-                                    "entity": "light.tv_room_back_right"
-                                },
-                                {
-                                    "entity": "light.tv_room_front_left"
-                                },
-                                {
-                                    "entity": "light.tv_room_front_right"
-                                }
-                            ],
-                            "show_header_toggle": true,
-                            "title": "All Hue Lights",
-                            "type": "entities"
+                            "entity": "script.1523806783160",
+                            "hold_action": {
+                                "action": "more-info"
+                            },
+                            "icon": "mdi:weather-sunset-down",
+                            "icon_height": "40px",
+                            "show_icon": true,
+                            "show_name": true,
+                            "tap_action": {
+                                "action": "toggle"
+                            },
+                            "type": "entity-button"
+                        },
+                        {
+                            "entity": "script.1514647809398",
+                            "hold_action": {
+                                "action": "more-info"
+                            },
+                            "icon": "mdi:power-sleep",
+                            "icon_height": "45px",
+                            "show_icon": true,
+                            "show_name": true,
+                            "tap_action": {
+                                "action": "toggle"
+                            },
+                            "type": "entity-button"
                         }
                     ],
                     "path": "automation_view",
                     "title": "Automations"
                 },
                 {
-                    "badges": [
-                        {
-                            "entity": "person.andrew"
-                        },
-                        {
-                            "entity": "device_tracker.andrew_wifi"
-                        },
-                        {
-                            "entity": "device_tracker.andrew_iphone"
-                        },
-                        {
-                            "entity": "person.jesse"
-                        },
-                        {
-                            "entity": "device_tracker.jesse_wifi"
-                        },
-                        {
-                            "entity": "device_tracker.jesse_iphone"
-                        }
-                    ],
+                    "badges": [],
                     "cards": [
                         {
                             "entities": [
-                                "input_select.andrew_status_dropdown",
-                                "input_select.jesse_status_dropdown"
-                            ],
-                            "show_header_toggle": false,
-                            "title": "Home Status",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
+                                {
+                                    "entity": "input_select.andrew_status_dropdown"
+                                },
+                                {
+                                    "entity": "person.andrew"
+                                },
                                 {
                                     "entity": "sensor.andrew_status"
                                 },
@@ -281,6 +262,12 @@
                         },
                         {
                             "entities": [
+                                {
+                                    "entity": "input_select.jesse_status_dropdown"
+                                },
+                                {
+                                    "entity": "person.jesse"
+                                },
                                 {
                                     "entity": "sensor.jesse_status"
                                 },
