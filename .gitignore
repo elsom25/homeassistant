@@ -5,6 +5,7 @@ node-red/lib
 node-red/node_modules
 node-red/nodes
 node-red/*.backup
+node-red/settings.js
 
 .cloud
 *.log
