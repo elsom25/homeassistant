@@ -22,14 +22,6 @@
                         },
                         {
                             "entities": [
-                                "switch.flux"
-                            ],
-                            "show_header_toggle": true,
-                            "title": "Configurations",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
                                 "switch.living_room_chest",
                                 "light.living_room_corner",
                                 "light.living_room_primary"
