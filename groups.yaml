@@ -39,10 +39,7 @@ entrance_devices:
   name: Entrance
   entities:
     - switch.front_door
-    - light.front_entrance_1
-    - light.front_entrance_2
-    - light.front_hall_1
-    - light.front_hall_2
+    - group.indoor_entrance_lights
 
 indoor_entrance_lights:
   name: Indoor Entrance Lights
@@ -93,26 +90,6 @@ sonos_devices:
     - media_player.kitchen
     - media_player.bedroom
     - media_player.tv_room
-
-all_hue_lights:
-  name: All Hue Lights
-  entities:
-    - light.front_entrance_1
-    - light.front_entrance_2
-    - light.front_hall_1
-    - light.front_hall_2
-    - light.bathroom_hall_1
-    - light.bathroom_hall_2
-    - light.bedroom_1
-    - light.bedroom_2
-    - light.hutch_left
-    - light.hutch_right
-    - light.living_room_corner
-    - light.living_room_primary
-    - light.tv_room_back_left
-    - light.tv_room_front_left
-    - light.tv_room_back_right
-    - light.tv_room_front_right
 
 main_floor_active_lights:
   name: Main Floor Lights

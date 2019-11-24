@@ -100,6 +100,15 @@
                             "type": "entities"
                         },
                         {
+                            "entities": [
+                                {
+                                    "entity": "switch.office_primary"
+                                }
+                            ],
+                            "title": "Office",
+                            "type": "entities"
+                        },
+                        {
                             "entity": "climate.dining_room",
                             "theme": "Backend-selected",
                             "type": "thermostat"

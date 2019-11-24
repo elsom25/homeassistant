@@ -159,28 +159,6 @@ sensor:
             mdi:home
           {% endif %}
 
-switch:
-  - platform: flux
-    lights:
-    - light.front_entrance_1
-    - light.front_entrance_2
-    - light.front_hall_1
-    - light.front_hall_2
-    - light.bathroom_hall_1
-    - light.bathroom_hall_2
-    - light.bedroom_1
-    - light.bedroom_2
-    - light.hutch_left
-    - light.hutch_right
-    - light.living_room_corner
-    - light.living_room_primary
-    - light.tv_room_back_left
-    - light.tv_room_front_left
-    - light.tv_room_back_right
-    - light.tv_room_front_right
-    mode: mired
-    disable_brightness_adjust: true
-
 tts:
   - platform: google_translate
 
