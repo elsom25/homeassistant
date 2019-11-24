@@ -1436,6 +1436,23 @@
      "file": "/config/node-red/node_modules/node-red-contrib-weekday/weekday.js"
     }
    }
+  },
+  "node-red-contrib-deduplicate": {
+   "name": "node-red-contrib-deduplicate",
+   "version": "0.2.0",
+   "local": false,
+   "nodes": {
+    "deduplicate": {
+     "name": "deduplicate",
+     "types": [
+      "deduplicate"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-deduplicate",
+     "file": "/config/node-red/node_modules/node-red-contrib-deduplicate/deduplicate.js"
+    }
+   }
   }
  },
  "users": {
@@ -1444,7 +1461,7 @@
     "view": {
      "view-show-grid": true,
      "view-snap-grid": true,
-     "view-grid-size": 20,
+     "view-grid-size": "20",
      "view-node-status": true,
      "view-node-show-label": true,
      "view-show-tips": true
