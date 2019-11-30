@@ -4,6 +4,7 @@
   - service: homeassistant.turn_off
     data:
       entity_id:
+      - group.dining_room_devices
       - group.living_room_devices
       - group.bedroom_devices
       - group.other_devices
