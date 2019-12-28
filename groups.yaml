@@ -52,7 +52,6 @@ indoor_entrance_lights:
 living_room_devices:
   name: Living Room
   entities:
-    - switch.living_room_chest
     - light.living_room_corner
     - light.living_room_primary
 
@@ -67,20 +66,16 @@ dining_room_devices:
 bedroom_devices:
   name: Bedroom
   entities:
-    - switch.bedroom_lamp_left_andrew
-    - switch.bedroom_lamp_right_jesse
+    - light.jesses_lamp
+    - light.andrews_lamp
     - light.bedroom_1
     - light.bedroom_2
+    - light.bedroom_3
 
 other_devices:
   name: Other Devices
   entities:
     - switch.office_primary
-
-setting_devices:
-  name: Configurations
-  entities:
-    - switch.flux
 
 sonos_devices:
   name: Sonos
@@ -102,12 +97,6 @@ main_floor_active_lights:
     - light.hutch_right
     - light.living_room_corner
     - light.living_room_primary
-
-main_floor_bedroom_lights:
-  name: Main Floor Lights
-  entities:
-    - light.bedroom_1
-    - light.bedroom_2
 
 basement_hue_lights:
   name: Basement Lights

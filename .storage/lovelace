@@ -6,9 +6,6 @@
                 {
                     "badges": [
                         {
-                            "entity": "sensor.home_status"
-                        },
-                        {
                             "entity": "person.andrew"
                         },
                         {
@@ -30,6 +27,9 @@
                     "cards": [
                         {
                             "entities": [
+                                {
+                                    "entity": "sensor.home_status"
+                                },
                                 {
                                     "entity": "input_select.light_mode_dropdown"
                                 }
@@ -54,72 +54,42 @@
                         },
                         {
                             "entities": [
-                                "light.hutch_left",
-                                "light.hutch_right",
-                                "light.bathroom_hall_1",
-                                "light.bathroom_hall_2"
-                            ],
-                            "show_header_toggle": true,
-                            "title": "Dining Room",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                "switch.front_door",
-                                "light.front_entrance_1",
-                                "light.front_entrance_2",
-                                "light.front_hall_1",
-                                "light.front_hall_2"
-                            ],
-                            "show_header_toggle": true,
-                            "title": "Entrance",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
                                 {
-                                    "entity": "switch.bedroom_lamp_left_andrew"
+                                    "entity": "light.andrews_lamp"
                                 },
                                 {
-                                    "entity": "switch.bedroom_lamp_right_jesse"
+                                    "entity": "light.jesses_lamp"
                                 },
                                 {
                                     "entity": "light.bedroom_1"
                                 },
                                 {
                                     "entity": "light.bedroom_2"
+                                },
+                                {
+                                    "entity": "light.bedroom_3"
                                 }
                             ],
                             "show_header_toggle": true,
-                            "title": "Bedroom",
+                            "title": "Master Bedroom",
                             "type": "entities"
                         },
                         {
                             "entities": [
                                 {
-                                    "entity": "light.tv_room_back_left"
+                                    "entity": "light.master_bath_l_l"
                                 },
                                 {
-                                    "entity": "light.tv_room_front_left"
+                                    "entity": "light.master_bath_l_r"
                                 },
                                 {
-                                    "entity": "light.tv_room_back_right"
+                                    "entity": "light.master_bath_r_l"
                                 },
                                 {
-                                    "entity": "light.tv_room_front_right"
+                                    "entity": "light.master_bath_r_r"
                                 }
                             ],
-                            "show_header_toggle": true,
-                            "title": "Media Room",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                {
-                                    "entity": "switch.office_primary"
-                                }
-                            ],
-                            "title": "Office",
+                            "title": "Master Bathroom",
                             "type": "entities"
                         },
                         {

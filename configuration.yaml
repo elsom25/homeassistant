@@ -1,6 +1,9 @@
 default_config:
+
+discovery:
 history:
 map:
+mobile_app:
 switch:
 system_health:
 
@@ -12,6 +15,7 @@ cloud:
   alexa:
     filter:
       exclude_entities:
+        - climate.dining_room
         - group.all_automations
         - group.all_devices
         - group.all_input_selects

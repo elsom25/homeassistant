@@ -18,14 +18,15 @@
   sequence:
   - data:
       brightness_pct: 70
-      entity_id: group.main_floor_bedroom_lights
-    service: homeassistant.turn_on
-  - data:
       entity_id: group.bedroom_devices
     service: homeassistant.turn_on
   - data:
       brightness_pct: 30
-      entity_id: group.main_floor_active_lights
+      entity_id:
+      - group.main_floor_active_lights
+      - light.bedroom_1
+      - light.bedroom_2
+      - light.bedroom_3
     service: homeassistant.turn_on
   - data:
       entity_id:
@@ -39,7 +40,7 @@ good_morning:
     data:
       entity_id:
       - group.main_floor_active_lights
-      - group.main_floor_bedroom_lights
+      - group.bedroom_devices
       brightness_pct: 80
   - data:
       entity_id: group.sonos_devices
