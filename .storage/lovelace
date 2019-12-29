@@ -1,6 +1,16 @@
 {
     "data": {
         "config": {
+            "background": "var(--background-image)",
+            "custom_header": {
+                "compact_mode": true
+            },
+            "resources": [
+                {
+                    "type": "module",
+                    "url": "/community_plugin/custom-header/custom-header.js"
+                }
+            ],
             "title": "Home",
             "views": [
                 {

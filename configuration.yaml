@@ -11,14 +11,14 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 
-badnest:
-  email: !secret nest_email
-  password: !secret nest_password
-  region: ca
-
-climate:
-  - platform: badnest
-    scan_interval: 10
+# badnest:
+#   email: !secret nest_email
+#   password: !secret nest_password
+#   region: ca
+# 
+# climate:
+#   - platform: badnest
+#     scan_interval: 10
 
 cloud:
   alexa:
