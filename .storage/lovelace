@@ -96,29 +96,38 @@
                             "type": "entities"
                         },
                         {
-                            "entity": "climate.dining_room",
-                            "theme": "Backend-selected",
-                            "type": "thermostat"
-                        },
-                        {
                             "entities": [
                                 {
-                                    "entity": "binary_sensor.dining_room_nest_protect_online"
+                                    "entity": "binary_sensor.basement_nest_protect_online"
                                 },
                                 {
-                                    "entity": "sensor.dining_room_nest_protect_battery_health"
+                                    "entity": "sensor.basement_nest_protect_co_status"
                                 },
                                 {
-                                    "entity": "sensor.dining_room_nest_protect_co_status"
+                                    "entity": "sensor.basement_nest_protect_smoke_status"
                                 },
                                 {
-                                    "entity": "sensor.dining_room_nest_protect_smoke_status"
+                                    "entity": "binary_sensor.living_room_nest_protect_online"
+                                },
+                                {
+                                    "entity": "sensor.living_room_nest_protect_co_status"
+                                },
+                                {
+                                    "entity": "sensor.living_room_nest_protect_smoke_status"
+                                },
+                                {
+                                    "entity": "binary_sensor.upstairs_nest_protect_online"
+                                },
+                                {
+                                    "entity": "sensor.upstairs_nest_protect_co_status"
+                                },
+                                {
+                                    "entity": "sensor.upstairs_nest_protect_smoke_status"
                                 }
                             ],
-                            "hours_to_show": 24,
-                            "refresh_interval": 0,
-                            "title": "Nest Protect",
-                            "type": "history-graph"
+                            "show_header_toggle": false,
+                            "title": "Nest Protects",
+                            "type": "entities"
                         }
                     ],
                     "icon": "mdi:home",
