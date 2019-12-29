@@ -44,9 +44,12 @@
                         },
                         {
                             "entities": [
-                                "switch.living_room_chest",
-                                "light.living_room_corner",
-                                "light.living_room_primary"
+                                {
+                                    "entity": "light.living_room_corner"
+                                },
+                                {
+                                    "entity": "light.living_room_primary"
+                                }
                             ],
                             "show_header_toggle": true,
                             "title": "Living Room",
@@ -142,7 +145,7 @@
                             "type": "media-control"
                         },
                         {
-                            "entity": "media_player.bedroom",
+                            "entity": "media_player.bedroom_2",
                             "type": "media-control"
                         },
                         {

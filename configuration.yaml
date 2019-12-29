@@ -11,11 +11,19 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 
+badnest:
+  email: !secret nest_email
+  password: !secret nest_password
+  region: ca
+
+climate:
+  - platform: badnest
+    scan_interval: 10
+
 cloud:
   alexa:
     filter:
       exclude_entities:
-        - climate.dining_room
         - group.all_automations
         - group.all_devices
         - group.all_input_selects
@@ -28,6 +36,7 @@ cloud:
         - group.people
       exclude_domains:
         - automation
+        - climate
         - media_player
         - sensor
     entity_config:
@@ -54,6 +63,7 @@ cloud:
         - group.people
       exclude_domains:
         - automation
+        - climate
         - media_player
         - sensor
 
@@ -111,10 +121,6 @@ http:
   base_url: https://stargatecommand.duckdns.org
   # ip_ban_enabled: true
   # login_attempts_threshold: 5
-
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
 
 sensor:
   - platform: template
