@@ -22,3 +22,6 @@ nest.conf
 .ios.conf
 
 .HA_VERSION
+
+# HACS
+*.pyc
