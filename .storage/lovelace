@@ -58,6 +58,41 @@
                             "type": "weather-forecast"
                         },
                         {
+                            "entity": "media_player.living_room",
+                            "hide": {
+                                "icon": true,
+                                "power": true,
+                                "source": true
+                            },
+                            "speaker_group": {
+                                "entities": [
+                                    {
+                                        "entity_id": "media_player.living_room",
+                                        "name": "Living Room"
+                                    },
+                                    {
+                                        "entity_id": "media_player.kitchen",
+                                        "name": "Kitchen"
+                                    },
+                                    {
+                                        "entity_id": "media_player.office",
+                                        "name": "Office"
+                                    },
+                                    {
+                                        "entity_id": "media_player.bedroom_2",
+                                        "name": "Bedroom"
+                                    },
+                                    {
+                                        "entity_id": "media_player.tv_room",
+                                        "name": "TV"
+                                    }
+                                ],
+                                "platform": "sonos",
+                                "show_group_count": true
+                            },
+                            "type": "custom:mini-media-player"
+                        },
+                        {
                             "entities": [
                                 {
                                     "entity": "light.living_room_corner"
@@ -148,37 +183,6 @@
                     "icon": "mdi:home",
                     "path": "default_view",
                     "title": "default_view"
-                },
-                {
-                    "badges": [],
-                    "cards": [
-                        {
-                            "entity": "media_player.apple_tv",
-                            "type": "media-control"
-                        },
-                        {
-                            "entity": "media_player.living_room",
-                            "type": "media-control"
-                        },
-                        {
-                            "entity": "media_player.office",
-                            "type": "media-control"
-                        },
-                        {
-                            "entity": "media_player.kitchen",
-                            "type": "media-control"
-                        },
-                        {
-                            "entity": "media_player.bedroom_2",
-                            "type": "media-control"
-                        },
-                        {
-                            "entity": "media_player.tv_room",
-                            "type": "media-control"
-                        }
-                    ],
-                    "path": "media_view",
-                    "title": "Media"
                 },
                 {
                     "badges": [],

@@ -12,13 +12,6 @@ default_view:
     - group.basement_hue_lights
     - group.other_devices
 
-media_view:
-  view: yes
-  name: Media
-  entities:
-    - media_player.apple_tv
-    - group.sonos_devices
-
 automation_view:
   view: yes
   name: Automations
