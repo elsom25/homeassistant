@@ -3,12 +3,17 @@
         "config": {
             "background": "var(--background-image)",
             "custom_header": {
-                "compact_mode": true
+                "compact_mode": true,
+                "editor_warnings": false
             },
             "resources": [
                 {
                     "type": "module",
                     "url": "/community_plugin/custom-header/custom-header.js"
+                },
+                {
+                    "type": "module",
+                    "url": "/community_plugin/mini-media-player/mini-media-player-bundle.js"
                 }
             ],
             "title": "Home",
