@@ -52,12 +52,14 @@ hutch_on:
     data:
       entity_id: group.dining_room_devices
       brightness_pct: 100
-hutch_on_slow:
-  alias: Hutch Lights On (over 15 min)
+bedroom_sunrise:
+  alias: Bedroom Sunrise (15 min)
   sequence:
   - service: homeassistant.turn_on
     data:
-      entity_id: group.main_floor_active_lights
+      entity_id:
+      - light.andrews_lamp
+      - light.jesses_lamp
       brightness_pct: 100
       transition: 1200
 hutch_dim:

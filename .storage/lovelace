@@ -6,16 +6,6 @@
                 "compact_mode": true,
                 "editor_warnings": false
             },
-            "resources": [
-                {
-                    "type": "module",
-                    "url": "/community_plugin/custom-header/custom-header.js"
-                },
-                {
-                    "type": "module",
-                    "url": "/community_plugin/mini-media-player/mini-media-player-bundle.js"
-                }
-            ],
             "title": "Home",
             "views": [
                 {
@@ -58,6 +48,7 @@
                             "type": "weather-forecast"
                         },
                         {
+                            "artwork": "cover",
                             "entity": "media_player.living_room",
                             "hide": {
                                 "icon": true,
