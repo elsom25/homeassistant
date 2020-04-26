@@ -37,6 +37,9 @@
                                 },
                                 {
                                     "entity": "input_select.light_mode_dropdown"
+                                },
+                                {
+                                    "entity": "switch.circadian_lighting_circadian_lighting"
                                 }
                             ],
                             "show_header_toggle": false,
@@ -86,55 +89,32 @@
                         {
                             "entities": [
                                 {
-                                    "entity": "light.living_room_corner"
+                                    "entity": "light.living_room"
                                 },
                                 {
-                                    "entity": "light.living_room_primary"
+                                    "entity": "light.butlers_pantry"
+                                },
+                                {
+                                    "entity": "light.master_bedroom"
+                                },
+                                {
+                                    "entity": "light.master_bathroom"
+                                },
+                                {
+                                    "entity": "light.spare_room"
                                 }
                             ],
-                            "show_header_toggle": true,
-                            "title": "Living Room",
+                            "show_header_toggle": false,
+                            "title": "Lights",
                             "type": "entities"
                         },
                         {
-                            "entities": [
-                                {
-                                    "entity": "light.andrews_lamp"
-                                },
-                                {
-                                    "entity": "light.jesses_lamp"
-                                },
-                                {
-                                    "entity": "light.bedroom_1"
-                                },
-                                {
-                                    "entity": "light.bedroom_2"
-                                },
-                                {
-                                    "entity": "light.bedroom_3"
-                                }
-                            ],
-                            "show_header_toggle": true,
-                            "title": "Master Bedroom",
-                            "type": "entities"
+                            "entity": "light.jesses_lamp",
+                            "type": "light"
                         },
                         {
-                            "entities": [
-                                {
-                                    "entity": "light.master_bath_l_l"
-                                },
-                                {
-                                    "entity": "light.master_bath_l_r"
-                                },
-                                {
-                                    "entity": "light.master_bath_r_l"
-                                },
-                                {
-                                    "entity": "light.master_bath_r_r"
-                                }
-                            ],
-                            "title": "Master Bathroom",
-                            "type": "entities"
+                            "entity": "light.andrews_lamp",
+                            "type": "light"
                         },
                         {
                             "entities": [
@@ -169,6 +149,11 @@
                             "show_header_toggle": false,
                             "title": "Nest Protects",
                             "type": "entities"
+                        },
+                        {
+                            "entity": "sensor.circadian_values",
+                            "graph": "line",
+                            "type": "sensor"
                         }
                     ],
                     "icon": "mdi:home",

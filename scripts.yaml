@@ -23,7 +23,6 @@
   - data:
       brightness_pct: 30
       entity_id:
-      - group.main_floor_active_lights
       - light.bedroom_1
       - light.bedroom_2
       - light.bedroom_3
@@ -32,6 +31,7 @@
       entity_id:
       - group.other_devices
       - group.basement_hue_lights
+      - group.main_floor_active_lights
     service: homeassistant.turn_off
 good_morning:
   alias: Good Morning
