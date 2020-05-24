@@ -1,0 +1,11 @@
+- id: '1587924614004'
+  alias: Disable sleep mode on sunrise
+  description: ''
+  trigger:
+  - event: sunrise
+    platform: sun
+  condition: []
+  action:
+  - data: {}
+    entity_id: input_boolean.sleep_lighting
+    service: homeassistant.turn_off

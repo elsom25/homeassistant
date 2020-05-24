@@ -1,24 +1,28 @@
 '1514647809398':
   alias: Goodnight
   sequence:
-  - service: homeassistant.turn_off
-    data:
+  - data:
+      entity_id: input_boolean.sleep_lighting
+    service: homeassistant.turn_on
+  - data:
       entity_id:
-      - group.dining_room_devices
-      - group.living_room_devices
-      - group.bedroom_devices
-      - group.other_devices
-      - group.indoor_entrance_lights
-      - group.basement_hue_lights
-  - service: media_player.media_pause
-    data:
+      - light.living_room
+      - light.butlers_pantry
+      - light.master_bathroom
+      - light.master_bedroom
+      - light.spare_room
+    service: homeassistant.turn_off
+  - data:
       entity_id: group.sonos_devices
+    service: media_player.media_pause
 '1523806783160':
   alias: Bedtime
   sequence:
   - data:
       brightness_pct: 70
-      entity_id: group.bedroom_devices
+      entity_id:
+      - light.andrews_lamp
+      - light.jesses_lamp
     service: homeassistant.turn_on
   - data:
       brightness_pct: 30
@@ -26,16 +30,20 @@
       - light.bedroom_1
       - light.bedroom_2
       - light.bedroom_3
+      - light.living_room
     service: homeassistant.turn_on
   - data:
       entity_id:
-      - group.other_devices
-      - group.basement_hue_lights
-      - group.main_floor_active_lights
+      - light.butlers_pantry
+      - light.master_bathroom
+      - light.spare_room
     service: homeassistant.turn_off
 good_morning:
   alias: Good Morning
   sequence:
+  - service: homeassistant.turn_off
+    data:
+      entity_id: input_boolean.sleep_lighting
   - service: homeassistant.turn_on
     data:
       entity_id:
@@ -45,30 +53,6 @@ good_morning:
   - data:
       entity_id: group.sonos_devices
     service: media_player.media_play
-hutch_on:
-  alias: Hutch Lights On
-  sequence:
-  - service: homeassistant.turn_on
-    data:
-      entity_id: group.dining_room_devices
-      brightness_pct: 100
-bedroom_sunrise:
-  alias: Bedroom Sunrise (15 min)
-  sequence:
-  - service: homeassistant.turn_on
-    data:
-      entity_id:
-      - light.andrews_lamp
-      - light.jesses_lamp
-      brightness_pct: 100
-      transition: 1200
-hutch_dim:
-  alias: Hutch Lights Dim
-  sequence:
-  - service: homeassistant.turn_on
-    data:
-      entity_id: group.main_floor_active_lights
-      brightness_pct: 30
 media_room_on:
   alias: Media Lights On
   sequence:
