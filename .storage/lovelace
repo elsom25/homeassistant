@@ -1,4 +1,6 @@
 {
+    "version": 1,
+    "key": "lovelace",
     "data": {
         "config": {
             "title": "Home",
@@ -236,12 +238,6 @@
                                     "entity": "person.andrew"
                                 },
                                 {
-                                    "entity": "sensor.andrew_status"
-                                },
-                                {
-                                    "entity": "sensor.andrew"
-                                },
-                                {
                                     "entity": "device_tracker.andrew_wifi"
                                 },
                                 {
@@ -261,12 +257,6 @@
                                     "entity": "person.jesse"
                                 },
                                 {
-                                    "entity": "sensor.jesse_status"
-                                },
-                                {
-                                    "entity": "sensor.jesse"
-                                },
-                                {
                                     "entity": "device_tracker.jesse_wifi"
                                 },
                                 {
@@ -283,7 +273,5 @@
                 }
             ]
         }
-    },
-    "key": "lovelace",
-    "version": 1
+    }
 }

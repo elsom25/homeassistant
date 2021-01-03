@@ -4,6 +4,7 @@
 .cloud
 *.log
 *.db
+image
 tts/**/*
 
 # Ensure secrets YAML files are ignored
