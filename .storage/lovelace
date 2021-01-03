@@ -1,15 +1,13 @@
 {
     "data": {
         "config": {
-            "background": "var(--background-image)",
-            "custom_header": {
-                "compact_mode": true,
-                "editor_warnings": false
-            },
             "title": "Home",
             "views": [
                 {
                     "badges": [
+                        {
+                            "entity": "binary_sensor.updater"
+                        },
                         {
                             "entity": "person.andrew"
                         },
@@ -40,9 +38,6 @@
                                 },
                                 {
                                     "entity": "switch.circadian_lighting_circadian_lighting"
-                                },
-                                {
-                                    "entity": "input_boolean.sleep_lighting"
                                 }
                             ],
                             "show_header_toggle": false,
@@ -92,6 +87,9 @@
                         {
                             "entities": [
                                 {
+                                    "entity": "light.christmas_lights"
+                                },
+                                {
                                     "entity": "light.living_room"
                                 },
                                 {
@@ -105,6 +103,12 @@
                                 },
                                 {
                                     "entity": "light.spare_room"
+                                },
+                                {
+                                    "entity": "switch.front_door"
+                                },
+                                {
+                                    "entity": "light.outdoor_lights_plug"
                                 }
                             ],
                             "show_header_toggle": false,
@@ -122,35 +126,43 @@
                         {
                             "entities": [
                                 {
-                                    "entity": "binary_sensor.basement_nest_protect_online"
+                                    "entity": "device_tracker.amplify_location_tracker"
                                 },
                                 {
-                                    "entity": "sensor.basement_nest_protect_co_status"
+                                    "entity": "sensor.amplify_charging_rate_sensor"
                                 },
                                 {
-                                    "entity": "sensor.basement_nest_protect_smoke_status"
+                                    "entity": "sensor.amplify_battery_sensor"
                                 },
                                 {
-                                    "entity": "binary_sensor.living_room_nest_protect_online"
+                                    "entity": "sensor.amplify_range_sensor"
                                 },
                                 {
-                                    "entity": "sensor.living_room_nest_protect_co_status"
+                                    "entity": "climate.amplify_hvac_climate_system"
                                 },
                                 {
-                                    "entity": "sensor.living_room_nest_protect_smoke_status"
+                                    "entity": "sensor.amplify_temperature_sensor_outside"
                                 },
                                 {
-                                    "entity": "binary_sensor.upstairs_nest_protect_online"
+                                    "entity": "lock.amplify_frunk_lock"
                                 },
                                 {
-                                    "entity": "sensor.upstairs_nest_protect_co_status"
+                                    "entity": "lock.amplify_door_lock"
                                 },
                                 {
-                                    "entity": "sensor.upstairs_nest_protect_smoke_status"
+                                    "entity": "lock.amplify_trunk_lock"
+                                },
+                                {
+                                    "entity": "lock.amplify_charger_door_lock"
+                                },
+                                {
+                                    "entity": "switch.amplify_update_switch"
+                                },
+                                {
+                                    "entity": "binary_sensor.amplify_online_sensor"
                                 }
                             ],
-                            "show_header_toggle": false,
-                            "title": "Nest Protects",
+                            "title": "Amplify",
                             "type": "entities"
                         },
                         {

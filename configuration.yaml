@@ -5,12 +5,12 @@ discovery:
 history:
 map:
 mobile_app:
-switch:
 system_health:
 
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+scene: !include scenes.yaml
 
 # badnest:
 #   user_id: !secret nest_user_id
@@ -106,10 +106,16 @@ input_select:
 
 homeassistant:
   customize: !include customize.yaml
+  packages: !include_dir_named packages
   auth_providers:
     - type: homeassistant
 
 http:
+  ip_ban_enabled: false
+  login_attempts_threshold: 5
+  
+logger:
+  default: info
 
 sensor:
   - platform: template
@@ -165,17 +171,18 @@ sensor:
           {% else %}
             mdi:home
           {% endif %}
-
 switch:
   - platform: circadian_lighting
-    sleep_entity: input_boolean.sleep_lighting
-    sleep_state: On
-    sleep_colortemp: 10000
-    sleep_brightness: 1
+    disable_brightness_adjust: true
     lights_ct:
-      - light.living_room
+      - light.living_room_corner
+      - light.living_room_primary
+      - light.bedroom_1
+      - light.bedroom_2
+      - light.bedroom_3
+      - light.jesses_lamp
+      - light.andrews_lamp
       - light.butlers_pantry
-      - light.master_bedroom
       - light.master_bathroom
       - light.spare_room
 

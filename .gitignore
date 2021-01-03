@@ -1,18 +1,12 @@
 .storage/*
 !.storage/lovelace
 
-node-red/lib
-node-red/node_modules
-node-red/nodes
-node-red/home-assistant_v2.db*
-node-red/*.backup
-node-red/settings.js
-
 .cloud
 *.log
 *.db
+tts/**/*
 
-# Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
+# Ensure secrets YAML files are ignored
 ip_bans.yaml
 secrets.yaml
 known_devices.yaml
