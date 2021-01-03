@@ -120,33 +120,8 @@ logger:
 sensor:
   - platform: template
     sensors:
-      jesse: 
-        value_template: >-
-          {% if is_state('device_tracker.jesse_wifi', 'home') or is_state('device_tracker.jesse_iphone', 'home') %}
-            Home
-          {% else %}
-            Away
-          {% endif %}
-      andrew: 
-        value_template: >-
-          {% if is_state('device_tracker.andrew_wifi', 'home') or is_state('device_tracker.andrew_iphone', 'home') %}
-            Home
-          {% else %}
-            Away
-          {% endif %}
-      jesse_status:
-        friendly_name: 'Jesse'
-        entity_id: input_select.jesse_status_dropdown
-        value_template: '{{ states.input_select.jesse_status_dropdown.state }}'
-      andrew_status:
-        friendly_name: 'Andrew'
-        entity_id: input_select.andrew_status_dropdown
-        value_template: '{{ states.input_select.andrew_status_dropdown.state }}'
       home_status:
         friendly_name: 'Home'
-        entity_id:
-          - input_select.jesse_status_dropdown
-          - input_select.andrew_status_dropdown
         value_template: >-
           {% if states('input_select.jesse_status_dropdown') == states('input_select.andrew_status_dropdown') %}
             {{ states('input_select.jesse_status_dropdown') }}
