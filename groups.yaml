@@ -23,6 +23,8 @@ living_room_devices:
   entities:
     - light.living_room_corner
     - light.living_room_primary
+    - light.garland_plug
+    - light.christmas_tree_plug
 
 dining_room_devices:
   name: Dining Room
