@@ -1,0 +1,9 @@
+## Used by the FreeNAS plugin to add links in the side panel.
+# https://www.home-assistant.io/integrations/panel_iframe/
+
+panel_iframe:
+  nodered:
+    title: Node-RED
+    icon: mdi:sitemap
+    require_admin: true
+    url: http://192.168.1.52:1880
