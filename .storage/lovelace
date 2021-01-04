@@ -25,21 +25,227 @@
                     ],
                     "cards": [
                         {
-                            "entities": [
+                            "type": "vertical-stack",
+                            "cards": [
                                 {
-                                    "entity": "sensor.home_status"
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.home_status"
+                                        },
+                                        {
+                                            "entity": "input_select.light_mode_dropdown"
+                                        }
+                                    ]
                                 },
                                 {
-                                    "entity": "input_select.light_mode_dropdown"
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "entity-button",
+                                            "entity": "script.good_morning",
+                                            "icon": "mdi:weather-sunset-up",
+                                            "show_name": true,
+                                            "show_state": false,
+                                            "icon_height": "45px"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "script.1523806783160",
+                                            "icon": "mdi:weather-sunset-down",
+                                            "icon_height": "45px"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "script.1514647809398",
+                                            "icon": "mdi:power-sleep",
+                                            "icon_height": "45px"
+                                        }
+                                    ]
                                 }
-                            ],
-                            "show_header_toggle": false,
-                            "type": "entities",
-                            "state_color": true
+                            ]
                         },
                         {
                             "entity": "weather.home",
                             "type": "weather-forecast"
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "switch.front_door",
+                                            "icon": "mdi:lightbulb"
+                                        },
+                                        {
+                                            "entity": "light.outdoor_lights_plug",
+                                            "icon": "mdi:lightbulb-cfl-spiral"
+                                        }
+                                    ],
+                                    "show_header_toggle": false
+                                },
+                                {
+                                    "type": "custom:vertical-stack-in-card",
+                                    "cards": [
+                                        {
+                                            "type": "entities",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:slider-entity-row",
+                                                    "entity": "light.main_floor",
+                                                    "toggle": true,
+                                                    "hide_when_off": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "horizontal-stack",
+                                            "cards": [
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "light.living_room_primary",
+                                                    "icon_height": "45px",
+                                                    "icon": "hass:lamp",
+                                                    "name": "Primary"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "light.living_room_corner",
+                                                    "icon_height": "45px",
+                                                    "icon": "hass:lamp",
+                                                    "name": "Corner"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "light.butlers_pantry",
+                                                    "icon_height": "45px",
+                                                    "icon": "mdi:beer",
+                                                    "name": "Bar"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:vertical-stack-in-card",
+                                    "cards": [
+                                        {
+                                            "type": "entities",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:slider-entity-row",
+                                                    "entity": "light.spare_room",
+                                                    "name": "Jesse's Office",
+                                                    "toggle": true,
+                                                    "hide_when_off": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "horizontal-stack",
+                                            "cards": [
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "light.spare_room_fixture",
+                                                    "icon_height": "45px",
+                                                    "icon": "mdi:ceiling-light",
+                                                    "name": "Overhead"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "light.office_backlight_plug",
+                                                    "icon_height": "45px",
+                                                    "icon": "hass:lamp",
+                                                    "name": "Accent"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:vertical-stack-in-card",
+                                    "cards": [
+                                        {
+                                            "type": "entities",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:slider-entity-row",
+                                                    "entity": "light.master_bedroom",
+                                                    "toggle": true,
+                                                    "hide_when_off": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "horizontal-stack",
+                                            "cards": [
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "light.bedroom_fixture",
+                                                    "icon_height": "45px",
+                                                    "icon": "mdi:ceiling-light",
+                                                    "name": "Overhead"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "light.andrews_lamp",
+                                                    "icon_height": "45px",
+                                                    "icon": "hass:lamp"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "light.jesses_lamp",
+                                                    "icon_height": "45px",
+                                                    "icon": "hass:lamp"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "type": "custom:slider-entity-row",
+                                            "entity": "light.master_bathroom",
+                                            "toggle": true,
+                                            "hide_when_off": true
+                                        }
+                                    ]
+                                }
+                            ]
                         },
                         {
                             "artwork": "cover",
@@ -60,16 +266,20 @@
                                         "name": "Kitchen"
                                     },
                                     {
-                                        "entity_id": "media_player.office",
-                                        "name": "Office"
+                                        "entity_id": "media_player.mainfloor_bathroom",
+                                        "name": "Guest Bathroom"
                                     },
                                     {
-                                        "entity_id": "media_player.bedroom_2",
+                                        "entity_id": "media_player.office_jesse",
+                                        "name": "Office (Jesse)"
+                                    },
+                                    {
+                                        "entity_id": "media_player.office_andrew",
+                                        "name": "Office (Andrew)"
+                                    },
+                                    {
+                                        "entity_id": "media_player.bedroom",
                                         "name": "Bedroom"
-                                    },
-                                    {
-                                        "entity_id": "media_player.tv_room",
-                                        "name": "TV"
                                     }
                                 ],
                                 "platform": "sonos",
@@ -93,45 +303,154 @@
                                     "entity": "sensor.upstairs_temperature"
                                 }
                             ]
+                        }
+                    ]
+                },
+                {
+                    "path": "locations_view",
+                    "title": "Details",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:auto-entities",
+                            "show_empty": false,
+                            "card": {
+                                "type": "entities",
+                                "title": "Battery warning"
+                            },
+                            "filter": {
+                                "include": [
+                                    {
+                                        "domain": "device_tracker",
+                                        "options": {
+                                            "secondary_info": "last-changed"
+                                        },
+                                        "attributes": {
+                                            "battery": "< 40",
+                                            "source_type": "gps"
+                                        }
+                                    }
+                                ]
+                            }
                         },
                         {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:vertical-stack-in-card",
+                                    "cards": [
+                                        {
+                                            "type": "entities",
+                                            "entities": [
+                                                {
+                                                    "entity": "input_select.andrew_status_dropdown"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "glance",
+                                            "entities": [
+                                                {
+                                                    "entity": "person.andrew"
+                                                },
+                                                {
+                                                    "entity": "device_tracker.andrew_wifi"
+                                                },
+                                                {
+                                                    "entity": "device_tracker.andrew_iphone"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:vertical-stack-in-card",
+                                    "cards": [
+                                        {
+                                            "type": "entities",
+                                            "entities": [
+                                                {
+                                                    "entity": "input_select.jesse_status_dropdown"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "glance",
+                                            "entities": [
+                                                {
+                                                    "entity": "person.jesse"
+                                                },
+                                                {
+                                                    "entity": "device_tracker.jesse_wifi"
+                                                },
+                                                {
+                                                    "entity": "device_tracker.jesse_iphone"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "entities",
                             "entities": [
                                 {
-                                    "entity": "light.christmas_lights"
+                                    "entity": "switch.adaptive_lighting_full_house",
+                                    "name": "Adaptive Lighting"
                                 },
                                 {
-                                    "entity": "light.living_room"
+                                    "entity": "switch.adaptive_lighting_sleep_mode_full_house",
+                                    "name": "Sleep Mode"
                                 },
                                 {
-                                    "entity": "light.butlers_pantry"
+                                    "entity": "switch.adaptive_lighting_adapt_color_full_house",
+                                    "name": "Adapt Colour"
                                 },
                                 {
-                                    "entity": "light.master_bedroom"
-                                },
-                                {
-                                    "entity": "light.master_bathroom"
-                                },
-                                {
-                                    "entity": "light.spare_room"
-                                },
-                                {
-                                    "entity": "switch.front_door"
-                                },
-                                {
-                                    "entity": "light.outdoor_lights_plug"
+                                    "entity": "switch.adaptive_lighting_adapt_brightness_full_house",
+                                    "name": "Adapt Brightness"
                                 }
                             ],
-                            "show_header_toggle": false,
-                            "title": "Lights",
-                            "type": "entities"
+                            "title": "Adaptive Lighting - Full House"
                         },
                         {
-                            "entity": "light.jesses_lamp",
-                            "type": "light"
+                            "type": "custom:auto-entities",
+                            "card": {
+                                "type": "entities",
+                                "title": "Stargate Command"
+                            },
+                            "filter": {
+                                "include": [
+                                    {
+                                        "name": "/UniFi Dream Machine/"
+                                    }
+                                ]
+                            }
                         },
                         {
-                            "entity": "light.andrews_lamp",
-                            "type": "light"
+                            "type": "custom:auto-entities",
+                            "show_empty": false,
+                            "card": {
+                                "type": "entities",
+                                "title": "Lights on",
+                                "show_header_toggle": false
+                            },
+                            "filter": {
+                                "include": [
+                                    {
+                                        "domain": "light"
+                                    }
+                                ],
+                                "exclude": [
+                                    {
+                                        "state": "off"
+                                    },
+                                    {
+                                        "state": "unavailable"
+                                    }
+                                ]
+                            }
                         },
                         {
                             "entities": [
@@ -174,117 +493,6 @@
                             ],
                             "title": "Amplify",
                             "type": "entities"
-                        }
-                    ]
-                },
-                {
-                    "badges": [],
-                    "cards": [
-                        {
-                            "entity": "script.good_morning",
-                            "hold_action": {
-                                "action": "more-info"
-                            },
-                            "icon": "mdi:weather-sunset-up",
-                            "icon_height": "45px",
-                            "show_icon": true,
-                            "show_name": true,
-                            "tap_action": {
-                                "action": "toggle"
-                            },
-                            "type": "entity-button"
-                        },
-                        {
-                            "entity": "script.1523806783160",
-                            "hold_action": {
-                                "action": "more-info"
-                            },
-                            "icon": "mdi:weather-sunset-down",
-                            "icon_height": "40px",
-                            "show_icon": true,
-                            "show_name": true,
-                            "tap_action": {
-                                "action": "toggle"
-                            },
-                            "type": "entity-button"
-                        },
-                        {
-                            "entity": "script.1514647809398",
-                            "hold_action": {
-                                "action": "more-info"
-                            },
-                            "icon": "mdi:power-sleep",
-                            "icon_height": "45px",
-                            "show_icon": true,
-                            "show_name": true,
-                            "tap_action": {
-                                "action": "toggle"
-                            },
-                            "type": "entity-button"
-                        }
-                    ],
-                    "path": "automation_view",
-                    "title": "Automations"
-                },
-                {
-                    "path": "locations_view",
-                    "title": "Details",
-                    "badges": [],
-                    "cards": [
-                        {
-                            "entities": [
-                                {
-                                    "entity": "input_select.andrew_status_dropdown"
-                                },
-                                {
-                                    "entity": "person.andrew"
-                                },
-                                {
-                                    "entity": "device_tracker.andrew_wifi"
-                                },
-                                {
-                                    "entity": "device_tracker.andrew_iphone"
-                                }
-                            ],
-                            "show_header_toggle": false,
-                            "title": "Andrew Tracking Devices",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                {
-                                    "entity": "input_select.jesse_status_dropdown"
-                                },
-                                {
-                                    "entity": "person.jesse"
-                                },
-                                {
-                                    "entity": "device_tracker.jesse_wifi"
-                                },
-                                {
-                                    "entity": "device_tracker.jesse_iphone"
-                                }
-                            ],
-                            "show_header_toggle": false,
-                            "title": "Jesse Tracking Devices",
-                            "type": "entities"
-                        },
-                        {
-                            "type": "entities",
-                            "entities": [
-                                {
-                                    "entity": "switch.adaptive_lighting_full_house"
-                                },
-                                {
-                                    "entity": "switch.adaptive_lighting_sleep_mode_full_house"
-                                },
-                                {
-                                    "entity": "switch.adaptive_lighting_adapt_color_full_house"
-                                },
-                                {
-                                    "entity": "switch.adaptive_lighting_adapt_brightness_full_house"
-                                }
-                            ]
                         }
                     ]
                 }
