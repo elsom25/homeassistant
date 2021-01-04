@@ -3,77 +3,14 @@ all_input_selects:
   entities:
     - input_select.andrew_status_dropdown
     - input_select.jesse_status_dropdown
-
-entrance_devices:
-  name: Entrance
-  entities:
-    - switch.front_door
-    - group.indoor_entrance_lights
-
-indoor_entrance_lights:
-  name: Indoor Entrance Lights
-  entities:
-    - light.front_entrance_1
-    - light.front_entrance_2
-    - light.front_hall_1
-    - light.front_hall_2
-
-living_room_devices:
-  name: Living Room
-  entities:
-    - light.living_room_corner
-    - light.living_room_primary
-    - light.garland_plug
-    - light.christmas_tree_plug
-
-dining_room_devices:
-  name: Dining Room
-  entities:
-    - light.hutch_left
-    - light.hutch_right
-    - light.bathroom_hall_1
-    - light.bathroom_hall_2
-
-bedroom_devices:
-  name: Bedroom
-  entities:
-    - light.jesses_lamp
-    - light.andrews_lamp
-    - light.bedroom_1
-    - light.bedroom_2
-    - light.bedroom_3
-
-other_devices:
-  name: Other Devices
-  entities:
-    - switch.office_primary
+    - input_select.light_mode_dropdown
 
 sonos_devices:
   name: Sonos
   entities:
     - media_player.living_room
-    - media_player.office
+    - media_player.office_andrew
+    - media_player.office_jesse
     - media_player.kitchen
     - media_player.bedroom
-    - media_player.tv_room
-
-main_floor_active_lights:
-  name: Main Floor Lights
-  entities:
-    - group.bedroom_devices
-    - group.living_room_devices
-
-basement_hue_lights:
-  name: Basement Lights
-  entities:
-    - light.hue_color_downlight_1
-    - light.hue_color_downlight_2
-    - light.hue_color_downlight_3
-    - light.hue_color_downlight_4
-
-people:
-  name: Awesome People
-  entities:
-    - sensor.home_status
-    - sensor.andrew_status
-    - sensor.jesse_status
+    - media_player.mainfloor_bathroom
