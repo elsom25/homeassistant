@@ -12,6 +12,10 @@
   - data:
       entity_id: group.sonos_devices
     service: media_player.media_pause
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.light_mode_dropdown
+      option: Sleep
   mode: single
 '1523806783160':
   alias: Bedtime
@@ -41,11 +45,19 @@
 good_morning:
   alias: Good Morning
   sequence:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.light_mode_dropdown
+      option: Sun
   - data:
-      brightness_pct: 80
+      brightness_pct: 100
       entity_id:
       - light.living_room
       - light.butlers_pantry
+    service: homeassistant.turn_on
+  - data:
+      brightness_pct: 50
+      entity_id:
       - light.master_bedroom
     service: homeassistant.turn_on
   - data:

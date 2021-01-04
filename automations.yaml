@@ -1,3 +1,64 @@
-## automations.yaml
-# Learn more at https://www.home-assistant.io/docs/automation/
-[]
+- id: '1609713837113'
+  alias: Circadian Lighting On
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_select.light_mode_dropdown
+    to: Sun
+  condition: []
+  action:
+  - service: homeassistant.turn_on
+    data: {}
+    entity_id: switch.adaptive_lighting_full_house
+  mode: restart
+- id: '1609713885875'
+  alias: Circadian Lighting Off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_select.light_mode_dropdown
+    from: Sun
+  condition:
+  - condition: not
+    conditions:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_select.light_mode_dropdown
+        state: Sun
+      - condition: state
+        entity_id: input_select.light_mode_dropdown
+        state: Sleep
+  action:
+  - service: homeassistant.turn_off
+    data: {}
+    entity_id: switch.adaptive_lighting_full_house
+  mode: restart
+- id: '1609720238774'
+  alias: Circadian Lighting - Sleep On
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_select.light_mode_dropdown
+    to: Sleep
+  condition: []
+  action:
+  - service: homeassistant.turn_on
+    data:
+      entity_id:
+      - switch.adaptive_lighting_sleep_mode_full_house
+  mode: restart
+- id: '1609720268499'
+  alias: Circadian Lighting - Sleep Off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_select.light_mode_dropdown
+    from: Sleep
+  condition: []
+  action:
+  - service: homeassistant.turn_off
+    data:
+      entity_id:
+      - switch.adaptive_lighting_sleep_mode_full_house
+  mode: restart

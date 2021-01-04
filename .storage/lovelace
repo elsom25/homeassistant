@@ -6,6 +6,9 @@
             "title": "Home",
             "views": [
                 {
+                    "icon": "mdi:home",
+                    "path": "default_view",
+                    "title": "default_view",
                     "badges": [
                         {
                             "entity": "binary_sensor.updater"
@@ -14,19 +17,7 @@
                             "entity": "person.andrew"
                         },
                         {
-                            "entity": "device_tracker.andrew_wifi"
-                        },
-                        {
-                            "entity": "device_tracker.andrew_iphone"
-                        },
-                        {
                             "entity": "person.jesse"
-                        },
-                        {
-                            "entity": "device_tracker.jesse_wifi"
-                        },
-                        {
-                            "entity": "device_tracker.jesse_iphone"
                         }
                     ],
                     "cards": [
@@ -37,14 +28,11 @@
                                 },
                                 {
                                     "entity": "input_select.light_mode_dropdown"
-                                },
-                                {
-                                    "entity": "switch.circadian_lighting_circadian_lighting"
                                 }
                             ],
                             "show_header_toggle": false,
-                            "title": "Configuration",
-                            "type": "entities"
+                            "type": "entities",
+                            "state_color": true
                         },
                         {
                             "entity": "weather.home",
@@ -85,6 +73,23 @@
                                 "show_group_count": true
                             },
                             "type": "custom:mini-media-player"
+                        },
+                        {
+                            "type": "glance",
+                            "entities": [
+                                {
+                                    "entity": "climate.living_room"
+                                },
+                                {
+                                    "entity": "sensor.living_room_temperature"
+                                },
+                                {
+                                    "entity": "climate.upstairs"
+                                },
+                                {
+                                    "entity": "sensor.upstairs_temperature"
+                                }
+                            ]
                         },
                         {
                             "entities": [
@@ -166,16 +171,8 @@
                             ],
                             "title": "Amplify",
                             "type": "entities"
-                        },
-                        {
-                            "entity": "sensor.circadian_values",
-                            "graph": "line",
-                            "type": "sensor"
                         }
-                    ],
-                    "icon": "mdi:home",
-                    "path": "default_view",
-                    "title": "default_view"
+                    ]
                 },
                 {
                     "badges": [],
@@ -227,6 +224,8 @@
                     "title": "Automations"
                 },
                 {
+                    "path": "locations_view",
+                    "title": "Details",
                     "badges": [],
                     "cards": [
                         {
@@ -266,10 +265,25 @@
                             "show_header_toggle": false,
                             "title": "Jesse Tracking Devices",
                             "type": "entities"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "switch.adaptive_lighting_full_house"
+                                },
+                                {
+                                    "entity": "switch.adaptive_lighting_sleep_mode_full_house"
+                                },
+                                {
+                                    "entity": "switch.adaptive_lighting_adapt_color_full_house"
+                                },
+                                {
+                                    "entity": "switch.adaptive_lighting_adapt_brightness_full_house"
+                                }
+                            ]
                         }
-                    ],
-                    "path": "locations_view",
-                    "title": "Locations"
+                    ]
                 }
             ]
         }

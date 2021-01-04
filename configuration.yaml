@@ -1,6 +1,5 @@
 default_config:
 
-circadian_lighting:
 discovery:
 history:
 map:
@@ -12,15 +11,6 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
-# badnest:
-#   user_id: !secret nest_user_id
-#   access_token: !secret nest_access_token
-#   region: us
-
-# climate:
-#   - platform: badnest
-#     scan_interval: 10
-
 cloud:
   alexa:
     filter:
@@ -31,24 +21,11 @@ cloud:
         - group.all_remotes
         - group.all_scripts
         - group.all_switches
-        - group.automation_view
-        - group.default_view
-        - group.other_devices
-        - group.people
       exclude_domains:
         - automation
         - climate
         - media_player
         - sensor
-    entity_config:
-      group.bedroom_devices:
-        name: Bedroom Lights
-        description: The lights in the bedroom
-        display_categories: SWITCH
-      group.living_room_devices:
-        name: Living Room Lights
-        description: The lights in the living room
-        display_categories: SWITCH
   google_actions:
     filter:
       exclude_entities:
@@ -58,10 +35,6 @@ cloud:
         - group.all_remotes
         - group.all_scripts
         - group.all_switches
-        - group.automation_view
-        - group.default_view
-        - group.other_devices
-        - group.people
       exclude_domains:
         - automation
         - climate
@@ -101,6 +74,7 @@ input_select:
     name: Light Mode
     options:
       - Sun
+      - Sleep
       - Manual
     initial: Sun
 
@@ -116,6 +90,12 @@ http:
   
 logger:
   default: info
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+  project_id: !secret nest_project_id
+  subscriber_id: !secret nest_subscriber_id
 
 sensor:
   - platform: template
@@ -146,20 +126,6 @@ sensor:
           {% else %}
             mdi:home
           {% endif %}
-switch:
-  - platform: circadian_lighting
-    disable_brightness_adjust: true
-    lights_ct:
-      - light.living_room_corner
-      - light.living_room_primary
-      - light.bedroom_1
-      - light.bedroom_2
-      - light.bedroom_3
-      - light.jesses_lamp
-      - light.andrews_lamp
-      - light.butlers_pantry
-      - light.master_bathroom
-      - light.spare_room
 
 tts:
   - platform: google_translate
