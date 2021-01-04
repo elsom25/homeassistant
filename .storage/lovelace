@@ -11,13 +11,16 @@
                     "title": "default_view",
                     "badges": [
                         {
-                            "entity": "binary_sensor.updater"
+                            "entity": "sun.sun"
                         },
                         {
                             "entity": "person.andrew"
                         },
                         {
                             "entity": "person.jesse"
+                        },
+                        {
+                            "entity": "binary_sensor.updater"
                         }
                     ],
                     "cards": [
