@@ -41,13 +41,6 @@ cloud:
         - media_player
         - sensor
 
-device_tracker:
-  - platform: ping
-    consider_home: 60
-    hosts: 
-      jesse_wifi: 192.168.1.115
-      andrew_wifi: 192.168.1.135
-
 frontend:
   themes: !include_dir_merge_named themes
 

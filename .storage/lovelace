@@ -31,7 +31,13 @@
                                     "type": "entities",
                                     "entities": [
                                         {
-                                            "entity": "sensor.home_status"
+                                            "entity": "weather.home",
+                                            "name": "99 Willow Street"
+                                        },
+                                        {
+                                            "entity": "sensor.home_status",
+                                            "secondary_info": "last-changed",
+                                            "name": "Status"
                                         },
                                         {
                                             "entity": "input_select.light_mode_dropdown"
@@ -44,10 +50,13 @@
                                         {
                                             "type": "entity-button",
                                             "entity": "script.good_morning",
-                                            "icon": "mdi:weather-sunset-up",
+                                            "icon": "hass:weather-sunset-up",
                                             "show_name": true,
                                             "show_state": false,
-                                            "icon_height": "45px"
+                                            "icon_height": "45px",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            }
                                         },
                                         {
                                             "type": "button",
@@ -55,7 +64,7 @@
                                                 "action": "toggle"
                                             },
                                             "entity": "script.1523806783160",
-                                            "icon": "mdi:weather-sunset-down",
+                                            "icon": "hass:weather-sunset-down",
                                             "icon_height": "45px"
                                         },
                                         {
@@ -64,16 +73,12 @@
                                                 "action": "toggle"
                                             },
                                             "entity": "script.1514647809398",
-                                            "icon": "mdi:power-sleep",
+                                            "icon": "hass:power-sleep",
                                             "icon_height": "45px"
                                         }
                                     ]
                                 }
                             ]
-                        },
-                        {
-                            "entity": "weather.home",
-                            "type": "weather-forecast"
                         },
                         {
                             "type": "vertical-stack",
@@ -83,11 +88,11 @@
                                     "entities": [
                                         {
                                             "entity": "switch.front_door",
-                                            "icon": "mdi:lightbulb"
+                                            "icon": "hass:lightbulb"
                                         },
                                         {
                                             "entity": "light.outdoor_lights_plug",
-                                            "icon": "mdi:lightbulb-cfl-spiral"
+                                            "icon": "hass:lightbulb-cfl-spiral"
                                         }
                                     ],
                                     "show_header_toggle": false
@@ -136,7 +141,7 @@
                                                     },
                                                     "entity": "light.butlers_pantry",
                                                     "icon_height": "45px",
-                                                    "icon": "mdi:beer",
+                                                    "icon": "hass:beer",
                                                     "name": "Bar"
                                                 }
                                             ]
@@ -168,7 +173,7 @@
                                                     },
                                                     "entity": "light.spare_room_fixture",
                                                     "icon_height": "45px",
-                                                    "icon": "mdi:ceiling-light",
+                                                    "icon": "hass:ceiling-light",
                                                     "name": "Overhead"
                                                 },
                                                 {
@@ -209,7 +214,7 @@
                                                     },
                                                     "entity": "light.bedroom_fixture",
                                                     "icon_height": "45px",
-                                                    "icon": "mdi:ceiling-light",
+                                                    "icon": "hass:ceiling-light",
                                                     "name": "Overhead"
                                                 },
                                                 {
@@ -248,59 +253,129 @@
                             ]
                         },
                         {
-                            "artwork": "cover",
-                            "entity": "media_player.living_room",
-                            "hide": {
-                                "icon": true,
-                                "power": true,
-                                "source": true
-                            },
-                            "speaker_group": {
-                                "entities": [
-                                    {
-                                        "entity_id": "media_player.living_room",
-                                        "name": "Living Room"
-                                    },
-                                    {
-                                        "entity_id": "media_player.kitchen",
-                                        "name": "Kitchen"
-                                    },
-                                    {
-                                        "entity_id": "media_player.mainfloor_bathroom",
-                                        "name": "Guest Bathroom"
-                                    },
-                                    {
-                                        "entity_id": "media_player.office_jesse",
-                                        "name": "Office (Jesse)"
-                                    },
-                                    {
-                                        "entity_id": "media_player.office_andrew",
-                                        "name": "Office (Andrew)"
-                                    },
-                                    {
-                                        "entity_id": "media_player.bedroom",
-                                        "name": "Bedroom"
-                                    }
-                                ],
-                                "platform": "sonos",
-                                "show_group_count": true
-                            },
-                            "type": "custom:mini-media-player"
-                        },
-                        {
-                            "type": "glance",
-                            "entities": [
+                            "type": "horizontal-stack",
+                            "cards": [
                                 {
+                                    "type": "thermostat",
                                     "entity": "climate.living_room"
                                 },
                                 {
-                                    "entity": "sensor.living_room_temperature"
-                                },
-                                {
+                                    "type": "thermostat",
                                     "entity": "climate.upstairs"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:mini-media-player",
+                                    "entity": "media_player.living_room",
+                                    "hide": {
+                                        "icon": true,
+                                        "power": true
+                                    },
+                                    "speaker_group": {
+                                        "entities": [
+                                            {
+                                                "entity_id": "media_player.living_room",
+                                                "name": "Living Room"
+                                            },
+                                            {
+                                                "entity_id": "media_player.kitchen",
+                                                "name": "Kitchen"
+                                            },
+                                            {
+                                                "entity_id": "media_player.mainfloor_bathroom",
+                                                "name": "Guest Bathroom"
+                                            },
+                                            {
+                                                "entity_id": "media_player.office_jesse",
+                                                "name": "Office (Jesse)"
+                                            },
+                                            {
+                                                "entity_id": "media_player.office_andrew",
+                                                "name": "Office (Andrew)"
+                                            },
+                                            {
+                                                "entity_id": "media_player.bedroom",
+                                                "name": "Bedroom"
+                                            }
+                                        ],
+                                        "platform": "sonos",
+                                        "show_group_count": true
+                                    },
+                                    "volume_stateless": false,
+                                    "group": true,
+                                    "info": "short",
+                                    "artwork": "full-cover"
                                 },
                                 {
-                                    "entity": "sensor.upstairs_temperature"
+                                    "type": "custom:mini-media-player",
+                                    "group": true,
+                                    "info": "short",
+                                    "hide": {
+                                        "controls": true,
+                                        "progress": true,
+                                        "source": true
+                                    },
+                                    "volume_stateless": true,
+                                    "entity": "media_player.living_room"
+                                },
+                                {
+                                    "type": "custom:mini-media-player",
+                                    "group": true,
+                                    "hide": {
+                                        "controls": true,
+                                        "progress": true,
+                                        "source": true
+                                    },
+                                    "entity": "media_player.kitchen",
+                                    "volume_stateless": true
+                                },
+                                {
+                                    "type": "custom:mini-media-player",
+                                    "group": true,
+                                    "hide": {
+                                        "controls": true,
+                                        "progress": true,
+                                        "source": true
+                                    },
+                                    "entity": "media_player.mainfloor_bathroom",
+                                    "volume_stateless": true
+                                },
+                                {
+                                    "type": "custom:mini-media-player",
+                                    "group": true,
+                                    "hide": {
+                                        "controls": true,
+                                        "progress": true,
+                                        "source": true
+                                    },
+                                    "entity": "media_player.office_jesse",
+                                    "volume_stateless": true
+                                },
+                                {
+                                    "type": "custom:mini-media-player",
+                                    "group": true,
+                                    "hide": {
+                                        "controls": true,
+                                        "progress": true,
+                                        "source": true
+                                    },
+                                    "entity": "media_player.office_andrew",
+                                    "volume_stateless": true
+                                },
+                                {
+                                    "type": "custom:mini-media-player",
+                                    "group": true,
+                                    "hide": {
+                                        "controls": true,
+                                        "progress": true,
+                                        "source": true
+                                    },
+                                    "entity": "media_player.bedroom",
+                                    "volume_stateless": true
                                 }
                             ]
                         }
@@ -393,26 +468,101 @@
                             ]
                         },
                         {
-                            "type": "entities",
-                            "entities": [
+                            "type": "vertical-stack",
+                            "cards": [
                                 {
-                                    "entity": "switch.adaptive_lighting_full_house",
-                                    "name": "Adaptive Lighting"
+                                    "type": "custom:vertical-stack-in-card",
+                                    "horizontal": true,
+                                    "title": "Lamps",
+                                    "cards": [
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "switch.adaptive_lighting_lamps",
+                                            "name": "Adaptive?",
+                                            "icon_height": "35px"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "switch.adaptive_lighting_adapt_color_lamps",
+                                            "name": "Colour?",
+                                            "icon_height": "35px",
+                                            "icon": "hass:format-color-fill"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "switch.adaptive_lighting_adapt_brightness_lamps",
+                                            "name": "Brightness?",
+                                            "icon_height": "35px",
+                                            "icon": "hass:brightness-6"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "switch.adaptive_lighting_sleep_mode_lamps",
+                                            "name": "Sleep?",
+                                            "icon_height": "35px",
+                                            "icon": "hass:sleep"
+                                        }
+                                    ]
                                 },
                                 {
-                                    "entity": "switch.adaptive_lighting_sleep_mode_full_house",
-                                    "name": "Sleep Mode"
-                                },
-                                {
-                                    "entity": "switch.adaptive_lighting_adapt_color_full_house",
-                                    "name": "Adapt Colour"
-                                },
-                                {
-                                    "entity": "switch.adaptive_lighting_adapt_brightness_full_house",
-                                    "name": "Adapt Brightness"
+                                    "type": "custom:vertical-stack-in-card",
+                                    "horizontal": true,
+                                    "title": "Overhead",
+                                    "cards": [
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "switch.adaptive_lighting_overhead",
+                                            "name": "Adaptive?",
+                                            "icon_height": "35px"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "switch.adaptive_lighting_adapt_color_overhead",
+                                            "name": "Colour?",
+                                            "icon_height": "35px",
+                                            "icon": "hass:format-color-fill"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "switch.adaptive_lighting_adapt_brightness_overhead",
+                                            "name": "Brightness?",
+                                            "icon_height": "35px",
+                                            "icon": "hass:brightness-6"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "switch.adaptive_lighting_sleep_mode_overhead",
+                                            "name": "Sleep?",
+                                            "icon_height": "35px",
+                                            "icon": "hass:sleep"
+                                        }
+                                    ]
                                 }
-                            ],
-                            "title": "Adaptive Lighting - Full House"
+                            ]
                         },
                         {
                             "type": "custom:auto-entities",
