@@ -378,6 +378,41 @@
                                     "volume_stateless": true
                                 }
                             ]
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "device_tracker.amplify_location_tracker"
+                                        },
+                                        {
+                                            "entity": "sensor.amplify_range_sensor"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.amplify_online_sensor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "entity-button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "climate.amplify_hvac_climate_system",
+                                            "show_icon": false,
+                                            "show_state": true,
+                                            "show_name": true,
+                                            "name": "Climate"
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 },
@@ -641,7 +676,7 @@
                                     "entity": "binary_sensor.amplify_online_sensor"
                                 }
                             ],
-                            "title": "Amplify",
+                            "title": "Amplify Details",
                             "type": "entities"
                         }
                     ]
