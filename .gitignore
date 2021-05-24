@@ -3,7 +3,7 @@
 
 .cloud
 *.log
-*.db
+*.db*
 image
 tts/**/*
 
@@ -15,6 +15,7 @@ known_devices.yaml
 nest.conf
 .google.token
 .ios.conf
+.accounts@jcmcginnis.com.august.conf
 
 .HA_VERSION
 

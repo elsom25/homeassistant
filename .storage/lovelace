@@ -253,6 +253,26 @@
                             ]
                         },
                         {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "picture-glance",
+                                    "entities": [
+                                        "camera.front_door_g4_doorbell"
+                                    ],
+                                    "camera_image": "camera.front_door_g4_doorbell"
+                                },
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        "lock.front_door"
+                                    ],
+                                    "show_header_toggle": false,
+                                    "state_color": true
+                                }
+                            ]
+                        },
+                        {
                             "type": "horizontal-stack",
                             "cards": [
                                 {
@@ -392,25 +412,17 @@
                                             "entity": "sensor.amplify_range_sensor"
                                         },
                                         {
-                                            "entity": "binary_sensor.amplify_online_sensor"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "horizontal-stack",
-                                    "cards": [
-                                        {
-                                            "type": "entity-button",
+                                            "entity": "climate.amplify_hvac_climate_system",
                                             "tap_action": {
                                                 "action": "toggle"
                                             },
-                                            "entity": "climate.amplify_hvac_climate_system",
-                                            "show_icon": false,
-                                            "show_state": true,
-                                            "show_name": true,
-                                            "name": "Climate"
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            }
                                         }
-                                    ]
+                                    ],
+                                    "show_header_toggle": false,
+                                    "state_color": true
                                 }
                             ]
                         }
@@ -601,20 +613,6 @@
                         },
                         {
                             "type": "custom:auto-entities",
-                            "card": {
-                                "type": "entities",
-                                "title": "Stargate Command"
-                            },
-                            "filter": {
-                                "include": [
-                                    {
-                                        "name": "/UniFi Dream Machine/"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "custom:auto-entities",
                             "show_empty": false,
                             "card": {
                                 "type": "entities",
@@ -638,46 +636,18 @@
                             }
                         },
                         {
-                            "entities": [
-                                {
-                                    "entity": "device_tracker.amplify_location_tracker"
-                                },
-                                {
-                                    "entity": "sensor.amplify_charging_rate_sensor"
-                                },
-                                {
-                                    "entity": "sensor.amplify_battery_sensor"
-                                },
-                                {
-                                    "entity": "sensor.amplify_range_sensor"
-                                },
-                                {
-                                    "entity": "climate.amplify_hvac_climate_system"
-                                },
-                                {
-                                    "entity": "sensor.amplify_temperature_sensor_outside"
-                                },
-                                {
-                                    "entity": "lock.amplify_frunk_lock"
-                                },
-                                {
-                                    "entity": "lock.amplify_door_lock"
-                                },
-                                {
-                                    "entity": "lock.amplify_trunk_lock"
-                                },
-                                {
-                                    "entity": "lock.amplify_charger_door_lock"
-                                },
-                                {
-                                    "entity": "switch.amplify_update_switch"
-                                },
-                                {
-                                    "entity": "binary_sensor.amplify_online_sensor"
-                                }
-                            ],
-                            "title": "Amplify Details",
-                            "type": "entities"
+                            "type": "custom:auto-entities",
+                            "card": {
+                                "type": "entities",
+                                "title": "Amplify Details"
+                            },
+                            "filter": {
+                                "include": [
+                                    {
+                                        "name": "/Amplify/"
+                                    }
+                                ]
+                            }
                         }
                     ]
                 }
