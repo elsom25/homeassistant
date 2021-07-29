@@ -1,5 +1,56 @@
 - id: '1609713837113'
-  alias: Circadian Lighting On
+  alias: Light Mode - Manual
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_select.light_mode_dropdown
+    to: Manual
+  condition: []
+  action:
+  - service: homeassistant.turn_off
+    data: {}
+    target:
+      entity_id:
+      - switch.adaptive_lighting_overhead
+      - switch.adaptive_lighting_lamps
+  mode: restart
+- id: '1609720268499'
+  alias: Light Mode - Sun @ Sunrise
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunrise
+  condition: []
+  action:
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.light_mode_dropdown
+    data:
+      option: Sun
+  mode: restart
+- id: '1624735000543'
+  alias: Light Mode - Sleep
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_select.light_mode_dropdown
+    to: Sleep
+  condition: []
+  action:
+  - service: homeassistant.turn_on
+    data: {}
+    target:
+      entity_id:
+      - switch.adaptive_lighting_overhead
+      - switch.adaptive_lighting_lamps
+  - service: homeassistant.turn_on
+    target:
+      entity_id:
+      - switch.adaptive_lighting_sleep_mode_overhead
+      - switch.adaptive_lighting_sleep_mode_lamps
+  mode: restart
+- id: '1624735357292'
+  alias: Light Mode - Sun
   description: ''
   trigger:
   - platform: state
@@ -9,56 +60,13 @@
   action:
   - service: homeassistant.turn_on
     data: {}
-    entity_id: switch.adaptive_lighting_full_house
-  mode: restart
-- id: '1609713885875'
-  alias: Circadian Lighting Off
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: input_select.light_mode_dropdown
-    from: Sun
-  condition:
-  - condition: not
-    conditions:
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: input_select.light_mode_dropdown
-        state: Sun
-      - condition: state
-        entity_id: input_select.light_mode_dropdown
-        state: Sleep
-  action:
-  - service: homeassistant.turn_off
-    data: {}
-    entity_id: switch.adaptive_lighting_full_house
-  mode: restart
-- id: '1609720238774'
-  alias: Circadian Lighting - Sleep On
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: input_select.light_mode_dropdown
-    to: Sleep
-  condition: []
-  action:
-  - service: homeassistant.turn_on
-    data:
+    target:
       entity_id:
-      - switch.adaptive_lighting_sleep_mode_full_house
-  mode: restart
-- id: '1609720268499'
-  alias: Circadian Lighting - Sleep Off
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: input_select.light_mode_dropdown
-    from: Sleep
-  condition: []
-  action:
+      - switch.adaptive_lighting_overhead
+      - switch.adaptive_lighting_lamps
   - service: homeassistant.turn_off
-    data:
+    target:
       entity_id:
-      - switch.adaptive_lighting_sleep_mode_full_house
+      - switch.adaptive_lighting_sleep_mode_overhead
+      - switch.adaptive_lighting_sleep_mode_lamps
   mode: restart

@@ -1,6 +1,16 @@
 '1514647809398':
   alias: Goodnight
   sequence:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.light_mode_dropdown
+      option: Sleep
+  - data:
+      entity_id: group.sonos_devices
+    service: media_player.media_pause
+  - service: lock.lock
+    target:
+      entity_id: lock.front_door
   - data:
       entity_id:
       - light.living_room
@@ -9,38 +19,21 @@
       - light.master_bedroom
       - light.spare_room
     service: homeassistant.turn_off
-  - data:
-      entity_id: group.sonos_devices
-    service: media_player.media_pause
-  - service: input_select.select_option
-    data:
-      entity_id: input_select.light_mode_dropdown
-      option: Sleep
   mode: single
 '1523806783160':
   alias: Bedtime
   sequence:
-  - data:
-      brightness_pct: 70
-      entity_id:
-      - light.andrews_lamp
-      - light.jesses_lamp
+  - data: {}
     service: homeassistant.turn_on
-  - data:
-      brightness_pct: 30
-      entity_id:
-      - light.bedroom_1
-      - light.bedroom_2
-      - light.bedroom_3
-    service: homeassistant.turn_on
-  - data:
+    target:
+      entity_id: light.master_bedroom
+  - data: {}
+    service: homeassistant.turn_off
+    target:
       entity_id:
       - light.butlers_pantry
-      - light.master_bathroom
       - light.spare_room
-      - light.living_room_corner
-      - light.living_room_primary
-    service: homeassistant.turn_off
+      - light.living_room
   mode: single
 good_morning:
   alias: Good Morning

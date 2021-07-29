@@ -132,9 +132,14 @@ sonos:
       - 192.168.20.180
       - 192.168.20.220
       - 192.168.20.250
+      - 192.168.20.141
 
 tts:
   - platform: google_translate
+
+wemo:
+  static:
+    - 192.168.20.234
 
 zone:
   - name: Home
