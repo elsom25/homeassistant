@@ -9,6 +9,11 @@
                     "icon": "mdi:home",
                     "path": "default_view",
                     "title": "default_view",
+                    "type": "custom:vertical-layout",
+                    "layout": {
+                        "width": 400,
+                        "max_cols": 6
+                    },
                     "badges": [
                         {
                             "entity": "sun.sun"
@@ -84,10 +89,33 @@
                             "type": "vertical-stack",
                             "cards": [
                                 {
+                                    "type": "picture-glance",
+                                    "entities": [
+                                        "camera.front_door_g4_doorbell"
+                                    ],
+                                    "camera_image": "camera.front_door_g4_doorbell"
+                                },
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        "lock.front_door"
+                                    ],
+                                    "show_header_toggle": false,
+                                    "state_color": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "custom:layout-break"
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
                                     "type": "entities",
                                     "entities": [
                                         {
-                                            "entity": "switch.front_door",
+                                            "entity": "switch.front_porch",
                                             "icon": "hass:lightbulb"
                                         },
                                         {
@@ -185,6 +213,26 @@
                                                     "icon_height": "45px",
                                                     "icon": "hass:lamp",
                                                     "name": "Accent"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "light.elgato_key_light",
+                                                    "icon_height": "45px",
+                                                    "icon": "hass:lamp",
+                                                    "name": "Left Keylight"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "light.elgato_key_light_right",
+                                                    "icon_height": "45px",
+                                                    "icon": "hass:lamp",
+                                                    "name": "Right Keylight"
                                                 }
                                             ]
                                         }
@@ -253,28 +301,12 @@
                             ]
                         },
                         {
-                            "type": "vertical-stack",
-                            "cards": [
-                                {
-                                    "type": "picture-glance",
-                                    "entities": [
-                                        "camera.front_door_g4_doorbell"
-                                    ],
-                                    "camera_image": "camera.front_door_g4_doorbell"
-                                },
-                                {
-                                    "type": "entities",
-                                    "entities": [
-                                        "lock.front_door"
-                                    ],
-                                    "show_header_toggle": false,
-                                    "state_color": true
-                                }
-                            ]
-                        },
-                        {
                             "type": "horizontal-stack",
                             "cards": [
+                                {
+                                    "type": "thermostat",
+                                    "entity": "climate.downstairs"
+                                },
                                 {
                                     "type": "thermostat",
                                     "entity": "climate.living_room"
@@ -284,6 +316,9 @@
                                     "entity": "climate.upstairs"
                                 }
                             ]
+                        },
+                        {
+                            "type": "custom:layout-break"
                         },
                         {
                             "type": "vertical-stack",
@@ -350,8 +385,8 @@
                                         "progress": true,
                                         "source": true
                                     },
-                                    "entity": "media_player.kitchen",
-                                    "volume_stateless": true
+                                    "volume_stateless": true,
+                                    "entity": "media_player.kitchen"
                                 },
                                 {
                                     "type": "custom:mini-media-player",
@@ -361,8 +396,19 @@
                                         "progress": true,
                                         "source": true
                                     },
-                                    "entity": "media_player.mainfloor_bathroom",
-                                    "volume_stateless": true
+                                    "volume_stateless": true,
+                                    "entity": "media_player.media_room"
+                                },
+                                {
+                                    "type": "custom:mini-media-player",
+                                    "group": true,
+                                    "hide": {
+                                        "controls": true,
+                                        "progress": true,
+                                        "source": true
+                                    },
+                                    "volume_stateless": true,
+                                    "entity": "media_player.mainfloor_bathroom"
                                 },
                                 {
                                     "type": "custom:mini-media-player",
@@ -383,19 +429,8 @@
                                         "progress": true,
                                         "source": true
                                     },
-                                    "entity": "media_player.office_andrew",
-                                    "volume_stateless": true
-                                },
-                                {
-                                    "type": "custom:mini-media-player",
-                                    "group": true,
-                                    "hide": {
-                                        "controls": true,
-                                        "progress": true,
-                                        "source": true
-                                    },
-                                    "entity": "media_player.bedroom",
-                                    "volume_stateless": true
+                                    "volume_stateless": true,
+                                    "entity": "media_player.office_andrew"
                                 }
                             ]
                         },
