@@ -1,5 +1,6 @@
 {
     "version": 1,
+    "minor_version": 1,
     "key": "lovelace",
     "data": {
         "config": {
@@ -14,6 +15,7 @@
                         "width": 400,
                         "max_cols": 6
                     },
+                    "theme": "",
                     "badges": [
                         {
                             "entity": "sun.sun"
@@ -36,7 +38,7 @@
                                     "type": "entities",
                                     "entities": [
                                         {
-                                            "entity": "weather.home",
+                                            "entity": "weather.kitchener_waterloo",
                                             "name": "99 Willow Street"
                                         },
                                         {
@@ -98,7 +100,18 @@
                                 {
                                     "type": "entities",
                                     "entities": [
-                                        "lock.front_door"
+                                        {
+                                            "entity": "lock.front_door"
+                                        },
+                                        {
+                                            "entity": "sensor.front_door_battery"
+                                        },
+                                        {
+                                            "entity": "lock.studio_door"
+                                        },
+                                        {
+                                            "entity": "sensor.studio_door_battery"
+                                        }
                                     ],
                                     "show_header_toggle": false,
                                     "state_color": true
@@ -119,8 +132,11 @@
                                             "icon": "hass:lightbulb"
                                         },
                                         {
-                                            "entity": "light.outdoor_lights_plug",
-                                            "icon": "hass:lightbulb-cfl-spiral"
+                                            "entity": "light.christmas_lights",
+                                            "icon": "hass:pine-tree"
+                                        },
+                                        {
+                                            "entity": "light.outdoor_lights_plug"
                                         }
                                     ],
                                     "show_header_toggle": false
@@ -161,6 +177,16 @@
                                                     "icon_height": "45px",
                                                     "icon": "hass:lamp",
                                                     "name": "Corner"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "light.kitchen",
+                                                    "icon_height": "45px",
+                                                    "icon": "hass:ceiling-light",
+                                                    "name": "Kitchen"
                                                 },
                                                 {
                                                     "type": "button",
@@ -221,8 +247,8 @@
                                                     },
                                                     "entity": "light.elgato_key_light",
                                                     "icon_height": "45px",
-                                                    "icon": "hass:lamp",
-                                                    "name": "Left Keylight"
+                                                    "icon": "hass:television-ambient-light",
+                                                    "name": "Keylight (L)"
                                                 },
                                                 {
                                                     "type": "button",
@@ -231,8 +257,8 @@
                                                     },
                                                     "entity": "light.elgato_key_light_right",
                                                     "icon_height": "45px",
-                                                    "icon": "hass:lamp",
-                                                    "name": "Right Keylight"
+                                                    "icon": "hass:television-ambient-light",
+                                                    "name": "Keylight (R)"
                                                 }
                                             ]
                                         }
@@ -246,7 +272,7 @@
                                             "entities": [
                                                 {
                                                     "type": "custom:slider-entity-row",
-                                                    "entity": "light.master_bedroom",
+                                                    "entity": "light.master_suite",
                                                     "toggle": true,
                                                     "hide_when_off": true
                                                 }
@@ -282,6 +308,77 @@
                                                     "entity": "light.jesses_lamp",
                                                     "icon_height": "45px",
                                                     "icon": "hass:lamp"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "light.master_bathroom",
+                                                    "icon_height": "45px",
+                                                    "icon": "hass:toilet",
+                                                    "name": "Bathroom"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:vertical-stack-in-card",
+                                    "cards": [
+                                        {
+                                            "type": "entities",
+                                            "entities": [
+                                                {
+                                                    "type": "custom:slider-entity-row",
+                                                    "entity": "light.media_room",
+                                                    "toggle": true,
+                                                    "hide_when_off": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "horizontal-stack",
+                                            "cards": [
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "light.basement_lounge_overhead",
+                                                    "icon_height": "45px",
+                                                    "icon": "hass:ceiling-light",
+                                                    "name": "Lounge"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "light.basement_media_room_overhead",
+                                                    "icon_height": "45px",
+                                                    "icon": "hass:gamepad-variant",
+                                                    "name": "Media Room"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "light.basement_media_room_lamp",
+                                                    "icon_height": "45px",
+                                                    "icon": "hass:lamp",
+                                                    "name": "Lamp"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "tap_action": {
+                                                        "action": "toggle"
+                                                    },
+                                                    "entity": "switch.basement_stairs",
+                                                    "icon_height": "45px",
+                                                    "icon": "hass:stairs",
+                                                    "name": "Stairs"
                                                 }
                                             ]
                                         }
@@ -292,9 +389,12 @@
                                     "entities": [
                                         {
                                             "type": "custom:slider-entity-row",
-                                            "entity": "light.master_bathroom",
+                                            "entity": "light.studio",
                                             "toggle": true,
                                             "hide_when_off": true
+                                        },
+                                        {
+                                            "entity": "switch.studio_outdoors"
                                         }
                                     ]
                                 }
@@ -314,6 +414,10 @@
                                 {
                                     "type": "thermostat",
                                     "entity": "climate.upstairs"
+                                },
+                                {
+                                    "type": "thermostat",
+                                    "entity": "climate.studio"
                                 }
                             ]
                         },
@@ -325,7 +429,6 @@
                             "cards": [
                                 {
                                     "type": "custom:mini-media-player",
-                                    "entity": "media_player.living_room",
                                     "hide": {
                                         "icon": true,
                                         "power": true
@@ -343,6 +446,10 @@
                                             {
                                                 "entity_id": "media_player.mainfloor_bathroom",
                                                 "name": "Guest Bathroom"
+                                            },
+                                            {
+                                                "entity_id": "media_player.media_room",
+                                                "name": "Media Room"
                                             },
                                             {
                                                 "entity_id": "media_player.office_jesse",
@@ -363,7 +470,8 @@
                                     "volume_stateless": false,
                                     "group": true,
                                     "info": "short",
-                                    "artwork": "full-cover"
+                                    "artwork": "full-cover",
+                                    "entity": "media_player.living_room"
                                 },
                                 {
                                     "type": "custom:mini-media-player",
@@ -431,33 +539,17 @@
                                     },
                                     "volume_stateless": true,
                                     "entity": "media_player.office_andrew"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "vertical-stack",
-                            "cards": [
+                                },
                                 {
-                                    "type": "entities",
-                                    "entities": [
-                                        {
-                                            "entity": "device_tracker.amplify_location_tracker"
-                                        },
-                                        {
-                                            "entity": "sensor.amplify_range_sensor"
-                                        },
-                                        {
-                                            "entity": "climate.amplify_hvac_climate_system",
-                                            "tap_action": {
-                                                "action": "toggle"
-                                            },
-                                            "hold_action": {
-                                                "action": "more-info"
-                                            }
-                                        }
-                                    ],
-                                    "show_header_toggle": false,
-                                    "state_color": true
+                                    "type": "custom:mini-media-player",
+                                    "group": true,
+                                    "hide": {
+                                        "controls": true,
+                                        "progress": true,
+                                        "source": true
+                                    },
+                                    "volume_stateless": true,
+                                    "entity": "media_player.studio"
                                 }
                             ]
                         }
@@ -666,20 +758,6 @@
                                     },
                                     {
                                         "state": "unavailable"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "custom:auto-entities",
-                            "card": {
-                                "type": "entities",
-                                "title": "Amplify Details"
-                            },
-                            "filter": {
-                                "include": [
-                                    {
-                                        "name": "/Amplify/"
                                     }
                                 ]
                             }

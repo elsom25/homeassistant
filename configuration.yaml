@@ -11,36 +11,7 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
-
-cloud:
-  alexa:
-    filter:
-      exclude_entities:
-        - group.all_automations
-        - group.all_devices
-        - group.all_input_selects
-        - group.all_remotes
-        - group.all_scripts
-        - group.all_switches
-      exclude_domains:
-        - automation
-        - climate
-        - media_player
-        - sensor
-  google_actions:
-    filter:
-      exclude_entities:
-        - group.all_automations
-        - group.all_devices
-        - group.all_input_selects
-        - group.all_remotes
-        - group.all_scripts
-        - group.all_switches
-      exclude_domains:
-        - automation
-        - climate
-        - media_player
-        - sensor
+template: !include templates.yaml
 
 frontend:
   themes: !include_dir_merge_named themes
@@ -84,6 +55,16 @@ http:
   
 logger:
   default: info
+  
+lovelace:
+  mode: storage
+  dashboards:
+    home-yaml:
+      mode: yaml
+      title: Home 
+      icon: mdi:script
+      show_in_sidebar: true
+      filename: home.yaml
 
 nest:
   client_id: !secret nest_client_id
@@ -92,6 +73,7 @@ nest:
   subscriber_id: !secret nest_subscriber_id
 
 sensor:
+  - platform: environment_canada
   - platform: template
     sensors:
       home_status:
@@ -133,13 +115,17 @@ sonos:
       - 192.168.20.220
       - 192.168.20.250
       - 192.168.20.141
+      - 192.168.20.136 # Studio
 
 tts:
   - platform: google_translate
 
 wemo:
   static:
+    - 192.168.20.84
     - 192.168.20.234
+    - 192.168.20.244
+    - 192.168.20.249
 
 zone:
   - name: Home

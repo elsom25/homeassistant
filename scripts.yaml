@@ -8,17 +8,22 @@
   - data:
       entity_id: group.sonos_devices
     service: media_player.media_pause
-  - service: lock.lock
+  - data: {}
+    service: homeassistant.turn_off
     target:
-      entity_id: lock.front_door
-  - data:
       entity_id:
       - light.living_room
       - light.butlers_pantry
       - light.master_bathroom
       - light.master_bedroom
       - light.spare_room
-    service: homeassistant.turn_off
+      - light.media_room
+      - light.kitchen
+      - switch.studio_outdoors
+      - light.christmas_tree_plug
+  - service: lock.lock
+    target:
+      entity_id: lock.front_door
   mode: single
 '1523806783160':
   alias: Bedtime
@@ -33,7 +38,6 @@
       entity_id:
       - light.butlers_pantry
       - light.spare_room
-      - light.living_room
   mode: single
 good_morning:
   alias: Good Morning
@@ -42,17 +46,17 @@ good_morning:
     data:
       entity_id: input_select.light_mode_dropdown
       option: Sun
-  - data:
-      brightness_pct: 100
+  - service: homeassistant.turn_on
+    target:
       entity_id:
       - light.living_room
       - light.butlers_pantry
-    service: homeassistant.turn_on
-  - data:
-      brightness_pct: 50
+      - light.kitchen
+      - light.christmas_tree_plug
+  - service: homeassistant.turn_on
+    target:
       entity_id:
       - light.master_bedroom
-    service: homeassistant.turn_on
   - data:
       entity_id: group.sonos_devices
     service: media_player.media_play
