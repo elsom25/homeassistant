@@ -245,9 +245,8 @@
                                                     "tap_action": {
                                                         "action": "toggle"
                                                     },
-                                                    "entity": "light.elgato_key_light",
+                                                    "entity": "light.elgato_key_light_left",
                                                     "icon_height": "45px",
-                                                    "icon": "hass:television-ambient-light",
                                                     "name": "Keylight (L)"
                                                 },
                                                 {
@@ -257,7 +256,6 @@
                                                     },
                                                     "entity": "light.elgato_key_light_right",
                                                     "icon_height": "45px",
-                                                    "icon": "hass:television-ambient-light",
                                                     "name": "Keylight (R)"
                                                 }
                                             ]
@@ -401,27 +399,6 @@
                             ]
                         },
                         {
-                            "type": "horizontal-stack",
-                            "cards": [
-                                {
-                                    "type": "thermostat",
-                                    "entity": "climate.downstairs"
-                                },
-                                {
-                                    "type": "thermostat",
-                                    "entity": "climate.living_room"
-                                },
-                                {
-                                    "type": "thermostat",
-                                    "entity": "climate.upstairs"
-                                },
-                                {
-                                    "type": "thermostat",
-                                    "entity": "climate.studio"
-                                }
-                            ]
-                        },
-                        {
                             "type": "custom:layout-break"
                         },
                         {
@@ -469,6 +446,27 @@
                             "info": "short",
                             "artwork": "full-cover",
                             "entity": "media_player.living_room"
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:mini-climate",
+                                    "entity": "climate.downstairs"
+                                },
+                                {
+                                    "type": "custom:mini-climate",
+                                    "entity": "climate.living_room"
+                                },
+                                {
+                                    "type": "custom:mini-climate",
+                                    "entity": "climate.upstairs"
+                                },
+                                {
+                                    "type": "custom:mini-climate",
+                                    "entity": "climate.studio"
+                                }
+                            ]
                         }
                     ]
                 },
