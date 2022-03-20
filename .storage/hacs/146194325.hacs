@@ -13,7 +13,7 @@
         "description": "\u2747\ufe0f Lovelace button-card for home assistant",
         "domain": "",
         "domains": [],
-        "downloads": 22159,
+        "downloads": 22239,
         "etag_repository": "W/\"3343d85b24671b9329a0d34c86433f54f31edd21c1a7655ad40e7ba2d7d03c89\"",
         "file_name": "button-card.js",
         "filename": "button-card.js",

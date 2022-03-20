@@ -1,4 +1,6 @@
 .storage/*
+!.storage/hacs
+!.storage/hacs.repositories
 !.storage/hacs.hacs
 !.storage/core.config
 !.storage/lovelace
