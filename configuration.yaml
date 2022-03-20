@@ -52,10 +52,10 @@ homeassistant:
 http:
   ip_ban_enabled: false
   login_attempts_threshold: 5
-  
+
 logger:
   default: info
-  
+
 lovelace:
   mode: storage
   dashboards:
@@ -70,10 +70,8 @@ nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
   project_id: !secret nest_project_id
-  subscriber_id: !secret nest_subscriber_id
 
 sensor:
-  - platform: environment_canada
   - platform: template
     sensors:
       home_status:
@@ -122,10 +120,10 @@ tts:
 
 wemo:
   static:
-    - 192.168.20.84
-    - 192.168.20.234
-    - 192.168.20.244
-    - 192.168.20.249
+    - 192.168.20.84  # Basement switch
+    - 192.168.20.234 # Entrance switch
+    - 192.168.20.244 # Studio - Outdoor switch
+    - 192.168.20.249 # Studio - Indoor switch
 
 zone:
   - name: Home
