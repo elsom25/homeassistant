@@ -91,11 +91,12 @@
                             "type": "vertical-stack",
                             "cards": [
                                 {
+                                    "camera_view": "auto",
                                     "type": "picture-glance",
                                     "entities": [
                                         "camera.front_door_g4_doorbell"
                                     ],
-                                    "camera_image": "camera.front_door_g4_doorbell"
+                                    "camera_image": "camera.front_door_g4_doorbell_medium"
                                 },
                                 {
                                     "type": "entities",
