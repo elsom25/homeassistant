@@ -2,7 +2,7 @@
 !.storage/lovelace
 
 .cloud
-*.log
+*.log*
 *.db*
 image
 tts/**/*
