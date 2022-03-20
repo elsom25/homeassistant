@@ -1,7 +1,5 @@
 .storage/*
-!.storage/hacs
 !.storage/hacs.hacs
-!.storage/hacs.repositories
 !.storage/core.config
 !.storage/lovelace
 
@@ -30,7 +28,11 @@ custom_components
 www
 
 # Node-Red
-node-red/node_modules
+node-red/*
+!node-red/*.json
+node-red/*_cred.json
+node-red/settings.js
+
 
 # TrueNAS Plugin
 packages
