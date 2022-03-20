@@ -1,23 +1,36 @@
 .storage/*
+!.storage/hacs
+!.storage/hacs.hacs
+!.storage/hacs.repositories
+!.storage/core.config
 !.storage/lovelace
 
 .cloud
+.HA_VERSION
+
 *.log*
 *.db*
 image
-tts/**/*
+tts
 
 # Ensure secrets YAML files are ignored
 ip_bans.yaml
 secrets.yaml
 known_devices.yaml
 
+# Confs for specific integrations
 nest.conf
 .google.token
 .ios.conf
 .accounts@jcmcginnis.com.august.conf
 
-.HA_VERSION
-
 # HACS
 *.pyc
+custom_components
+www
+
+# Node-Red
+node-red/node_modules
+
+# TrueNAS Plugin
+packages

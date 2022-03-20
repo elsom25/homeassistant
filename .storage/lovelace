@@ -331,7 +331,7 @@
                                             "entities": [
                                                 {
                                                     "type": "custom:slider-entity-row",
-                                                    "entity": "light.media_room",
+                                                    "entity": "light.basement",
                                                     "toggle": true,
                                                     "hide_when_off": true
                                                 }
@@ -425,133 +425,63 @@
                             "type": "custom:layout-break"
                         },
                         {
-                            "type": "vertical-stack",
-                            "cards": [
-                                {
-                                    "type": "custom:mini-media-player",
-                                    "hide": {
-                                        "icon": true,
-                                        "power": true
+                            "type": "custom:mini-media-player",
+                            "hide": {
+                                "icon": true,
+                                "power": true
+                            },
+                            "speaker_group": {
+                                "entities": [
+                                    {
+                                        "entity_id": "media_player.living_room",
+                                        "name": "Living Room"
                                     },
-                                    "speaker_group": {
-                                        "entities": [
-                                            {
-                                                "entity_id": "media_player.living_room",
-                                                "name": "Living Room"
-                                            },
-                                            {
-                                                "entity_id": "media_player.kitchen",
-                                                "name": "Kitchen"
-                                            },
-                                            {
-                                                "entity_id": "media_player.mainfloor_bathroom",
-                                                "name": "Guest Bathroom"
-                                            },
-                                            {
-                                                "entity_id": "media_player.media_room",
-                                                "name": "Media Room"
-                                            },
-                                            {
-                                                "entity_id": "media_player.office_jesse",
-                                                "name": "Office (Jesse)"
-                                            },
-                                            {
-                                                "entity_id": "media_player.office_andrew",
-                                                "name": "Office (Andrew)"
-                                            },
-                                            {
-                                                "entity_id": "media_player.bedroom",
-                                                "name": "Bedroom"
-                                            }
-                                        ],
-                                        "platform": "sonos",
-                                        "show_group_count": true
+                                    {
+                                        "entity_id": "media_player.kitchen",
+                                        "name": "Kitchen"
                                     },
-                                    "volume_stateless": false,
-                                    "group": true,
-                                    "info": "short",
-                                    "artwork": "full-cover",
-                                    "entity": "media_player.living_room"
-                                },
-                                {
-                                    "type": "custom:mini-media-player",
-                                    "group": true,
-                                    "info": "short",
-                                    "hide": {
-                                        "controls": true,
-                                        "progress": true,
-                                        "source": true
+                                    {
+                                        "entity_id": "media_player.mainfloor_bathroom",
+                                        "name": "Guest Bathroom"
                                     },
-                                    "volume_stateless": true,
-                                    "entity": "media_player.living_room"
-                                },
-                                {
-                                    "type": "custom:mini-media-player",
-                                    "group": true,
-                                    "hide": {
-                                        "controls": true,
-                                        "progress": true,
-                                        "source": true
+                                    {
+                                        "entity_id": "media_player.media_room",
+                                        "name": "Media Room"
                                     },
-                                    "volume_stateless": true,
-                                    "entity": "media_player.kitchen"
-                                },
-                                {
-                                    "type": "custom:mini-media-player",
-                                    "group": true,
-                                    "hide": {
-                                        "controls": true,
-                                        "progress": true,
-                                        "source": true
+                                    {
+                                        "entity_id": "media_player.office_jesse",
+                                        "name": "Office (Jesse)"
                                     },
-                                    "volume_stateless": true,
-                                    "entity": "media_player.media_room"
-                                },
-                                {
-                                    "type": "custom:mini-media-player",
-                                    "group": true,
-                                    "hide": {
-                                        "controls": true,
-                                        "progress": true,
-                                        "source": true
+                                    {
+                                        "entity_id": "media_player.office_andrew",
+                                        "name": "Office (Andrew)"
                                     },
-                                    "volume_stateless": true,
-                                    "entity": "media_player.mainfloor_bathroom"
-                                },
-                                {
-                                    "type": "custom:mini-media-player",
-                                    "group": true,
-                                    "hide": {
-                                        "controls": true,
-                                        "progress": true,
-                                        "source": true
-                                    },
-                                    "entity": "media_player.office_jesse",
-                                    "volume_stateless": true
-                                },
-                                {
-                                    "type": "custom:mini-media-player",
-                                    "group": true,
-                                    "hide": {
-                                        "controls": true,
-                                        "progress": true,
-                                        "source": true
-                                    },
-                                    "volume_stateless": true,
-                                    "entity": "media_player.office_andrew"
-                                },
-                                {
-                                    "type": "custom:mini-media-player",
-                                    "group": true,
-                                    "hide": {
-                                        "controls": true,
-                                        "progress": true,
-                                        "source": true
-                                    },
-                                    "volume_stateless": true,
-                                    "entity": "media_player.studio"
-                                }
-                            ]
+                                    {
+                                        "entity_id": "media_player.bedroom",
+                                        "name": "Bedroom"
+                                    }
+                                ],
+                                "platform": "sonos",
+                                "show_group_count": true
+                            },
+                            "volume_stateless": false,
+                            "group": false,
+                            "info": "short",
+                            "artwork": "full-cover",
+                            "entity": "media_player.living_room"
+                        }
+                    ]
+                },
+                {
+                    "theme": "Backend-selected",
+                    "title": "Sonos",
+                    "path": "sonos",
+                    "type": "panel",
+                    "icon": "mdi:music",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:custom-sonos-card"
                         }
                     ]
                 },

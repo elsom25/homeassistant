@@ -1,0 +1,68 @@
+{
+    "version": "6",
+    "minor_version": 1,
+    "key": "hacs/290261325.hacs",
+    "data": {
+        "archived": false,
+        "authors": [
+            "@basnijholt",
+            "@RubenKelevra"
+        ],
+        "category": "integration",
+        "content_in_root": false,
+        "country": [],
+        "config_flow": true,
+        "default_branch": "master",
+        "description": "Adaptive Lighting custom component for Home Assistant",
+        "domain": "adaptive_lighting",
+        "domains": [
+            "switch"
+        ],
+        "downloads": 0,
+        "etag_repository": "W/\"448db839cb07a49799cac7779c98b3154217fec8fb626040a1b9581857e306e4\"",
+        "file_name": "",
+        "filename": null,
+        "first_install": false,
+        "fork": false,
+        "full_name": "basnijholt/adaptive-lighting",
+        "hacs": null,
+        "hide": false,
+        "hide_default_branch": false,
+        "homeassistant": null,
+        "id": "290261325",
+        "iot_class": null,
+        "installed": true,
+        "installed_commit": "9e8c199",
+        "installed_version": "1.0.15",
+        "open_issues": 118,
+        "last_commit": "9e8c199",
+        "last_version": "1.0.15",
+        "last_updated": "2022-03-11T01:51:58Z",
+        "manifest_name": "Adaptive Lighting",
+        "new": false,
+        "persistent_directory": null,
+        "pushed_at": "2022-03-11T01:51:58",
+        "releases": true,
+        "render_readme": true,
+        "published_tags": [
+            "1.0.15",
+            "1.0.14",
+            "1.0.13"
+        ],
+        "selected_tag": null,
+        "show_beta": false,
+        "stargazers_count": 521,
+        "topics": [
+            "adaptive-lighting",
+            "automation",
+            "home-assistant",
+            "hue",
+            "iot",
+            "lights",
+            "sunrise",
+            "sunset",
+            "zigbee"
+        ],
+        "zip_release": false
+    }
+}
