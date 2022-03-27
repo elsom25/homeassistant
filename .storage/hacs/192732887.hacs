@@ -14,7 +14,7 @@
         "domain": "",
         "domains": [],
         "downloads": 0,
-        "etag_repository": "W/\"2aed05cbef7666559123ea7f10197a477e4d153a6c3a0e0f2d134388e72c7cf7\"",
+        "etag_repository": "W/\"9e36425e4e3214c8bc3ef4a3ab68cf8444bcfc01bc89f43b1571dbc9451bdbcb\"",
         "file_name": "swipe-card.js",
         "filename": null,
         "first_install": false,
@@ -29,7 +29,7 @@
         "installed": true,
         "installed_commit": "41a735d",
         "installed_version": "v4.0.0",
-        "open_issues": 28,
+        "open_issues": 29,
         "last_commit": "41a735d",
         "last_version": "v4.0.0",
         "last_updated": "2022-01-22T04:02:46Z",
@@ -48,7 +48,7 @@
         ],
         "selected_tag": null,
         "show_beta": false,
-        "stargazers_count": 91,
+        "stargazers_count": 92,
         "topics": [],
         "zip_release": false
     }

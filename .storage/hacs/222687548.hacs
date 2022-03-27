@@ -1,0 +1,62 @@
+{
+    "version": "6",
+    "minor_version": 1,
+    "key": "hacs/222687548.hacs",
+    "data": {
+        "archived": false,
+        "authors": [
+            "@dwainscheeren"
+        ],
+        "category": "integration",
+        "content_in_root": false,
+        "country": [],
+        "config_flow": true,
+        "default_branch": "2.0",
+        "description": "An auto generating Home Assistant Lovelace UI dashboard for desktop, tablet and mobile by Dwains for desktop, tablet, mobile",
+        "domain": "dwains_dashboard",
+        "domains": [],
+        "downloads": 0,
+        "etag_repository": "W/\"fc90207116d7f0b427777f590c0812d030d4821b6db884676746f68345c69c59\"",
+        "file_name": "",
+        "filename": null,
+        "first_install": false,
+        "fork": false,
+        "full_name": "dwainscheeren/dwains-lovelace-dashboard",
+        "hacs": null,
+        "hide": false,
+        "hide_default_branch": false,
+        "homeassistant": "2021.5.0",
+        "id": "222687548",
+        "iot_class": null,
+        "installed": true,
+        "installed_commit": "e16ff2e",
+        "installed_version": "v2.0.7",
+        "open_issues": 23,
+        "last_commit": "e16ff2e",
+        "last_version": "v2.0.7",
+        "last_updated": "2022-03-15T17:30:28Z",
+        "manifest_name": "Dwains Dashboard",
+        "new": false,
+        "persistent_directory": null,
+        "pushed_at": "2022-03-15T17:30:28",
+        "releases": true,
+        "render_readme": true,
+        "published_tags": [
+            "v2.0.7",
+            "v2.0.5",
+            "v2.0.4",
+            "v2.0.3",
+            "v2.0.2"
+        ],
+        "selected_tag": null,
+        "show_beta": false,
+        "stargazers_count": 905,
+        "topics": [
+            "dwains-lovelace-dashboard",
+            "home-assistant",
+            "lovelace",
+            "lovelace-ui"
+        ],
+        "zip_release": false
+    }
+}
