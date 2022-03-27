@@ -7,44 +7,31 @@
             "title": "Home",
             "views": [
                 {
+                    "theme": "Backend-selected",
+                    "title": "Home",
+                    "path": "home",
                     "icon": "mdi:home",
-                    "path": "default_view",
-                    "title": "default_view",
                     "type": "custom:vertical-layout",
                     "layout": {
-                        "width": 400,
-                        "max_cols": 6
+                        "max_width": 800,
+                        "max_cols": 3
                     },
-                    "theme": "",
-                    "badges": [
-                        {
-                            "entity": "sun.sun"
-                        },
-                        {
-                            "entity": "person.andrew"
-                        },
-                        {
-                            "entity": "person.jesse"
-                        },
-                        {
-                            "entity": "binary_sensor.updater"
-                        }
-                    ],
+                    "badges": [],
                     "cards": [
                         {
                             "type": "vertical-stack",
                             "cards": [
+                                {
+                                    "type": "custom:mushroom-title-card",
+                                    "subtitle": "House is reporting as {{ states('sensor.home_status') }}.",
+                                    "title": "Overview"
+                                },
                                 {
                                     "type": "entities",
                                     "entities": [
                                         {
                                             "entity": "weather.kitchener_waterloo",
                                             "name": "99 Willow Street"
-                                        },
-                                        {
-                                            "entity": "sensor.home_status",
-                                            "secondary_info": "last-changed",
-                                            "name": "Status"
                                         },
                                         {
                                             "entity": "input_select.light_mode_dropdown"
@@ -91,366 +78,41 @@
                             "type": "vertical-stack",
                             "cards": [
                                 {
-                                    "camera_view": "auto",
-                                    "type": "picture-glance",
-                                    "entities": [
-                                        "camera.front_door_g4_doorbell"
-                                    ],
-                                    "camera_image": "camera.front_door_g4_doorbell_medium"
+                                    "type": "custom:mushroom-title-card",
+                                    "subtitle": "Security"
                                 },
                                 {
-                                    "type": "entities",
-                                    "entities": [
+                                    "type": "horizontal-stack",
+                                    "cards": [
                                         {
-                                            "entity": "lock.front_door"
-                                        },
-                                        {
-                                            "entity": "sensor.front_door_battery"
-                                        },
-                                        {
-                                            "entity": "lock.studio_door"
-                                        },
-                                        {
-                                            "entity": "sensor.studio_door_battery"
-                                        }
-                                    ],
-                                    "show_header_toggle": false,
-                                    "state_color": true
-                                }
-                            ]
-                        },
-                        {
-                            "type": "custom:layout-break"
-                        },
-                        {
-                            "type": "vertical-stack",
-                            "cards": [
-                                {
-                                    "type": "entities",
-                                    "entities": [
-                                        {
+                                            "type": "custom:mushroom-entity-card",
                                             "entity": "switch.front_porch",
-                                            "icon": "hass:lightbulb"
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            }
                                         },
                                         {
-                                            "entity": "light.christmas_lights",
-                                            "icon": "hass:pine-tree"
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "lock.front_door",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            }
                                         },
                                         {
-                                            "entity": "light.outdoor_lights_plug"
-                                        }
-                                    ],
-                                    "show_header_toggle": false
-                                },
-                                {
-                                    "type": "custom:vertical-stack-in-card",
-                                    "cards": [
-                                        {
-                                            "type": "entities",
-                                            "entities": [
-                                                {
-                                                    "type": "custom:slider-entity-row",
-                                                    "entity": "light.main_floor",
-                                                    "toggle": true,
-                                                    "hide_when_off": true
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "horizontal-stack",
-                                            "cards": [
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "light.living_room_primary",
-                                                    "icon_height": "45px",
-                                                    "icon": "hass:lamp",
-                                                    "name": "Primary"
-                                                },
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "light.living_room_corner",
-                                                    "icon_height": "45px",
-                                                    "icon": "hass:lamp",
-                                                    "name": "Corner"
-                                                },
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "light.kitchen",
-                                                    "icon_height": "45px",
-                                                    "icon": "hass:ceiling-light",
-                                                    "name": "Kitchen"
-                                                },
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "light.butlers_pantry",
-                                                    "icon_height": "45px",
-                                                    "icon": "hass:beer",
-                                                    "name": "Bar"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "custom:vertical-stack-in-card",
-                                    "cards": [
-                                        {
-                                            "type": "entities",
-                                            "entities": [
-                                                {
-                                                    "type": "custom:slider-entity-row",
-                                                    "entity": "light.spare_room",
-                                                    "name": "Jesse's Office",
-                                                    "toggle": true,
-                                                    "hide_when_off": true
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "horizontal-stack",
-                                            "cards": [
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "light.spare_room_fixture",
-                                                    "icon_height": "45px",
-                                                    "icon": "hass:ceiling-light",
-                                                    "name": "Overhead"
-                                                },
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "light.office_backlight_plug",
-                                                    "icon_height": "45px",
-                                                    "icon": "hass:lamp",
-                                                    "name": "Accent"
-                                                },
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "light.elgato_key_light_left",
-                                                    "icon_height": "45px",
-                                                    "name": "Keylight (L)"
-                                                },
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "light.elgato_key_light_right",
-                                                    "icon_height": "45px",
-                                                    "name": "Keylight (R)"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "custom:vertical-stack-in-card",
-                                    "cards": [
-                                        {
-                                            "type": "entities",
-                                            "entities": [
-                                                {
-                                                    "type": "custom:slider-entity-row",
-                                                    "entity": "light.master_suite",
-                                                    "toggle": true,
-                                                    "hide_when_off": true
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "horizontal-stack",
-                                            "cards": [
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "light.bedroom_fixture",
-                                                    "icon_height": "45px",
-                                                    "icon": "hass:ceiling-light",
-                                                    "name": "Overhead"
-                                                },
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "light.andrews_lamp",
-                                                    "icon_height": "45px",
-                                                    "icon": "hass:lamp"
-                                                },
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "light.jesses_lamp",
-                                                    "icon_height": "45px",
-                                                    "icon": "hass:lamp"
-                                                },
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "light.master_bathroom",
-                                                    "icon_height": "45px",
-                                                    "icon": "hass:toilet",
-                                                    "name": "Bathroom"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "custom:vertical-stack-in-card",
-                                    "cards": [
-                                        {
-                                            "type": "entities",
-                                            "entities": [
-                                                {
-                                                    "type": "custom:slider-entity-row",
-                                                    "entity": "light.basement",
-                                                    "toggle": true,
-                                                    "hide_when_off": true
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "horizontal-stack",
-                                            "cards": [
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "light.basement_lounge_overhead",
-                                                    "icon_height": "45px",
-                                                    "icon": "hass:ceiling-light",
-                                                    "name": "Lounge"
-                                                },
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "light.basement_media_room_overhead",
-                                                    "icon_height": "45px",
-                                                    "icon": "hass:gamepad-variant",
-                                                    "name": "Media Room"
-                                                },
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "light.basement_media_room_lamp",
-                                                    "icon_height": "45px",
-                                                    "icon": "hass:lamp",
-                                                    "name": "Lamp"
-                                                },
-                                                {
-                                                    "type": "button",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    },
-                                                    "entity": "switch.basement_stairs",
-                                                    "icon_height": "45px",
-                                                    "icon": "hass:stairs",
-                                                    "name": "Stairs"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "entities",
-                                    "entities": [
-                                        {
-                                            "type": "custom:slider-entity-row",
-                                            "entity": "light.studio",
-                                            "toggle": true,
-                                            "hide_when_off": true
-                                        },
-                                        {
-                                            "entity": "switch.studio_outdoors"
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "lock.studio_door"
                                         }
                                     ]
                                 }
                             ]
                         },
                         {
-                            "type": "custom:layout-break"
-                        },
-                        {
-                            "type": "custom:mini-media-player",
-                            "hide": {
-                                "icon": true,
-                                "power": true
-                            },
-                            "speaker_group": {
-                                "entities": [
-                                    {
-                                        "entity_id": "media_player.living_room",
-                                        "name": "Living Room"
-                                    },
-                                    {
-                                        "entity_id": "media_player.kitchen",
-                                        "name": "Kitchen"
-                                    },
-                                    {
-                                        "entity_id": "media_player.mainfloor_bathroom",
-                                        "name": "Guest Bathroom"
-                                    },
-                                    {
-                                        "entity_id": "media_player.media_room",
-                                        "name": "Media Room"
-                                    },
-                                    {
-                                        "entity_id": "media_player.office_jesse",
-                                        "name": "Office (Jesse)"
-                                    },
-                                    {
-                                        "entity_id": "media_player.office_andrew",
-                                        "name": "Office (Andrew)"
-                                    },
-                                    {
-                                        "entity_id": "media_player.bedroom",
-                                        "name": "Bedroom"
-                                    }
-                                ],
-                                "platform": "sonos",
-                                "show_group_count": true
-                            },
-                            "volume_stateless": false,
-                            "group": false,
-                            "info": "short",
-                            "artwork": "full-cover",
-                            "entity": "media_player.living_room"
-                        },
-                        {
                             "type": "vertical-stack",
                             "cards": [
+                                {
+                                    "type": "custom:mushroom-title-card",
+                                    "subtitle": "Temperatures"
+                                },
                                 {
                                     "type": "custom:mini-climate",
                                     "entity": "climate.downstairs"
@@ -468,103 +130,315 @@
                                     "entity": "climate.studio"
                                 }
                             ]
-                        }
-                    ]
-                },
-                {
-                    "theme": "Backend-selected",
-                    "title": "Sonos",
-                    "path": "sonos",
-                    "type": "panel",
-                    "icon": "mdi:music",
-                    "badges": [],
-                    "cards": [
+                        },
                         {
-                            "type": "custom:custom-sonos-card"
-                        }
-                    ]
-                },
-                {
-                    "path": "locations_view",
-                    "title": "Details",
-                    "badges": [],
-                    "cards": [
-                        {
-                            "type": "custom:auto-entities",
-                            "show_empty": false,
-                            "card": {
-                                "type": "entities",
-                                "title": "Battery warning"
-                            },
-                            "filter": {
-                                "include": [
-                                    {
-                                        "domain": "device_tracker",
-                                        "options": {
-                                            "secondary_info": "last-changed"
-                                        },
-                                        "attributes": {
-                                            "battery": "< 40",
-                                            "source_type": "gps"
-                                        }
-                                    }
-                                ]
-                            }
+                            "type": "custom:layout-break"
                         },
                         {
                             "type": "vertical-stack",
                             "cards": [
                                 {
-                                    "type": "custom:vertical-stack-in-card",
+                                    "type": "custom:mushroom-title-card",
+                                    "title": "Locations",
+                                    "subtitle": "{% set count = states.person | selectattr('state', 'eq', 'home') | list | count %}\n{% set pluralization = ['None', 'One', 'Both'] %}\n{{ pluralization[count] }} of us are home.\n"
+                                },
+                                {
+                                    "type": "horizontal-stack",
                                     "cards": [
                                         {
-                                            "type": "entities",
-                                            "entities": [
+                                            "type": "custom:vertical-stack-in-card",
+                                            "cards": [
                                                 {
-                                                    "entity": "input_select.andrew_status_dropdown"
+                                                    "type": "custom:mushroom-person-card",
+                                                    "entity": "person.jesse",
+                                                    "use_entity_picture": true,
+                                                    "layout": "vertical"
+                                                },
+                                                {
+                                                    "type": "horizontal-stack",
+                                                    "cards": [
+                                                        {
+                                                            "show_name": false,
+                                                            "show_icon": true,
+                                                            "show_state": true,
+                                                            "type": "glance",
+                                                            "entities": [
+                                                                {
+                                                                    "entity": "input_select.jesse_status_dropdown"
+                                                                },
+                                                                {
+                                                                    "entity": "device_tracker.jesse"
+                                                                },
+                                                                {
+                                                                    "entity": "device_tracker.jesse_wifi"
+                                                                }
+                                                            ],
+                                                            "state_color": true
+                                                        }
+                                                    ]
                                                 }
                                             ]
                                         },
                                         {
-                                            "type": "glance",
-                                            "entities": [
+                                            "type": "custom:vertical-stack-in-card",
+                                            "cards": [
                                                 {
-                                                    "entity": "person.andrew"
+                                                    "type": "custom:mushroom-person-card",
+                                                    "entity": "person.andrew",
+                                                    "use_entity_picture": true,
+                                                    "layout": "vertical"
                                                 },
                                                 {
-                                                    "entity": "device_tracker.andrew_wifi"
-                                                },
-                                                {
-                                                    "entity": "device_tracker.andrew_iphone"
+                                                    "type": "horizontal-stack",
+                                                    "cards": [
+                                                        {
+                                                            "show_name": false,
+                                                            "show_icon": true,
+                                                            "show_state": true,
+                                                            "type": "glance",
+                                                            "entities": [
+                                                                {
+                                                                    "entity": "input_select.andrew_status_dropdown"
+                                                                },
+                                                                {
+                                                                    "entity": "device_tracker.andrew"
+                                                                },
+                                                                {
+                                                                    "entity": "device_tracker.andrew_wifi"
+                                                                }
+                                                            ],
+                                                            "state_color": true
+                                                        }
+                                                    ]
                                                 }
                                             ]
                                         }
                                     ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "custom:mini-media-player",
+                            "entity": "media_player.living_room",
+                            "artwork": "material"
+                        },
+                        {
+                            "camera_view": "auto",
+                            "type": "picture-glance",
+                            "entities": [
+                                "camera.front_door_g4_doorbell"
+                            ],
+                            "camera_image": "camera.front_door_g4_doorbell_medium"
+                        }
+                    ]
+                },
+                {
+                    "theme": "Backend-selected",
+                    "title": "Lights",
+                    "path": "lights",
+                    "icon": "mdi:lightbulb-group",
+                    "type": "custom:vertical-layout",
+                    "layout": {
+                        "max_width": 800,
+                        "max_cols": 3
+                    },
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:mushroom-title-card",
+                            "title": "Main Floor",
+                            "subtitle": "Currently {{ states.light | selectattr('state','eq','on') | list | count }} lights are on!"
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:mushroom-title-card",
+                                    "subtitle": "Entrance"
                                 },
                                 {
-                                    "type": "custom:vertical-stack-in-card",
+                                    "type": "horizontal-stack",
                                     "cards": [
                                         {
-                                            "type": "entities",
-                                            "entities": [
-                                                {
-                                                    "entity": "input_select.jesse_status_dropdown"
-                                                }
-                                            ]
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "switch.front_porch",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            }
                                         },
                                         {
-                                            "type": "glance",
-                                            "entities": [
-                                                {
-                                                    "entity": "person.jesse"
-                                                },
-                                                {
-                                                    "entity": "device_tracker.jesse_wifi"
-                                                },
-                                                {
-                                                    "entity": "device_tracker.jesse_iphone"
-                                                }
-                                            ]
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "lock.front_door",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:mushroom-title-card",
+                                    "subtitle": "Studio"
+                                },
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "switch.studio_outdoors",
+                                            "name": "Outdoors",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "lock.studio_door",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:mushroom-light-card",
+                                    "entity": "light.studio",
+                                    "show_brightness_control": true,
+                                    "name": "Indoors"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:mushroom-title-card",
+                                    "subtitle": "Main Floor"
+                                },
+                                {
+                                    "type": "custom:mushroom-light-card",
+                                    "entity": "light.main_floor",
+                                    "show_brightness_control": true,
+                                    "show_color_control": true,
+                                    "use_light_color": true
+                                },
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "show_name": true,
+                                            "show_icon": true,
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "light.living_room_primary",
+                                            "icon_height": "45px",
+                                            "icon": "mdi:floor-lamp",
+                                            "name": "Primary"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "light.living_room_corner",
+                                            "icon_height": "45px",
+                                            "icon": "hass:lamp",
+                                            "name": "Corner"
+                                        },
+                                        {
+                                            "show_name": true,
+                                            "show_icon": true,
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "light.kitchen",
+                                            "icon_height": "45px",
+                                            "icon": "hue:room-kitchen",
+                                            "name": "Kitchen"
+                                        },
+                                        {
+                                            "show_name": true,
+                                            "show_icon": true,
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "light.butlers_pantry",
+                                            "icon_height": "45px",
+                                            "icon": "mdi:liquor",
+                                            "name": "Bar"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "custom:layout-break"
+                        },
+                        {
+                            "type": "custom:mushroom-title-card",
+                            "title": "Upstairs",
+                            "subtitle": "Currently {{ states.light | selectattr('state','eq','on') | list | count }} lights are on!"
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:mushroom-title-card",
+                                    "subtitle": "Master Suite"
+                                },
+                                {
+                                    "type": "custom:mushroom-light-card",
+                                    "entity": "light.master_suite",
+                                    "show_brightness_control": true,
+                                    "use_light_color": true,
+                                    "show_color_control": true
+                                },
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "show_name": true,
+                                            "show_icon": true,
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "light.bedroom_fixture",
+                                            "icon_height": "45px",
+                                            "icon": "mdi:chandelier",
+                                            "name": "Overhead",
+                                            "show_state": false
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "light.andrews_lamp",
+                                            "icon_height": "45px",
+                                            "icon": "hass:lamp"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "light.jesses_lamp",
+                                            "icon_height": "45px",
+                                            "icon": "hass:lamp"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "light.master_bathroom",
+                                            "icon_height": "45px",
+                                            "icon": "hass:toilet",
+                                            "name": "Bathroom"
                                         }
                                     ]
                                 }
@@ -574,9 +448,139 @@
                             "type": "vertical-stack",
                             "cards": [
                                 {
-                                    "type": "custom:vertical-stack-in-card",
-                                    "horizontal": true,
-                                    "title": "Lamps",
+                                    "type": "custom:mushroom-title-card",
+                                    "subtitle": "Jesse's Office"
+                                },
+                                {
+                                    "type": "custom:mushroom-light-card",
+                                    "entity": "light.spare_room_fixture",
+                                    "show_brightness_control": true,
+                                    "icon": "mdi:ceiling-light-multiple",
+                                    "name": "Overhead",
+                                    "show_color_control": true,
+                                    "use_light_color": true
+                                },
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "show_name": true,
+                                            "show_icon": true,
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "light.office_backlight_plug",
+                                            "icon_height": "45px",
+                                            "icon": "mdi:lava-lamp",
+                                            "name": "Accent"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "light.elgato_key_light_left",
+                                            "icon_height": "45px",
+                                            "name": "Keylight (L)"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "light.elgato_key_light_right",
+                                            "icon_height": "45px",
+                                            "name": "Keylight (R)"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "custom:layout-break"
+                        },
+                        {
+                            "type": "custom:mushroom-title-card",
+                            "title": "Basement",
+                            "subtitle": "Currently {{ states.light | selectattr('state','eq','on') | list | count }} lights are on!"
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:mushroom-title-card",
+                                    "subtitle": "Basement"
+                                },
+                                {
+                                    "type": "custom:mushroom-light-card",
+                                    "entity": "light.basement",
+                                    "show_brightness_control": true,
+                                    "use_light_color": true,
+                                    "show_color_control": true
+                                },
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "show_name": true,
+                                            "show_icon": true,
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "light.basement_lounge_overhead",
+                                            "icon_height": "45px",
+                                            "icon": "hue:room-recreation",
+                                            "name": "Lounge"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "light.basement_media_room_overhead",
+                                            "icon_height": "45px",
+                                            "icon": "hass:gamepad-variant",
+                                            "name": "Media Room"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "light.basement_media_room_lamp",
+                                            "icon_height": "45px",
+                                            "icon": "hass:lamp",
+                                            "name": "Lamp"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "entity": "switch.basement_stairs",
+                                            "icon_height": "45px",
+                                            "icon": "hass:stairs",
+                                            "name": "Stairs"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:mushroom-title-card",
+                                    "title": "Sun Mode Configuration"
+                                },
+                                {
+                                    "type": "custom:mushroom-title-card",
+                                    "subtitle": "Lamps"
+                                },
+                                {
+                                    "type": "horizontal-stack",
                                     "cards": [
                                         {
                                             "type": "button",
@@ -620,9 +624,11 @@
                                     ]
                                 },
                                 {
-                                    "type": "custom:vertical-stack-in-card",
-                                    "horizontal": true,
-                                    "title": "Overhead",
+                                    "type": "custom:mushroom-title-card",
+                                    "subtitle": "Overhead"
+                                },
+                                {
+                                    "type": "horizontal-stack",
                                     "cards": [
                                         {
                                             "type": "button",
@@ -666,30 +672,19 @@
                                     ]
                                 }
                             ]
-                        },
+                        }
+                    ]
+                },
+                {
+                    "theme": "Backend-selected",
+                    "title": "Sonos",
+                    "path": "sonos",
+                    "type": "panel",
+                    "icon": "mdi:music",
+                    "badges": [],
+                    "cards": [
                         {
-                            "type": "custom:auto-entities",
-                            "show_empty": false,
-                            "card": {
-                                "type": "entities",
-                                "title": "Lights on",
-                                "show_header_toggle": false
-                            },
-                            "filter": {
-                                "include": [
-                                    {
-                                        "domain": "light"
-                                    }
-                                ],
-                                "exclude": [
-                                    {
-                                        "state": "off"
-                                    },
-                                    {
-                                        "state": "unavailable"
-                                    }
-                                ]
-                            }
+                            "type": "custom:custom-sonos-card"
                         }
                     ]
                 }
