@@ -53,19 +53,6 @@ http:
   ip_ban_enabled: false
   login_attempts_threshold: 5
 
-logger:
-  default: info
-
-lovelace:
-  mode: storage
-  dashboards:
-    home-yaml:
-      mode: yaml
-      title: Home 
-      icon: mdi:script
-      show_in_sidebar: true
-      filename: home.yaml
-
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
