@@ -27,12 +27,13 @@
                                     "title": "Overview"
                                 },
                                 {
+                                    "entity": "weather.kitchener_waterloo",
+                                    "type": "custom:simple-weather-card",
+                                    "name": " "
+                                },
+                                {
                                     "type": "entities",
                                     "entities": [
-                                        {
-                                            "entity": "weather.kitchener_waterloo",
-                                            "name": "99 Willow Street"
-                                        },
                                         {
                                             "entity": "input_select.light_mode_dropdown"
                                         }
@@ -114,20 +115,45 @@
                                     "subtitle": "Temperatures"
                                 },
                                 {
-                                    "type": "custom:mini-climate",
-                                    "entity": "climate.downstairs"
+                                    "entity": "climate.downstairs",
+                                    "type": "custom:simple-thermostat",
+                                    "layout": {
+                                        "step": "row",
+                                        "mode": {
+                                            "names": true,
+                                            "icons": true,
+                                            "headings": true
+                                        }
+                                    },
+                                    "header": {},
+                                    "control": false
                                 },
                                 {
-                                    "type": "custom:mini-climate",
-                                    "entity": "climate.living_room"
+                                    "entity": "climate.living_room",
+                                    "type": "custom:simple-thermostat",
+                                    "layout": {
+                                        "step": "row"
+                                    },
+                                    "header": {},
+                                    "control": false
                                 },
                                 {
-                                    "type": "custom:mini-climate",
-                                    "entity": "climate.upstairs"
+                                    "entity": "climate.upstairs",
+                                    "type": "custom:simple-thermostat",
+                                    "layout": {
+                                        "step": "row"
+                                    },
+                                    "header": {},
+                                    "control": false
                                 },
                                 {
-                                    "type": "custom:mini-climate",
-                                    "entity": "climate.studio"
+                                    "entity": "climate.studio",
+                                    "type": "custom:simple-thermostat",
+                                    "layout": {
+                                        "step": "row"
+                                    },
+                                    "header": {},
+                                    "control": false
                                 }
                             ]
                         },
@@ -545,13 +571,15 @@
                                             "name": "Media Room"
                                         },
                                         {
+                                            "show_name": true,
+                                            "show_icon": true,
                                             "type": "button",
                                             "tap_action": {
                                                 "action": "toggle"
                                             },
                                             "entity": "light.basement_media_room_lamp",
                                             "icon_height": "45px",
-                                            "icon": "hass:lamp",
+                                            "icon": "mdi:floor-lamp-torchiere-outline",
                                             "name": "Lamp"
                                         },
                                         {
@@ -677,8 +705,8 @@
                 },
                 {
                     "theme": "Backend-selected",
-                    "title": "Sonos",
-                    "path": "sonos",
+                    "title": "Music",
+                    "path": "music",
                     "type": "panel",
                     "icon": "mdi:music",
                     "badges": [],
