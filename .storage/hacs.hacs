@@ -18,6 +18,7 @@
             "nikrolls/homeassistant-goldair-climate": "nicole-ashley/homeassistant-goldair-climate",
             "rj175/home-assistant-aws-codepipeline": "ohheyrj/home-assistant-aws-codepipeline",
             "78wesley/Darkish-Theme": "78wesley/Home-Assistant-Darkish-Theme"
-        }
+        },
+        "ignored_repositories": []
     }
 }

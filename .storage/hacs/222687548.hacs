@@ -16,7 +16,7 @@
         "domain": "dwains_dashboard",
         "domains": [],
         "downloads": 0,
-        "etag_repository": "W/\"fc90207116d7f0b427777f590c0812d030d4821b6db884676746f68345c69c59\"",
+        "etag_repository": "W/\"6c2e4aad2620b81c3363746f534e9ac1f919066cb85bbcbdb2da123ba7f50fc2\"",
         "file_name": "",
         "filename": null,
         "first_install": false,
@@ -50,7 +50,7 @@
         ],
         "selected_tag": null,
         "show_beta": false,
-        "stargazers_count": 905,
+        "stargazers_count": 906,
         "topics": [
             "dwains-lovelace-dashboard",
             "home-assistant",
