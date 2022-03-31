@@ -14,7 +14,7 @@
         "domain": "",
         "domains": [],
         "downloads": 0,
-        "etag_repository": "W/\"13d749bbcd9a8e9ad8006729661f9958a06a93e24873507a0addad424929622f\"",
+        "etag_repository": "W/\"d9ab2ac961bfb79b3541680c3db030f21a8941d3ef069a0b92fa8ad4da4e5802\"",
         "file_name": "layout-card.js",
         "filename": null,
         "first_install": false,
@@ -48,7 +48,7 @@
         ],
         "selected_tag": null,
         "show_beta": false,
-        "stargazers_count": 504,
+        "stargazers_count": 507,
         "topics": [],
         "zip_release": false
     }
