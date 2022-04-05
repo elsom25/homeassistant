@@ -19,7 +19,7 @@
             "switch"
         ],
         "downloads": 0,
-        "etag_repository": "W/\"501a3376a55445192083c64ec0711eceb611407f197e3e49e0c3954995802f2a\"",
+        "etag_repository": "W/\"0335eae4da4583ef09acfc1e68e1723fa1c85a8d5da56a1006b7180c593f714d\"",
         "file_name": "",
         "filename": null,
         "first_install": false,
@@ -36,7 +36,7 @@
         "installed_version": "1.0.15",
         "open_issues": 118,
         "last_commit": "9e8c199",
-        "last_version": "1.0.15",
+        "last_version": "1.0.14",
         "last_updated": "2022-03-11T01:51:58Z",
         "manifest_name": "Adaptive Lighting",
         "new": false,
@@ -45,13 +45,12 @@
         "releases": true,
         "render_readme": true,
         "published_tags": [
-            "1.0.15",
             "1.0.14",
             "1.0.13"
         ],
         "selected_tag": null,
         "show_beta": false,
-        "stargazers_count": 527,
+        "stargazers_count": 535,
         "topics": [
             "adaptive-lighting",
             "automation",

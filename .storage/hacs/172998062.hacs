@@ -13,8 +13,8 @@
         "description": "Minimalistic weather card for Home Assistant",
         "domain": "",
         "domains": [],
-        "downloads": 7267,
-        "etag_repository": "W/\"59e5838604a0a4bc33b6d7eab0f8c96381613e5a176f77b8b2eb29e4da3ef952\"",
+        "downloads": 5396,
+        "etag_repository": "W/\"99dd81d3fc67d06ffccff16f9ac3768283ed0984c0ba7baf59619d604560ea1d\"",
         "file_name": "simple-weather-card-bundle.js",
         "filename": "",
         "first_install": false,
@@ -31,7 +31,7 @@
         "installed_version": "v0.8.2",
         "open_issues": 17,
         "last_commit": "e9e34a8",
-        "last_version": "v0.8.1",
+        "last_version": "v0.8.0",
         "last_updated": "2021-05-01T09:46:48Z",
         "manifest_name": null,
         "new": false,
@@ -40,15 +40,15 @@
         "releases": true,
         "render_readme": false,
         "published_tags": [
-            "v0.8.1",
             "v0.8.0",
             "v0.7.2",
             "v0.7.1",
-            "v0.7.0"
+            "v0.7.0",
+            "v0.6.0"
         ],
         "selected_tag": null,
         "show_beta": false,
-        "stargazers_count": 182,
+        "stargazers_count": 183,
         "topics": [
             "home-assistant",
             "home-automation",
