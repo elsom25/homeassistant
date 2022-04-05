@@ -1,5 +1,6 @@
 default_config:
 
+browser_mod:
 discovery:
 history:
 map:

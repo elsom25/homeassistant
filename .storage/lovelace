@@ -48,7 +48,87 @@
                                         {
                                             "type": "template",
                                             "content": "{% set count = states.person | selectattr('state', 'eq', 'home') | list | count %}\n{{ count }}",
-                                            "icon": "mdi:account"
+                                            "icon": "mdi:account",
+                                            "tap_action": {
+                                                "action": "fire-dom-event",
+                                                "browser_mod": {
+                                                    "command": "popup",
+                                                    "title": "Locations",
+                                                    "card": {
+                                                        "type": "horizontal-stack",
+                                                        "cards": [
+                                                            {
+                                                                "type": "vertical-stack",
+                                                                "cards": [
+                                                                    {
+                                                                        "type": "custom:mushroom-person-card",
+                                                                        "entity": "person.jesse",
+                                                                        "use_entity_picture": true,
+                                                                        "layout": "vertical"
+                                                                    },
+                                                                    {
+                                                                        "type": "horizontal-stack",
+                                                                        "cards": [
+                                                                            {
+                                                                                "show_name": false,
+                                                                                "show_icon": true,
+                                                                                "show_state": true,
+                                                                                "type": "glance",
+                                                                                "entities": [
+                                                                                    {
+                                                                                        "entity": "input_select.jesse_status_dropdown"
+                                                                                    },
+                                                                                    {
+                                                                                        "entity": "device_tracker.jesse"
+                                                                                    },
+                                                                                    {
+                                                                                        "entity": "device_tracker.jesses_iphone"
+                                                                                    }
+                                                                                ],
+                                                                                "state_color": true
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "vertical-stack",
+                                                                "cards": [
+                                                                    {
+                                                                        "type": "custom:mushroom-person-card",
+                                                                        "entity": "person.andrew",
+                                                                        "use_entity_picture": true,
+                                                                        "layout": "vertical"
+                                                                    },
+                                                                    {
+                                                                        "type": "horizontal-stack",
+                                                                        "cards": [
+                                                                            {
+                                                                                "show_name": false,
+                                                                                "show_icon": true,
+                                                                                "show_state": true,
+                                                                                "type": "glance",
+                                                                                "entities": [
+                                                                                    {
+                                                                                        "entity": "input_select.andrew_status_dropdown"
+                                                                                    },
+                                                                                    {
+                                                                                        "entity": "device_tracker.andrew"
+                                                                                    },
+                                                                                    {
+                                                                                        "entity": "device_tracker.andrews_iphone"
+                                                                                    }
+                                                                                ],
+                                                                                "state_color": true
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
                                             "type": "conditional",
@@ -272,7 +352,57 @@
                             "cards": [
                                 {
                                     "type": "custom:mushroom-title-card",
+                                    "subtitle": "Media Summary"
+                                },
+                                {
+                                    "type": "custom:mini-media-player",
+                                    "entity": "media_player.living_room",
+                                    "artwork": "material"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:mushroom-title-card",
                                     "subtitle": "Security"
+                                },
+                                {
+                                    "type": "custom:mushroom-chips-card",
+                                    "chips": [
+                                        {
+                                            "type": "template",
+                                            "content": "{{ states('sensor.home_status') }}",
+                                            "entity": "sensor.home_status",
+                                            "icon": "{{ state_attr('sensor.home_status', 'icon') }}",
+                                            "icon_color": "{% if is_state('sensor.home_status', 'Home') %}\n  blue\n{% elif is_state('sensor.home_status', 'Some Home') %}\n  cyan\n{% elif is_state('sensor.home_status', 'Just Arrived') %}\n  indigo\n{% elif is_state('sensor.home_status', 'Just Left') %}\n  amber\n{% elif is_state('sensor.home_status', 'Away') %}\n  pink\n{% elif is_state('sensor.home_status', 'Extended Away') %}\n  purple\n{% endif %}",
+                                            "tap_action": {
+                                                "action": "more-info"
+                                            }
+                                        },
+                                        {
+                                            "type": "template",
+                                            "icon": "mdi:cctv",
+                                            "entity": "camera.front_door_g4_doorbell",
+                                            "tap_action": {
+                                                "action": "fire-dom-event",
+                                                "browser_mod": {
+                                                    "command": "popup",
+                                                    "title": "Front Door",
+                                                    "large": true,
+                                                    "card": {
+                                                        "camera_view": "auto",
+                                                        "type": "picture-glance",
+                                                        "entities": [
+                                                            "camera.front_door_g4_doorbell"
+                                                        ],
+                                                        "camera_image": "camera.front_door_g4_doorbell_medium"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "horizontal-stack",
@@ -318,8 +448,9 @@
                                                 },
                                                 {
                                                     "type": "custom:mushroom-entity-card",
-                                                    "entity": "sensor.studio_door_battery",
-                                                    "icon_color": "green"
+                                                    "entity": "binary_sensor.studio_door_open",
+                                                    "icon_color": "green",
+                                                    "name": "Status"
                                                 },
                                                 {
                                                     "type": "custom:mushroom-entity-card",
@@ -385,104 +516,6 @@
                                     "control": false
                                 }
                             ]
-                        },
-                        {
-                            "type": "custom:layout-break"
-                        },
-                        {
-                            "type": "vertical-stack",
-                            "cards": [
-                                {
-                                    "type": "custom:mushroom-title-card",
-                                    "title": "Locations"
-                                },
-                                {
-                                    "type": "horizontal-stack",
-                                    "cards": [
-                                        {
-                                            "type": "vertical-stack",
-                                            "cards": [
-                                                {
-                                                    "type": "custom:mushroom-person-card",
-                                                    "entity": "person.jesse",
-                                                    "use_entity_picture": true,
-                                                    "layout": "vertical"
-                                                },
-                                                {
-                                                    "type": "horizontal-stack",
-                                                    "cards": [
-                                                        {
-                                                            "show_name": false,
-                                                            "show_icon": true,
-                                                            "show_state": true,
-                                                            "type": "glance",
-                                                            "entities": [
-                                                                {
-                                                                    "entity": "input_select.jesse_status_dropdown"
-                                                                },
-                                                                {
-                                                                    "entity": "device_tracker.jesse"
-                                                                },
-                                                                {
-                                                                    "entity": "device_tracker.jesses_iphone"
-                                                                }
-                                                            ],
-                                                            "state_color": true
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "vertical-stack",
-                                            "cards": [
-                                                {
-                                                    "type": "custom:mushroom-person-card",
-                                                    "entity": "person.andrew",
-                                                    "use_entity_picture": true,
-                                                    "layout": "vertical"
-                                                },
-                                                {
-                                                    "type": "horizontal-stack",
-                                                    "cards": [
-                                                        {
-                                                            "show_name": false,
-                                                            "show_icon": true,
-                                                            "show_state": true,
-                                                            "type": "glance",
-                                                            "entities": [
-                                                                {
-                                                                    "entity": "input_select.andrew_status_dropdown"
-                                                                },
-                                                                {
-                                                                    "entity": "device_tracker.andrew"
-                                                                },
-                                                                {
-                                                                    "entity": "device_tracker.andrews_iphone"
-                                                                }
-                                                            ],
-                                                            "state_color": true
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "custom:mini-media-player",
-                            "entity": "media_player.living_room",
-                            "artwork": "material"
-                        },
-                        {
-                            "camera_view": "auto",
-                            "type": "picture-glance",
-                            "entities": [
-                                "camera.front_door_g4_doorbell"
-                            ],
-                            "camera_image": "camera.front_door_g4_doorbell_medium"
                         }
                     ]
                 },
