@@ -47,7 +47,7 @@
                                         },
                                         {
                                             "type": "template",
-                                            "content": "{% set count = states.person | selectattr('state', 'eq', 'home') | list | count %}\n{{ count }}",
+                                            "content": "{% set count = states.person | selectattr('state', 'eq', 'home') | list | count %}\n{{ count or \"0\" }}",
                                             "icon": "mdi:account",
                                             "tap_action": {
                                                 "action": "fire-dom-event",
@@ -426,7 +426,7 @@
                                                 },
                                                 {
                                                     "type": "custom:mushroom-entity-card",
-                                                    "entity": "switch.front_porch",
+                                                    "entity": "light.front_porch",
                                                     "tap_action": {
                                                         "action": "toggle"
                                                     },
@@ -454,7 +454,7 @@
                                                 },
                                                 {
                                                     "type": "custom:mushroom-entity-card",
-                                                    "entity": "switch.studio_outdoors",
+                                                    "entity": "light.studio_outdoors",
                                                     "icon_color": "green",
                                                     "tap_action": {
                                                         "action": "toggle"
@@ -475,45 +475,66 @@
                                     "subtitle": "Temperatures"
                                 },
                                 {
-                                    "entity": "climate.downstairs",
-                                    "type": "custom:simple-thermostat",
-                                    "layout": {
-                                        "step": "row",
-                                        "mode": {
-                                            "names": true,
-                                            "icons": true,
-                                            "headings": true
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mushroom-template-card",
+                                            "icon": "mdi:thermostat",
+                                            "icon_color": "{% set state=states(entity) %}\n{% if state=='cool' %}\nblue\n{% elif state=='heat' %}\nred\n{% else %}\ngrey\n{% endif %}",
+                                            "tap_action": {
+                                                "action": "more-info"
+                                            },
+                                            "layout": "horizontal",
+                                            "multiline_secondary": false,
+                                            "secondary": "Set {{state_attr(entity, 'temperature')}}\u00b0 \u00b7 {{ states(entity) }} ({{state_attr(entity, 'hvac_action')}})",
+                                            "primary": "{{state_attr(entity, 'current_temperature')}}\u00b0 \u00b7 {{state_attr(entity, 'friendly_name')}}",
+                                            "entity": "climate.downstairs"
+                                        },
+                                        {
+                                            "type": "custom:mushroom-template-card",
+                                            "icon": "mdi:thermostat",
+                                            "icon_color": "{% set state=states(entity) %}\n{% if state=='cool' %}\nblue\n{% elif state=='heat' %}\nred\n{% else %}\ngrey\n{% endif %}",
+                                            "tap_action": {
+                                                "action": "more-info"
+                                            },
+                                            "layout": "horizontal",
+                                            "multiline_secondary": false,
+                                            "secondary": "Set {{state_attr(entity, 'temperature')}}\u00b0 \u00b7 {{ states(entity) }} ({{state_attr(entity, 'hvac_action')}})",
+                                            "primary": "{{state_attr(entity, 'current_temperature')}}\u00b0 \u00b7 {{state_attr(entity, 'friendly_name')}}",
+                                            "entity": "climate.living_room"
                                         }
-                                    },
-                                    "header": {},
-                                    "control": false
+                                    ]
                                 },
                                 {
-                                    "entity": "climate.living_room",
-                                    "type": "custom:simple-thermostat",
-                                    "layout": {
-                                        "step": "row"
-                                    },
-                                    "header": {},
-                                    "control": false
-                                },
-                                {
-                                    "entity": "climate.upstairs",
-                                    "type": "custom:simple-thermostat",
-                                    "layout": {
-                                        "step": "row"
-                                    },
-                                    "header": {},
-                                    "control": false
-                                },
-                                {
-                                    "entity": "climate.studio",
-                                    "type": "custom:simple-thermostat",
-                                    "layout": {
-                                        "step": "row"
-                                    },
-                                    "header": {},
-                                    "control": false
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mushroom-template-card",
+                                            "icon": "mdi:thermostat",
+                                            "icon_color": "{% set state=states(entity) %}\n{% if state=='cool' %}\nblue\n{% elif state=='heat' %}\nred\n{% else %}\ngrey\n{% endif %}",
+                                            "tap_action": {
+                                                "action": "more-info"
+                                            },
+                                            "layout": "horizontal",
+                                            "multiline_secondary": false,
+                                            "secondary": "Set {{state_attr(entity, 'temperature')}}\u00b0 \u00b7 {{ states(entity) }} ({{state_attr(entity, 'hvac_action')}})",
+                                            "primary": "{{state_attr(entity, 'current_temperature')}}\u00b0 \u00b7 {{state_attr(entity, 'friendly_name')}}",
+                                            "entity": "climate.upstairs"
+                                        },
+                                        {
+                                            "type": "custom:mushroom-template-card",
+                                            "icon": "mdi:thermostat",
+                                            "icon_color": "{% set state=states(entity) %}\n{% if state=='cool' %}\nblue\n{% elif state=='heat' %}\nred\n{% else %}\ngrey\n{% endif %}",
+                                            "tap_action": {
+                                                "action": "more-info"
+                                            },
+                                            "layout": "horizontal",
+                                            "multiline_secondary": false,
+                                            "secondary": "Set {{state_attr(entity, 'temperature')}}\u00b0 \u00b7 {{ states(entity) }} ({{state_attr(entity, 'hvac_action')}})",
+                                            "primary": "{{state_attr(entity, 'current_temperature')}}\u00b0 \u00b7 {{state_attr(entity, 'friendly_name')}}",
+                                            "entity": "climate.studio"
+                                        }
+                                    ]
                                 }
                             ]
                         }
