@@ -15,8 +15,8 @@
         "domains": [
             "climate"
         ],
-        "downloads": 1062,
-        "etag_repository": "W/\"3f2a1660d096f42a013d31d13b0e9beb65319315c90b2505fbd49658bf894bc2\"",
+        "downloads": 1360,
+        "etag_repository": "W/\"d890b216147a75b437da63f1ba994eb62f46df8fa2b4c1fe3e886723348fccad\"",
         "file_name": "mini-climate-card-bundle.js",
         "filename": "mini-climate-card-bundle.js",
         "first_install": false,
@@ -50,7 +50,7 @@
         ],
         "selected_tag": null,
         "show_beta": false,
-        "stargazers_count": 135,
+        "stargazers_count": 136,
         "topics": [
             "automation",
             "climate",

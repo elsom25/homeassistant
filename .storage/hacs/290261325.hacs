@@ -19,7 +19,7 @@
             "switch"
         ],
         "downloads": 0,
-        "etag_repository": "W/\"0335eae4da4583ef09acfc1e68e1723fa1c85a8d5da56a1006b7180c593f714d\"",
+        "etag_repository": "W/\"8835d0fdafb9c7bfc9d6ebda33417d19443ff24aa1c817fc1a9eac590337c6e8\"",
         "file_name": "",
         "filename": null,
         "first_install": false,
@@ -50,7 +50,7 @@
         ],
         "selected_tag": null,
         "show_beta": false,
-        "stargazers_count": 535,
+        "stargazers_count": 536,
         "topics": [
             "adaptive-lighting",
             "automation",

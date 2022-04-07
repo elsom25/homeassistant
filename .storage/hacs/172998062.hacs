@@ -13,7 +13,7 @@
         "description": "Minimalistic weather card for Home Assistant",
         "domain": "",
         "domains": [],
-        "downloads": 5396,
+        "downloads": 5518,
         "etag_repository": "W/\"99dd81d3fc67d06ffccff16f9ac3768283ed0984c0ba7baf59619d604560ea1d\"",
         "file_name": "simple-weather-card-bundle.js",
         "filename": "",
