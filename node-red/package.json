@@ -5,7 +5,8 @@
     "private": true,
     "dependencies": {
         "node-red-contrib-deduplicate": "~0.2.0",
-        "node-red-contrib-sun-position": "~2.1.1",
-        "node-red-contrib-weekday": "~0.1.0"
+        "node-red-contrib-eztimer": "~1.2.7",
+        "node-red-contrib-interval-length": "~0.0.6",
+        "node-red-node-email": "~1.15.1"
     }
 }
