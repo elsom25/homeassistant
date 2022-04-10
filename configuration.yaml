@@ -112,10 +112,17 @@ tts:
 
 wemo:
   static:
-    - 192.168.20.84  # Basement switch
-    - 192.168.20.234 # Entrance switch
-    - 192.168.20.244 # Studio - Outdoor switch
-    - 192.168.20.249 # Studio - Indoor switch
+    - 192.168.20.28  # Main     - Kitchen Overhead
+    - 192.168.20.57  # Main     - Dining Overhead
+    - 192.168.20.84  # Basement - Stairs
+    - 192.168.20.121 # Main     - Kitchen Pendants
+    - 192.168.20.171 # Main     - Dining Chandelier
+    - 192.168.20.201 # Outdoor  - Deck
+    - 192.168.20.227 # Main     - Living Room Overhead
+    - 192.168.20.234 # Outdoor  - Front Porch
+    - 192.168.20.237 # Main     - Entrance
+    - 192.168.20.244 # Studio   - Outdoor
+    - 192.168.20.249 # Studio   - Indoors
 
 zone:
   - name: Home

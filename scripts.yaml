@@ -5,25 +5,31 @@
     data:
       entity_id: input_select.light_mode_dropdown
       option: Sleep
-  - data:
-      entity_id: group.sonos_devices
+  - data: {}
     service: media_player.media_pause
+    target:
+      entity_id:
+      - media_player.sonos
   - data: {}
     service: homeassistant.turn_off
     target:
       entity_id:
-      - light.living_room
-      - light.butlers_pantry
       - light.master_bathroom
       - light.master_bedroom
       - light.spare_room
-      - light.media_room
       - light.kitchen
-      - switch.studio_outdoors
       - light.christmas_tree_plug
+      - light.main_floor
+      - light.basement
+      - light.main_floor_overheads
+      - light.main_floor_pendants
+      - light.studio_outdoors
   - service: lock.lock
     target:
-      entity_id: lock.front_door
+      entity_id:
+      - lock.front_door
+      - lock.studio_door
+    data: {}
   mode: single
 '1523806783160':
   alias: Bedtime
@@ -31,13 +37,15 @@
   - data: {}
     service: homeassistant.turn_on
     target:
-      entity_id: light.master_bedroom
+      entity_id:
+      - light.master_suite
   - data: {}
     service: homeassistant.turn_off
     target:
       entity_id:
       - light.butlers_pantry
       - light.spare_room
+      - light.main_floor_pendants
   mode: single
 good_morning:
   alias: Good Morning
@@ -53,11 +61,40 @@ good_morning:
       - light.butlers_pantry
       - light.kitchen
       - light.christmas_tree_plug
+    data: {}
+  - service: light.turn_on
+    data:
+      brightness_pct: 30
+    target:
+      entity_id: light.main_floor_overheads
   - service: homeassistant.turn_on
     target:
       entity_id:
       - light.master_bedroom
-  - data:
-      entity_id: group.sonos_devices
-    service: media_player.media_play
+    data: {}
+  - service: sonos.join
+    data:
+      master: media_player.living_room
+      entity_id: media_player.bedroom,media_player.kitchen,media_player.living_room,media_player.mainfloor_bathroom,media_player.media_room,media_player.office_andrew,media_player.office_jesse,media_player.sonos_move
+  - service: sonos.unjoin
+    data: {}
+    target:
+      entity_id: media_player.studio
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.living_room
+    data:
+      media_content_id: FV:2/12
+      media_content_type: favorite_item_id
+    metadata:
+      title: ☕ The Jazz Hop Cafe [Monthly Selection]
+      thumbnail: https://i.scdn.co/image/ab67706c0000bebbbf8e8614413aa9eff295e428
+      media_class: playlist
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: favorites
+        media_content_id: ''
+      - media_content_type: favorites_folder
+        media_content_id: object.container.playlistContainer
   mode: single
