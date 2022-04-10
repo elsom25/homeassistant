@@ -19,7 +19,7 @@
             "switch"
         ],
         "downloads": 0,
-        "etag_repository": "W/\"8835d0fdafb9c7bfc9d6ebda33417d19443ff24aa1c817fc1a9eac590337c6e8\"",
+        "etag_repository": "W/\"15807933a5a9e165171b8d4fda95fbe43516801ed7db83c2ab9aa73b76db00b1\"",
         "file_name": "",
         "filename": null,
         "first_install": false,
@@ -34,7 +34,7 @@
         "installed": true,
         "installed_commit": "9e8c199",
         "installed_version": "1.0.15",
-        "open_issues": 118,
+        "open_issues": 121,
         "last_commit": "9e8c199",
         "last_version": "1.0.14",
         "last_updated": "2022-03-11T01:51:58Z",
@@ -50,7 +50,7 @@
         ],
         "selected_tag": null,
         "show_beta": false,
-        "stargazers_count": 536,
+        "stargazers_count": 540,
         "topics": [
             "adaptive-lighting",
             "automation",

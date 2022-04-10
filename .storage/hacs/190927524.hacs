@@ -14,7 +14,7 @@
         "domain": "",
         "domains": [],
         "downloads": 0,
-        "etag_repository": "W/\"09081fccadf631f204442751d2f1e2cc95b68547d3a2e77efbeeb8c4009c4423\"",
+        "etag_repository": "W/\"869c29d9844b6d0de35f8608eb32b9a0c835cb887ee053f226254e3a6379d364\"",
         "file_name": "card-mod.js",
         "filename": null,
         "first_install": false,
@@ -48,7 +48,7 @@
         ],
         "selected_tag": null,
         "show_beta": false,
-        "stargazers_count": 474,
+        "stargazers_count": 475,
         "topics": [],
         "zip_release": false
     }

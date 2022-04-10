@@ -21,7 +21,7 @@
             "fan"
         ],
         "downloads": 0,
-        "etag_repository": "W/\"6f5bba9e5cc74b8bb4266580b79c12543454df9f0b5cc19669875338e7c31b79\"",
+        "etag_repository": "W/\"bc23e0cff2ef73fa3648c26269bcce7ffdc53c2c69f5ec55a705efd6500e901d\"",
         "file_name": "",
         "filename": null,
         "first_install": false,
@@ -49,7 +49,7 @@
         "published_tags": [],
         "selected_tag": null,
         "show_beta": false,
-        "stargazers_count": 3,
+        "stargazers_count": 4,
         "topics": [
             "air-purifier",
             "air-quality",
