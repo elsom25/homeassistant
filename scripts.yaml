@@ -57,10 +57,9 @@ good_morning:
   - service: homeassistant.turn_on
     target:
       entity_id:
-      - light.living_room
       - light.butlers_pantry
-      - light.kitchen
       - light.christmas_tree_plug
+      - light.kitchen_underlight
     data: {}
   - service: light.turn_on
     data:
