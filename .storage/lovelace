@@ -5,6 +5,18 @@
     "data": {
         "config": {
             "title": "Home",
+            "kiosk_mode": {
+                "non_admin_settings": {
+                    "hide_header": true,
+                    "hide_menubutton": true,
+                    "ignore_entity_settings": true
+                },
+                "mobile_settings": {
+                    "hide_header": true,
+                    "hide_menubutton": true,
+                    "ignore_entity_settings": true
+                }
+            },
             "views": [
                 {
                     "theme": "Mushroom",
@@ -30,6 +42,19 @@
                                     "type": "custom:mushroom-chips-card",
                                     "chips": [
                                         {
+                                            "type": "menu"
+                                        },
+                                        {
+                                            "type": "template",
+                                            "tap_action": {
+                                                "action": "navigate",
+                                                "navigation_path": "/lovelace/lights"
+                                            },
+                                            "icon": "mdi:lightbulb-group",
+                                            "content": "Lights",
+                                            "icon_color": "{% set indoor_lights = states.light | selectattr('state', 'eq', 'on')\n            | map(attribute='entity_id') | map('area_name')\n            | select('in', [\n                'Basement - Lounge',\n                'Basement - Media Room',\n                'Main - Bathroom',\n                'Main - Butlers Pantry',\n                'Main - Kitchen',\n                'Main - Living Room',\n                'Upstairs - Master Bathroom',\n                'Upstairs - Master Bedroom',\n                'Upstairs - Office (Andrew)',\n                'Upstairs - Office (Jesse)',\n              ])\n            | list | count %}\n\n{% if indoor_lights > 0 %}\n  yellow\n{% else %}\n  grey\n{% endif %}\n"
+                                        },
+                                        {
                                             "type": "weather",
                                             "entity": "weather.kitchener_waterloo",
                                             "show_conditions": true,
@@ -47,7 +72,7 @@
                                         },
                                         {
                                             "type": "template",
-                                            "content": "{% set count = states.person | selectattr('state', 'eq', 'home') | list | count %}\n{{ count or \"0\" }}",
+                                            "content": "{% set count = states.person | selectattr('state', 'eq', 'home') | list | count %}\n{{ count }} home",
                                             "icon": "mdi:account",
                                             "tap_action": {
                                                 "action": "fire-dom-event",
@@ -226,25 +251,41 @@
                                             "content": "{% set state = states('vacuum.the_shuttle_litter_box') %}\n{% set fill = states('sensor.the_shuttle_waste_drawer') %}\n{% if state == 'error' %}\n Litter Full\n{% else %}\n  Litter {{ state  | title }} ({{ fill  }}%)\n{% endif %}",
                                             "icon": "mdi:robot-vacuum",
                                             "tap_action": {
-                                                "action": "call-service",
-                                                "service": "button.press",
-                                                "service_data": {},
-                                                "target": {
-                                                    "entity_id": "button.the_shuttle_reset_waste_drawer"
+                                                "action": "fire-dom-event",
+                                                "browser_mod": {
+                                                    "command": "popup",
+                                                    "title": "The Shuttle Litter Box",
+                                                    "card": {
+                                                        "type": "horizontal-stack",
+                                                        "cards": [
+                                                            {
+                                                                "type": "custom:mushroom-vacuum-card",
+                                                                "name": "Litter Box",
+                                                                "entity": "vacuum.the_shuttle_litter_box",
+                                                                "commands": [
+                                                                    "start_pause"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "show_name": true,
+                                                                "show_icon": "falst",
+                                                                "icon_height": "45px",
+                                                                "type": "button",
+                                                                "tap_action": {
+                                                                    "action": "toggle"
+                                                                },
+                                                                "entity": "button.the_shuttle_reset_waste_drawer",
+                                                                "show_state": true,
+                                                                "name": "Reset Waste"
+                                                            }
+                                                        ]
+                                                    }
                                                 }
                                             },
                                             "hold_action": {
                                                 "action": "more-info"
                                             },
-                                            "icon_color": "{% set state = states('vacuum.the_shuttle_litter_box') %}\n{% if state == 'error' %}\n  red\n{% else %}\n  brown\n{% endif %}",
-                                            "double_tap_action": {
-                                                "action": "call-service",
-                                                "service": "vacuum.start",
-                                                "service_data": {},
-                                                "target": {
-                                                    "entity_id": "vacuum.the_shuttle_litter_box"
-                                                }
-                                            }
+                                            "icon_color": "{% set state = states('vacuum.the_shuttle_litter_box') %}\n{% if state == 'error' %}\n  red\n{% else %}\n  brown\n{% endif %}"
                                         },
                                         {
                                             "type": "conditional",
@@ -292,6 +333,16 @@
                                                 },
                                                 "icon_color": "green",
                                                 "name": "Studio Door"
+                                            }
+                                        },
+                                        {
+                                            "type": "template",
+                                            "entity": "sensor.dexcom_elsom25_glucose_value",
+                                            "icon": "{{ state_attr('sensor.dexcom_elsom25_glucose_trend', 'icon') }}",
+                                            "content": "{{ states(entity) }}  {{ state_attr(entity, 'unit_of_measurement') }}",
+                                            "icon_color": "{% set blood_sugar = states(entity) | float %}\n{% if blood_sugar > 8.5 %}\n  yellow\n{% elif blood_sugar > 4 %}\n  grey\n{% else %}\n  red\n{% endif %}",
+                                            "tap_action": {
+                                                "action": "more-info"
                                             }
                                         }
                                     ]
@@ -473,8 +524,8 @@
                                             "card": {
                                                 "type": "custom:mushroom-update-card",
                                                 "entity": "update.node_red_update",
-                                                "icon": "mdi:file-document-edit",
-                                                "name": "File editor",
+                                                "icon": "mdi:file-tree",
+                                                "name": "Node RED",
                                                 "show_buttons_control": true
                                             }
                                         },
@@ -489,7 +540,7 @@
                                             "card": {
                                                 "type": "custom:mushroom-update-card",
                                                 "entity": "update.terminal_ssh_update",
-                                                "icon": "fas:terminal",
+                                                "icon": "mdi:console",
                                                 "name": "Terminal",
                                                 "show_buttons_control": true
                                             }
@@ -504,6 +555,28 @@
                                 {
                                     "type": "custom:mushroom-title-card",
                                     "subtitle": "Media Summary"
+                                },
+                                {
+                                    "type": "custom:mushroom-chips-card",
+                                    "chips": [
+                                        {
+                                            "type": "template",
+                                            "content": "{% set active = states.media_player | selectattr('state', 'equalto', 'playing') | list | count %}\n\n{{ active }} playing",
+                                            "icon": "mdi:amplifier",
+                                            "icon_color": "{% set active = states.media_player | selectattr('state', 'equalto', 'playing') | list | count %}\n{% if active > 0 %}\n  teal\n{% else %}\n  grey\n{% endif %}",
+                                            "tap_action": {
+                                                "action": "fire-dom-event",
+                                                "browser_mod": {
+                                                    "command": "popup",
+                                                    "title": "Sonos",
+                                                    "large": true,
+                                                    "card": {
+                                                        "type": "custom:custom-sonos-card"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "custom:mini-media-player",
@@ -699,10 +772,18 @@
                     "type": "custom:vertical-layout",
                     "layout": {
                         "max_width": 800,
-                        "max_cols": 4
+                        "max_cols": 3
                     },
                     "badges": [],
                     "cards": [
+                        {
+                            "type": "custom:mushroom-chips-card",
+                            "chips": [
+                                {
+                                    "type": "back"
+                                }
+                            ]
+                        },
                         {
                             "type": "custom:mushroom-title-card",
                             "title": "Main Floor",
@@ -1153,9 +1234,6 @@
                             ]
                         },
                         {
-                            "type": "custom:layout-break"
-                        },
-                        {
                             "type": "vertical-stack",
                             "cards": [
                                 {
@@ -1261,19 +1339,6 @@
                                     ]
                                 }
                             ]
-                        }
-                    ]
-                },
-                {
-                    "theme": "Backend-selected",
-                    "title": "Music",
-                    "path": "music",
-                    "type": "panel",
-                    "icon": "mdi:music",
-                    "badges": [],
-                    "cards": [
-                        {
-                            "type": "custom:custom-sonos-card"
                         }
                     ]
                 }
