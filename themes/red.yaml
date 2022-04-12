@@ -1,7 +1,0 @@
-red-theme:
-  card-mod-theme: red-theme
-
-  primary-color: red
-  primary-text-color: purple
-  ha-card-border-radius: 20
-  lovelace-background: center / cover no-repeat url("/local/background.png") fixed
