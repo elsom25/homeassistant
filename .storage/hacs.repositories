@@ -10,15 +10,15 @@
             "category": "integration",
             "description": "HACS gives you a powerful UI to handle downloads of all your custom needs.",
             "domain": "hacs",
-            "downloads": 23130,
-            "etag_repository": "W/\"fdd630a68e39a28140692055b9cf48f8daa7f9233a32def260ab0dac751de81f\"",
+            "downloads": 5704,
+            "etag_repository": "W/\"ccf7b18d8b31f0482ce9faa8e4569da2cca101009a21c57e9352adee6fc6b848\"",
             "full_name": "hacs/integration",
             "first_install": false,
-            "installed_commit": "632b1d5",
+            "installed_commit": "12727de",
             "installed": true,
-            "last_commit": "d4f6928",
-            "last_release_tag": "1.24.3",
-            "last_updated": "2022-04-10T17:31:22Z",
+            "last_commit": "12727de",
+            "last_release_tag": "1.24.4",
+            "last_updated": "2022-04-11T06:03:11Z",
             "name": "hacs",
             "new": false,
             "repository_manifest": {
@@ -32,7 +32,7 @@
             "releases": true,
             "selected_tag": null,
             "show_beta": false,
-            "stars": 2418,
+            "stars": 2421,
             "topics": [
                 "community",
                 "hacktoberfest",
@@ -42,8 +42,8 @@
                 "package-manager",
                 "python"
             ],
-            "version_installed": "1.24.3",
-            "last_fetched": 1649614157.920052
+            "version_installed": "1.24.4",
+            "last_fetched": 1649726049.083704
         },
         "287840715": {
             "authors": [],
@@ -519,7 +519,7 @@
             "category": "plugin",
             "description": "Minimalistic climate card for Home Assistant Lovelace UI",
             "domain": "",
-            "downloads": 1014,
+            "downloads": 1431,
             "etag_repository": "W/\"d890b216147a75b437da63f1ba994eb62f46df8fa2b4c1fe3e886723348fccad\"",
             "full_name": "artem-sedykh/mini-climate-card",
             "first_install": false,
@@ -555,7 +555,7 @@
                 "lovelace-ui"
             ],
             "version_installed": "v2.1.1",
-            "last_fetched": 1649614157.767873
+            "last_fetched": 1649726048.863468
         },
         "201292040": {
             "authors": [],
@@ -594,7 +594,7 @@
             "description": "Additional vector icons for home assistant to model Philips  Hue bulbs and fixtures. ",
             "domain": "",
             "downloads": 0,
-            "etag_repository": "W/\"c361d3d84ec0bc5cf8754930455d09387d01b3c86aeb336bcc45d493780c25f2\"",
+            "etag_repository": "W/\"faff8aafa8244859ef0e761cb6bd802a4c83b5007b16a32fdb072bed5c34a810\"",
             "full_name": "arallsopp/hass-hue-icons",
             "first_install": false,
             "installed_commit": "88f5d9c",
@@ -612,7 +612,7 @@
             "releases": true,
             "selected_tag": null,
             "show_beta": false,
-            "stars": 136,
+            "stars": 137,
             "topics": [
                 "custom-icons",
                 "hacktoberfest",
@@ -627,7 +627,7 @@
                 "svg"
             ],
             "version_installed": "v.1.2.12",
-            "last_fetched": 1649614174.985361
+            "last_fetched": 1649726048.988481
         },
         "271886611": {
             "authors": [],
@@ -1357,8 +1357,8 @@
             "category": "plugin",
             "description": "\u2747\ufe0f Lovelace button-card for home assistant",
             "domain": "",
-            "downloads": 92466,
-            "etag_repository": "W/\"30cfe9c60f48c801aa3b9073e02ddd6dca29b78a0a9785ef592a4ab414b337e1\"",
+            "downloads": 92822,
+            "etag_repository": "W/\"e59aea7c6549d240e94131f61ea09a2a7540040e18c9382bdcfd73a7c6cb47d2\"",
             "full_name": "custom-cards/button-card",
             "first_install": false,
             "installed_commit": "29b10a6",
@@ -1377,7 +1377,7 @@
             "releases": true,
             "selected_tag": null,
             "show_beta": false,
-            "stars": 1067,
+            "stars": 1069,
             "topics": [
                 "home-assistant",
                 "home-assistant-custom",
@@ -1386,7 +1386,7 @@
                 "lovelace-ui"
             ],
             "version_installed": "v3.4.2",
-            "last_fetched": 1649614157.842598
+            "last_fetched": 1649726048.959628
         },
         "141952963": {
             "authors": [],
@@ -4582,8 +4582,8 @@
             "category": "plugin",
             "description": "Home Assistant custom lovelace sonos card",
             "domain": "",
-            "downloads": 678,
-            "etag_repository": "W/\"4366973139da355a8d1ac3757b64c6edfa35f9c11d3cdf0a8c11894cefd00bdf\"",
+            "downloads": 935,
+            "etag_repository": "W/\"7383a5c538cba26f8cffd0eee2cde290fbf571764560920cdfe95fb43bb8a59a\"",
             "full_name": "johanfrick/custom-sonos-card",
             "first_install": false,
             "installed_commit": "851a662",
@@ -4601,7 +4601,7 @@
             "releases": true,
             "selected_tag": null,
             "show_beta": false,
-            "stars": 19,
+            "stars": 21,
             "topics": [
                 "hacs",
                 "home-assistant",
@@ -4610,7 +4610,7 @@
                 "sonos"
             ],
             "version_installed": "v5.1.0",
-            "last_fetched": 1649614159.22786
+            "last_fetched": 1649726049.035556
         },
         "283578257": {
             "authors": [],
@@ -4797,8 +4797,8 @@
             "category": "plugin",
             "description": "Minimalistic graph card for Home Assistant Lovelace UI",
             "domain": "",
-            "downloads": 29125,
-            "etag_repository": "W/\"6d9c0bf91e2391df3042a87bb15d8aa886936467a6b85184efce0e7de9a7fe01\"",
+            "downloads": 30180,
+            "etag_repository": "W/\"a76fc7b659fbd354e21a9ed66c41ceb0258841f80ab512c042ad213a4ee900c7\"",
             "full_name": "kalkih/mini-graph-card",
             "first_install": false,
             "installed_commit": "1b144a6",
@@ -4815,7 +4815,7 @@
             "releases": true,
             "selected_tag": null,
             "show_beta": false,
-            "stars": 1874,
+            "stars": 1876,
             "topics": [
                 "automation",
                 "custom",
@@ -4828,29 +4828,29 @@
                 "sensor"
             ],
             "version_installed": "v0.11.0",
-            "last_fetched": 1649614159.221252
+            "last_fetched": 1649726049.103997
         },
         "148520838": {
             "authors": [],
             "category": "plugin",
             "description": "Minimalistic media card for Home Assistant Lovelace UI",
             "domain": "",
-            "downloads": 18422,
-            "etag_repository": "W/\"791e6fbfe5c67c8d821cdfbe7f707162464b852cc7b74997e9addae3884cafe0\"",
+            "downloads": 19046,
+            "etag_repository": "W/\"b6c41d4ee87bca534c47680a2d545d0444eefbf7a4f704f2c1fe289549485ced\"",
             "full_name": "kalkih/mini-media-player",
             "first_install": false,
             "installed_commit": "3f9b113",
             "installed": true,
             "last_commit": "3f9b113",
             "last_release_tag": "v1.16.2",
-            "last_updated": "2022-04-05T08:32:56Z",
+            "last_updated": "2022-04-11T20:09:08Z",
             "name": "mini-media-player",
             "new": false,
             "repository_manifest": {},
             "releases": true,
             "selected_tag": null,
             "show_beta": false,
-            "stars": 1074,
+            "stars": 1076,
             "topics": [
                 "automation",
                 "custom",
@@ -4864,14 +4864,14 @@
                 "sonos"
             ],
             "version_installed": "v1.16.2",
-            "last_fetched": 1649614158.524658
+            "last_fetched": 1649726048.93327
         },
         "172998062": {
             "authors": [],
             "category": "plugin",
             "description": "Minimalistic weather card for Home Assistant",
             "domain": "",
-            "downloads": 14179,
+            "downloads": 14409,
             "etag_repository": "W/\"1fcc18580b4de8fa3771ae5df62f6873ba17df18e41d8e9b1afed0a32689e33a\"",
             "full_name": "kalkih/simple-weather-card",
             "first_install": false,
@@ -4895,7 +4895,7 @@
                 "weather"
             ],
             "version_installed": "v0.8.2",
-            "last_fetched": 1649614158.695727
+            "last_fetched": 1649726048.914001
         },
         "439367892": {
             "authors": [],
@@ -5183,7 +5183,7 @@
             "category": "plugin",
             "description": "Control any light or switch entity",
             "domain": "",
-            "downloads": 7154,
+            "downloads": 7360,
             "etag_repository": "W/\"8796b8ae2fd1ee65743317fee3e0a52f52cbbb38b8b7e1318b383ad438c03b81\"",
             "full_name": "ljmerza/light-entity-card",
             "first_install": false,
@@ -5205,7 +5205,7 @@
             "stars": 149,
             "topics": [],
             "version_installed": "5.0.0",
-            "last_fetched": 1649614159.202001
+            "last_fetched": 1649726049.010172
         },
         "197960232": {
             "authors": [],
@@ -5791,12 +5791,12 @@
             "category": "plugin",
             "description": "\ud83d\ude48 Hides the Home Assistant header and/or sidebar",
             "domain": "",
-            "downloads": 0,
-            "etag_repository": "W/\"d38ca8cd091425a3d78952607200badc189e011ffcc2fdc2ba0f3a278fcd8512\"",
+            "downloads": 11336,
+            "etag_repository": "W/\"86dd5137643fb3d5afc70765f72052c5bcdfb4591562e49d50a1746d3ce03e67\"",
             "full_name": "maykar/kiosk-mode",
             "first_install": true,
-            "installed_commit": null,
-            "installed": false,
+            "installed_commit": "5c29a5a",
+            "installed": true,
             "last_commit": "5c29a5a",
             "last_release_tag": "1.7.1",
             "last_updated": "2022-04-05T16:20:12Z",
@@ -5809,15 +5809,15 @@
             "releases": true,
             "selected_tag": null,
             "show_beta": false,
-            "stars": 230,
+            "stars": 234,
             "topics": [
                 "home-assistant",
                 "kiosk",
                 "kiosk-mode",
                 "lovelace"
             ],
-            "version_installed": null,
-            "last_fetched": 1649475777.791053
+            "version_installed": "1.7.1",
+            "last_fetched": 1649726351.975045
         },
         "256292682": {
             "authors": [],
@@ -6040,7 +6040,7 @@
             "category": "plugin",
             "description": "A different take on the thermostat card for Home Assistant \u2668\ufe0f",
             "domain": "",
-            "downloads": 20873,
+            "downloads": 20986,
             "etag_repository": "W/\"3118e1ef53b26b5f40f8a1022fde08194827651bc90e17eebfafda83d0d9939d\"",
             "full_name": "nervetattoo/simple-thermostat",
             "first_install": false,
@@ -6069,7 +6069,7 @@
                 "polymer-3"
             ],
             "version_installed": "v2.4.3",
-            "last_fetched": 1649614158.676327
+            "last_fetched": 1649726049.090898
         },
         "321773656": {
             "authors": [],
@@ -6173,7 +6173,7 @@
                 "lovelace-ui"
             ],
             "version_installed": "v0.4.2",
-            "last_fetched": 1649614159.397699
+            "last_fetched": 1649726049.605912
         },
         "238414582": {
             "authors": [],
@@ -6390,15 +6390,15 @@
             "category": "plugin",
             "description": "Mushroom Cards - Build a beautiful dashboard easily \ud83c\udf44",
             "domain": "",
-            "downloads": 4808,
-            "etag_repository": "W/\"81efcbb6c768db959b32bed1b714d5a5c9be90adf7c98ad625ddd0df7eb4203f\"",
+            "downloads": 626,
+            "etag_repository": "W/\"48b2aa4f187919306dafb4ec45a42488332081656f130fea0637caef9180b6de\"",
             "full_name": "piitaya/lovelace-mushroom",
             "first_install": false,
-            "installed_commit": "4edb164",
+            "installed_commit": "06b5135",
             "installed": true,
-            "last_commit": "4edb164",
-            "last_release_tag": "v1.4.0",
-            "last_updated": "2022-04-10T18:06:00Z",
+            "last_commit": "06b5135",
+            "last_release_tag": "v1.5.0",
+            "last_updated": "2022-04-11T19:49:25Z",
             "name": "lovelace-mushroom",
             "new": false,
             "repository_manifest": {
@@ -6410,7 +6410,7 @@
             "releases": true,
             "selected_tag": null,
             "show_beta": false,
-            "stars": 557,
+            "stars": 593,
             "topics": [
                 "card",
                 "hacs",
@@ -6418,8 +6418,8 @@
                 "lovelace",
                 "mushroom"
             ],
-            "version_installed": "v1.4.0",
-            "last_fetched": 1649614159.832759
+            "version_installed": "v1.5.0",
+            "last_fetched": 1649726250.018718
         },
         "218178802": {
             "authors": [],
@@ -9647,14 +9647,13 @@
         },
         "290261325": {
             "authors": [
-                "@basnijholt",
-                "@RubenKelevra"
+                "@basnijholt"
             ],
             "category": "integration",
             "description": "Adaptive Lighting custom component for Home Assistant",
             "domain": "adaptive_lighting",
             "downloads": 0,
-            "etag_repository": "W/\"15807933a5a9e165171b8d4fda95fbe43516801ed7db83c2ab9aa73b76db00b1\"",
+            "etag_repository": "W/\"2a7c6a5f6c1cbf60c222faa35c89d27fbbf6bd69695c05037f4efb7d9af16249\"",
             "full_name": "basnijholt/adaptive-lighting",
             "first_install": false,
             "installed_commit": "9e8c199",
@@ -9674,7 +9673,7 @@
             "releases": true,
             "selected_tag": null,
             "show_beta": false,
-            "stars": 540,
+            "stars": 541,
             "topics": [
                 "adaptive-lighting",
                 "automation",
@@ -9687,7 +9686,7 @@
                 "zigbee"
             ],
             "version_installed": "1.0.15",
-            "last_fetched": 1649614159.430994
+            "last_fetched": 1649726049.775432
         },
         "181480967": {
             "authors": [
@@ -31066,7 +31065,7 @@
             "description": "\ud83d\udd39 A Home Assistant integration to turn your browser into a controllable entity - and also an audio player",
             "domain": "browser_mod",
             "downloads": 0,
-            "etag_repository": "W/\"f06f5c65263934a788c5c4a2e7cde84663b75226725d2a8c2204e1e6202d19ee\"",
+            "etag_repository": "W/\"05c78d6ef0b77ecd0c13162ec8542a9ba6ea0ea0fe4f10c64e30b370deaffb9f\"",
             "full_name": "thomasloven/hass-browser_mod",
             "first_install": false,
             "installed_commit": "63d204c",
@@ -31083,10 +31082,10 @@
             "releases": true,
             "selected_tag": null,
             "show_beta": false,
-            "stars": 607,
+            "stars": 608,
             "topics": [],
             "version_installed": "1.5.1",
-            "last_fetched": 1649614159.524939
+            "last_fetched": 1649726049.844749
         },
         "391413239": {
             "authors": [
@@ -32342,15 +32341,15 @@
             "category": "integration",
             "description": "UI-Lovelace-Minimalist is a \"theme\" for HomeAssistant",
             "domain": "ui_lovelace_minimalist",
-            "downloads": 3419,
-            "etag_repository": "W/\"1339c123f300ee568b96bdad47acd10237204df8f5467a9af60558b6576a6937\"",
+            "downloads": 3730,
+            "etag_repository": "W/\"3d640640db4ad105de666ec5206fdf93dabfe892613a2e5d5e3242688395a645\"",
             "full_name": "UI-Lovelace-Minimalist/UI",
             "first_install": false,
-            "installed_commit": "5d52693",
-            "installed": true,
-            "last_commit": "0630b26",
+            "installed_commit": null,
+            "installed": false,
+            "last_commit": "224b942",
             "last_release_tag": "v0.0.7-hotfix2",
-            "last_updated": "2022-04-09T23:08:47Z",
+            "last_updated": "2022-04-11T17:50:53Z",
             "name": "ui_lovelace_minimalist",
             "new": false,
             "repository_manifest": {
@@ -32363,12 +32362,12 @@
             "releases": true,
             "selected_tag": null,
             "show_beta": false,
-            "stars": 613,
+            "stars": 611,
             "topics": [
                 "home-assistant"
             ],
-            "version_installed": "v0.0.7-hotfix2",
-            "last_fetched": 1649614159.549003
+            "version_installed": null,
+            "last_fetched": 1649731222.221445
         },
         "247566230": {
             "authors": [
@@ -33737,7 +33736,7 @@
             "installed": true,
             "last_commit": "cf68748",
             "last_release_tag": "1.11.0",
-            "last_updated": "2022-03-31T09:30:24Z",
+            "last_updated": "2022-04-11T01:24:10Z",
             "name": "lovelace-auto-entities",
             "new": false,
             "repository_manifest": {
@@ -33751,7 +33750,7 @@
             "stars": 599,
             "topics": [],
             "version_installed": "1.11.0",
-            "last_fetched": 1649614160.045075
+            "last_fetched": 1649726049.908718
         },
         "203036108": {
             "authors": [],
@@ -33846,7 +33845,7 @@
             "stars": 475,
             "topics": [],
             "version_installed": "3.1.4",
-            "last_fetched": 1649614160.048453
+            "last_fetched": 1649726049.884559
         },
         "161403328": {
             "authors": [],
@@ -33916,7 +33915,7 @@
             "installed": true,
             "last_commit": "466df9c",
             "last_release_tag": "2.4.2",
-            "last_updated": "2022-03-25T19:00:43Z",
+            "last_updated": "2022-04-10T19:49:52Z",
             "name": "lovelace-layout-card",
             "new": false,
             "repository_manifest": {
@@ -33930,7 +33929,7 @@
             "stars": 515,
             "topics": [],
             "version_installed": "2.4.2",
-            "last_fetched": 1649614160.113783
+            "last_fetched": 1649726049.896139
         },
         "180528950": {
             "authors": [],
@@ -34072,7 +34071,7 @@
             "stars": 607,
             "topics": [],
             "version_installed": "17.2.0",
-            "last_fetched": 1649614160.254641
+            "last_fetched": 1649726050.379747
         },
         "308752409": {
             "authors": [],
@@ -36601,7 +36600,7 @@
                 "themes"
             ],
             "version_installed": "v0.0.2",
-            "last_fetched": 1649614159.653948
+            "last_fetched": 1649726049.784547
         },
         "407627914": {
             "authors": [],
@@ -37216,7 +37215,7 @@
                 "lovelace-ui"
             ],
             "version_installed": null,
-            "last_fetched": 1649614160.10359
+            "last_fetched": 1649726050.404898
         },
         "474183846": {
             "authors": [
@@ -37258,7 +37257,7 @@
                 "mila"
             ],
             "version_installed": null,
-            "last_fetched": 1649614159.741423
+            "last_fetched": 1649726049.689594
         },
         "442594482": {
             "authors": [],
@@ -37275,7 +37274,7 @@
             "last_release_tag": "0.0.1",
             "last_updated": 0,
             "name": "kontomierz_sensor",
-            "new": true,
+            "new": false,
             "repository_manifest": {
                 "name": "Kontomierz sensor",
                 "domains": [
@@ -37317,7 +37316,7 @@
             "last_release_tag": "v1.0.1",
             "last_updated": 0,
             "name": "rainforest_emu_2",
-            "new": true,
+            "new": false,
             "repository_manifest": {
                 "name": "Rainforest EMU-2",
                 "homeassistant": "2021.8.0",
@@ -37351,7 +37350,7 @@
             "last_release_tag": "0.0.2",
             "last_updated": 0,
             "name": "radioactivity_hu",
-            "new": true,
+            "new": false,
             "repository_manifest": {
                 "name": "Radioactivity Hungary",
                 "country": [
@@ -37394,7 +37393,7 @@
             "last_release_tag": "5.3.5",
             "last_updated": 0,
             "name": "heatzy",
-            "new": true,
+            "new": false,
             "repository_manifest": {
                 "name": "Heatzy",
                 "country": [
@@ -37429,11 +37428,11 @@
             "first_install": true,
             "installed_commit": null,
             "installed": false,
-            "last_commit": null,
+            "last_commit": "f1bce67",
             "last_release_tag": "v1.0",
-            "last_updated": 0,
+            "last_updated": "2022-04-10T18:43:27Z",
             "name": "nordic-theme-main",
-            "new": true,
+            "new": false,
             "repository_manifest": {
                 "name": "Nordic Theme",
                 "render_readme": true
@@ -37446,7 +37445,8 @@
                 "hacs",
                 "hacs-integration"
             ],
-            "version_installed": null
+            "version_installed": null,
+            "last_fetched": 1649726322.164411
         },
         "472497355": {
             "authors": [
@@ -37455,7 +37455,7 @@
             "category": "integration",
             "description": "Fetches spot prices from Energi Data Service",
             "domain": "energidataservice",
-            "downloads": 79,
+            "downloads": 0,
             "etag_repository": "W/\"847e86000369a4ce8956662f6df072daa1a713292872574bf74a0123f4e0bece\"",
             "full_name": "MTrab/energidataservice",
             "first_install": true,
@@ -37465,7 +37465,7 @@
             "last_release_tag": "v0.1.10",
             "last_updated": 0,
             "name": "energidataservice",
-            "new": true,
+            "new": false,
             "repository_manifest": {
                 "name": "Energi Data Service",
                 "render_readme": true,
@@ -37509,7 +37509,7 @@
             "last_release_tag": "Release",
             "last_updated": 0,
             "name": "Green-and-Dark-HA-Theme",
-            "new": true,
+            "new": false,
             "repository_manifest": {
                 "name": "Green and Dark Theme: Simple, clean, and green",
                 "render_readme": true,
@@ -37544,7 +37544,7 @@
             "last_release_tag": null,
             "last_updated": 0,
             "name": "nhc2",
-            "new": true,
+            "new": false,
             "repository_manifest": {
                 "name": "Niko Home Control II",
                 "domains": [
@@ -37590,7 +37590,7 @@
             "last_release_tag": "1.0.2",
             "last_updated": 0,
             "name": "greenely",
-            "new": true,
+            "new": false,
             "repository_manifest": {
                 "name": "Greenely Sensors",
                 "render_readme": true,
@@ -37616,7 +37616,7 @@
             "category": "integration",
             "description": "TrueNAS integration for Home Assistant ",
             "domain": "truenas",
-            "downloads": 14,
+            "downloads": 0,
             "etag_repository": "W/\"02fb7f0cfddad0c2eeef8c96970c7876ef3f75148785132d253d717e6fe3d1a0\"",
             "full_name": "tomaae/homeassistant-truenas",
             "first_install": true,
@@ -37626,7 +37626,7 @@
             "last_release_tag": "v1.0.2",
             "last_updated": 0,
             "name": "truenas",
-            "new": true,
+            "new": false,
             "repository_manifest": {
                 "name": "TrueNAS",
                 "homeassistant": "2022.2.0",
@@ -37660,7 +37660,7 @@
             "category": "integration",
             "description": "Met.no Nowcast component for Home Assistant",
             "domain": "metnowcast",
-            "downloads": 11,
+            "downloads": 0,
             "etag_repository": "W/\"342c508dbabd32d2be461142099f97862988e599fedf5cd8ce4673c28c77ad42\"",
             "full_name": "toringer/home-assistant-metnowcast",
             "first_install": true,
@@ -37670,7 +37670,7 @@
             "last_release_tag": "v2.0.2",
             "last_updated": 0,
             "name": "metnowcast",
-            "new": true,
+            "new": false,
             "repository_manifest": {
                 "name": "Met.no Nowcast",
                 "domains": [
@@ -37710,7 +37710,7 @@
             "last_release_tag": null,
             "last_updated": 0,
             "name": "idfm",
-            "new": true,
+            "new": false,
             "repository_manifest": {
                 "name": "Ile de france Mobilite",
                 "hacs": "1.0.0",
@@ -37744,7 +37744,7 @@
             "category": "integration",
             "description": "Get the status from your Electrolux devices connected to Wellbeing",
             "domain": "wellbeing",
-            "downloads": 2,
+            "downloads": 0,
             "etag_repository": "W/\"e1f6808d94d2fbca7f4d4532537d4e128b30fb5bd5f6f5eba363379a2df75ea0\"",
             "full_name": "JohNan/homeassistant-wellbeing",
             "first_install": true,
@@ -37754,7 +37754,7 @@
             "last_release_tag": "v1.0.1",
             "last_updated": 0,
             "name": "wellbeing",
-            "new": true,
+            "new": false,
             "repository_manifest": {
                 "name": "Electrolux Wellbeing",
                 "hacs": "1.6.0",
@@ -37781,7 +37781,7 @@
             "category": "plugin",
             "description": "A rain radar card using the new tiled images from the Australian BOM",
             "domain": "",
-            "downloads": 411,
+            "downloads": 0,
             "etag_repository": "W/\"40ded66e7b9af5559b6ae44d69f90f78ebfdc7a3b9f482e205ba7498a389867a\"",
             "full_name": "Makin-Things/bom-radar-card",
             "first_install": true,
@@ -37791,7 +37791,7 @@
             "last_release_tag": "v1.6.0",
             "last_updated": 0,
             "name": "bom-radar-card",
-            "new": true,
+            "new": false,
             "repository_manifest": {
                 "name": "BOM Radar Card",
                 "render_readme": true,
@@ -37831,7 +37831,7 @@
             "last_release_tag": "v2.3.0",
             "last_updated": 0,
             "name": "miwifi",
-            "new": true,
+            "new": false,
             "repository_manifest": {
                 "name": "MiWiFi",
                 "render_readme": true,
@@ -37860,6 +37860,157 @@
                 "python",
                 "redmi",
                 "xiaomi"
+            ],
+            "version_installed": null
+        },
+        "373750934": {
+            "authors": [
+                "@cnstudio",
+                "@tsunglung"
+            ],
+            "category": "integration",
+            "description": "Calculate Taipower (Taiwan Power Company) bi-monthly bill amount from kWh sensor on Home Assistant.",
+            "domain": "taipower_bimonthly_cost",
+            "downloads": 0,
+            "etag_repository": "W/\"1d6633f2f7744feac3298ca54ed6e074d53ed913573483acffe79bb452f53125\"",
+            "full_name": "cnstudio/Taipower-Bimonthly-Energy-Cost-homeassistant",
+            "first_install": true,
+            "installed_commit": null,
+            "installed": false,
+            "last_commit": null,
+            "last_release_tag": "v0.51.3",
+            "last_updated": 0,
+            "name": "taipower_bimonthly_cost",
+            "new": false,
+            "repository_manifest": {
+                "name": "Taipower Bimonthly Energy Cost",
+                "render_readme": true,
+                "domain": "taipower_bimonthly_cost",
+                "documentation": "https://github.com/cnstudio/Taipower-Bimonthly-Energy-Cost-homeassistant",
+                "issue_tracker": "https://github.com/cnstudio/Taipower-Bimonthly-Energy-Cost-homeassistant/issues",
+                "homeassistant": "2021.9.0",
+                "country": [
+                    "TW"
+                ]
+            },
+            "releases": true,
+            "selected_tag": null,
+            "show_beta": false,
+            "stars": 33,
+            "topics": [
+                "bill",
+                "bimonthly",
+                "hacs",
+                "home-assistant",
+                "homeassistant",
+                "power",
+                "taipower"
+            ],
+            "version_installed": null
+        },
+        "375838748": {
+            "authors": [
+                "@Kannix2005"
+            ],
+            "category": "integration",
+            "description": "Home Assistant Custom component to manage Selve devices",
+            "domain": "selve",
+            "downloads": 0,
+            "etag_repository": "W/\"70ee3ea77dd6d89a7ec8a31413deba6cda7b87a5bf9be7b1e8b6146548cd124f\"",
+            "full_name": "Kannix2005/homeassistant-selve",
+            "first_install": true,
+            "installed_commit": null,
+            "installed": false,
+            "last_commit": null,
+            "last_release_tag": null,
+            "last_updated": 0,
+            "name": "selve",
+            "new": false,
+            "repository_manifest": {
+                "name": "Selve NG",
+                "domains": [
+                    "cover"
+                ]
+            },
+            "releases": false,
+            "selected_tag": null,
+            "show_beta": false,
+            "stars": 0,
+            "topics": [
+                "home-assistant",
+                "python",
+                "selve"
+            ],
+            "version_installed": null
+        },
+        "471478227": {
+            "authors": [
+                "@mbillow"
+            ],
+            "category": "integration",
+            "description": "Home Assistant ChargePoint EV Charger Integration",
+            "domain": "chargepoint",
+            "downloads": 0,
+            "etag_repository": "W/\"4f2d1da4d535f4ff6d9c0b79eb4c1ef2c14f181d4cab5a6fe351067a84df3176\"",
+            "full_name": "mbillow/ha-chargepoint",
+            "first_install": true,
+            "installed_commit": null,
+            "installed": false,
+            "last_commit": null,
+            "last_release_tag": "v0.1.2",
+            "last_updated": 0,
+            "name": "chargepoint",
+            "new": false,
+            "repository_manifest": {
+                "name": "ChargePoint",
+                "content_in_root": false,
+                "domains": [
+                    "sensor"
+                ],
+                "render_readme": true
+            },
+            "releases": true,
+            "selected_tag": null,
+            "show_beta": false,
+            "stars": 2,
+            "topics": [
+                "chargepoint",
+                "hassio-integration",
+                "home-assistant",
+                "python"
+            ],
+            "version_installed": null
+        },
+        "480112024": {
+            "authors": [
+                "@patrickribbing"
+            ],
+            "category": "integration",
+            "description": "Get wind information from the Swedish Sj\u00f6farsverket's ViVa service.",
+            "domain": "sjofartsverket_viva",
+            "downloads": 0,
+            "etag_repository": "W/\"ed9bb989f253565c18af2811f3b45dec94eceb07d6956a309ceaa439f99297e1\"",
+            "full_name": "patrickribbing/sjofartsverket_viva-component",
+            "first_install": true,
+            "installed_commit": null,
+            "installed": false,
+            "last_commit": null,
+            "last_release_tag": "v1.0",
+            "last_updated": 0,
+            "name": "sjofartsverket_viva",
+            "new": false,
+            "repository_manifest": {
+                "name": "Sj\u00f6fartsverket ViVa",
+                "content_in_root": false
+            },
+            "releases": true,
+            "selected_tag": null,
+            "show_beta": false,
+            "stars": 0,
+            "topics": [
+                "custom-components",
+                "homeassistant",
+                "integration"
             ],
             "version_installed": null
         }

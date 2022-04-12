@@ -5,8 +5,7 @@
     "data": {
         "archived": false,
         "authors": [
-            "@basnijholt",
-            "@RubenKelevra"
+            "@basnijholt"
         ],
         "category": "integration",
         "content_in_root": false,
@@ -19,7 +18,7 @@
             "switch"
         ],
         "downloads": 0,
-        "etag_repository": "W/\"15807933a5a9e165171b8d4fda95fbe43516801ed7db83c2ab9aa73b76db00b1\"",
+        "etag_repository": "W/\"2a7c6a5f6c1cbf60c222faa35c89d27fbbf6bd69695c05037f4efb7d9af16249\"",
         "file_name": "",
         "filename": null,
         "first_install": false,
@@ -50,7 +49,7 @@
         ],
         "selected_tag": null,
         "show_beta": false,
-        "stargazers_count": 540,
+        "stargazers_count": 541,
         "topics": [
             "adaptive-lighting",
             "automation",

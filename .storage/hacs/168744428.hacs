@@ -13,7 +13,7 @@
         "description": "Control any light or switch entity",
         "domain": "",
         "domains": [],
-        "downloads": 7154,
+        "downloads": 7360,
         "etag_repository": "W/\"8796b8ae2fd1ee65743317fee3e0a52f52cbbb38b8b7e1318b383ad438c03b81\"",
         "file_name": "light-entity-card.js",
         "filename": "dist/light-entity-card.js",
