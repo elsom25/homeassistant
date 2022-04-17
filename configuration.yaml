@@ -59,6 +59,10 @@ nest:
   client_secret: !secret nest_client_secret
   project_id: !secret nest_project_id
 
+eight_sleep:
+  username: !secret eight_sleep_username
+  password: !secret eight_sleep_password
+
 sensor:
   - platform: template
     sensors:

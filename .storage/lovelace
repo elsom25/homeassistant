@@ -26,18 +26,13 @@
                     "type": "custom:vertical-layout",
                     "layout": {
                         "max_width": 800,
-                        "max_cols": 3
+                        "max_cols": 2
                     },
                     "badges": [],
                     "cards": [
                         {
                             "type": "vertical-stack",
                             "cards": [
-                                {
-                                    "type": "custom:mushroom-title-card",
-                                    "title": "Overview",
-                                    "subtitle": "{% set light_locations = [] %}\n\n{% set basement_lights = states.light | selectattr('state', 'eq', 'on')\n            | map(attribute='entity_id') | map('area_name')\n            | select('in', [\n                'Basement - Lounge',\n                'Basement - Media Room'\n              ])\n            | list | count %}\n{% if basement_lights > 0 %}\n  {% set light_locations = light_locations + ['Basement'] %}\n{% endif %}\n\n{% set main_lights = states.light | selectattr('state', 'eq', 'on')\n            | map(attribute='entity_id') | map('area_name')\n            | select('in', [\n                'Main - Bathroom',\n                'Main - Butlers Pantry',\n                'Main - Kitchen',\n                'Main - Living Room'\n              ]) \n            | list | count %}\n{% if main_lights > 0 %}\n  {% set light_locations = light_locations + ['Main floor'] %}\n{% endif %}\n\n{% set outdoor_lights = states.light | selectattr('state', 'eq', 'on')\n            | map(attribute='entity_id') | map('area_name')\n            | select('in', [\n                'Outside - Studio'\n              ]) \n            | list | count %}\n{% if outdoor_lights > 0 %}\n  {% set light_locations = light_locations + ['Outside'] %}\n{% endif %}\n\n{% set upstairs_lights = states.light | selectattr('state', 'eq', 'on')\n            | map(attribute='entity_id') | map('area_name')\n            | select('in', [\n                'Upstairs - Master Bathroom',\n                'Upstairs - Master Bedroom',\n                'Upstairs - Office (Andrew)',\n                'Upstairs - Office (Jesse)'\n              ]) \n            | list | count %}\n{% if upstairs_lights > 0 %}\n  {% set light_locations = light_locations + ['Upstairs'] %}\n{% endif %}\n\n{% if light_locations | length > 0 %}\n  Lights on in {{ light_locations | join(', ') }}.\n{% else %}\n  All lights off.\n{% endif %}"
-                                },
                                 {
                                     "type": "custom:mushroom-chips-card",
                                     "chips": [
@@ -51,108 +46,18 @@
                                                 "navigation_path": "/lovelace/lights"
                                             },
                                             "icon": "mdi:lightbulb-group",
-                                            "content": "Lights",
+                                            "content": "Lights \u2794",
                                             "icon_color": "{% set indoor_lights = states.light | selectattr('state', 'eq', 'on')\n            | map(attribute='entity_id') | map('area_name')\n            | select('in', [\n                'Basement - Lounge',\n                'Basement - Media Room',\n                'Main - Bathroom',\n                'Main - Butlers Pantry',\n                'Main - Kitchen',\n                'Main - Living Room',\n                'Upstairs - Master Bathroom',\n                'Upstairs - Master Bedroom',\n                'Upstairs - Office (Andrew)',\n                'Upstairs - Office (Jesse)',\n              ])\n            | list | count %}\n\n{% if indoor_lights > 0 %}\n  yellow\n{% else %}\n  grey\n{% endif %}\n"
                                         },
                                         {
-                                            "type": "weather",
-                                            "entity": "weather.kitchener_waterloo",
-                                            "show_conditions": true,
-                                            "show_temperature": true
-                                        },
-                                        {
                                             "type": "template",
-                                            "content": "{{ states('sensor.home_status') }}",
+                                            "content": "{% if is_state('sensor.home_status', 'Home') %}\n  All Home\n{% elif is_state('sensor.home_status', 'Extended Away') %}\n  Vacation\n{% else %}\n  {{ states('sensor.home_status') }}\n{% endif %}\n \u2794",
                                             "entity": "sensor.home_status",
                                             "icon": "{{ state_attr('sensor.home_status', 'icon') }}",
                                             "icon_color": "{% if is_state('sensor.home_status', 'Home') %}\n  blue\n{% elif is_state('sensor.home_status', 'Some Home') %}\n  cyan\n{% elif is_state('sensor.home_status', 'Just Arrived') %}\n  indigo\n{% elif is_state('sensor.home_status', 'Just Left') %}\n  amber\n{% elif is_state('sensor.home_status', 'Away') %}\n  pink\n{% elif is_state('sensor.home_status', 'Extended Away') %}\n  purple\n{% endif %}",
                                             "tap_action": {
-                                                "action": "more-info"
-                                            }
-                                        },
-                                        {
-                                            "type": "template",
-                                            "content": "{% set count = states.person | selectattr('state', 'eq', 'home') | list | count %}\n{{ count }} home",
-                                            "icon": "mdi:account",
-                                            "tap_action": {
-                                                "action": "fire-dom-event",
-                                                "browser_mod": {
-                                                    "command": "popup",
-                                                    "title": "Locations",
-                                                    "card": {
-                                                        "type": "horizontal-stack",
-                                                        "cards": [
-                                                            {
-                                                                "type": "vertical-stack",
-                                                                "cards": [
-                                                                    {
-                                                                        "type": "custom:mushroom-person-card",
-                                                                        "entity": "person.jesse",
-                                                                        "use_entity_picture": true,
-                                                                        "layout": "vertical"
-                                                                    },
-                                                                    {
-                                                                        "type": "horizontal-stack",
-                                                                        "cards": [
-                                                                            {
-                                                                                "show_name": false,
-                                                                                "show_icon": true,
-                                                                                "show_state": true,
-                                                                                "type": "glance",
-                                                                                "entities": [
-                                                                                    {
-                                                                                        "entity": "input_select.jesse_status_dropdown"
-                                                                                    },
-                                                                                    {
-                                                                                        "entity": "device_tracker.jesse"
-                                                                                    },
-                                                                                    {
-                                                                                        "entity": "device_tracker.jesses_iphone"
-                                                                                    }
-                                                                                ],
-                                                                                "state_color": true
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "type": "vertical-stack",
-                                                                "cards": [
-                                                                    {
-                                                                        "type": "custom:mushroom-person-card",
-                                                                        "entity": "person.andrew",
-                                                                        "use_entity_picture": true,
-                                                                        "layout": "vertical"
-                                                                    },
-                                                                    {
-                                                                        "type": "horizontal-stack",
-                                                                        "cards": [
-                                                                            {
-                                                                                "show_name": false,
-                                                                                "show_icon": true,
-                                                                                "show_state": true,
-                                                                                "type": "glance",
-                                                                                "entities": [
-                                                                                    {
-                                                                                        "entity": "input_select.andrew_status_dropdown"
-                                                                                    },
-                                                                                    {
-                                                                                        "entity": "device_tracker.andrew"
-                                                                                    },
-                                                                                    {
-                                                                                        "entity": "device_tracker.andrews_iphone"
-                                                                                    }
-                                                                                ],
-                                                                                "state_color": true
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
-                                                    }
-                                                }
+                                                "action": "navigate",
+                                                "navigation_path": "/lovelace/locations"
                                             }
                                         },
                                         {
@@ -179,7 +84,7 @@
                                                     "action": "none"
                                                 },
                                                 "icon_color": "amber",
-                                                "content": "Sun",
+                                                "content": "Mode: Sun",
                                                 "hold_action": {
                                                     "action": "more-info"
                                                 }
@@ -209,7 +114,7 @@
                                                     "action": "none"
                                                 },
                                                 "icon_color": "purple",
-                                                "content": "Sleep",
+                                                "content": "Mode: Sleep",
                                                 "hold_action": {
                                                     "action": "more-info"
                                                 }
@@ -239,11 +144,32 @@
                                                     "action": "none"
                                                 },
                                                 "icon_color": "blue-grey",
-                                                "content": "Manual",
+                                                "content": "Mode: Manual",
                                                 "hold_action": {
                                                     "action": "more-info"
                                                 }
                                             }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:mushroom-title-card",
+                                    "title": "Overview",
+                                    "subtitle": "{% set light_locations = [] %}\n\n{% set basement_lights = states.light | selectattr('state', 'eq', 'on')\n            | map(attribute='entity_id') | map('area_name')\n            | select('in', [\n                'Basement - Lounge',\n                'Basement - Media Room'\n              ])\n            | list | count %}\n{% if basement_lights > 0 %}\n  {% set light_locations = light_locations + ['Basement'] %}\n{% endif %}\n\n{% set main_lights = states.light | selectattr('state', 'eq', 'on')\n            | map(attribute='entity_id') | map('area_name')\n            | select('in', [\n                'Main - Bathroom',\n                'Main - Butlers Pantry',\n                'Main - Kitchen',\n                'Main - Living Room'\n              ]) \n            | list | count %}\n{% if main_lights > 0 %}\n  {% set light_locations = light_locations + ['Main floor'] %}\n{% endif %}\n\n{% set outdoor_lights = states.light | selectattr('state', 'eq', 'on')\n            | map(attribute='entity_id') | map('area_name')\n            | select('in', [\n                'Outside - Studio'\n              ]) \n            | list | count %}\n{% if outdoor_lights > 0 %}\n  {% set light_locations = light_locations + ['Outside'] %}\n{% endif %}\n\n{% set upstairs_lights = states.light | selectattr('state', 'eq', 'on')\n            | map(attribute='entity_id') | map('area_name')\n            | select('in', [\n                'Upstairs - Master Bathroom',\n                'Upstairs - Master Bedroom',\n                'Upstairs - Office (Andrew)',\n                'Upstairs - Office (Jesse)'\n              ]) \n            | list | count %}\n{% if upstairs_lights > 0 %}\n  {% set light_locations = light_locations + ['Upstairs'] %}\n{% endif %}\n\n{% if light_locations | length > 0 %}\n  Lights on in {{ light_locations | join(', ') }}.\n{% else %}\n  All lights off.\n{% endif %}"
+                                },
+                                {
+                                    "type": "custom:mushroom-chips-card",
+                                    "chips": [
+                                        {
+                                            "type": "weather",
+                                            "entity": "weather.kitchener_waterloo",
+                                            "show_conditions": true,
+                                            "show_temperature": true
+                                        },
+                                        {
+                                            "type": "entity",
+                                            "entity": "sun.sun",
+                                            "icon_color": "amber"
                                         },
                                         {
                                             "type": "template",
@@ -494,7 +420,11 @@
                                                 "entity": "sensor.hacs",
                                                 "icon": "hacs:hacs",
                                                 "name": "HACS",
-                                                "show_buttons_control": true
+                                                "show_buttons_control": true,
+                                                "tap_action": {
+                                                    "action": "navigate",
+                                                    "navigation_path": "/hacs"
+                                                }
                                             }
                                         },
                                         {
@@ -597,16 +527,6 @@
                                     "chips": [
                                         {
                                             "type": "template",
-                                            "content": "{{ states('sensor.home_status') }}",
-                                            "entity": "sensor.home_status",
-                                            "icon": "{{ state_attr('sensor.home_status', 'icon') }}",
-                                            "icon_color": "{% if is_state('sensor.home_status', 'Home') %}\n  blue\n{% elif is_state('sensor.home_status', 'Some Home') %}\n  cyan\n{% elif is_state('sensor.home_status', 'Just Arrived') %}\n  indigo\n{% elif is_state('sensor.home_status', 'Just Left') %}\n  amber\n{% elif is_state('sensor.home_status', 'Away') %}\n  pink\n{% elif is_state('sensor.home_status', 'Extended Away') %}\n  purple\n{% endif %}",
-                                            "tap_action": {
-                                                "action": "more-info"
-                                            }
-                                        },
-                                        {
-                                            "type": "template",
                                             "icon": "mdi:cctv",
                                             "entity": "camera.front_door_g4_doorbell",
                                             "tap_action": {
@@ -625,6 +545,46 @@
                                                     }
                                                 }
                                             }
+                                        },
+                                        {
+                                            "type": "conditional",
+                                            "conditions": [
+                                                {
+                                                    "entity": "binary_sensor.front_door_open",
+                                                    "state_not": "off"
+                                                }
+                                            ],
+                                            "chip": {
+                                                "type": "template",
+                                                "entity": "binary_sensor.front_door_open",
+                                                "content": "Front door open",
+                                                "icon": "mdi:door-open",
+                                                "tap_action": {
+                                                    "action": "more-info"
+                                                },
+                                                "icon_color": "brown",
+                                                "name": "Front Door"
+                                            }
+                                        },
+                                        {
+                                            "type": "conditional",
+                                            "conditions": [
+                                                {
+                                                    "entity": "binary_sensor.studio_door_open",
+                                                    "state_not": "off"
+                                                }
+                                            ],
+                                            "chip": {
+                                                "type": "template",
+                                                "entity": "binary_sensor.studio_door_open",
+                                                "content": "Studio door open",
+                                                "icon": "mdi:door-open",
+                                                "tap_action": {
+                                                    "action": "more-info"
+                                                },
+                                                "icon_color": "green",
+                                                "name": "Studio Door"
+                                            }
                                         }
                                     ]
                                 },
@@ -635,17 +595,8 @@
                                             "type": "vertical-stack",
                                             "cards": [
                                                 {
-                                                    "type": "custom:mushroom-entity-card",
+                                                    "type": "custom:mushroom-lock-card",
                                                     "entity": "lock.front_door",
-                                                    "icon_color": "brown",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    }
-                                                },
-                                                {
-                                                    "type": "custom:mushroom-entity-card",
-                                                    "entity": "binary_sensor.front_door_open",
-                                                    "name": "Status",
                                                     "icon_color": "brown"
                                                 },
                                                 {
@@ -663,18 +614,9 @@
                                             "type": "vertical-stack",
                                             "cards": [
                                                 {
-                                                    "type": "custom:mushroom-entity-card",
+                                                    "type": "custom:mushroom-lock-card",
                                                     "entity": "lock.studio_door",
-                                                    "icon_color": "green",
-                                                    "tap_action": {
-                                                        "action": "toggle"
-                                                    }
-                                                },
-                                                {
-                                                    "type": "custom:mushroom-entity-card",
-                                                    "entity": "binary_sensor.studio_door_open",
-                                                    "icon_color": "green",
-                                                    "name": "Status"
+                                                    "icon_color": "green"
                                                 },
                                                 {
                                                     "type": "custom:mushroom-entity-card",
@@ -699,12 +641,14 @@
                                     "subtitle": "Temperatures"
                                 },
                                 {
-                                    "type": "horizontal-stack",
+                                    "type": "grid",
+                                    "columns": 2,
+                                    "square": false,
                                     "cards": [
                                         {
                                             "type": "custom:mushroom-template-card",
                                             "icon": "mdi:thermostat",
-                                            "icon_color": "{% set state=states(entity) %}\n{% if state=='cool' %}\nblue\n{% elif state=='heat' %}\nred\n{% else %}\ngrey\n{% endif %}",
+                                            "icon_color": "{% set state = states(entity) %}\n{% set hvac = state_attr(entity, 'hvac_action') %}\n{% if hvac == 'idle' %}\ngrey\n{% elif state == 'cool' %}\nblue\n{% elif state == 'heat' %}\nred\n{% else %}\ngrey\n{% endif %}",
                                             "tap_action": {
                                                 "action": "more-info"
                                             },
@@ -717,7 +661,7 @@
                                         {
                                             "type": "custom:mushroom-template-card",
                                             "icon": "mdi:thermostat",
-                                            "icon_color": "{% set state=states(entity) %}\n{% if state=='cool' %}\nblue\n{% elif state=='heat' %}\nred\n{% else %}\ngrey\n{% endif %}",
+                                            "icon_color": "{% set state = states(entity) %}\n{% set hvac = state_attr(entity, 'hvac_action') %}\n{% if hvac == 'idle' %}\ngrey\n{% elif state == 'cool' %}\nblue\n{% elif state == 'heat' %}\nred\n{% else %}\ngrey\n{% endif %}",
                                             "tap_action": {
                                                 "action": "more-info"
                                             },
@@ -726,16 +670,11 @@
                                             "secondary": "Set {{state_attr(entity, 'temperature')}}\u00b0 \u00b7 {{ states(entity) }} ({{state_attr(entity, 'hvac_action')}})",
                                             "primary": "{{state_attr(entity, 'current_temperature')}}\u00b0 \u00b7 {{state_attr(entity, 'friendly_name')}}",
                                             "entity": "climate.living_room"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "horizontal-stack",
-                                    "cards": [
+                                        },
                                         {
                                             "type": "custom:mushroom-template-card",
                                             "icon": "mdi:thermostat",
-                                            "icon_color": "{% set state=states(entity) %}\n{% if state=='cool' %}\nblue\n{% elif state=='heat' %}\nred\n{% else %}\ngrey\n{% endif %}",
+                                            "icon_color": "{% set state = states(entity) %}\n{% set hvac = state_attr(entity, 'hvac_action') %}\n{% if hvac == 'idle' %}\ngrey\n{% elif state == 'cool' %}\nblue\n{% elif state == 'heat' %}\nred\n{% else %}\ngrey\n{% endif %}",
                                             "tap_action": {
                                                 "action": "more-info"
                                             },
@@ -748,7 +687,7 @@
                                         {
                                             "type": "custom:mushroom-template-card",
                                             "icon": "mdi:thermostat",
-                                            "icon_color": "{% set state=states(entity) %}\n{% if state=='cool' %}\nblue\n{% elif state=='heat' %}\nred\n{% else %}\ngrey\n{% endif %}",
+                                            "icon_color": "{% set state = states(entity) %}\n{% set hvac = state_attr(entity, 'hvac_action') %}\n{% if hvac == 'idle' %}\ngrey\n{% elif state == 'cool' %}\nblue\n{% elif state == 'heat' %}\nred\n{% else %}\ngrey\n{% endif %}",
                                             "tap_action": {
                                                 "action": "more-info"
                                             },
@@ -797,6 +736,12 @@
                                     "subtitle": "Entrance"
                                 },
                                 {
+                                    "type": "custom:mushroom-lock-card",
+                                    "entity": "lock.front_door",
+                                    "icon_color": "brown",
+                                    "layout": "horizontal"
+                                },
+                                {
                                     "type": "horizontal-stack",
                                     "cards": [
                                         {
@@ -806,7 +751,8 @@
                                                 "action": "toggle"
                                             },
                                             "icon_color": "brown",
-                                            "icon": "hue:room-porch"
+                                            "icon": "hue:room-porch",
+                                            "layout": "vertical"
                                         },
                                         {
                                             "type": "custom:mushroom-entity-card",
@@ -815,15 +761,8 @@
                                                 "action": "toggle"
                                             },
                                             "icon_color": "brown",
-                                            "icon": "hue:room-hallway"
-                                        },
-                                        {
-                                            "type": "custom:mushroom-entity-card",
-                                            "entity": "lock.front_door",
-                                            "tap_action": {
-                                                "action": "toggle"
-                                            },
-                                            "icon_color": "brown"
+                                            "icon": "hue:room-hallway",
+                                            "layout": "vertical"
                                         }
                                     ]
                                 },
@@ -841,13 +780,31 @@
                                                 "action": "toggle"
                                             },
                                             "icon_color": "purple",
-                                            "icon": "mdi:seat-outline"
+                                            "icon": "mdi:seat-outline",
+                                            "layout": "vertical"
+                                        },
+                                        {
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "light.outdoor_fence_plug",
+                                            "icon": "mdi:fence",
+                                            "name": "Fence",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "icon_color": "purple",
+                                            "layout": "vertical"
                                         }
                                     ]
                                 },
                                 {
                                     "type": "custom:mushroom-title-card",
                                     "subtitle": "Studio"
+                                },
+                                {
+                                    "type": "custom:mushroom-lock-card",
+                                    "entity": "lock.studio_door",
+                                    "icon_color": "green",
+                                    "layout": "horizontal"
                                 },
                                 {
                                     "type": "horizontal-stack",
@@ -860,24 +817,20 @@
                                                 "action": "toggle"
                                             },
                                             "icon_color": "green",
-                                            "icon": "mdi:greenhouse"
+                                            "icon": "mdi:greenhouse",
+                                            "layout": "vertical"
                                         },
                                         {
-                                            "type": "custom:mushroom-entity-card",
-                                            "entity": "lock.studio_door",
-                                            "tap_action": {
-                                                "action": "toggle"
-                                            },
-                                            "icon_color": "green"
+                                            "type": "custom:mushroom-light-card",
+                                            "entity": "light.studio",
+                                            "show_brightness_control": true,
+                                            "name": "Indoors",
+                                            "icon": "hue:recessed-ceiling",
+                                            "show_color_control": false,
+                                            "use_light_color": false,
+                                            "hide_state": false
                                         }
                                     ]
-                                },
-                                {
-                                    "type": "custom:mushroom-light-card",
-                                    "entity": "light.studio",
-                                    "show_brightness_control": true,
-                                    "name": "Indoors",
-                                    "icon": "hue:recessed-ceiling"
                                 }
                             ]
                         },
@@ -893,7 +846,8 @@
                                     "entity": "light.living_room",
                                     "show_brightness_control": true,
                                     "show_color_control": true,
-                                    "use_light_color": true
+                                    "use_light_color": true,
+                                    "layout": "horizontal"
                                 },
                                 {
                                     "type": "horizontal-stack",
@@ -952,7 +906,17 @@
                                     "show_color_control": true,
                                     "use_light_color": true,
                                     "entity": "light.kitchen",
-                                    "show_color_temp_control": false
+                                    "show_color_temp_control": false,
+                                    "layout": "horizontal"
+                                },
+                                {
+                                    "type": "custom:mushroom-light-card",
+                                    "entity": "light.butlers_pantry",
+                                    "use_light_color": true,
+                                    "show_brightness_control": true,
+                                    "show_color_control": true,
+                                    "icon": "mdi:liquor",
+                                    "layout": "horizontal"
                                 },
                                 {
                                     "type": "horizontal-stack",
@@ -980,18 +944,6 @@
                                             "entity": "light.kitchen_pendants",
                                             "icon": "hue:pendant-being",
                                             "name": "Pendants",
-                                            "icon_height": "45px"
-                                        },
-                                        {
-                                            "show_name": true,
-                                            "show_icon": true,
-                                            "type": "button",
-                                            "tap_action": {
-                                                "action": "toggle"
-                                            },
-                                            "icon": "mdi:countertop",
-                                            "name": "Counter",
-                                            "entity": "light.kitchen_underlight",
                                             "icon_height": "45px"
                                         }
                                     ]
@@ -1024,19 +976,8 @@
                                             "icon_height": "45px"
                                         }
                                     ]
-                                },
-                                {
-                                    "type": "custom:mushroom-light-card",
-                                    "entity": "light.butlers_pantry",
-                                    "use_light_color": true,
-                                    "show_brightness_control": true,
-                                    "show_color_control": true,
-                                    "icon": "mdi:liquor"
                                 }
                             ]
-                        },
-                        {
-                            "type": "custom:layout-break"
                         },
                         {
                             "type": "custom:mushroom-title-card",
@@ -1055,7 +996,8 @@
                                     "entity": "light.master_suite",
                                     "show_brightness_control": true,
                                     "use_light_color": true,
-                                    "show_color_control": true
+                                    "show_color_control": true,
+                                    "layout": "horizontal"
                                 },
                                 {
                                     "type": "horizontal-stack",
@@ -1119,7 +1061,8 @@
                                     "icon": "mdi:ceiling-light-multiple",
                                     "name": "Overhead",
                                     "show_color_control": true,
-                                    "use_light_color": true
+                                    "use_light_color": true,
+                                    "layout": "horizontal"
                                 },
                                 {
                                     "type": "horizontal-stack",
@@ -1159,9 +1102,6 @@
                             ]
                         },
                         {
-                            "type": "custom:layout-break"
-                        },
-                        {
                             "type": "custom:mushroom-title-card",
                             "title": "Basement",
                             "subtitle": "{% set basement_lights = states.light | selectattr('state', 'eq', 'on')\n            | map(attribute='entity_id') | map('area_name')\n            | select('in', [\n                'Basement - Lounge',\n                'Basement - Media Room'\n              ])\n            | list | count %}\n\n{% if basement_lights > 0 %}\n    Currently {{ basement_lights }} lights are on!\n{% else %}\n    No lights are on.\n{% endif %}"
@@ -1178,7 +1118,8 @@
                                     "entity": "light.basement",
                                     "show_brightness_control": true,
                                     "use_light_color": true,
-                                    "show_color_control": true
+                                    "show_color_control": true,
+                                    "layout": "horizontal"
                                 },
                                 {
                                     "type": "horizontal-stack",
@@ -1335,6 +1276,242 @@
                                             "name": "Sleep?",
                                             "icon_height": "45px",
                                             "icon": "hass:sleep"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "theme": "Backend-selected",
+                    "title": "Locations",
+                    "path": "locations",
+                    "icon": "mdi:wallet-travel",
+                    "type": "custom:vertical-layout",
+                    "layout": {
+                        "max_width": 800,
+                        "max_cols": 2
+                    },
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:mushroom-chips-card",
+                            "chips": [
+                                {
+                                    "type": "back"
+                                },
+                                {
+                                    "type": "template",
+                                    "content": "{% if is_state('sensor.home_status', 'Home') %}\n  All Home\n{% elif is_state('sensor.home_status', 'Extended Away') %}\n  Vacation\n{% else %}\n  {{ states('sensor.home_status') }}\n{% endif %}",
+                                    "entity": "sensor.home_status",
+                                    "icon": "{{ state_attr('sensor.home_status', 'icon') }}",
+                                    "icon_color": "{% if is_state('sensor.home_status', 'Home') %}\n  blue\n{% elif is_state('sensor.home_status', 'Some Home') %}\n  cyan\n{% elif is_state('sensor.home_status', 'Just Arrived') %}\n  indigo\n{% elif is_state('sensor.home_status', 'Just Left') %}\n  amber\n{% elif is_state('sensor.home_status', 'Away') %}\n  pink\n{% elif is_state('sensor.home_status', 'Extended Away') %}\n  purple\n{% endif %}",
+                                    "tap_action": {
+                                        "action": "more-info"
+                                    }
+                                },
+                                {
+                                    "type": "template",
+                                    "entity": "sensor.home_status",
+                                    "content": "{% set home = states.input_select\n            | selectattr('state', 'eq', 'Home')\n            | list | count | int %}\n\n{{ home }} home",
+                                    "icon": "mdi:home",
+                                    "icon_color": "blue",
+                                    "tap_action": {
+                                        "action": "none"
+                                    }
+                                },
+                                {
+                                    "type": "template",
+                                    "entity": "sensor.home_status",
+                                    "content": "{% set away = states.input_select\n            | selectattr('state', 'eq', 'Away')\n            | list | count | int %}\n\n{{ away }} away",
+                                    "icon": "mdi:home-minus",
+                                    "icon_color": "pink",
+                                    "hold_action": {
+                                        "action": "none"
+                                    }
+                                },
+                                {
+                                    "type": "template",
+                                    "entity": "sensor.home_status",
+                                    "content": "{% set vacation = states.input_select\n            | selectattr('state', 'eq', 'Extended Away')\n            | list | count | int %}\n\n{{ vacation }} on vacation",
+                                    "icon": "mdi:home-alert",
+                                    "icon_color": "purple",
+                                    "tap_action": {
+                                        "action": "none"
+                                    }
+                                },
+                                {
+                                    "type": "template",
+                                    "entity": "binary_sensor.eight_left_bed_presence",
+                                    "content": "{% set bed = 0 %}\n{% set bed = bed + 1 if states('binary_sensor.eight_left_bed_presence') != 'off' else bed %}\n{% set bed = bed + 1 if states('binary_sensor.eight_right_bed_presence') != 'off' else bed %}\n\n{{ bed }} in bed",
+                                    "icon": "mdi:bed",
+                                    "icon_color": "indigo",
+                                    "tap_action": {
+                                        "action": "none"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:mushroom-title-card",
+                                    "title": "Jesse"
+                                },
+                                {
+                                    "type": "custom:mushroom-person-card",
+                                    "entity": "person.jesse",
+                                    "use_entity_picture": true,
+                                    "layout": "vertical",
+                                    "hide_state": true
+                                },
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "input_select.jesse_status_dropdown",
+                                            "name": "Status",
+                                            "icon_color": "pink",
+                                            "layout": "vertical"
+                                        },
+                                        {
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "device_tracker.jesse",
+                                            "name": "Location",
+                                            "icon_color": "pink",
+                                            "layout": "vertical"
+                                        },
+                                        {
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "device_tracker.jesses_iphone",
+                                            "name": "WiFi",
+                                            "icon_color": "pink",
+                                            "layout": "vertical"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "binary_sensor.eight_left_bed_presence",
+                                            "name": "In Bed?",
+                                            "icon": "mdi:bed",
+                                            "icon_color": "pink",
+                                            "layout": "vertical"
+                                        },
+                                        {
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "sensor.eight_left_sleep_stage",
+                                            "name": "Stage",
+                                            "icon": "mdi:bed-king",
+                                            "icon_color": "pink",
+                                            "layout": "vertical"
+                                        },
+                                        {
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "sensor.eight_left_sleep_session",
+                                            "name": "Score",
+                                            "icon": "mdi:scoreboard",
+                                            "icon_color": "pink",
+                                            "layout": "vertical"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:mini-graph-card",
+                                    "entities": [
+                                        "sensor.dexcom_elsom25_glucose_value"
+                                    ],
+                                    "name": "Blood Sugars",
+                                    "color_thresholds": [
+                                        {
+                                            "value": 0,
+                                            "color": "red"
+                                        },
+                                        {
+                                            "value": 4,
+                                            "color": "grey"
+                                        },
+                                        {
+                                            "value": 8,
+                                            "color": "orange"
+                                        }
+                                    ],
+                                    "hour24": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:mushroom-title-card",
+                                    "title": "Andrew"
+                                },
+                                {
+                                    "type": "custom:mushroom-person-card",
+                                    "entity": "person.andrew",
+                                    "use_entity_picture": true,
+                                    "layout": "vertical",
+                                    "hide_state": true
+                                },
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "input_select.andrew_status_dropdown",
+                                            "name": "Status",
+                                            "icon_color": "purple",
+                                            "layout": "vertical"
+                                        },
+                                        {
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "device_tracker.andrew",
+                                            "name": "Location",
+                                            "icon_color": "purple",
+                                            "layout": "vertical"
+                                        },
+                                        {
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "device_tracker.andrews_iphone",
+                                            "name": "WiFi",
+                                            "icon_color": "purple",
+                                            "layout": "vertical"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "binary_sensor.eight_right_bed_presence",
+                                            "name": "In Bed?",
+                                            "icon": "mdi:bed",
+                                            "icon_color": "purple",
+                                            "layout": "vertical"
+                                        },
+                                        {
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "sensor.eight_right_sleep_stage",
+                                            "name": "Stage",
+                                            "icon": "mdi:bed-king",
+                                            "icon_color": "purple",
+                                            "layout": "vertical"
+                                        },
+                                        {
+                                            "type": "custom:mushroom-entity-card",
+                                            "entity": "sensor.eight_right_sleep_session",
+                                            "name": "Score",
+                                            "icon": "mdi:scoreboard",
+                                            "icon_color": "purple",
+                                            "layout": "vertical"
                                         }
                                     ]
                                 }

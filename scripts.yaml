@@ -9,7 +9,15 @@
     service: media_player.media_pause
     target:
       entity_id:
-      - media_player.sonos
+      - media_player.bedroom
+      - media_player.kitchen
+      - media_player.living_room
+      - media_player.mainfloor_bathroom
+      - media_player.media_room
+      - media_player.office_andrew
+      - media_player.office_jesse
+      - media_player.sonos_move
+      - media_player.studio
   - data: {}
     service: homeassistant.turn_off
     target:
@@ -24,6 +32,7 @@
       - light.main_floor_overheads
       - light.main_floor_pendants
       - light.studio_outdoors
+      - light.outdoor_fence_plug
   - service: lock.lock
     target:
       entity_id:
@@ -66,19 +75,16 @@ good_morning:
       brightness_pct: 30
     target:
       entity_id: light.main_floor_overheads
-  - service: homeassistant.turn_on
-    target:
-      entity_id:
-      - light.master_bedroom
-    data: {}
   - service: sonos.join
     data:
       master: media_player.living_room
-      entity_id: media_player.bedroom,media_player.kitchen,media_player.living_room,media_player.mainfloor_bathroom,media_player.media_room,media_player.office_andrew,media_player.office_jesse,media_player.sonos_move
+      entity_id: media_player.kitchen,media_player.living_room,media_player.mainfloor_bathroom,media_player.media_room,media_player.office_andrew,media_player.office_jesse,media_player.sonos_move
   - service: sonos.unjoin
     data: {}
     target:
-      entity_id: media_player.studio
+      entity_id:
+      - media_player.studio
+      - media_player.bedroom
   - service: media_player.play_media
     target:
       entity_id: media_player.living_room
@@ -96,4 +102,16 @@ good_morning:
         media_content_id: ''
       - media_content_type: favorites_folder
         media_content_id: object.container.playlistContainer
+  - condition: state
+    entity_id: binary_sensor.eight_right_bed_presence
+    state: 'off'
+  - service: homeassistant.turn_on
+    target:
+      entity_id:
+      - light.master_bedroom
+    data: {}
+  - service: sonos.join
+    data:
+      master: media_player.living_room
+      entity_id: media_player.bedroom
   mode: single
