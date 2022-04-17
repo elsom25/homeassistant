@@ -21,7 +21,7 @@
             "fan"
         ],
         "downloads": 0,
-        "etag_repository": "W/\"bc23e0cff2ef73fa3648c26269bcce7ffdc53c2c69f5ec55a705efd6500e901d\"",
+        "etag_repository": "W/\"51c8af3a5bf8dbfdc16bb46ddfa414e8b834a895e8481633e2f13856c9a036fb\"",
         "file_name": "",
         "filename": null,
         "first_install": false,
@@ -36,7 +36,7 @@
         "installed": true,
         "installed_commit": "c12c65f",
         "installed_version": null,
-        "open_issues": 0,
+        "open_issues": 1,
         "last_commit": "c12c65f",
         "last_version": null,
         "last_updated": "2022-04-05T23:04:08Z",
@@ -49,7 +49,7 @@
         "published_tags": [],
         "selected_tag": null,
         "show_beta": false,
-        "stargazers_count": 4,
+        "stargazers_count": 5,
         "topics": [
             "air-purifier",
             "air-quality",

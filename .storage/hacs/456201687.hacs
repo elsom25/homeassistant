@@ -14,7 +14,7 @@
         "domain": "",
         "domains": [],
         "downloads": 0,
-        "etag_repository": "W/\"ce7f8c1c7c7ca46c40ca3e064a2f6edff190b9a146cc9c8f18b3198dce681426\"",
+        "etag_repository": "W/\"6c74a13c5f92147164e3fb7a0cc8a0f5de766a0f4ead28d26e8d3c4f045ea75a\"",
         "file_name": "mushroom.yaml",
         "filename": null,
         "first_install": false,
@@ -44,7 +44,7 @@
         ],
         "selected_tag": null,
         "show_beta": false,
-        "stargazers_count": 30,
+        "stargazers_count": 34,
         "topics": [
             "hacs",
             "home-assistant",

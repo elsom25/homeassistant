@@ -13,7 +13,7 @@
         "description": "Home Assistant custom lovelace sonos card",
         "domain": "",
         "domains": [],
-        "downloads": 935,
+        "downloads": 1413,
         "etag_repository": "W/\"7383a5c538cba26f8cffd0eee2cde290fbf571764560920cdfe95fb43bb8a59a\"",
         "file_name": "custom-sonos-card.js",
         "filename": "custom-sonos-card.js",
