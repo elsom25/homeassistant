@@ -5,20 +5,21 @@
     "data": {
         "archived": false,
         "authors": [
-            "@claytonjn"
+            "@basnijholt",
+            "@RubenKelevra"
         ],
         "category": "integration",
         "content_in_root": false,
         "country": [],
-        "config_flow": false,
+        "config_flow": true,
         "default_branch": "master",
         "description": "Adaptive Lighting custom component for Home Assistant",
-        "domain": "circadian_lighting",
+        "domain": "adaptive_lighting",
         "domains": [
             "switch"
         ],
         "downloads": 0,
-        "etag_repository": "W/\"a03ffa99bd63c8e492d5cadf38e58adf46f47cd0af08d2775b7e8e7881edc8d0\"",
+        "etag_repository": "W/\"b007f06362a58fad56154f2e22ab4c03c5b89baf8945393983970eeea530581f\"",
         "file_name": "",
         "filename": null,
         "first_install": false,
@@ -33,22 +34,23 @@
         "installed": true,
         "installed_commit": "9e8c199",
         "installed_version": "1.0.15",
-        "open_issues": 122,
-        "last_commit": "9e8c199",
-        "last_version": "1.0.13",
-        "last_updated": "2022-04-17T18:47:22Z",
-        "manifest_name": "Circadian Lighting",
+        "open_issues": 125,
+        "last_commit": "c9552b8",
+        "last_version": "1.0.15",
+        "last_updated": "2022-05-19T07:01:12Z",
+        "manifest_name": "Adaptive Lighting",
         "new": false,
         "persistent_directory": null,
-        "pushed_at": "2022-04-17T18:47:22",
+        "pushed_at": "2022-05-19T07:01:12",
         "releases": true,
         "render_readme": true,
         "published_tags": [
-            "1.0.13"
+            "1.0.15",
+            "1.0.14"
         ],
         "selected_tag": null,
         "show_beta": false,
-        "stargazers_count": 549,
+        "stargazers_count": 577,
         "topics": [
             "adaptive-lighting",
             "automation",

@@ -1,24 +1,39 @@
 {
-    "version": "6",
-    "minor_version": 1,
-    "key": "hacs.hacs",
-    "data": {
-        "view": "Grid",
-        "compact": false,
-        "onboarding_done": false,
-        "archived_repositories": [
-            "iantrich/aftership-card",
-            "dr1rrb/ha-twinkly",
-            "DSorlov/hasl-platform"
-        ],
-        "renamed_repositories": {
-            "9a4gl/hass-peltec": "9a4gl/hass-centrometal-boiler",
-            "DarkSir23/sensor.mylar": "WillowMist/sensor.mylar",
-            "nbogojevic/homeassistant-midea-dehumidifier-lan": "nbogojevic/homeassistant-midea-air-appliances-lan",
-            "nikrolls/homeassistant-goldair-climate": "nicole-ashley/homeassistant-goldair-climate",
-            "rj175/home-assistant-aws-codepipeline": "ohheyrj/home-assistant-aws-codepipeline",
-            "78wesley/Darkish-Theme": "78wesley/Home-Assistant-Darkish-Theme"
-        },
-        "ignored_repositories": []
-    }
+  "version": "6",
+  "minor_version": 1,
+  "key": "hacs.hacs",
+  "data": {
+    "archived_repositories": [
+      "iantrich/aftership-card",
+      "dr1rrb/ha-twinkly",
+      "DSorlov/hasl-platform",
+      "nagyrobi/home-assistant-custom-components-pfsense-gateways",
+      "pippyn/Home-Assistant-Sensor-Groningen-Afvalwijzer",
+      "SNoof85/lovelace-tempometer-gauge-card",
+      "maykar/kiosk-mode",
+      "custom-components/wienerlinien",
+      "GeorgeSG/lovelace-folder-card",
+      "KTibow/lovelace-dark-soft-ui-theme",
+      "KTibow/lovelace-light-soft-ui-theme",
+      "DCSBL/ha-homewizard-energy",
+      "eavanvalkenburg/sia",
+      "Cyr-ius/hass-cozytouch",
+      "Cyr-ius/hass-hue-service-advanced",
+      "georgezhao2010/climate_ewelink"
+    ],
+    "renamed_repositories": {
+      "9a4gl/hass-peltec": "9a4gl/hass-centrometal-boiler",
+      "DarkSir23/sensor.mylar": "WillowMist/sensor.mylar",
+      "nbogojevic/homeassistant-midea-dehumidifier-lan": "nbogojevic/homeassistant-midea-air-appliances-lan",
+      "nikrolls/homeassistant-goldair-climate": "nicole-ashley/homeassistant-goldair-climate",
+      "rj175/home-assistant-aws-codepipeline": "ohheyrj/home-assistant-aws-codepipeline",
+      "78wesley/Darkish-Theme": "78wesley/Home-Assistant-Darkish-Theme",
+      "ulic75/power-distribution-card": "ulic75/power-flow-card",
+      "wills106/homsassistant-solax-modbus": "wills106/homeassistant-solax-modbus",
+      "dmitry-k/yandex_smart_home": "dext0r/yandex_smart_home",
+      "uvjustin/alarmdotcom": "pyalarmdotcom/alarmdotcom",
+      "wernerhp/ha_integration_load_shedding": "wernerhp/ha.integration.load_shedding"
+    },
+    "ignored_repositories": []
+  }
 }
