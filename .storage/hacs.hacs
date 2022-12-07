@@ -19,7 +19,14 @@
       "eavanvalkenburg/sia",
       "Cyr-ius/hass-cozytouch",
       "Cyr-ius/hass-hue-service-advanced",
-      "georgezhao2010/climate_ewelink"
+      "georgezhao2010/climate_ewelink",
+      "custom-components/authenticated",
+      "marcomow/ble-bulb-card",
+      "ThomasPrior/EthermineInfo",
+      "spycle/microbot_push",
+      "DavidMStraub/homeassistant-homeconnect",
+      "Sholofly/arrisdcx960",
+      "lukich48/hass_mqtt_template_switch"
     ],
     "renamed_repositories": {
       "9a4gl/hass-peltec": "9a4gl/hass-centrometal-boiler",
@@ -32,7 +39,9 @@
       "wills106/homsassistant-solax-modbus": "wills106/homeassistant-solax-modbus",
       "dmitry-k/yandex_smart_home": "dext0r/yandex_smart_home",
       "uvjustin/alarmdotcom": "pyalarmdotcom/alarmdotcom",
-      "wernerhp/ha_integration_load_shedding": "wernerhp/ha.integration.load_shedding"
+      "wernerhp/ha_integration_load_shedding": "wernerhp/ha.integration.load_shedding",
+      "TheLastProject/lovelace-valetudo-map-card": "Hypfer/lovelace-valetudo-map-card",
+      "fuatakgun/kia_uvo": "Hyundai-Kia-Connect/kia_uvo"
     },
     "ignored_repositories": []
   }

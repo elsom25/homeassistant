@@ -19,7 +19,7 @@
       },
       "views": [
         {
-          "theme": "Mushroom",
+          "theme": "Mushroom Shadow",
           "title": "Home",
           "path": "home",
           "icon": "mdi:home",
@@ -36,9 +36,6 @@
                 {
                   "type": "custom:mushroom-chips-card",
                   "chips": [
-                    {
-                      "type": "menu"
-                    },
                     {
                       "type": "template",
                       "tap_action": {
@@ -179,32 +176,35 @@
                       "tap_action": {
                         "action": "fire-dom-event",
                         "browser_mod": {
-                          "command": "popup",
-                          "title": "The Shuttle Litter Box",
-                          "card": {
-                            "type": "horizontal-stack",
-                            "cards": [
-                              {
-                                "type": "custom:mushroom-vacuum-card",
-                                "name": "Litter Box",
-                                "entity": "vacuum.the_shuttle_litter_box",
-                                "commands": [
-                                  "start_pause"
-                                ]
-                              },
-                              {
-                                "show_name": true,
-                                "show_icon": "falst",
-                                "icon_height": "45px",
-                                "type": "button",
-                                "tap_action": {
-                                  "action": "toggle"
+                          "service": "browser_mod.popup",
+                          "data": {
+                            "title": "The Shuttle Litter Box",
+                            "content": {
+                              "type": "horizontal-stack",
+                              "cards": [
+                                {
+                                  "type": "custom:mushroom-vacuum-card",
+                                  "name": "Litter Box",
+                                  "entity": "vacuum.the_shuttle_litter_box",
+                                  "commands": [
+                                    "start_pause"
+                                  ]
                                 },
-                                "entity": "button.the_shuttle_reset_waste_drawer",
-                                "show_state": true,
-                                "name": "Reset Waste"
-                              }
-                            ]
+                                {
+                                  "show_name": true,
+                                  "show_icon": "falst",
+                                  "icon_height": "45px",
+                                  "type": "button",
+                                  "tap_action": {
+                                    "action": "toggle"
+                                  },
+                                  "entity": "button.the_shuttle_reset_waste_drawer",
+                                  "show_state": true,
+                                  "name": "Reset Waste"
+                                }
+                              ]
+                            },
+                            "size": "normal"
                           }
                         }
                       },
@@ -529,20 +529,13 @@
                   "chips": [
                     {
                       "type": "template",
-                      "content": "{% set active = states.media_player | selectattr('state', 'equalto', 'playing') | list | count %}\n\n{{ active }} playing",
-                      "icon": "mdi:amplifier",
-                      "icon_color": "{% set active = states.media_player | selectattr('state', 'equalto', 'playing') | list | count %}\n{% if active > 0 %}\n  teal\n{% else %}\n  grey\n{% endif %}",
                       "tap_action": {
-                        "action": "fire-dom-event",
-                        "browser_mod": {
-                          "command": "popup",
-                          "title": "Sonos",
-                          "large": true,
-                          "card": {
-                            "type": "custom:custom-sonos-card"
-                          }
-                        }
-                      }
+                        "action": "navigate",
+                        "navigation_path": "/lovelace/music"
+                      },
+                      "content": "{% set active = states.media_player | selectattr('state', 'equalto', 'playing') | list | count %}\n\n{{ active }} playing ➔",
+                      "icon_color": "{% set active = states.media_player | selectattr('state', 'equalto', 'playing') | list | count %}\n{% if active > 0 %}\n  teal\n{% else %}\n  grey\n{% endif %}",
+                      "icon": "hass:amplifier"
                     }
                   ]
                 },
@@ -569,24 +562,12 @@
                   "chips": [
                     {
                       "type": "template",
-                      "icon": "mdi:cctv",
-                      "entity": "camera.front_door_g4_doorbell",
                       "tap_action": {
-                        "action": "fire-dom-event",
-                        "browser_mod": {
-                          "command": "popup",
-                          "title": "Front Door",
-                          "large": true,
-                          "card": {
-                            "camera_view": "auto",
-                            "type": "picture-glance",
-                            "entities": [
-                              "camera.front_door_g4_doorbell"
-                            ],
-                            "camera_image": "camera.front_door_g4_doorbell_medium"
-                          }
-                        }
-                      }
+                        "action": "navigate",
+                        "navigation_path": "/lovelace/cctv"
+                      },
+                      "icon": "hass:cctv",
+                      "content": "Cameras ➔"
                     },
                     {
                       "type": "conditional",
@@ -720,25 +701,25 @@
                     },
                     {
                       "type": "custom:mushroom-climate-card",
-                      "entity": "climate.living_room",
                       "show_temperature_control": true,
                       "collapsible_controls": false,
                       "hvac_modes": [
                         "cool",
                         "heat_cool",
                         "heat"
-                      ]
+                      ],
+                      "entity": "climate.main_floor"
                     },
                     {
                       "type": "custom:mushroom-climate-card",
-                      "entity": "climate.upstairs",
                       "show_temperature_control": true,
                       "collapsible_controls": false,
                       "hvac_modes": [
                         "cool",
                         "heat",
                         "heat_cool"
-                      ]
+                      ],
+                      "entity": "climate.bedroom"
                     },
                     {
                       "type": "custom:mushroom-climate-card",
@@ -768,12 +749,12 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-fan-card",
-                      "entity": "fan.main_floor_fan",
                       "icon_animation": true,
                       "show_percentage_control": false,
                       "show_oscillate_control": false,
                       "layout": "vertical",
-                      "name": "Main Floor Mila"
+                      "name": "Main Floor Mila",
+                      "entity": "fan.living_room_fan"
                     },
                     {
                       "type": "custom:mushroom-fan-card",
@@ -806,25 +787,84 @@
           ]
         },
         {
-          "theme": "Mushroom",
+          "theme": "Mushroom Shadow",
+          "title": "Security",
+          "path": "cctv",
+          "icon": "mdi:cctv",
+          "subview": true,
+          "type": "custom:vertical-layout",
+          "layout": {
+            "max_width": 800,
+            "max_cols": 2
+          },
+          "badges": [],
+          "cards": [
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "auto",
+              "type": "picture-entity",
+              "entity": "camera.front_door_g4_doorbell_medium",
+              "name": "Front Door"
+            },
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "auto",
+              "type": "picture-entity",
+              "entity": "camera.g3_instant_high",
+              "name": "Side Entrance"
+            },
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "auto",
+              "type": "picture-entity",
+              "entity": "camera.backyard_g3_instant_high",
+              "name": "Backyard"
+            }
+          ]
+        },
+        {
+          "theme": "Mushroom Shadow",
+          "icon": "mdi:music-circle-outline",
+          "type": "custom:vertical-layout",
+          "path": "music",
+          "title": "Music",
+          "subview": true,
+          "layout": {
+            "max_width": 800,
+            "max_cols": 2
+          },
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:sonos-player"
+            },
+            {
+              "type": "custom:sonos-media-browser"
+            },
+            {
+              "type": "custom:sonos-grouping"
+            },
+            {
+              "type": "custom:sonos-groups"
+            }
+          ]
+        },
+        {
+          "theme": "Mushroom Shadow",
           "title": "Lights",
           "path": "lights",
           "icon": "mdi:lightbulb-group",
           "type": "custom:vertical-layout",
           "layout": {
             "max_width": 800,
-            "max_cols": 3
+            "max_cols": 2
           },
+          "subview": true,
           "badges": [],
           "cards": [
-            {
-              "type": "custom:mushroom-chips-card",
-              "chips": [
-                {
-                  "type": "back"
-                }
-              ]
-            },
             {
               "type": "custom:mushroom-title-card",
               "title": "Main Floor",
@@ -998,6 +1038,18 @@
                       "icon": "hass:lamp",
                       "name": "Corner",
                       "icon_height": "45px"
+                    },
+                    {
+                      "show_name": true,
+                      "show_icon": true,
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "icon": "hass:pine-tree",
+                      "name": "Tree",
+                      "icon_height": "45px",
+                      "entity": "light.christmas_lights"
                     }
                   ]
                 }
@@ -1189,28 +1241,62 @@
                       "tap_action": {
                         "action": "toggle"
                       },
-                      "entity": "light.office_backlight_plug",
-                      "icon_height": "45px",
-                      "icon": "mdi:lava-lamp",
-                      "name": "Accent"
-                    },
-                    {
-                      "type": "button",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
                       "entity": "light.elgato_key_light_left",
                       "icon_height": "45px",
                       "name": "Keylight (L)"
                     },
                     {
+                      "show_name": true,
+                      "show_icon": true,
                       "type": "button",
                       "tap_action": {
                         "action": "toggle"
                       },
                       "entity": "light.elgato_key_light_right",
                       "icon_height": "45px",
-                      "name": "Keylight (R)"
+                      "name": "Keylight (R)",
+                      "icon": ""
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "show_name": true,
+                      "show_icon": true,
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "light.office_backlight_plug",
+                      "icon_height": "45px",
+                      "icon": "mdi:lava-lamp",
+                      "name": "Accent Bulb"
+                    },
+                    {
+                      "show_name": true,
+                      "show_icon": true,
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "icon_height": "45px",
+                      "name": "Accent (L)",
+                      "entity": "light.hue_play_1",
+                      "icon": "hue:play-bar"
+                    },
+                    {
+                      "show_name": true,
+                      "show_icon": true,
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "light.hue_play_2",
+                      "icon_height": "45px",
+                      "name": "Accent (R)",
+                      "icon": "hue:play-bar"
                     }
                   ]
                 }
@@ -1401,7 +1487,7 @@
           ]
         },
         {
-          "theme": "Backend-selected",
+          "theme": "Mushroom Shadow",
           "title": "Locations",
           "path": "locations",
           "icon": "mdi:wallet-travel",
@@ -1410,14 +1496,12 @@
             "max_width": 800,
             "max_cols": 2
           },
+          "subview": true,
           "badges": [],
           "cards": [
             {
               "type": "custom:mushroom-chips-card",
               "chips": [
-                {
-                  "type": "back"
-                },
                 {
                   "type": "template",
                   "content": "{% if is_state('sensor.home_status', 'Home') %}\n  All Home\n{% elif is_state('sensor.home_status', 'Extended Away') %}\n  Vacation\n{% else %}\n  {{ states('sensor.home_status') }}\n{% endif %}",
@@ -1444,7 +1528,7 @@
                   "content": "{% set away = states.input_select\n            | selectattr('state', 'eq', 'Away')\n            | list | count | int %}\n\n{{ away }} away",
                   "icon": "mdi:home-minus",
                   "icon_color": "pink",
-                  "hold_action": {
+                  "tap_action": {
                     "action": "none"
                   }
                 },
@@ -1516,7 +1600,7 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "binary_sensor.eight_left_bed_presence",
+                      "entity": "binary_sensor.eight_right_bed_presence",
                       "name": "In Bed?",
                       "icon": "mdi:bed",
                       "icon_color": "pink",
@@ -1524,7 +1608,7 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.eight_left_sleep_stage",
+                      "entity": "sensor.eight_right_sleep_stage",
                       "name": "Sleep Stage",
                       "icon": "mdi:bed-king",
                       "icon_color": "pink",
@@ -1532,7 +1616,7 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.eight_left_sleep_session",
+                      "entity": "sensor.eight_right_sleep_fitness",
                       "name": "Sleep Score",
                       "icon": "mdi:scoreboard",
                       "icon_color": "pink",
@@ -1610,7 +1694,7 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "binary_sensor.eight_right_bed_presence",
+                      "entity": "binary_sensor.eight_left_bed_presence",
                       "name": "In Bed?",
                       "icon": "mdi:bed",
                       "icon_color": "purple",
@@ -1618,7 +1702,7 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.eight_right_sleep_stage",
+                      "entity": "sensor.eight_left_sleep_stage",
                       "name": "Sleep Stage",
                       "icon": "mdi:bed-king",
                       "icon_color": "purple",
@@ -1626,7 +1710,7 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.eight_right_sleep_session",
+                      "entity": "sensor.eight_left_sleep_fitness",
                       "name": "Sleep Score",
                       "icon": "mdi:scoreboard",
                       "icon_color": "purple",

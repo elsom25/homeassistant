@@ -1,6 +1,5 @@
 default_config:
 
-browser_mod:
 discovery:
 history:
 map:
@@ -53,11 +52,6 @@ homeassistant:
 http:
   ip_ban_enabled: false
   login_attempts_threshold: 5
-
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
-  project_id: !secret nest_project_id
 
 eight_sleep:
   username: !secret eight_sleep_username
