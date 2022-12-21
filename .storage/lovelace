@@ -58,6 +58,16 @@
                       }
                     },
                     {
+                      "type": "template",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace/details"
+                      },
+                      "icon": "mdi:laptop",
+                      "content": "Details ➔",
+                      "icon_color": "blue-grey"
+                    },
+                    {
                       "type": "conditional",
                       "conditions": [
                         {
@@ -217,6 +227,26 @@
                       "type": "conditional",
                       "conditions": [
                         {
+                          "entity": "binary_sensor.boiler_water_leak_xs_sensor_water_leak_detected",
+                          "state_not": "off"
+                        }
+                      ],
+                      "chip": {
+                        "type": "template",
+                        "entity": "binary_sensor.boiler_water_leak_xs_sensor_water_leak_detected",
+                        "content": "Boiler water",
+                        "icon": "mdi:water-alert",
+                        "tap_action": {
+                          "action": "more-info"
+                        },
+                        "icon_color": "blue",
+                        "name": "Boiler Water"
+                      }
+                    },
+                    {
+                      "type": "conditional",
+                      "conditions": [
+                        {
                           "entity": "lock.front_door",
                           "state_not": "locked"
                         },
@@ -358,6 +388,55 @@
                       },
                       "icon_color": "purple",
                       "layout": "vertical",
+                      "hold_action": {
+                        "action": "more-info"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "Working",
+                      "icon": "mdi:briefcase",
+                      "entity": "script.im_working",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.im_working",
+                        "service_data": {},
+                        "target": {}
+                      },
+                      "double_tap_action": {
+                        "action": "none"
+                      },
+                      "icon_color": "blue",
+                      "layout": "vertical",
+                      "fill_container": false,
+                      "multiline_secondary": false,
+                      "hold_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "Cooking",
+                      "icon": "mdi:chef-hat",
+                      "entity": "script.im_cooking",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.im_cooking",
+                        "service_data": {},
+                        "target": {}
+                      },
+                      "double_tap_action": {
+                        "action": "none"
+                      },
+                      "icon_color": "green",
+                      "layout": "vertical",
+                      "fill_container": false,
+                      "multiline_secondary": false,
                       "hold_action": {
                         "action": "more-info"
                       }
@@ -754,7 +833,10 @@
                       "show_oscillate_control": false,
                       "layout": "vertical",
                       "name": "Main Floor Mila",
-                      "entity": "fan.living_room_fan"
+                      "entity": "fan.living_room_fan_2",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
                     },
                     {
                       "type": "custom:mushroom-fan-card",
@@ -762,7 +844,10 @@
                       "icon_animation": true,
                       "show_percentage_control": false,
                       "layout": "vertical",
-                      "name": "Office Mila"
+                      "name": "Office Mila",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
                     },
                     {
                       "type": "custom:mushroom-fan-card",
@@ -770,7 +855,10 @@
                       "icon_animation": true,
                       "show_percentage_control": false,
                       "layout": "vertical",
-                      "name": "Bedroom Mila"
+                      "name": "Bedroom Mila",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
                     },
                     {
                       "type": "custom:mushroom-fan-card",
@@ -778,7 +866,10 @@
                       "icon_animation": true,
                       "show_percentage_control": false,
                       "layout": "vertical",
-                      "name": "Basement Mila"
+                      "name": "Basement Mila",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
                     }
                   ]
                 }
@@ -1376,113 +1467,6 @@
                   ]
                 }
               ]
-            },
-            {
-              "type": "vertical-stack",
-              "cards": [
-                {
-                  "type": "custom:mushroom-title-card",
-                  "title": "Sun Mode Configuration"
-                },
-                {
-                  "type": "custom:mushroom-title-card",
-                  "subtitle": "Lamps"
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "show_name": true,
-                      "show_icon": true,
-                      "type": "button",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "entity": "switch.adaptive_lighting_lamps",
-                      "name": "Adaptive?",
-                      "icon_height": "45px"
-                    },
-                    {
-                      "type": "button",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "entity": "switch.adaptive_lighting_adapt_color_lamps",
-                      "name": "Colour?",
-                      "icon_height": "45px",
-                      "icon": "hass:format-color-fill"
-                    },
-                    {
-                      "type": "button",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "entity": "switch.adaptive_lighting_adapt_brightness_lamps",
-                      "name": "Brightness?",
-                      "icon_height": "45px",
-                      "icon": "hass:brightness-6"
-                    },
-                    {
-                      "type": "button",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "entity": "switch.adaptive_lighting_sleep_mode_lamps",
-                      "name": "Sleep?",
-                      "icon_height": "45px",
-                      "icon": "hass:sleep"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:mushroom-title-card",
-                  "subtitle": "Overhead"
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "button",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "entity": "switch.adaptive_lighting_overhead",
-                      "name": "Adaptive?",
-                      "icon_height": "45px"
-                    },
-                    {
-                      "type": "button",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "entity": "switch.adaptive_lighting_adapt_color_overhead",
-                      "name": "Colour?",
-                      "icon_height": "45px",
-                      "icon": "hass:format-color-fill"
-                    },
-                    {
-                      "type": "button",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "entity": "switch.adaptive_lighting_adapt_brightness_overhead",
-                      "name": "Brightness?",
-                      "icon_height": "45px",
-                      "icon": "hass:brightness-6"
-                    },
-                    {
-                      "type": "button",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "entity": "switch.adaptive_lighting_sleep_mode_overhead",
-                      "name": "Sleep?",
-                      "icon_height": "45px",
-                      "icon": "hass:sleep"
-                    }
-                  ]
-                }
-              ]
             }
           ]
         },
@@ -1719,6 +1703,196 @@
                   ]
                 }
               ]
+            }
+          ]
+        },
+        {
+          "theme": "Mushroom Shadow",
+          "title": "Details",
+          "path": "details",
+          "icon": "mdi:laptop",
+          "type": "custom:vertical-layout",
+          "layout": {
+            "max_width": 800,
+            "max_cols": 2
+          },
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                "input_button.test_notifications"
+              ]
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.boiler_water_leak_xs_sensor_battery_level",
+                  "name": "Low battery level"
+                },
+                {
+                  "entity": "sensor.node_2_node_status",
+                  "name": "Node status"
+                }
+              ],
+              "title": "Boiler (Water Leak XS Sensor)"
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-title-card",
+                  "title": "Sun Mode Configuration"
+                },
+                {
+                  "type": "custom:mushroom-title-card",
+                  "subtitle": "Lamps"
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "show_name": true,
+                      "show_icon": true,
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "switch.adaptive_lighting_lamps",
+                      "name": "Adaptive?",
+                      "icon_height": "45px"
+                    },
+                    {
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "switch.adaptive_lighting_adapt_color_lamps",
+                      "name": "Colour?",
+                      "icon_height": "45px",
+                      "icon": "hass:format-color-fill"
+                    },
+                    {
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "switch.adaptive_lighting_adapt_brightness_lamps",
+                      "name": "Brightness?",
+                      "icon_height": "45px",
+                      "icon": "hass:brightness-6"
+                    },
+                    {
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "switch.adaptive_lighting_sleep_mode_lamps",
+                      "name": "Sleep?",
+                      "icon_height": "45px",
+                      "icon": "hass:sleep"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-title-card",
+                  "subtitle": "Overhead"
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "switch.adaptive_lighting_overhead",
+                      "name": "Adaptive?",
+                      "icon_height": "45px"
+                    },
+                    {
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "switch.adaptive_lighting_adapt_color_overhead",
+                      "name": "Colour?",
+                      "icon_height": "45px",
+                      "icon": "hass:format-color-fill"
+                    },
+                    {
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "switch.adaptive_lighting_adapt_brightness_overhead",
+                      "name": "Brightness?",
+                      "icon_height": "45px",
+                      "icon": "hass:brightness-6"
+                    },
+                    {
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "switch.adaptive_lighting_sleep_mode_overhead",
+                      "name": "Sleep?",
+                      "icon_height": "45px",
+                      "icon": "hass:sleep"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "update.udm_pro",
+                {
+                  "entity": "binary_sensor.udm_pro_disk_0_health",
+                  "name": "Hdd 1"
+                },
+                {
+                  "entity": "sensor.udm_pro_recording_capacity",
+                  "name": "Recording Capacity"
+                },
+                {
+                  "entity": "sensor.udm_pro_resolution_4k_video",
+                  "name": "Resolution: 4K Video"
+                },
+                {
+                  "entity": "sensor.udm_pro_resolution_free_space",
+                  "name": "Resolution: Free Space"
+                },
+                {
+                  "entity": "sensor.udm_pro_resolution_hd_video",
+                  "name": "Resolution: Hd Video"
+                },
+                {
+                  "entity": "sensor.udm_pro_storage_utilization",
+                  "name": "Storage Utilization"
+                },
+                {
+                  "entity": "sensor.udm_pro_type_continuous_video",
+                  "name": "Type: Continuous Video"
+                },
+                {
+                  "entity": "sensor.udm_pro_type_detections_video",
+                  "name": "Type: Detections Video"
+                },
+                {
+                  "entity": "sensor.udm_pro_type_timelapse_video",
+                  "name": "Type: Timelapse Video"
+                },
+                "device_tracker.udm_pro",
+                {
+                  "entity": "sensor.udm_pro_uptime",
+                  "name": "Uptime"
+                }
+              ],
+              "title": "UDM-Pro"
             }
           ]
         }

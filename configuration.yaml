@@ -57,6 +57,14 @@ eight_sleep:
   username: !secret eight_sleep_username
   password: !secret eight_sleep_password
 
+notify:
+  - name: ALL_DEVICES
+    platform: group
+    services:
+      - service: mobile_app_jesse_iphone
+      - service: mobile_app_jesses_ipad_pro
+      - service: mobile_app_andrew_iphone
+
 sensor:
   - platform: template
     sensors:

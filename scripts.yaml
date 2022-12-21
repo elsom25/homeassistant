@@ -72,6 +72,23 @@
       entity_id:
       - media_player.studio
       - media_player.deck
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.media_room
+    data:
+      media_content_id: FV:2/14
+      media_content_type: favorite_item_id
+    metadata:
+      title: Sleep Piano Music
+      thumbnail: https://i.scdn.co/image/ab67706c0000bebb7f2a35a8d0df61885d381a37
+      media_class: playlist
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: favorites
+        media_content_id: ''
+      - media_content_type: favorites_folder
+        media_content_id: object.container.playlistContainer
   mode: single
   icon: mdi:weather-sunset-down
 good_morning:
@@ -125,22 +142,77 @@ good_morning:
       data: {}
       target:
         entity_id: media_player.bedroom
+  - service: media_player.volume_set
+    data:
+      volume_level: 0.08
+    target:
+      entity_id:
+      - media_player.bedroom
+      - media_player.mainfloor_bathroom
+      - media_player.media_room
+      - media_player.office_andrew
+      - media_player.office_jesse
+      - media_player.sonos_move
+  - service: media_player.volume_set
+    data:
+      volume_level: 0.12
+    target:
+      entity_id:
+      - media_player.kitchen
+      - media_player.living_room
   - service: media_player.play_media
     target:
       entity_id: media_player.living_room
     data:
-      media_content_id: FV:2/12
+      media_content_id: FV:2/19
       media_content_type: favorite_item_id
     metadata:
-      title: ☕ The Jazz Hop Cafe [Monthly Selection]
-      thumbnail: https://i.scdn.co/image/ab67706c0000bebbbf8e8614413aa9eff295e428
-      media_class: playlist
+      title: Clarity Radio
+      thumbnail:
+      media_class: genre
       children_media_class:
       navigateIds:
       - {}
       - media_content_type: favorites
         media_content_id: ''
       - media_content_type: favorites_folder
-        media_content_id: object.container.playlistContainer
+        media_content_id: object.item.audioItem.audioBroadcast
   mode: single
   icon: mdi:weather-sunset-up
+im_working:
+  alias: I'm Working
+  sequence:
+  - service: homeassistant.turn_on
+    data: {}
+    target:
+      entity_id:
+      - light.elgato_key_light_left
+      - light.elgato_key_light_right
+      - light.office_backlight_plug
+  - service: light.turn_on
+    data:
+      brightness_pct: 60
+    target:
+      entity_id:
+      - light.hue_play_1
+      - light.hue_play_2
+  - service: homeassistant.turn_off
+    data: {}
+    target:
+      entity_id: light.spare_room_fixture
+  mode: single
+  icon: mdi:briefcase
+im_cooking:
+  alias: I’m Cooking
+  sequence:
+  - service: light.turn_on
+    data:
+      brightness_pct: 100
+      color_temp: 239
+    target:
+      entity_id:
+      - light.kitchen_overhead
+      - light.kitchen_pendants
+      - light.kitchen_underlight
+  mode: single
+  icon: mdi:chef-hat

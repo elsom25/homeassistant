@@ -107,3 +107,103 @@
     target:
       entity_id: vacuum.the_shuttle_litter_box
   mode: single
+- id: '1671567664532'
+  alias: 'Noficiation: Water leak'
+  description: Send a notification if a water leak is ever detected.
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.boiler_water_leak_xs_sensor_water_leak_detected
+    to: 'on'
+  - platform: state
+    entity_id:
+    - input_button.test_notifications
+  condition: []
+  action:
+  - service: notify.notify
+    data:
+      title: There's a water leak!
+      message: '{{ trigger.to_state.name }} has detected water.'
+      data:
+        push:
+          sound:
+            name: default
+            critical: 1
+            volume: 1
+  mode: single
+- id: '1671571619287'
+  alias: 'Notification: Door open when leaving '
+  description: Send an alert if any door is open when we leave the house.
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.home_status
+    to: Away
+  - platform: state
+    entity_id:
+    - input_button.test_notifications
+  condition:
+  - condition: or
+    conditions:
+    - type: is_open
+      condition: device
+      device_id: a8db82cda3c5bdb3f740f053cfb36084
+      entity_id: binary_sensor.front_door_open
+      domain: binary_sensor
+    - type: is_open
+      condition: device
+      device_id: d6c416ace546657017936758a806cb03
+      entity_id: binary_sensor.studio_door_open
+      domain: binary_sensor
+    - condition: device
+      device_id: 5830e65a30312842915a1690e06ce05b
+      domain: cover
+      entity_id: cover.studio_garage_door
+      type: is_open
+  action:
+  - service: notify.notify
+    data:
+      title: Door left open!
+      message: One of our doors was left open.
+      data:
+        push:
+          sound:
+            name: default
+            critical: 1
+            volume: 1
+  mode: single
+- id: '1671572503313'
+  alias: 'Notification: Door opened while away'
+  description: Send a notification if a door is opened while we're away.
+  trigger:
+  - platform: state
+    entity_id:
+    - input_button.test_notifications
+  - platform: state
+    entity_id:
+    - lock.front_door
+    to: unlocked
+  - platform: state
+    entity_id:
+    - lock.studio_door
+    to: unlocked
+  - platform: state
+    entity_id:
+    - cover.studio_garage_door
+    to: opening
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: sensor.home_status
+      state: Away
+    - condition: state
+      entity_id: sensor.home_status
+      state: Extended Away
+  action:
+  - service: notify.notify
+    data:
+      title: Someone unlocked a door
+      message: '{{ trigger.to_state.name }} has changed to {{ trigger.to_state.state
+        }} at {{ now().strftime(''%X'') }}.'
+  mode: single

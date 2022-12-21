@@ -26,7 +26,8 @@
       "spycle/microbot_push",
       "DavidMStraub/homeassistant-homeconnect",
       "Sholofly/arrisdcx960",
-      "lukich48/hass_mqtt_template_switch"
+      "lukich48/hass_mqtt_template_switch",
+      "marrobHD/firetv-card"
     ],
     "renamed_repositories": {
       "9a4gl/hass-peltec": "9a4gl/hass-centrometal-boiler",
