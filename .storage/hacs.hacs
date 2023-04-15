@@ -27,7 +27,25 @@
       "DavidMStraub/homeassistant-homeconnect",
       "Sholofly/arrisdcx960",
       "lukich48/hass_mqtt_template_switch",
-      "marrobHD/firetv-card"
+      "marrobHD/firetv-card",
+      "clayauld/lovelace-darksky-card",
+      "NemesisRE/lovelace-swipe-navigation",
+      "hacf-fr/hassRenaultZE",
+      "natekspencer/hacs-litterrobot",
+      "frenck/home-assistant-theme-outline",
+      "custom-components/sensor.untappd",
+      "gjohansson-ST/stl",
+      "jessevl/homeassistant-greenchoice",
+      "AitorDB/home-assistant-sun-card",
+      "nagyrobi/home-assistant-custom-components-cover-rf-time-based",
+      "robmarkcole/HASS-Deepstack-face",
+      "robmarkcole/HASS-Deepstack-object",
+      "JuanMTech/amoled_blue",
+      "JuanMTech/green_dark_mode",
+      "JuanMTech/green_light_mode",
+      "JuanMTech/orange_light",
+      "JuanMTech/orange_dark",
+      "Raukze/home-assistant-fitx"
     ],
     "renamed_repositories": {
       "9a4gl/hass-peltec": "9a4gl/hass-centrometal-boiler",
@@ -42,7 +60,8 @@
       "uvjustin/alarmdotcom": "pyalarmdotcom/alarmdotcom",
       "wernerhp/ha_integration_load_shedding": "wernerhp/ha.integration.load_shedding",
       "TheLastProject/lovelace-valetudo-map-card": "Hypfer/lovelace-valetudo-map-card",
-      "fuatakgun/kia_uvo": "Hyundai-Kia-Connect/kia_uvo"
+      "fuatakgun/kia_uvo": "Hyundai-Kia-Connect/kia_uvo",
+      "jadson179/consul": "gtjadsonsantos/consul"
     },
     "ignored_repositories": []
   }
