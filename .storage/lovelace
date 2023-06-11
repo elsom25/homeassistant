@@ -1994,277 +1994,299 @@
                   "type": "custom:mushroom-title-card",
                   "subtitle": "",
                   "title": "Living Room"
-                },
-                {
-                  "type": "custom:mushroom-light-card",
-                  "entity": "light.living_room",
-                  "show_brightness_control": true,
-                  "show_color_control": true,
-                  "use_light_color": true,
-                  "layout": "horizontal",
-                  "collapsible_controls": true
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "show_name": true,
-                      "show_icon": true,
-                      "type": "button",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "entity": "light.living_room_overhead",
-                      "icon": "hue:recessed-ceiling",
-                      "show_state": false,
-                      "name": "Overhead",
-                      "icon_height": "45px"
-                    },
-                    {
-                      "show_name": true,
-                      "show_icon": true,
-                      "type": "button",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "entity": "light.living_room_primary",
-                      "icon": "mdi:floor-lamp",
-                      "name": "Primary",
-                      "icon_height": "45px"
-                    },
-                    {
-                      "show_name": true,
-                      "show_icon": true,
-                      "type": "button",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "entity": "light.living_room_corner",
-                      "icon": "hass:lamp",
-                      "name": "Corner",
-                      "icon_height": "45px"
-                    },
-                    {
-                      "show_name": true,
-                      "show_icon": true,
-                      "type": "button",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "icon": "hass:pine-tree",
-                      "name": "Tree",
-                      "icon_height": "45px",
-                      "entity": "light.christmas_lights"
-                    }
-                  ]
                 }
               ]
             },
             {
-              "type": "grid",
-              "columns": 2,
-              "square": false,
+              "type": "custom:auto-entities",
+              "show_empty": false,
+              "card": {
+                "type": "custom:layout-card",
+                "layout_type": "custom:horizontal-layout",
+                "layout": {
+                  "width": 300,
+                  "max_cols": 2,
+                  "margin": 0
+                }
+              },
+              "card_param": "cards",
+              "filter": {
+                "include": [
+                  {
+                    "domain": "binary_sensor",
+                    "or": [
+                      {
+                        "area": "Main"
+                      },
+                      {
+                        "area": "Main - Entrance"
+                      },
+                      {
+                        "area": "Main - Living Room"
+                      },
+                      {
+                        "area": "Main - Bathroom"
+                      }
+                    ],
+                    "entity_id": "/.*occupancy|leak_detected.*/",
+                    "options": {
+                      "type": "custom:mushroom-entity-card",
+                      "fill_container": true,
+                      "layout": "vertical"
+                    },
+                    "sort": {
+                      "method": "name",
+                      "ignore_case": true
+                    }
+                  }
+                ],
+                "exclude": [
+                  {
+                    "state": "unavailable"
+                  }
+                ]
+              },
+              "sort": {
+                "method": "state",
+                "reverse": true
+              }
+            },
+            {
+              "type": "vertical-stack",
               "cards": [
                 {
-                  "hours_to_show": 24,
-                  "graph": "line",
-                  "type": "sensor",
-                  "entity": "sensor.living_room_temperature_3",
-                  "detail": 1
+                  "type": "custom:mushroom-title-card",
+                  "title": "",
+                  "subtitle": "Lights"
                 },
                 {
-                  "type": "custom:mushroom-fan-card",
-                  "entity": "fan.living_room_fan_2",
-                  "icon_animation": true,
-                  "show_percentage_control": true,
-                  "layout": "vertical",
-                  "name": "Living Room Mila",
-                  "tap_action": {
-                    "action": "more-info"
+                  "type": "custom:auto-entities",
+                  "show_empty": false,
+                  "card": {
+                    "type": "custom:layout-card",
+                    "layout_type": "custom:horizontal-layout",
+                    "layout": {
+                      "width": 300,
+                      "max_cols": 2,
+                      "margin": 0
+                    }
                   },
-                  "collapsible_controls": true
+                  "card_param": "cards",
+                  "filter": {
+                    "include": [
+                      {
+                        "domain": "light",
+                        "or": [
+                          {
+                            "area": "Main"
+                          },
+                          {
+                            "area": "Main - Entrance"
+                          },
+                          {
+                            "area": "Main - Living Room"
+                          },
+                          {
+                            "area": "Main - Bathroom"
+                          }
+                        ],
+                        "options": {
+                          "type": "custom:mushroom-light-card",
+                          "fill_container": true,
+                          "use_light_color": true,
+                          "show_brightness_control": true,
+                          "show_color_temp_control": true,
+                          "show_color_control": true,
+                          "collapsible_controls": true
+                        },
+                        "sort": {
+                          "method": "name",
+                          "ignore_case": true
+                        }
+                      }
+                    ],
+                    "exclude": [
+                      {
+                        "state": "unavailable"
+                      }
+                    ]
+                  },
+                  "sort": {
+                    "method": "state",
+                    "reverse": true
+                  }
                 }
               ]
             },
             {
-              "type": "entities",
-              "entities": [
+              "type": "vertical-stack",
+              "cards": [
                 {
-                  "entity": "binary_sensor.living_room_occupancy",
-                  "name": "Occupancy"
+                  "type": "custom:mushroom-title-card",
+                  "title": "",
+                  "subtitle": "Climate"
                 },
                 {
-                  "entity": "sensor.living_room_temperature_3",
-                  "name": "Temperature"
+                  "type": "custom:auto-entities",
+                  "show_empty": false,
+                  "card": {
+                    "type": "custom:layout-card",
+                    "layout_type": "custom:horizontal-layout",
+                    "layout": {
+                      "width": 300,
+                      "max_cols": 2,
+                      "margin": 0
+                    }
+                  },
+                  "card_param": "cards",
+                  "filter": {
+                    "include": [
+                      {
+                        "domain": "climate",
+                        "or": [
+                          {
+                            "area": "Main"
+                          },
+                          {
+                            "area": "Main - Entrance"
+                          },
+                          {
+                            "area": "Main - Living Room"
+                          },
+                          {
+                            "area": "Main - Bathroom"
+                          }
+                        ],
+                        "sort": {
+                          "method": "name",
+                          "reverse": true
+                        },
+                        "options": {
+                          "type": "custom:mushroom-climate-card",
+                          "fill_container": true,
+                          "layout": "vertical",
+                          "show_temperature_control": true,
+                          "collapsible_controls": true,
+                          "hvac_modes": [
+                            "auto",
+                            "heat",
+                            "cool",
+                            "heat_cool"
+                          ]
+                        }
+                      },
+                      {
+                        "type": "custom:auto-entities",
+                        "card": {
+                          "type": "custom:mini-graph-card",
+                          "hour24": true,
+                          "hours_to_show": 6,
+                          "points_per_hour": 2,
+                          "name": "Temperature",
+                          "show": {
+                            "labels": true,
+                            "extrema": true
+                          }
+                        },
+                        "filter": {
+                          "include": [
+                            {
+                              "domain": "sensor",
+                              "or": [
+                                {
+                                  "area": "Main"
+                                },
+                                {
+                                  "area": "Main - Entrance"
+                                },
+                                {
+                                  "area": "Main - Living Room"
+                                },
+                                {
+                                  "area": "Main - Bathroom"
+                                }
+                              ],
+                              "entity_id": "*temperature*"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "domain": "fan",
+                        "or": [
+                          {
+                            "area": "Main"
+                          },
+                          {
+                            "area": "Main - Entrance"
+                          },
+                          {
+                            "area": "Main - Living Room"
+                          },
+                          {
+                            "area": "Main - Bathroom"
+                          }
+                        ],
+                        "sort": {
+                          "method": "name",
+                          "reverse": true
+                        },
+                        "options": {
+                          "type": "custom:mushroom-fan-card",
+                          "fill_container": true,
+                          "layout": "vertical",
+                          "icon_animation": true,
+                          "show_percentage_control": true,
+                          "collapsible_controls": true
+                        }
+                      },
+                      {
+                        "type": "custom:auto-entities",
+                        "card": {
+                          "type": "custom:mini-graph-card",
+                          "hour24": true,
+                          "hours_to_show": 6,
+                          "points_per_hour": 60,
+                          "name": "Air quality",
+                          "show": {
+                            "icon": false,
+                            "labels": true,
+                            "points": false,
+                            "extrema": true
+                          }
+                        },
+                        "filter": {
+                          "include": [
+                            {
+                              "domain": "sensor",
+                              "or": [
+                                {
+                                  "area": "Main"
+                                },
+                                {
+                                  "area": "Main - Entrance"
+                                },
+                                {
+                                  "area": "Main - Living Room"
+                                },
+                                {
+                                  "area": "Main - Bathroom"
+                                }
+                              ],
+                              "entity_id": "/.*co2|air_q|voc.*/"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "exclude": [
+                      {
+                        "state": "unavailable"
+                      }
+                    ]
+                  }
                 }
-              ],
-              "title": "Ecobee"
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "sensor.washing_machine_water_leak_sensor_battery_level",
-                  "name": "Battery level"
-                },
-                {
-                  "entity": "binary_sensor.washing_machine_water_leak_sensor_low_battery_level_2",
-                  "name": "Low battery level"
-                },
-                {
-                  "entity": "sensor.node_5_node_status",
-                  "name": "Node status"
-                }
-              ],
-              "title": "Washing machine (Water leak sensor)"
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "switch.living_room_child_lock_2",
-                  "name": "Child Lock"
-                },
-                {
-                  "entity": "fan.living_room_fan_2",
-                  "name": "Fan"
-                },
-                {
-                  "entity": "switch.living_room_housekeeper_2",
-                  "name": "Housekeeper"
-                },
-                {
-                  "entity": "switch.living_room_power_saver_2",
-                  "name": "Power Saver"
-                },
-                {
-                  "entity": "switch.living_room_quarantine_2",
-                  "name": "Quarantine"
-                },
-                {
-                  "entity": "switch.living_room_quiet_2",
-                  "name": "Quiet"
-                },
-                {
-                  "entity": "switch.living_room_sleep_2",
-                  "name": "Sleep"
-                },
-                {
-                  "entity": "select.living_room_sound_mode_2",
-                  "name": "Sound Mode"
-                },
-                {
-                  "entity": "switch.living_room_turndown_2",
-                  "name": "Turndown"
-                },
-                {
-                  "entity": "switch.living_room_whitenoise_2",
-                  "name": "Whitenoise"
-                }
-              ],
-              "title": "Mila Controls",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "sensor.living_room_air_changes_2",
-                  "name": "Air Changes"
-                },
-                {
-                  "entity": "sensor.living_room_air_quality_2",
-                  "name": "Air Quality"
-                },
-                {
-                  "entity": "sensor.living_room_bedtime_end_2",
-                  "name": "Bedtime End"
-                },
-                {
-                  "entity": "sensor.living_room_bedtime_start_2",
-                  "name": "Bedtime Start"
-                },
-                {
-                  "entity": "sensor.living_room_co_2",
-                  "name": "CO"
-                },
-                {
-                  "entity": "sensor.living_room_co2_2",
-                  "name": "CO2"
-                },
-                {
-                  "entity": "sensor.living_room_fan_speed_2",
-                  "name": "Fan Speed"
-                },
-                {
-                  "entity": "sensor.living_room_filter_calibrated_date_2",
-                  "name": "Filter Calibrated Date"
-                },
-                {
-                  "entity": "sensor.living_room_filter_days_left_2",
-                  "name": "Filter Days Left"
-                },
-                {
-                  "entity": "sensor.living_room_filter_install_date_2",
-                  "name": "Filter Install Date"
-                },
-                {
-                  "entity": "sensor.living_room_filter_kind_2",
-                  "name": "Filter Kind"
-                },
-                {
-                  "entity": "sensor.living_room_humidity_3",
-                  "name": "Humidity"
-                },
-                {
-                  "entity": "sensor.living_room_mode_2",
-                  "name": "Mode"
-                },
-                {
-                  "entity": "sensor.living_room_pm1_2",
-                  "name": "PM1"
-                },
-                {
-                  "entity": "sensor.living_room_pm10_2",
-                  "name": "PM10"
-                },
-                {
-                  "entity": "sensor.living_room_pm2_5_2",
-                  "name": "PM2.5"
-                },
-                {
-                  "entity": "sensor.living_room_temperature_4",
-                  "name": "Temperature"
-                },
-                {
-                  "entity": "sensor.living_room_voc_2",
-                  "name": "VOC"
-                },
-                {
-                  "entity": "sensor.living_room_wifi_strength_2",
-                  "name": "Wifi Strength"
-                }
-              ],
-              "title": "Mila Details",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "sensor.washing_machine_water_leak_sensor_battery_level",
-                  "name": "Battery level"
-                },
-                {
-                  "entity": "binary_sensor.washing_machine_water_leak_sensor_low_battery_level_2",
-                  "name": "Low battery level"
-                },
-                {
-                  "entity": "sensor.node_14_node_status",
-                  "name": "Node status"
-                }
-              ],
-              "title": "Washing machine (Water leak sensor)"
+              ]
             }
           ]
         },
