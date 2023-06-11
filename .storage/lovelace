@@ -249,7 +249,7 @@
                   "chip": {
                     "type": "template",
                     "entity": "binary_sensor.hot_water_heater_leak_detected",
-                    "content": "Hot water heater 🚩",
+                    "content": "Water boiler 🚩",
                     "icon": "mdi:water-alert",
                     "tap_action": {
                       "action": "more-info"
@@ -269,13 +269,13 @@
                   "chip": {
                     "type": "template",
                     "entity": "binary_sensor.storage_stairs_water_leak_detected",
-                    "content": "Storage stairs 🚩",
+                    "content": "Basement storage 🚩",
                     "icon": "mdi:water-alert",
                     "tap_action": {
                       "action": "more-info"
                     },
                     "icon_color": "blue",
-                    "name": "Storage stairs"
+                    "name": "Basement storage"
                   }
                 },
                 {
@@ -295,7 +295,7 @@
                       "action": "more-info"
                     },
                     "icon_color": "blue",
-                    "name": "Cellary"
+                    "name": "Cellar"
                   }
                 }
               ]
