@@ -5,11 +5,14 @@
     data:
       entity_id: input_select.light_mode_dropdown
       option: Sleep
-  - data: {}
-    service: media_player.media_pause
+  - service: script.reset_speakers
+    data: {}
+  - service: media_player.clear_playlist
+    data: {}
     target:
       entity_id:
       - media_player.bedroom
+      - media_player.deck
       - media_player.kitchen
       - media_player.living_room
       - media_player.mainfloor_bathroom
@@ -18,13 +21,6 @@
       - media_player.office_jesse
       - media_player.sonos_move
       - media_player.studio
-      - media_player.deck
-  - service: media_player.unjoin
-    data: {}
-    target:
-      entity_id:
-      - media_player.studio
-      - media_player.deck
   - data: {}
     service: homeassistant.turn_off
     target:
@@ -66,15 +62,11 @@
       - light.spare_room
       - light.main_floor_pendants
       - light.studio
-  - service: media_player.unjoin
+  - service: script.reset_speakers
     data: {}
-    target:
-      entity_id:
-      - media_player.studio
-      - media_player.deck
   - service: media_player.play_media
     target:
-      entity_id: media_player.media_room
+      entity_id: media_player.living_room
     data:
       media_content_id: FV:2/14
       media_content_type: favorite_item_id
@@ -110,24 +102,8 @@ good_morning:
       brightness_pct: 30
     target:
       entity_id: light.main_floor_overheads
-  - service: media_player.join
-    data:
-      group_members:
-      - media_player.kitchen
-      - media_player.mainfloor_bathroom
-      - media_player.media_room
-      - media_player.office_andrew
-      - media_player.office_jesse
-      - media_player.bedroom
-      - media_player.sonos_move
-    target:
-      entity_id: media_player.living_room
-  - service: media_player.unjoin
+  - service: script.reset_speakers
     data: {}
-    target:
-      entity_id:
-      - media_player.studio
-      - media_player.deck
   - if:
     - condition: state
       entity_id: binary_sensor.eight_left_bed_presence
@@ -142,24 +118,6 @@ good_morning:
       data: {}
       target:
         entity_id: media_player.bedroom
-  - service: media_player.volume_set
-    data:
-      volume_level: 0.08
-    target:
-      entity_id:
-      - media_player.bedroom
-      - media_player.mainfloor_bathroom
-      - media_player.media_room
-      - media_player.office_andrew
-      - media_player.office_jesse
-      - media_player.sonos_move
-  - service: media_player.volume_set
-    data:
-      volume_level: 0.12
-    target:
-      entity_id:
-      - media_player.kitchen
-      - media_player.living_room
   - service: media_player.play_media
     target:
       entity_id: media_player.living_room
@@ -216,3 +174,44 @@ im_cooking:
       - light.kitchen_underlight
   mode: single
   icon: mdi:chef-hat
+reset_speakers:
+  alias: Reset speakers
+  sequence:
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.kitchen
+      - media_player.mainfloor_bathroom
+      - media_player.media_room
+      - media_player.office_andrew
+      - media_player.office_jesse
+      - media_player.bedroom
+      - media_player.sonos_move
+    target:
+      entity_id: media_player.living_room
+  - service: media_player.unjoin
+    data: {}
+    target:
+      entity_id:
+      - media_player.studio
+      - media_player.deck
+  - service: media_player.volume_set
+    data:
+      volume_level: 0.08
+    target:
+      entity_id:
+      - media_player.bedroom
+      - media_player.mainfloor_bathroom
+      - media_player.media_room
+      - media_player.office_andrew
+      - media_player.office_jesse
+      - media_player.sonos_move
+  - service: media_player.volume_set
+    data:
+      volume_level: 0.12
+    target:
+      entity_id:
+      - media_player.kitchen
+      - media_player.living_room
+  mode: single
+  icon: mdi:speaker-multiple

@@ -670,6 +670,22 @@
                     "name": "Terminal",
                     "show_buttons_control": true
                   }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "update.silicon_labs_multiprotocol_update",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:mushroom-update-card",
+                    "entity": "update.silicon_labs_multiprotocol_update",
+                    "icon": "mdi:multicast",
+                    "name": "Terminal",
+                    "show_buttons_control": true
+                  }
                 }
               ]
             },
@@ -1487,7 +1503,8 @@
               "cards": [
                 {
                   "type": "custom:mushroom-title-card",
-                  "subtitle": "Media Summary"
+                  "subtitle": "",
+                  "title": "Media"
                 },
                 {
                   "type": "custom:mushroom-chips-card",
@@ -1495,23 +1512,199 @@
                     {
                       "type": "template",
                       "tap_action": {
-                        "action": "navigate",
-                        "navigation_path": "/lovelace/music"
+                        "action": "more-info"
                       },
-                      "content": "{% set active = states.media_player | selectattr('state', 'equalto', 'playing') | list | count %}\n\n{{ active }} playing ➔",
+                      "content": "{% set active = states.media_player | selectattr('state', 'equalto', 'playing') | list | count %}\n\n{{ active }} playing",
                       "icon_color": "{% set active = states.media_player | selectattr('state', 'equalto', 'playing') | list | count %}\n{% if active > 0 %}\n  teal\n{% else %}\n  grey\n{% endif %}",
                       "icon": "hass:amplifier"
+                    },
+                    {
+                      "type": "conditional",
+                      "conditions": [
+                        {
+                          "entity": "media_player.deck",
+                          "state": "idle"
+                        }
+                      ],
+                      "chip": {
+                        "type": "template",
+                        "entity": "media_player.deck",
+                        "content_info": "name",
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "media_player.join",
+                          "target": {
+                            "entity_id": "media_player.living_room"
+                          },
+                          "data": {
+                            "group_members": [
+                              "media_player.deck"
+                            ]
+                          }
+                        },
+                        "icon": "mdi:speaker",
+                        "content": "Add Deck",
+                        "icon_color": "grey"
+                      }
+                    },
+                    {
+                      "type": "conditional",
+                      "conditions": [
+                        {
+                          "entity": "media_player.deck",
+                          "state": "playing"
+                        }
+                      ],
+                      "chip": {
+                        "type": "template",
+                        "entity": "light.deck",
+                        "content_info": "name",
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "media_player.unjoin",
+                          "target": {
+                            "entity_id": "media_player.deck"
+                          },
+                          "data": {}
+                        },
+                        "icon": "mdi:speaker-play",
+                        "content": "Deck playing",
+                        "icon_color": "teal"
+                      }
+                    },
+                    {
+                      "type": "conditional",
+                      "conditions": [
+                        {
+                          "entity": "media_player.studio",
+                          "state": "idle"
+                        }
+                      ],
+                      "chip": {
+                        "type": "template",
+                        "entity": "media_player.studio",
+                        "content_info": "name",
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "media_player.join",
+                          "target": {
+                            "entity_id": "media_player.living_room"
+                          },
+                          "data": {
+                            "group_members": [
+                              "media_player.studio"
+                            ]
+                          }
+                        },
+                        "icon": "mdi:speaker",
+                        "content": "Add Studio",
+                        "icon_color": "grey"
+                      }
+                    },
+                    {
+                      "type": "conditional",
+                      "conditions": [
+                        {
+                          "entity": "media_player.studio",
+                          "state": "playing"
+                        }
+                      ],
+                      "chip": {
+                        "type": "template",
+                        "entity": "light.studio",
+                        "content_info": "name",
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "media_player.unjoin",
+                          "target": {
+                            "entity_id": "media_player.studio"
+                          },
+                          "data": {}
+                        },
+                        "icon": "mdi:speaker-play",
+                        "content": "Studio playing",
+                        "icon_color": "teal"
+                      }
+                    },
+                    {
+                      "type": "template",
+                      "content": "Default setup",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.reset_speakers",
+                        "target": {}
+                      },
+                      "icon": "mdi:flash-alert",
+                      "icon_color": "{% set active = states.media_player | selectattr('state', 'equalto', 'playing') | list | count %}\n{% if active > 0 %}\n  deep-purple\n{% else %}\n  grey\n{% endif %}"
                     }
                   ]
                 },
                 {
-                  "type": "custom:mini-media-player",
-                  "entity": "media_player.living_room",
-                  "artwork": "material",
-                  "toggle_power": true,
-                  "group": false,
-                  "volume_stateless": true,
-                  "source": "icon"
+                  "type": "custom:layout-card",
+                  "layout_type": "custom:horizontal-layout",
+                  "layout": {
+                    "width": 300,
+                    "max_cols": 2,
+                    "margin": 0
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:sonos-card",
+                      "sections": [
+                        "player",
+                        "media browser"
+                      ],
+                      "dynamicVolumeSlider": true
+                    },
+                    {
+                      "type": "custom:sonos-card",
+                      "sections": [
+                        "volumes",
+                        "grouping",
+                        "groups"
+                      ],
+                      "predefinedGroups": [
+                        {
+                          "name": "Inside",
+                          "entities": [
+                            "media_player.bedroom",
+                            "media_player.kitchen",
+                            "media_player.living_room",
+                            "media_player.mainfloor_bathroom",
+                            "media_player.media_room",
+                            "media_player.office_andrew",
+                            "media_player.office_jesse",
+                            "media_player.sonos_move"
+                          ]
+                        },
+                        {
+                          "name": "Outside",
+                          "entities": [
+                            "media_player.deck",
+                            "media_player.studio"
+                          ]
+                        },
+                        {
+                          "name": "Everywhere",
+                          "entities": [
+                            "media_player.deck",
+                            "media_player.studio",
+                            "media_player.bedroom",
+                            "media_player.kitchen",
+                            "media_player.living_room",
+                            "media_player.mainfloor_bathroom",
+                            "media_player.media_room",
+                            "media_player.office_andrew",
+                            "media_player.office_jesse",
+                            "media_player.sonos_move"
+                          ]
+                        }
+                      ],
+                      "shuffleFavorites": true,
+                      "hideGroupCurrentTrack": false,
+                      "dynamicVolumeSlider": true
+                    }
+                  ]
                 }
               ]
             }
@@ -3347,32 +3540,6 @@
                 }
               ],
               "title": "Studio Door"
-            }
-          ]
-        },
-        {
-          "theme": "Mushroom Shadow",
-          "icon": "mdi:music-circle-outline",
-          "type": "custom:vertical-layout",
-          "path": "music",
-          "title": "Music",
-          "subview": true,
-          "layout": {
-            "max_width": 800
-          },
-          "badges": [],
-          "cards": [
-            {
-              "type": "custom:sonos-player"
-            },
-            {
-              "type": "custom:sonos-media-browser"
-            },
-            {
-              "type": "custom:sonos-grouping"
-            },
-            {
-              "type": "custom:sonos-groups"
             }
           ]
         },
