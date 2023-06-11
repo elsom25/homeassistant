@@ -1115,7 +1115,6 @@
           "US"
         ]
       },
-      "new": true,
       "full_name": "dahlb/ha_sense",
       "authors": [
         "@dahlb"
@@ -1644,7 +1643,6 @@
         "zip_release": true,
         "filename": "ttlock.zip"
       },
-      "new": true,
       "full_name": "jbergler/hass-ttlock",
       "authors": [
         "@jbergler"
@@ -1900,7 +1898,6 @@
         "render_readme": true,
         "homeassistant": "2021.12.4"
       },
-      "new": true,
       "full_name": "rwoldberg/ldata-ha",
       "authors": [
         "@rwoldberg"
@@ -2970,7 +2967,6 @@
         "render_readme": true,
         "zip_release": true
       },
-      "new": true,
       "full_name": "pail23/stiebel_eltron_isg_component",
       "authors": [
         "@pail23"
@@ -3130,7 +3126,6 @@
         "render_readme": true,
         "homeassistant": "2022.8"
       },
-      "new": true,
       "full_name": "maciej-or/hikvision_next",
       "authors": [
         "@maciej-or"
@@ -3211,7 +3206,6 @@
         "filename": "zcsazzurro.zip",
         "render_readme": true
       },
-      "new": true,
       "full_name": "aturri/ha-zcsazzurro",
       "authors": [
         "@aturri"
@@ -4766,7 +4760,6 @@
         "render_readme": true,
         "zip_release": true
       },
-      "new": true,
       "full_name": "amitfin/retry",
       "authors": [
         "@amitfin"
@@ -4869,7 +4862,6 @@
         "render_readme": true,
         "zip_release": true
       },
-      "new": true,
       "full_name": "petergridge/openweathermaphistory",
       "authors": [
         "@petergridge"
@@ -5071,7 +5063,6 @@
         "name": "Petkit",
         "render_readme": true
       },
-      "new": true,
       "full_name": "hasscc/petkit",
       "authors": [
         "@al-one"
@@ -5267,7 +5258,6 @@
         "render_readme": true,
         "country": "CZ"
       },
-      "new": true,
       "full_name": "rnovacek/homeassistant_cz_energy_spot_prices",
       "authors": [
         "@rnovacek"
@@ -5806,7 +5796,6 @@
         "render_readme": true,
         "homeassistant": "2022.4"
       },
-      "new": true,
       "full_name": "emics/ham_radio_propagation",
       "authors": [
         "@emics"
@@ -6245,7 +6234,6 @@
         "render_readme": true,
         "homeassistant": "2022.2.0b0"
       },
-      "new": true,
       "full_name": "austinmroczek/neovolta",
       "authors": [
         "@austinmroczek"
@@ -6290,7 +6278,6 @@
         "name": "Technische Alternative CoE",
         "render_readme": true
       },
-      "new": true,
       "full_name": "DeerMaximum/Technische-Alternative-CoE",
       "authors": [
         "@DeerMaximum"
@@ -6537,7 +6524,6 @@
         "homeassistant": "2022.11.3",
         "country": "CN"
       },
-      "new": true,
       "full_name": "daxingplay/home-assistant-vaillant-plus",
       "authors": [
         "@daxingplay"
@@ -6560,7 +6546,6 @@
         "render_readme": true,
         "filename": "uv-index-card.js"
       },
-      "new": true,
       "full_name": "t1gr0u/uv-index-card",
       "category": "plugin",
       "description": "A Lovelace card that shows a the UV index and risk level for Home Assistant",
@@ -6926,7 +6911,6 @@
       "repository_manifest": {
         "name": "Warmup under-floor heating integration"
       },
-      "new": true,
       "full_name": "ha-warmup/warmup",
       "authors": [
         "@ha-warmup"
@@ -7364,7 +7348,6 @@
         "render_readme": true,
         "filename": "astroweather-card.js"
       },
-      "new": true,
       "full_name": "mawinkler/astroweather-card",
       "category": "plugin",
       "description": "Lovalace Card for the AstroWeather Integration",
@@ -8901,7 +8884,6 @@
       "repository_manifest": {
         "name": "FreeDS"
       },
-      "new": true,
       "full_name": "IvanSanchez/homeassistant-freeds",
       "authors": [
         "@ivansanchez"
@@ -11725,7 +11707,6 @@
         "render_readme": true,
         "zip_release": true
       },
-      "new": true,
       "full_name": "fredck/lightener",
       "authors": [
         "@fredck"
@@ -13346,7 +13327,6 @@
         "name": "ventoptimization",
         "render_readme": true
       },
-      "new": true,
       "full_name": "HrGaertner/HA-vent-optimization",
       "authors": [
         "@HrGaertner"
@@ -14637,7 +14617,6 @@
           "BE"
         ]
       },
-      "new": true,
       "full_name": "geertmeersman/telenet",
       "authors": [
         "@geertmeersman"
@@ -15304,7 +15283,6 @@
           "fr"
         ]
       },
-      "new": true,
       "full_name": "rexave/hass-orange-internet-on-the-move",
       "authors": [
         "@rexave"
@@ -15471,7 +15449,6 @@
         "render_readme": true,
         "country": "RU"
       },
-      "new": true,
       "full_name": "lizardsystems/hass-taipit",
       "authors": [
         "@lizardsystems"
@@ -16233,7 +16210,6 @@
         "country": "GB",
         "hide_default_branch": true
       },
-      "new": true,
       "full_name": "sHedC/homeassistant-mastertherm",
       "authors": [
         "@shedc"
@@ -16638,7 +16614,6 @@
         "render_readme": true,
         "homeassistant": "2021.8.0"
       },
-      "new": true,
       "full_name": "flyrmyr/system-flow-card",
       "category": "plugin",
       "description": "A system flow card inspired by the official Energy Distribution card for Home Assistant",
@@ -16816,7 +16791,6 @@
         "name": "Shairport Sync Media Player",
         "render_readme": true
       },
-      "new": true,
       "full_name": "parautenbach/hass-shairport-sync",
       "authors": [
         "@parautenbach"
@@ -16877,7 +16851,6 @@
         "filename": "heru.zip",
         "render_readme": true
       },
-      "new": true,
       "full_name": "toringer/home-assistant-heru",
       "authors": [
         "@toringer"
@@ -17165,7 +17138,6 @@
         "name": "Cielo Home",
         "homeassistant": "2023.0.0"
       },
-      "new": true,
       "full_name": "bodyscape/cielo_home",
       "authors": [
         "@bodyscape"
@@ -20223,7 +20195,6 @@
         "render_readme": true,
         "homeassistant": "2023.4.0"
       },
-      "new": true,
       "full_name": "stackia/ha-deye-dehumidifier",
       "authors": [
         "@stackia"
@@ -21472,18 +21443,17 @@
         "render_readme": true,
         "filename": "mushroom-strategy.js"
       },
-      "new": true,
       "full_name": "AalianKhan/mushroom-strategy",
       "category": "plugin",
       "description": "A strategy to automatically generate a dashboard using mushroom cards",
-      "etag_repository": "W/\"cdb62202dac3b2a980d715ae47638cc1c0ef639da6b30904abf08e50410d96fb\"",
-      "last_updated": "2023-06-06T21:21:37Z",
-      "stargazers_count": 65,
+      "etag_repository": "W/\"6806b4f4da89f4268392ab248fb806b8a14b6cc5f11cf83684631590bddadee4\"",
+      "last_updated": "2023-06-09T06:15:21Z",
+      "stargazers_count": 66,
       "topics": [
         "mushroom-strategy",
         "strategy"
       ],
-      "last_fetched": 1686198366.089671
+      "last_fetched": 1686467078.984562
     },
     "179808576": {
       "repository_manifest": {
@@ -21552,7 +21522,6 @@
         "name": "Robonomics",
         "render_readme": true
       },
-      "new": true,
       "full_name": "airalab/homeassistant-robonomics-integration",
       "authors": [
         "@airalab"
@@ -21737,7 +21706,6 @@
         "render_readme": true,
         "filename": "givtcp-power-flow-card.js"
       },
-      "new": true,
       "full_name": "VeniVidiVici/givtcp-power-flow-card",
       "category": "plugin",
       "description": "A power distribution card for Home Assistant specifically for GivTCP users",
@@ -22090,7 +22058,6 @@
         "homeassistant": "0.100.0",
         "hacs": "0.24.0"
       },
-      "new": true,
       "full_name": "mbuchber/ha_heliotherm",
       "authors": [
         "@mbuchber"
@@ -22788,7 +22755,6 @@
         "render_readme": true,
         "zip_release": true
       },
-      "new": true,
       "full_name": "joselcaguilar/azure-openai-ha",
       "authors": [
         "@joselcaguilar"
@@ -22867,7 +22833,6 @@
         "render_readme": true,
         "homeassistant": "2021.8.0"
       },
-      "new": true,
       "full_name": "flixlix/power-flow-card-plus",
       "category": "plugin",
       "description": "A power distribution card inspired by the official Energy Distribution card for Home Assistant",
@@ -23643,7 +23608,6 @@
         "render_readme": true,
         "filename": "rain-gauge-card.js"
       },
-      "new": true,
       "full_name": "t1gr0u/rain-gauge-card",
       "category": "plugin",
       "description": "A Lovelace card that shows the rain gauge for Home Assistant",
@@ -24440,7 +24404,6 @@
         "render_readme": true,
         "filename": "windrose-card.js"
       },
-      "new": true,
       "full_name": "aukedejong/lovelace-windrose-card",
       "category": "plugin",
       "description": "Home Assistant Lovelace Windrose Card",
@@ -25525,7 +25488,6 @@
         "render_readme": true,
         "homeassistant": "2022.2.0"
       },
-      "new": true,
       "full_name": "acesyde/hassio_mylight_integration",
       "authors": [
         "@acesyde"

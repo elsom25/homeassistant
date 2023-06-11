@@ -118,6 +118,24 @@
   - platform: state
     entity_id:
     - input_button.test_notifications
+  - platform: state
+    entity_id:
+    - binary_sensor.cellar_cooler_water_leak_sensor_water_leak_detected
+    - binary_sensor.hot_water_heater_water_leak_sensor_water_leak_detected
+    - binary_sensor.storage_stairs_water_leak_sensor_water_leak_detected
+    to: 'on'
+  - platform: state
+    entity_id:
+    - binary_sensor.cellar_cooler_water_leak_detected
+    to: 'on'
+  - platform: state
+    entity_id:
+    - binary_sensor.hot_water_heater_leak_detected
+    to: 'on'
+  - platform: state
+    entity_id:
+    - binary_sensor.storage_stairs_water_leak_detected
+    to: 'on'
   condition: []
   action:
   - service: notify.notify

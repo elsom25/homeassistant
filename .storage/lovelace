@@ -267,6 +267,66 @@
                   "type": "conditional",
                   "conditions": [
                     {
+                      "entity": "binary_sensor.hot_water_heater_leak_detected",
+                      "state_not": "off"
+                    }
+                  ],
+                  "chip": {
+                    "type": "template",
+                    "entity": "binary_sensor.hot_water_heater_leak_detected",
+                    "content": "Hot water heater",
+                    "icon": "mdi:water-alert",
+                    "tap_action": {
+                      "action": "more-info"
+                    },
+                    "icon_color": "blue",
+                    "name": "Boiler Water"
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "binary_sensor.storage_stairs_water_leak_detected",
+                      "state_not": "off"
+                    }
+                  ],
+                  "chip": {
+                    "type": "template",
+                    "entity": "binary_sensor.storage_stairs_water_leak_detected",
+                    "content": "Storage stairs",
+                    "icon": "mdi:water-alert",
+                    "tap_action": {
+                      "action": "more-info"
+                    },
+                    "icon_color": "blue",
+                    "name": "Storage stairs"
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "binary_sensor.cellar_cooler_water_leak_detected",
+                      "state_not": "off"
+                    }
+                  ],
+                  "chip": {
+                    "type": "template",
+                    "entity": "binary_sensor.cellar_cooler_water_leak_detected",
+                    "content": "Cellar",
+                    "icon": "mdi:water-alert",
+                    "tap_action": {
+                      "action": "more-info"
+                    },
+                    "icon_color": "blue",
+                    "name": "Cellary"
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
                       "entity": "binary_sensor.tesla_wall_connector_contactor_closed",
                       "state_not": "off"
                     }
@@ -2175,6 +2235,24 @@
               "type": "entities",
               "entities": [
                 {
+                  "entity": "sensor.washing_machine_water_leak_sensor_battery_level",
+                  "name": "Battery level"
+                },
+                {
+                  "entity": "binary_sensor.washing_machine_water_leak_sensor_low_battery_level_2",
+                  "name": "Low battery level"
+                },
+                {
+                  "entity": "sensor.node_5_node_status",
+                  "name": "Node status"
+                }
+              ],
+              "title": "Washing machine (Water leak sensor)"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
                   "entity": "switch.living_room_child_lock_2",
                   "name": "Child Lock"
                 },
@@ -2300,6 +2378,24 @@
               ],
               "title": "Mila Details",
               "state_color": true
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.washing_machine_water_leak_sensor_battery_level",
+                  "name": "Battery level"
+                },
+                {
+                  "entity": "binary_sensor.washing_machine_water_leak_sensor_low_battery_level_2",
+                  "name": "Low battery level"
+                },
+                {
+                  "entity": "sensor.node_14_node_status",
+                  "name": "Node status"
+                }
+              ],
+              "title": "Washing machine (Water leak sensor)"
             }
           ]
         },
@@ -3173,10 +3269,16 @@
               "type": "entities",
               "entities": [
                 {
-                  "entity": "binary_sensor.boiler_water_leak_xs_sensor_water_leak_detected"
+                  "entity": "binary_sensor.hot_water_heater_water_leak_sensor_water_leak_detected",
+                  "name": "Leak detected",
+                  "secondary_info": "last-changed"
                 },
                 {
-                  "entity": "sensor.boiler_water_leak_xs_sensor_battery_level",
+                  "entity": "sensor.hot_water_heater_water_leak_sensor_battery_level",
+                  "name": "Battery level"
+                },
+                {
+                  "entity": "binary_sensor.water_leak_xs_sensor_low_battery_level",
                   "name": "Low battery level"
                 },
                 {
@@ -3184,7 +3286,53 @@
                   "name": "Node status"
                 }
               ],
-              "title": "Boiler (Water Leak XS Sensor)"
+              "title": "Hot Water Heater (Water leak sensor)"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "binary_sensor.cellar_cooler_water_leak_sensor_water_leak_detected",
+                  "name": "Leak detected",
+                  "secondary_info": "last-changed"
+                },
+                {
+                  "entity": "sensor.cellar_cooler_water_leak_sensor_battery_level",
+                  "name": "Battery level"
+                },
+                {
+                  "entity": "binary_sensor.cellar_cooler_water_leak_sensor_low_battery_level_2",
+                  "name": "Low battery level"
+                },
+                {
+                  "entity": "sensor.node_11_node_status",
+                  "name": "Node status"
+                }
+              ],
+              "title": "Cellar cooler (Water leak sensor)"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "binary_sensor.storage_stairs_water_leak_sensor_water_leak_detected",
+                  "name": "Leak detected",
+                  "secondary_info": "last-changed"
+                },
+                {
+                  "entity": "sensor.storage_stairs_water_leak_sensor_battery_level",
+                  "name": "Battery level"
+                },
+                {
+                  "entity": "binary_sensor.storage_stairs_water_leak_sensor_low_battery_level",
+                  "name": "Low battery level"
+                },
+                {
+                  "entity": "sensor.storage_stairs_water_leak_sensor_node_status",
+                  "name": "Node status"
+                }
+              ],
+              "title": "Storage stairs (Water leak sensor)"
             },
             {
               "type": "entities",
