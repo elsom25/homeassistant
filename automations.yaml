@@ -78,35 +78,11 @@
     at: 07:30:00
   - platform: time
     at: '22:00:00'
-  condition:
-  - condition: state
-    entity_id: vacuum.the_shuttle_litter_box
-    attribute: status
-    state: Docked
+  condition: []
   action:
-  - service: vacuum.start
+  - service: script.reset_and_cycle_litter
     data: {}
-    target:
-      entity_id: vacuum.the_shuttle_litter_box
   mode: restart
-- id: '1652830986003'
-  alias: Litter Robot — Reset Status
-  description: ''
-  trigger:
-  - platform: numeric_state
-    entity_id: sensor.the_shuttle_waste_drawer
-    above: '90'
-  condition:
-  - condition: state
-    entity_id: vacuum.the_shuttle_litter_box
-    attribute: status
-    state: Docked
-  action:
-  - service: litterrobot.reset_waste_drawer
-    data: {}
-    target:
-      entity_id: vacuum.the_shuttle_litter_box
-  mode: single
 - id: '1671567664532'
   alias: 'Noficiation: Water leak'
   description: Send a notification if a water leak is ever detected.

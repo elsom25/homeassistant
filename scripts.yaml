@@ -215,3 +215,22 @@ reset_speakers:
       - media_player.living_room
   mode: single
   icon: mdi:speaker-multiple
+reset_and_cycle_litter:
+  alias: Reset and Cycle Litter
+  sequence:
+  - device_id: 6181082952b855fd0b9556f7442c3b0d
+    domain: button
+    entity_id: button.the_shuttle_reset_waste_drawer
+    type: press
+  - if:
+    - condition: state
+      entity_id: vacuum.the_shuttle_litter_box
+      attribute: status
+      state: Docked
+    then:
+    - device_id: 6181082952b855fd0b9556f7442c3b0d
+      domain: vacuum
+      entity_id: vacuum.the_shuttle_litter_box
+      type: clean
+  mode: single
+  icon: mdi:robot-vacuum

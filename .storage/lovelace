@@ -69,6 +69,11 @@
                   "icon_color": "amber"
                 },
                 {
+                  "type": "entity",
+                  "entity": "binary_sensor.tesla_wall_connector_contactor_closed",
+                  "use_entity_picture": false
+                },
+                {
                   "type": "conditional",
                   "conditions": [
                     {
@@ -92,7 +97,7 @@
                       "action": "none"
                     },
                     "icon_color": "amber",
-                    "content": "Mode: Adaptive",
+                    "content": "Mode: Adaptive ✓",
                     "hold_action": {
                       "action": "more-info"
                     }
@@ -122,7 +127,7 @@
                       "action": "none"
                     },
                     "icon_color": "purple",
-                    "content": "Mode: Sleep",
+                    "content": "Mode: Sleep ✓",
                     "hold_action": {
                       "action": "more-info"
                     }
@@ -152,7 +157,7 @@
                       "action": "none"
                     },
                     "icon_color": "blue-grey",
-                    "content": "Mode: Manual",
+                    "content": "Mode: Manual ✓",
                     "hold_action": {
                       "action": "more-info"
                     }
@@ -161,42 +166,12 @@
                 {
                   "type": "template",
                   "entity": "vacuum.the_shuttle_litter_box",
-                  "content": "{% set state = states('vacuum.the_shuttle_litter_box') %}\n{% set fill = states('sensor.the_shuttle_waste_drawer') %}\n{% if state == 'error' %}\n Litter Full\n{% else %}\n  Litter {{ state  | title }} ({{ fill  }}%)\n{% endif %}",
+                  "content": "{% set state = states('vacuum.the_shuttle_litter_box') %}\n{% set fill = states('sensor.the_shuttle_waste_drawer') %}\n{% if state == 'error' %}\n  Litter Full\n{% else %}\n  Litter {{ state  | title }} ({{ fill  }}%)\n{% endif %}\n✓",
                   "icon": "mdi:robot-vacuum",
                   "tap_action": {
-                    "action": "fire-dom-event",
-                    "browser_mod": {
-                      "service": "browser_mod.popup",
-                      "data": {
-                        "title": "The Shuttle Litter Box",
-                        "content": {
-                          "type": "horizontal-stack",
-                          "cards": [
-                            {
-                              "type": "custom:mushroom-vacuum-card",
-                              "name": "Litter Box",
-                              "entity": "vacuum.the_shuttle_litter_box",
-                              "commands": [
-                                "start_pause"
-                              ]
-                            },
-                            {
-                              "show_name": true,
-                              "show_icon": "falst",
-                              "icon_height": "45px",
-                              "type": "button",
-                              "tap_action": {
-                                "action": "toggle"
-                              },
-                              "entity": "button.the_shuttle_reset_waste_drawer",
-                              "show_state": true,
-                              "name": "Reset Waste"
-                            }
-                          ]
-                        },
-                        "size": "normal"
-                      }
-                    }
+                    "action": "call-service",
+                    "service": "script.reset_and_cycle_litter",
+                    "target": {}
                   },
                   "hold_action": {
                     "action": "more-info"
@@ -214,7 +189,7 @@
                   "chip": {
                     "type": "template",
                     "entity": "binary_sensor.front_door_open",
-                    "content": "Front door open",
+                    "content": "Front door open 🚩✓",
                     "icon": "mdi:door-open",
                     "tap_action": {
                       "action": "more-info"
@@ -234,7 +209,7 @@
                   "chip": {
                     "type": "template",
                     "entity": "binary_sensor.studio_door_open",
-                    "content": "Studio door open",
+                    "content": "Studio door open 🚩✓ ",
                     "icon": "mdi:door-open",
                     "tap_action": {
                       "action": "more-info"
@@ -254,7 +229,7 @@
                   "chip": {
                     "type": "template",
                     "entity": "cover.studio_garage_door",
-                    "content": "Studio garage door open",
+                    "content": "Studio garage door open 🚩✓",
                     "icon": "mdi:garage-open",
                     "tap_action": {
                       "action": "more-info"
@@ -274,7 +249,7 @@
                   "chip": {
                     "type": "template",
                     "entity": "binary_sensor.hot_water_heater_leak_detected",
-                    "content": "Hot water heater",
+                    "content": "Hot water heater 🚩",
                     "icon": "mdi:water-alert",
                     "tap_action": {
                       "action": "more-info"
@@ -294,7 +269,7 @@
                   "chip": {
                     "type": "template",
                     "entity": "binary_sensor.storage_stairs_water_leak_detected",
-                    "content": "Storage stairs",
+                    "content": "Storage stairs 🚩",
                     "icon": "mdi:water-alert",
                     "tap_action": {
                       "action": "more-info"
@@ -314,26 +289,13 @@
                   "chip": {
                     "type": "template",
                     "entity": "binary_sensor.cellar_cooler_water_leak_detected",
-                    "content": "Cellar",
+                    "content": "Cellar 🚩",
                     "icon": "mdi:water-alert",
                     "tap_action": {
                       "action": "more-info"
                     },
                     "icon_color": "blue",
                     "name": "Cellary"
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "binary_sensor.tesla_wall_connector_contactor_closed",
-                      "state_not": "off"
-                    }
-                  ],
-                  "chip": {
-                    "type": "entity",
-                    "entity": "binary_sensor.tesla_wall_connector_contactor_closed"
                   }
                 }
               ]
@@ -1516,7 +1478,7 @@
                           }
                         },
                         "icon": "mdi:speaker",
-                        "content": "Add Deck",
+                        "content": "Add Deck ✓",
                         "icon_color": "blue"
                       }
                     },
@@ -1541,7 +1503,7 @@
                           "data": {}
                         },
                         "icon": "mdi:speaker-play",
-                        "content": "Deck playing",
+                        "content": "Deck playing ✓",
                         "icon_color": "teal"
                       }
                     },
@@ -1570,7 +1532,7 @@
                           }
                         },
                         "icon": "mdi:speaker",
-                        "content": "Add Studio",
+                        "content": "Add Studio ✓",
                         "icon_color": "blue"
                       }
                     },
@@ -1595,19 +1557,19 @@
                           "data": {}
                         },
                         "icon": "mdi:speaker-play",
-                        "content": "Studio playing",
+                        "content": "Studio playing ✓",
                         "icon_color": "teal"
                       }
                     },
                     {
                       "type": "template",
-                      "content": "{% if is_state('script.reset_speakers', 'on') %}\n  Resetting speakers\n{% else %}\n  Reset speakers\n{% endif %}",
+                      "content": "{% if is_state('script.reset_speakers', 'on') %}\n  Restoring speakers ⭮\n{% else %}\n  Restore speakers ✓\n{% endif %}",
                       "tap_action": {
                         "action": "call-service",
                         "service": "script.reset_speakers",
                         "target": {}
                       },
-                      "icon": "{% if is_state('script.reset_speakers', 'on') %}\n  mdi:loading\n{% else %}\n  mdi:play\n{% endif %}",
+                      "icon": "{% if is_state('script.reset_speakers', 'on') %}\n  mdi:loading\n{% else %}\n  mdi:backup-restore\n{% endif %}",
                       "icon_color": "{% if is_state('script.reset_speakers', 'on') %}\n  deep-purple\n{% else %}\n  blue\n{% endif %}"
                     }
                   ]
