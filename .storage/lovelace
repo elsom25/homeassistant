@@ -607,147 +607,54 @@
               ]
             },
             {
-              "type": "custom:layout-card",
-              "layout_type": "custom:horizontal-layout",
-              "layout": {
-                "width": 300,
-                "max_cols": 2,
-                "margin": 0
-              },
-              "cards": [
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "update.home_assistant_core_update",
-                      "state": "on"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:mushroom-update-card",
-                    "entity": "update.home_assistant_core_update",
-                    "icon": "mdi:home-assistant",
-                    "name": "Home Assistent",
-                    "show_buttons_control": true
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "update.home_assistant_operating_system_update",
-                      "state": "on"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:mushroom-update-card",
-                    "entity": "update.home_assistant_operating_system_update",
-                    "icon": "mdi:home-assistant",
-                    "name": "Home Assistant Operating System",
-                    "show_buttons_control": true
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "update.home_assistant_supervisor_update",
-                      "state": "on"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:mushroom-update-card",
-                    "entity": "update.home_assistant_supervisor_update",
-                    "icon": "mdi:home-assistant",
-                    "name": "Home Assistant Supervisor",
-                    "show_buttons_control": true
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "sensor.hacs",
-                      "state_not": "0"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:mushroom-update-card",
-                    "entity": "sensor.hacs",
-                    "icon": "hacs:hacs",
-                    "name": "HACS",
-                    "show_buttons_control": true,
-                    "tap_action": {
-                      "action": "navigate",
-                      "navigation_path": "/hacs"
-                    }
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "update.file_editor_update",
-                      "state": "on"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:mushroom-update-card",
-                    "entity": "update.file_editor_update",
-                    "icon": "mdi:file-document-edit",
-                    "name": "File editor",
-                    "show_buttons_control": true
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "update.node_red_update",
-                      "state": "on"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:mushroom-update-card",
-                    "entity": "update.node_red_update",
-                    "icon": "mdi:file-tree",
-                    "name": "Node RED",
-                    "show_buttons_control": true
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "update.terminal_ssh_update",
-                      "state": "on"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:mushroom-update-card",
-                    "entity": "update.terminal_ssh_update",
-                    "icon": "mdi:console",
-                    "name": "Terminal",
-                    "show_buttons_control": true
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "update.silicon_labs_multiprotocol_update",
-                      "state": "on"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:mushroom-update-card",
-                    "entity": "update.silicon_labs_multiprotocol_update",
-                    "icon": "mdi:multicast",
-                    "name": "Terminal",
-                    "show_buttons_control": true
-                  }
+              "type": "custom:auto-entities",
+              "show_empty": false,
+              "card": {
+                "type": "custom:layout-card",
+                "layout_type": "custom:horizontal-layout",
+                "layout": {
+                  "width": 300,
+                  "max_cols": 2,
+                  "margin": 0
                 }
-              ]
+              },
+              "card_param": "cards",
+              "filter": {
+                "include": [
+                  {
+                    "domain": "update",
+                    "state": "on",
+                    "options": {
+                      "type": "custom:mushroom-update-card",
+                      "show_buttons_control": true
+                    }
+                  },
+                  {
+                    "type": "conditional",
+                    "conditions": [
+                      {
+                        "entity": "sensor.hacs",
+                        "state_not": "0"
+                      }
+                    ],
+                    "card": {
+                      "type": "custom:mushroom-update-card",
+                      "entity": "sensor.hacs",
+                      "name": "HACS",
+                      "show_buttons_control": true,
+                      "tap_action": [
+                        {
+                          "action": "navigate",
+                          "navigation_path": "/hacs"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "sort": {
+                "method": "friendly_name"
+              }
             },
             {
               "type": "vertical-stack",
