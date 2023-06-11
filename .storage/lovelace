@@ -337,6 +337,7 @@
                         "cards": [
                           {
                             "type": "custom:mushroom-person-card",
+                            "name": "Jesse ➔",
                             "entity": "person.jesse",
                             "icon_type": "entity-picture",
                             "tap_action": {
@@ -398,6 +399,7 @@
                           {
                             "type": "custom:mushroom-person-card",
                             "entity": "person.andrew",
+                            "name": "Andrew ➔",
                             "icon_type": "entity-picture",
                             "tap_action": {
                               "action": "navigate",
@@ -639,7 +641,7 @@
                       "cards": [
                         {
                           "type": "custom:mushroom-template-card",
-                          "primary": "Living Room",
+                          "primary": "Living Room ➔",
                           "icon": "mdi:sofa",
                           "icon_color": "orange",
                           "secondary": "{{ states('sensor.living_room_temperature_3') }}°C\n({{ states('sensor.living_room_humidity_3') | int }}%)\n|\n{{ states('sensor.living_room_co2_2') | int }}ppm",
@@ -732,7 +734,7 @@
                       "cards": [
                         {
                           "type": "custom:mushroom-template-card",
-                          "primary": "Kitchen",
+                          "primary": "Kitchen ➔",
                           "icon": "mdi:stove",
                           "icon_color": "green",
                           "secondary": "{{ states('sensor.main_floor_temperature_2') }}°C\n({{ states('sensor.main_floor_humidity_2') | int }}%)\n|\n{{ states('sensor.main_floor_co2_2') | int }}ppm",
@@ -856,7 +858,7 @@
                       "cards": [
                         {
                           "type": "custom:mushroom-template-card",
-                          "primary": "Jesse's Office",
+                          "primary": "Jesse's Office ➔",
                           "icon": "mdi:desk",
                           "icon_color": "blue",
                           "secondary": "{{ states('sensor.office_temperature') }}°C\n({{ states('sensor.office_jesse_humidity') | int }}%)\n|\n{{ states('sensor.office_jesse_co2') | int }}ppm",
@@ -949,7 +951,7 @@
                       "cards": [
                         {
                           "type": "custom:mushroom-template-card",
-                          "primary": "Master Suite",
+                          "primary": "Master Suite ➔",
                           "icon": "mdi:bed",
                           "icon_color": "red",
                           "secondary": "{{ states('sensor.bedroom_temperature') }}°C\n({{ states('sensor.main_bedroom_humidity') | int }}%)\n|\n{{ states('sensor.main_bedroom_co2') | int }}ppm",
@@ -1052,7 +1054,7 @@
                       "cards": [
                         {
                           "type": "custom:mushroom-template-card",
-                          "primary": "Basement",
+                          "primary": "Basement ➔",
                           "icon": "mdi:television",
                           "icon_color": "purple",
                           "secondary": "{{ states('sensor.downstairs_temperature') }}°C\n({{ states('sensor.downstairs_humidity') | int }}%)\n|\n{{ states('sensor.tv_room_co2') | int }}ppm",
@@ -1178,7 +1180,7 @@
                             "cards": [
                               {
                                 "type": "custom:mushroom-template-card",
-                                "primary": "Entrance",
+                                "primary": "Entrance ➔",
                                 "icon": "mdi:door",
                                 "icon_color": "deep-orange",
                                 "tap_action": {
@@ -1296,7 +1298,7 @@
                             "cards": [
                               {
                                 "type": "custom:mushroom-template-card",
-                                "primary": "Studio & Backyard",
+                                "primary": "Studio & Backyard ➔",
                                 "icon": "mdi:office-building",
                                 "icon_color": "brown",
                                 "secondary": "{{ states('sensor.studio_temperature') }}°C\n({{ states('sensor.studio_humidity') | int }}%)",
