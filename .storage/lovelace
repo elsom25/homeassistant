@@ -1512,11 +1512,17 @@
                     {
                       "type": "template",
                       "tap_action": {
-                        "action": "more-info"
+                        "action": "none"
                       },
                       "content": "{% set active = states.media_player | selectattr('state', 'equalto', 'playing') | list | count %}\n\n{{ active }} playing",
                       "icon_color": "{% set active = states.media_player | selectattr('state', 'equalto', 'playing') | list | count %}\n{% if active > 0 %}\n  teal\n{% else %}\n  grey\n{% endif %}",
-                      "icon": "hass:amplifier"
+                      "icon": "hass:amplifier",
+                      "double_tap_action": {
+                        "action": "none"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      }
                     },
                     {
                       "type": "conditional",
@@ -1544,7 +1550,7 @@
                         },
                         "icon": "mdi:speaker",
                         "content": "Add Deck",
-                        "icon_color": "grey"
+                        "icon_color": "blue"
                       }
                     },
                     {
@@ -1598,7 +1604,7 @@
                         },
                         "icon": "mdi:speaker",
                         "content": "Add Studio",
-                        "icon_color": "grey"
+                        "icon_color": "blue"
                       }
                     },
                     {
@@ -1628,14 +1634,14 @@
                     },
                     {
                       "type": "template",
-                      "content": "Default setup",
+                      "content": "{% if is_state('script.reset_speakers', 'on') %}\n  Resetting speakers\n{% else %}\n  Reset speakers\n{% endif %}",
                       "tap_action": {
                         "action": "call-service",
                         "service": "script.reset_speakers",
                         "target": {}
                       },
-                      "icon": "mdi:flash-alert",
-                      "icon_color": "{% set active = states.media_player | selectattr('state', 'equalto', 'playing') | list | count %}\n{% if active > 0 %}\n  deep-purple\n{% else %}\n  grey\n{% endif %}"
+                      "icon": "{% if is_state('script.reset_speakers', 'on') %}\n  mdi:loading\n{% else %}\n  mdi:play\n{% endif %}",
+                      "icon_color": "{% if is_state('script.reset_speakers', 'on') %}\n  deep-purple\n{% else %}\n  blue\n{% endif %}"
                     }
                   ]
                 },
