@@ -1,0 +1,182 @@
+blueprint:
+  name: Play Random Media
+  description: This blueprint is used to add a script for playing media. The script
+    randomly chooses which media to use from the list given and provides shuffle,
+    repeat and volume options. If you have a multi-room setup (e.g. Sonos) additional
+    media players can be specified. The players will be grouped together with the
+    primary media player.
+  domain: script
+  input: {}
+  source_url: https://github.com/Talvish/home-assistant-blueprints/blob/main/script/play_random_media.yaml
+fields:
+  media_content_ids:
+    name: Content IDs
+    description: The list of IDs and one will be randomly chosen to play
+    example: https://open.spotify.com/playlist/37i9dQZF1DX4fQhfyVRsHW
+    required: true
+    selector:
+      object:
+  media_content_type:
+    name: Content Type
+    description: The type of content that will play. Platform dependent.
+    example: music
+    required: true
+    selector:
+      text:
+  entity_id:
+    description: The entity id that will be used to play and control the specified
+      media.
+    name: Entity
+    required: true
+    selector:
+      entity:
+        domain: media_player
+  group_members:
+    description: The entity ids of the additional entities to group together in a
+      multi-room system. This ignores all types but entity ids.
+    name: Group Members
+    required: false
+    selector:
+      target:
+        entity:
+          domain: media_player
+  shuffle:
+    name: Shuffle
+    description: True/false for enabling/disabling shuffle. If not set, current setting
+      is used.
+    required: false
+    selector:
+      boolean:
+  repeat:
+    name: Repeat Mode
+    description: Repeat mode set to off, all, one. If not set, current mode is used.
+    required: false
+    selector:
+      select:
+        options:
+        - 'off'
+        - all
+        - one
+  volume_level:
+    name: Volume Level
+    description: Float for volume level. Range 0..1. If a value isn't given, volume
+      isn't changed. If you specified Group Members the volume will be applied to
+      all members.
+    required: false
+    selector:
+      number:
+        min: 0
+        max: 1
+        step: 0.01
+        mode: slider
+variables:
+  media_content_id: "{% if media_content_ids is string %}\n  {{media_content_ids}}\n{%
+    elif media_content_ids is mapping %}\n  \"dictionary object isn't support\"\n{%
+    elif media_content_ids is iterable %} \n  {{ media_content_ids | random }}\n{%
+    else %}\n  \"specified object isn't support\"\n{% endif %}"
+sequence:
+- choose:
+  - conditions: '{{ group_members is defined }}
+
+      '
+    sequence:
+    - service: media_player.join
+      data:
+        group_members: "{# can't modify a list or reset a variable, so using a replaceable
+          array in a mutable container as work around#} {# we only uses entity_id,
+          and there will only be one given it is a dictionary #} {# but in the future
+          we can look at converting areas and devices into entities #} {%- set workaround
+          = namespace(members = []) -%} {%- for key in group_members if key == 'entity_id'-%}
+          \n  {%- set workaround.members = group_members[key] -%}\n{%- endfor -%}
+          \ {{ workaround.members }}"
+        entity_id: '{{ entity_id }}'
+- choose:
+  - conditions: '{{ repeat is defined }}
+
+      '
+    sequence:
+    - service: media_player.repeat_set
+      data:
+        repeat: '{{ repeat }}'
+        entity_id: '{{ entity_id }}'
+  default: []
+- choose:
+  - conditions: '{{ repeat is defined and shuffle is defined }}
+
+      '
+    sequence:
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 1
+        milliseconds: 0
+  default: []
+- choose:
+  - conditions: '{{ shuffle is defined }}
+
+      '
+    sequence:
+    - service: media_player.shuffle_set
+      data:
+        shuffle: '{{ shuffle }}'
+        entity_id: '{{ entity_id }}'
+  default: []
+- choose:
+  - conditions: '{{ volume_level is defined }}
+
+      '
+    sequence:
+    - service: media_player.volume_set
+      data:
+        volume_level: '{{ volume_level }}'
+        entity_id: '{{ entity_id }}'
+    - choose:
+      - conditions: '{{ group_members is defined }}
+
+          '
+        sequence:
+        - service: media_player.volume_set
+          data:
+            volume_level: '{{ volume_level }}'
+          target: '{{ group_members }}'
+      default: []
+  default: []
+- service: media_player.play_media
+  data:
+    media_content_id: '{{ media_content_id }}'
+    media_content_type: '{{ media_content_type }}'
+    entity_id: '{{ entity_id }}'
+- choose:
+  - conditions: '{{ shuffle is defined and is_state_attr(entity_id, ''shuffle'', shuffle)
+      == false }}
+
+      '
+    sequence:
+    - service: media_player.shuffle_set
+      data:
+        shuffle: '{{ shuffle }}'
+        entity_id: '{{ entity_id }}'
+    - choose:
+      - conditions: '{{ shuffle == true }}
+
+          '
+        sequence:
+        - service: media_player.media_next_track
+          data:
+            entity_id: '{{ entity_id }}'
+      default: []
+  default: []
+- choose:
+  - conditions: '{{ repeat is defined and is_state_attr(entity_id, ''repeat'', repeat)
+      == false }}
+
+      '
+    sequence:
+    - service: media_player.repeat_set
+      data:
+        repeat: '{{ repeat }}'
+        entity_id: '{{ entity_id }}'
+  default: []
+mode: parallel
+max_exceeded: silent
+icon: mdi:music-box-multiple-outline

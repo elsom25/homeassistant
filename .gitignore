@@ -7,9 +7,11 @@
 
 .cloud
 .HA_VERSION
+.ha_run.lock
 
 *.log*
 *.db*
+zigbee.db
 image
 tts
 
@@ -35,6 +37,8 @@ node-red/*
 node-red/*_cred.json
 node-red/settings.js
 
+# ESPHime
+esphome/secrets.yaml
 
 # TrueNAS Plugin
 packages

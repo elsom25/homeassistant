@@ -14,20 +14,6 @@
       - switch.adaptive_lighting_overhead
       - switch.adaptive_lighting_lamps
   mode: restart
-- id: '1609720268499'
-  alias: Light Mode - Sun @ Sunrise
-  description: ''
-  trigger:
-  - platform: sun
-    event: sunrise
-  condition: []
-  action:
-  - service: input_select.select_option
-    target:
-      entity_id: input_select.light_mode_dropdown
-    data:
-      option: Sun
-  mode: restart
 - id: '1624735000543'
   alias: Light Mode - Sleep
   description: ''
@@ -201,3 +187,94 @@
       message: '{{ trigger.to_state.name }} has changed to {{ trigger.to_state.state
         }} at {{ now().strftime(''%X'') }}.'
   mode: single
+- id: '1699127481758'
+  alias: Start Sunrise Alarm Based on Day
+  description: ''
+  trigger:
+  - platform: time
+    at: input_datetime.sunrise_start_weekdays
+  - platform: time
+    at: input_datetime.sunrise_start_weekends
+  condition:
+  - condition: state
+    entity_id: input_boolean.sunrise_alarm
+    state: 'on'
+  - condition: or
+    conditions:
+    - condition: and
+      conditions:
+      - condition: time
+        weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+      - condition: template
+        value_template: '{{ now().strftime(''%H:%M:%S'') == states(''input_datetime.sunrise_start_weekdays'')[0:8]
+          }}'
+    - condition: and
+      conditions:
+      - condition: time
+        weekday:
+        - sat
+        - sun
+      - condition: template
+        value_template: '{{ now().strftime(''%H:%M:%S'') == states(''input_datetime.sunrise_start_weekends'')[0:8]
+          }}'
+  action:
+  - service: script.sunrise_alarm
+    data: {}
+  mode: single
+- id: '1758484397009'
+  alias: Assist – Duck all playing speakers (run-start)
+  triggers:
+  - event_type: assist_pipeline
+    event_data:
+      type: run-start
+    trigger: event
+  actions:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ targets | length > 0 }}'
+      sequence:
+      - data:
+          scene_id: pre_assist_music_{{ run_id }}
+          snapshot_entities: '{{ targets }}'
+        action: scene.create
+      - delay: '00:00:00.10'
+      - repeat:
+          for_each: '{{ targets }}'
+          sequence:
+          - variables:
+              current: '{{ state_attr(repeat.item,''volume_level'') | float(0.4) }}'
+              new_vol: '{{ (current * duck_factor) | round(3) | min(1) | max(0.02)
+                }}'
+          - target:
+              entity_id: '{{ repeat.item }}'
+            data:
+              volume_level: '{{ new_vol }}'
+            action: media_player.volume_set
+  mode: restart
+  variables:
+    run_id: '{{ trigger.event.data.run_id }}'
+    players: "{{ states.media_player\n   | selectattr('state','in',['playing','buffering'])\n
+      \  | map(attribute='entity_id') | list }}\n"
+    duck_factor: 0.4
+    excluded: []
+    targets: "{{ players\n   | reject('in', excluded)\n   | list }}\n"
+- id: '1758484516060'
+  alias: Assist – Restore speakers (run-end)
+  triggers:
+  - event_type: assist_pipeline
+    event_data:
+      type: run-end
+    trigger: event
+  actions:
+  - target:
+      entity_id: scene.pre_assist_music_{{ run_id }}
+    action: scene.turn_on
+  mode: restart
+  variables:
+    run_id: '{{ trigger.event.data.run_id }}'

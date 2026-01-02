@@ -1,8 +1,6 @@
 default_config:
 
-discovery:
 history:
-map:
 mobile_app:
 stream:
 system_health:
@@ -60,40 +58,6 @@ notify:
       - service: mobile_app_jesse_iphone
       - service: mobile_app_jesses_ipad_pro
       - service: mobile_app_andrew_iphone
-
-sensor:
-  - platform: template
-    sensors:
-      home_status:
-        friendly_name: 'Home'
-        value_template: >-
-          {% if is_state('input_boolean.vacation', 'on') %}
-            Extended Away
-          {% elif states('input_select.jesse_status_dropdown') == states('input_select.andrew_status_dropdown') %}
-            {{ states('input_select.jesse_status_dropdown') }}
-          {% elif is_state('input_select.jesse_status_dropdown', 'Just Arrived') or is_state('input_select.andrew_status_dropdown', 'Just Arrived') %}
-            Just Arrived
-          {% elif is_state('input_select.jesse_status_dropdown', 'Just Left') or is_state('input_select.andrew_status_dropdown', 'Just Left') %}
-            Just Left
-          {% elif is_state('input_select.jesse_status_dropdown', 'Home') or is_state('input_select.andrew_status_dropdown', 'Home') %}
-            Some Home
-          {% else %}
-            Away
-          {% endif %}
-        icon_template: >-
-          {% if is_state('input_boolean.vacation', 'on') %}
-            mdi:home-alert
-          {% elif is_state('input_select.jesse_status_dropdown', 'Home') and is_state('input_select.andrew_status_dropdown', 'Home') %}
-            mdi:home-heart
-          {% elif is_state('input_select.jesse_status_dropdown', 'Away') and is_state('input_select.andrew_status_dropdown', 'Away') %}
-            mdi:home-minus
-          {% elif is_state('input_select.jesse_status_dropdown', 'Extended Away') and is_state('input_select.andrew_status_dropdown', 'Extended Away') %}
-            mdi:home-alert
-          {% elif is_state('input_select.jesse_status_dropdown', 'Home') or is_state('input_select.andrew_status_dropdown', 'Home') %}
-            mdi:home-account
-          {% else %}
-            mdi:home
-          {% endif %}
 
 tts:
   - platform: google_translate
