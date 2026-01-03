@@ -1,280 +1,803 @@
-- id: '1609713837113'
+# =============================================================================
+# HOME ASSISTANT AUTOMATIONS
+# Modern syntax (2024.8+): triggers, conditions, actions, action
+# =============================================================================
+
+# =============================================================================
+# LIGHT MODE AUTOMATIONS
+# =============================================================================
+
+- id: light_mode_manual
   alias: Light Mode - Manual
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: input_select.light_mode_dropdown
-    to: Manual
-  condition: []
-  action:
-  - service: homeassistant.turn_off
-    data: {}
-    target:
-      entity_id:
-      - switch.adaptive_lighting_overhead
-      - switch.adaptive_lighting_lamps
-  mode: restart
-- id: '1624735000543'
-  alias: Light Mode - Sleep
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: input_select.light_mode_dropdown
-    to: Sleep
-  condition: []
-  action:
-  - service: homeassistant.turn_on
-    data: {}
-    target:
-      entity_id:
-      - switch.adaptive_lighting_overhead
-      - switch.adaptive_lighting_lamps
-  - service: homeassistant.turn_on
-    target:
-      entity_id:
-      - switch.adaptive_lighting_sleep_mode_overhead
-      - switch.adaptive_lighting_sleep_mode_lamps
-  mode: restart
-- id: '1624735357292'
-  alias: Light Mode - Sun
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: input_select.light_mode_dropdown
-    to: Sun
-  condition: []
-  action:
-  - service: homeassistant.turn_on
-    data: {}
-    target:
-      entity_id:
-      - switch.adaptive_lighting_overhead
-      - switch.adaptive_lighting_lamps
-  - service: homeassistant.turn_off
-    target:
-      entity_id:
-      - switch.adaptive_lighting_sleep_mode_overhead
-      - switch.adaptive_lighting_sleep_mode_lamps
-  mode: restart
-- id: '1652830381918'
-  alias: Litter Robot — Timed Clean
-  description: ''
-  trigger:
-  - platform: time
-    at: 07:30:00
-  - platform: time
-    at: '22:00:00'
-  condition: []
-  action:
-  - service: script.reset_and_cycle_litter
-    data: {}
-  mode: restart
-- id: '1671567664532'
-  alias: 'Noficiation: Water leak'
-  description: Send a notification if a water leak is ever detected.
-  trigger:
-  - platform: state
-    entity_id:
-    - binary_sensor.boiler_water_leak_xs_sensor_water_leak_detected
-    to: 'on'
-  - platform: state
-    entity_id:
-    - input_button.test_notifications
-  - platform: state
-    entity_id:
-    - binary_sensor.cellar_cooler_water_leak_sensor_water_leak_detected
-    - binary_sensor.hot_water_heater_water_leak_sensor_water_leak_detected
-    - binary_sensor.storage_stairs_water_leak_sensor_water_leak_detected
-    to: 'on'
-  - platform: state
-    entity_id:
-    - binary_sensor.cellar_cooler_water_leak_detected
-    to: 'on'
-  - platform: state
-    entity_id:
-    - binary_sensor.hot_water_heater_leak_detected
-    to: 'on'
-  - platform: state
-    entity_id:
-    - binary_sensor.storage_stairs_water_leak_detected
-    to: 'on'
-  condition: []
-  action:
-  - service: notify.notify
-    data:
-      title: There's a water leak!
-      message: '{{ trigger.to_state.name }} has detected water.'
-      data:
-        push:
-          sound:
-            name: default
-            critical: 1
-            volume: 1
-  mode: single
-- id: '1671571619287'
-  alias: 'Notification: Door open when leaving '
-  description: Send an alert if any door is open when we leave the house.
-  trigger:
-  - platform: state
-    entity_id:
-    - sensor.home_status
-    to: Away
-  - platform: state
-    entity_id:
-    - input_button.test_notifications
-  condition:
-  - condition: or
-    conditions:
-    - type: is_open
-      condition: device
-      device_id: a8db82cda3c5bdb3f740f053cfb36084
-      entity_id: binary_sensor.front_door_open
-      domain: binary_sensor
-    - type: is_open
-      condition: device
-      device_id: d6c416ace546657017936758a806cb03
-      entity_id: binary_sensor.studio_door_open
-      domain: binary_sensor
-    - condition: device
-      device_id: 5830e65a30312842915a1690e06ce05b
-      domain: cover
-      entity_id: cover.studio_garage_door
-      type: is_open
-  action:
-  - service: notify.notify
-    data:
-      title: Door left open!
-      message: One of our doors was left open.
-      data:
-        push:
-          sound:
-            name: default
-            critical: 1
-            volume: 1
-  mode: single
-- id: '1671572503313'
-  alias: 'Notification: Door opened while away'
-  description: Send a notification if a door is opened while we're away.
-  trigger:
-  - platform: state
-    entity_id:
-    - input_button.test_notifications
-  - platform: state
-    entity_id:
-    - lock.front_door
-    to: unlocked
-  - platform: state
-    entity_id:
-    - lock.studio_door
-    to: unlocked
-  - platform: state
-    entity_id:
-    - cover.studio_garage_door
-    to: opening
-  condition:
-  - condition: or
-    conditions:
-    - condition: state
-      entity_id: sensor.home_status
-      state: Away
-    - condition: state
-      entity_id: sensor.home_status
-      state: Extended Away
-  action:
-  - service: notify.notify
-    data:
-      title: Someone unlocked a door
-      message: '{{ trigger.to_state.name }} has changed to {{ trigger.to_state.state
-        }} at {{ now().strftime(''%X'') }}.'
-  mode: single
-- id: '1699127481758'
-  alias: Start Sunrise Alarm Based on Day
-  description: ''
-  trigger:
-  - platform: time
-    at: input_datetime.sunrise_start_weekdays
-  - platform: time
-    at: input_datetime.sunrise_start_weekends
-  condition:
-  - condition: state
-    entity_id: input_boolean.sunrise_alarm
-    state: 'on'
-  - condition: or
-    conditions:
-    - condition: and
-      conditions:
-      - condition: time
-        weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-      - condition: template
-        value_template: '{{ now().strftime(''%H:%M:%S'') == states(''input_datetime.sunrise_start_weekdays'')[0:8]
-          }}'
-    - condition: and
-      conditions:
-      - condition: time
-        weekday:
-        - sat
-        - sun
-      - condition: template
-        value_template: '{{ now().strftime(''%H:%M:%S'') == states(''input_datetime.sunrise_start_weekends'')[0:8]
-          }}'
-  action:
-  - service: script.sunrise_alarm
-    data: {}
-  mode: single
-- id: '1758484397009'
-  alias: Assist – Duck all playing speakers (run-start)
+  description: Disable adaptive lighting when manual mode is selected
   triggers:
-  - event_type: assist_pipeline
-    event_data:
-      type: run-start
-    trigger: event
+    - trigger: state
+      entity_id: input_select.light_mode_dropdown
+      to: Manual
   actions:
-  - choose:
-    - conditions:
-      - condition: template
-        value_template: '{{ targets | length > 0 }}'
-      sequence:
-      - data:
-          scene_id: pre_assist_music_{{ run_id }}
-          snapshot_entities: '{{ targets }}'
-        action: scene.create
-      - delay: '00:00:00.10'
-      - repeat:
-          for_each: '{{ targets }}'
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - switch.adaptive_lighting_overhead
+          - switch.adaptive_lighting_lamps
+
+- id: light_mode_sleep
+  alias: Light Mode - Sleep
+  description: Enable adaptive lighting with sleep mode when sleep mode is selected
+  triggers:
+    - trigger: state
+      entity_id: input_select.light_mode_dropdown
+      to: Sleep
+  actions:
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - switch.adaptive_lighting_overhead
+          - switch.adaptive_lighting_lamps
+          - switch.adaptive_lighting_sleep_mode_overhead
+          - switch.adaptive_lighting_sleep_mode_lamps
+
+- id: light_mode_sun
+  alias: Light Mode - Sun
+  description: Enable adaptive lighting without sleep mode when sun mode is selected
+  triggers:
+    - trigger: state
+      entity_id: input_select.light_mode_dropdown
+      to: Sun
+  actions:
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - switch.adaptive_lighting_overhead
+          - switch.adaptive_lighting_lamps
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - switch.adaptive_lighting_sleep_mode_overhead
+          - switch.adaptive_lighting_sleep_mode_lamps
+
+# =============================================================================
+# SCHEDULED TASKS
+# =============================================================================
+
+- id: litter_robot_timed_clean
+  alias: Litter Robot — Timed Clean
+  description: Clean litter robot twice daily
+  triggers:
+    - trigger: time
+      at:
+        - "07:30:00"
+        - "22:00:00"
+  actions:
+    - action: script.reset_and_cycle_litter
+
+# =============================================================================
+# NOTIFICATIONS
+# =============================================================================
+
+- id: notification_water_leak
+  alias: "Notification: Water leak"
+  description: Send critical notification if any water leak is detected
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.boiler_water_leak_xs_sensor_water_leak_detected
+        - binary_sensor.cellar_cooler_water_leak_sensor_water_leak_detected
+        - binary_sensor.hot_water_heater_water_leak_sensor_water_leak_detected
+        - binary_sensor.storage_stairs_water_leak_sensor_water_leak_detected
+        - binary_sensor.cellar_cooler_water_leak_detected
+        - binary_sensor.hot_water_heater_leak_detected
+        - binary_sensor.storage_stairs_water_leak_detected
+      to: "on"
+    - trigger: state
+      entity_id: input_button.test_notifications
+  actions:
+    - action: notify.notify
+      data:
+        title: There's a water leak!
+        message: "{{ trigger.to_state.name }} has detected water."
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1
+
+- id: notification_door_open_leaving
+  alias: "Notification: Door open when leaving"
+  description: Alert if any door is left open when leaving home
+  triggers:
+    - trigger: state
+      entity_id: sensor.home_status
+      to: Away
+    - trigger: state
+      entity_id: input_button.test_notifications
+  conditions:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.front_door_open
+          state: "on"
+        - condition: state
+          entity_id: binary_sensor.studio_door_open
+          state: "on"
+        - condition: state
+          entity_id: cover.studio_garage_door
+          state: open
+  actions:
+    - action: notify.notify
+      data:
+        title: Door left open!
+        message: One of our doors was left open.
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1
+
+- id: notification_door_opened_while_away
+  alias: "Notification: Door opened while away"
+  description: Alert if a door is unlocked/opened while we're away
+  triggers:
+    - trigger: state
+      entity_id: input_button.test_notifications
+    - trigger: state
+      entity_id:
+        - lock.front_door
+        - lock.studio_door
+      to: unlocked
+    - trigger: state
+      entity_id: cover.studio_garage_door
+      to: opening
+  conditions:
+    - "{{ states('sensor.home_status') in ['Away', 'Extended Away'] }}"
+  actions:
+    - action: notify.notify
+      data:
+        title: Someone unlocked a door
+        message: >-
+          {{ trigger.to_state.name }} has changed to {{ trigger.to_state.state }}
+          at {{ now().strftime('%X') }}.
+
+# =============================================================================
+# PRESENCE STATE MACHINES (Blueprint-based)
+# =============================================================================
+
+- id: presence_jesse
+  alias: Presence State Machine - Jesse
+  description: >-
+    Manages Jesse's presence state with timed transitions
+    (Just Arrived, Just Left, Away, Extended Away)
+  use_blueprint:
+    path: homeassistant/presence_state_machine.yaml
+    input:
+      person_entity: person.jesse
+      status_dropdown: input_select.jesse_status_dropdown
+
+- id: presence_andrew
+  alias: Presence State Machine - Andrew
+  description: >-
+    Manages Andrew's presence state with timed transitions
+    (Just Arrived, Just Left, Away, Extended Away)
+  use_blueprint:
+    path: homeassistant/presence_state_machine.yaml
+    input:
+      person_entity: person.andrew
+      status_dropdown: input_select.andrew_status_dropdown
+
+# =============================================================================
+# SEASONAL MODE
+# =============================================================================
+
+- id: seasonal_mode_auto_set
+  alias: Seasonal Mode - Auto Set
+  description: Automatically set seasonal mode based on current date
+  triggers:
+    - trigger: time
+      at: "00:00:00"
+    - trigger: homeassistant
+      event: start
+  actions:
+    - action: input_select.select_option
+      target:
+        entity_id: input_select.seasonal_mode
+      data:
+        option: >-
+          {% set month, day = now().month, now().day %}
+          {% if month == 10 and day == 31 %}
+            Halloween
+          {% elif month == 12 and day <= 25 %}
+            Christmas
+          {% elif month in [11, 12, 1] %}
+            Christmas Season
+          {% else %}
+            Normal
+          {% endif %}
+
+# =============================================================================
+# SUN PHASE TRACKING
+# Uses elevation angles for accuracy across seasons
+# Timeline: Night → Nautical Dawn → Dawn → Day → Golden Hour → Dusk → Night
+# =============================================================================
+
+- id: sun_phase_auto_set
+  alias: Sun Phase - Auto Set
+  description: Track sun phases using elevation angles for accuracy across seasons
+  mode: single
+  variables:
+    # Sun phase thresholds (degrees)
+    nautical_dawn_angle: -12
+    civil_dawn_angle: -6
+    golden_hour_angle: 6
+  triggers:
+    # Morning transitions (elevation rising)
+    - trigger: numeric_state
+      entity_id: sun.sun
+      attribute: elevation
+      above: -12
+      id: nautical_dawn
+    - trigger: numeric_state
+      entity_id: sun.sun
+      attribute: elevation
+      above: -6
+      id: dawn
+    - trigger: numeric_state
+      entity_id: sun.sun
+      attribute: elevation
+      above: 0
+      id: day
+    # Evening transitions (elevation falling)
+    - trigger: numeric_state
+      entity_id: sun.sun
+      attribute: elevation
+      below: 6
+      id: golden_hour
+    - trigger: numeric_state
+      entity_id: sun.sun
+      attribute: elevation
+      below: 0
+      id: dusk
+    - trigger: numeric_state
+      entity_id: sun.sun
+      attribute: elevation
+      below: -6
+      id: night
+    # Startup
+    - trigger: homeassistant
+      event: start
+      id: startup
+  actions:
+    - action: input_select.select_option
+      target:
+        entity_id: input_select.sun_phase
+      data:
+        option: >-
+          {% if trigger.id == 'startup' %}
+            {% set elev = state_attr('sun.sun', 'elevation') | float(0) %}
+            {% set rising = state_attr('sun.sun', 'rising') | default(true) %}
+            {% if elev < -12 %}Night
+            {% elif elev < -6 %}{{ 'Nautical Dawn' if rising else 'Night' }}
+            {% elif elev < 0 %}{{ 'Dawn' if rising else 'Dusk' }}
+            {% elif elev < 6 %}{{ 'Day' if rising else 'Golden Hour' }}
+            {% else %}Day
+            {% endif %}
+          {% else %}
+            {{ {
+              'nautical_dawn': 'Nautical Dawn',
+              'dawn': 'Dawn',
+              'day': 'Day',
+              'golden_hour': 'Golden Hour',
+              'dusk': 'Dusk',
+              'night': 'Night'
+            }.get(trigger.id, 'Day') }}
+          {% endif %}
+
+# =============================================================================
+# LIGHTING AUTOMATIONS - Sun Phase Triggered
+# =============================================================================
+
+- id: lights_dawn_reset
+  alias: Lights - Dawn Reset
+  description: At nautical dawn, reset light mode to Sun and turn off outdoor lights
+  triggers:
+    - trigger: state
+      entity_id: input_select.sun_phase
+      to: Nautical Dawn
+  actions:
+    - parallel:
+        - alias: "Set light mode to Sun"
+          action: input_select.select_option
+          target:
+            entity_id: input_select.light_mode_dropdown
+          data:
+            option: Sun
+        - alias: "Turn off outdoor lights"
+          action: script.outdoor_lights_off
+
+- id: lights_golden_hour
+  alias: Lights - Golden Hour
+  description: At golden hour, turn on main floor lights if someone is home
+  triggers:
+    - trigger: state
+      entity_id: input_select.sun_phase
+      to: Golden Hour
+  conditions:
+    - "{{ states('sensor.home_status') in ['Just Arrived', 'Some Home', 'Home'] }}"
+  actions:
+    - alias: "Turn on main floor lights"
+      action: homeassistant.turn_on
+      target:
+        entity_id:
+          - light.main_floor_pendants
+          - light.main_floor
+
+- id: lights_sunset_routine
+  alias: Lights - Sunset Routine
+  description: At sunset (dusk), adjust lighting based on home status and season
+  triggers:
+    - trigger: state
+      entity_id: input_select.sun_phase
+      to: Dusk
+  variables:
+    is_halloween: "{{ is_state('input_select.seasonal_mode', 'Halloween') }}"
+    is_home: "{{ states('sensor.home_status') in ['Just Arrived', 'Some Home', 'Home'] }}"
+    is_vacation: "{{ is_state('sensor.home_status', 'Extended Away') }}"
+    is_away: "{{ is_state('sensor.home_status', 'Away') }}"
+  actions:
+    # Always turn off overheads at sunset
+    - alias: "Turn off main floor overheads"
+      action: homeassistant.turn_off
+      target:
+        entity_id: light.main_floor_overheads
+    # Turn on outdoor lights (except Halloween)
+    - if:
+        - "{{ not is_halloween }}"
+      then:
+        - alias: "Turn on outdoor lights"
+          action: script.outdoor_lights_on
+    # If home or on vacation, turn on indoor lights
+    - if:
+        - "{{ is_home or is_vacation }}"
+      then:
+        - parallel:
+            - alias: "Turn on main floor interior lights"
+              action: homeassistant.turn_on
+              target:
+                entity_id:
+                  - light.main_floor_pendants
+                  - light.main_floor
+            - alias: "Turn on Christmas lights if in season"
+              action: script.christmas_lights_on
+    # If away (not vacation), simulate presence with random delay
+    - if:
+        - "{{ is_away }}"
+      then:
+        - alias: "Random delay for pseudo-presence"
+          delay:
+            minutes: "{{ range(0, 20) | random }}"
+        - alias: "Turn on presence simulation lights"
+          action: homeassistant.turn_on
+          target:
+            entity_id:
+              - light.living_room_primary
+              - light.kitchen_underlight
+
+- id: lights_late_night_off
+  alias: Lights - Late Night Off
+  description: At 23:30, turn off outdoor lights. If on vacation, also run goodnight
+  triggers:
+    - trigger: time
+      at: "23:30:00"
+  actions:
+    # Turn off outdoor lights with small random delay
+    - alias: "Random delay for pseudo-presence"
+      delay:
+        minutes: "{{ range(0, 10) | random }}"
+    - alias: "Turn off outdoor lights"
+      action: script.outdoor_lights_off
+    # If on vacation, run goodnight script with additional random delay
+    - if:
+        - "{{ is_state('sensor.home_status', 'Extended Away') }}"
+      then:
+        - alias: "Additional random delay for vacation mode"
+          delay:
+            minutes: "{{ range(0, 20) | random }}"
+        - alias: "Run goodnight script"
+          action: script.turn_on
+          target:
+            entity_id: script.1514647809398
+
+# =============================================================================
+# VACATION PRESENCE SIMULATION
+# Consolidated from separate morning/evening routines
+# =============================================================================
+
+- id: vacation_presence_simulation
+  alias: Vacation - Presence Simulation
+  description: Simulate realistic daily activity patterns when on vacation (Extended Away)
+  mode: single
+  triggers:
+    # Morning triggers
+    - trigger: time
+      at: "08:00:00"
+      id: weekday_morning
+    - trigger: time
+      at: "08:30:00"
+      id: weekday_bedroom_off
+    - trigger: time
+      at: "08:45:00"
+      id: weekday_office_on
+    - trigger: time
+      at: "09:00:00"
+      id: weekend_morning
+    - trigger: time
+      at: "09:30:00"
+      id: weekend_bedroom_off
+    # Evening triggers
+    - trigger: time
+      at: "17:30:00"
+      id: weekday_office_off
+    - trigger: time
+      at: "22:00:00"
+      id: bedtime
+    - trigger: time
+      at: "00:30:00"
+      id: goodnight
+  variables:
+    is_weekday: "{{ now().weekday() < 5 }}"
+    is_weekend: "{{ now().weekday() >= 5 }}"
+    random_delay: "{{ range(0, 20) | random }}"
+  conditions:
+    - condition: or
+      conditions:
+        - "{{ is_state('sensor.home_status', 'Extended Away') }}"
+        # Goodnight also runs for Away status
+        - "{{ trigger.id == 'goodnight' and is_state('sensor.home_status', 'Away') }}"
+  actions:
+    - alias: "Random delay for realistic timing"
+      delay:
+        minutes: "{{ random_delay }}"
+    - choose:
+        # Weekday morning - Good morning routine
+        - conditions:
+            - "{{ trigger.id == 'weekday_morning' and is_weekday }}"
           sequence:
-          - variables:
-              current: '{{ state_attr(repeat.item,''volume_level'') | float(0.4) }}'
-              new_vol: '{{ (current * duck_factor) | round(3) | min(1) | max(0.02)
-                }}'
-          - target:
-              entity_id: '{{ repeat.item }}'
-            data:
-              volume_level: '{{ new_vol }}'
-            action: media_player.volume_set
+            - parallel:
+                - alias: "Run good morning script"
+                  action: script.good_morning
+                - alias: "Turn on Christmas lights if in season"
+                  action: script.christmas_lights_on
+
+        # Weekday - Master suite off
+        - conditions:
+            - "{{ trigger.id == 'weekday_bedroom_off' and is_weekday }}"
+          sequence:
+            - alias: "Turn off master suite"
+              action: homeassistant.turn_off
+              target:
+                entity_id: light.master_suite
+
+        # Weekday - Office on
+        - conditions:
+            - "{{ trigger.id == 'weekday_office_on' and is_weekday }}"
+          sequence:
+            - alias: "Turn on office (spare room)"
+              action: homeassistant.turn_on
+              target:
+                entity_id: light.spare_room
+
+        # Weekday - Office off (evening)
+        - conditions:
+            - "{{ trigger.id == 'weekday_office_off' and is_weekday }}"
+          sequence:
+            - alias: "Turn off office (spare room)"
+              action: homeassistant.turn_off
+              target:
+                entity_id: light.spare_room
+
+        # Weekend morning - Good morning routine
+        - conditions:
+            - "{{ trigger.id == 'weekend_morning' and is_weekend }}"
+          sequence:
+            - parallel:
+                - alias: "Run good morning script"
+                  action: script.good_morning
+                - alias: "Turn on Christmas lights if in season"
+                  action: script.christmas_lights_on
+
+        # Weekend - Master suite off
+        - conditions:
+            - "{{ trigger.id == 'weekend_bedroom_off' and is_weekend }}"
+          sequence:
+            - alias: "Turn off master suite"
+              action: homeassistant.turn_off
+              target:
+                entity_id: light.master_suite
+
+        # Bedtime routine
+        - conditions:
+            - "{{ trigger.id == 'bedtime' }}"
+          sequence:
+            - alias: "Run bedtime script"
+              action: script.turn_on
+              target:
+                entity_id: script.1523806783160
+
+        # Goodnight routine (runs for both Away and Extended Away)
+        - conditions:
+            - "{{ trigger.id == 'goodnight' }}"
+          sequence:
+            - alias: "Run goodnight script"
+              action: script.turn_on
+              target:
+                entity_id: script.1514647809398
+
+# =============================================================================
+# PRESENCE-TRIGGERED LIGHTING
+# =============================================================================
+
+- id: lights_coming_home
+  alias: Lights - Coming Home
+  description: Turn on welcome lights when arriving home from away
+  triggers:
+    - trigger: state
+      entity_id: sensor.home_status
+      from:
+        - Away
+        - Extended Away
+      to:
+        - Just Arrived
+        - Some Home
+        - Home
+  variables:
+    sun_phase: "{{ states('input_select.sun_phase') }}"
+    is_bright: "{{ sun_phase == 'Day' }}"
+    is_dim: "{{ sun_phase in ['Night', 'Nautical Dawn', 'Dawn', 'Golden Hour', 'Dusk'] }}"
+  actions:
+    - parallel:
+        # Always turn on these lights
+        - alias: "Turn on bar and kitchen underlight"
+          action: homeassistant.turn_on
+          target:
+            entity_id:
+              - light.butlers_pantry
+              - light.kitchen_underlight
+        # Resume music
+        - alias: "Resume music playback"
+          action: media_player.media_play
+          target:
+            entity_id: media_player.living_room
+        # Christmas lights if in season
+        - alias: "Turn on Christmas lights if in season"
+          action: script.christmas_lights_on
+    # Daytime (bright): turn on overheads
+    - if:
+        - "{{ is_bright }}"
+      then:
+        - alias: "Turn on overheads for daytime arrival"
+          action: homeassistant.turn_on
+          target:
+            entity_id: light.main_floor_overheads
+    # Low light (twilight/dark): turn on living room and pendants
+    - if:
+        - "{{ is_dim }}"
+      then:
+        - alias: "Turn on all main floor lights for evening arrival"
+          action: homeassistant.turn_on
+          target:
+            entity_id:
+              - light.living_room
+              - light.main_floor_pendants
+              - light.main_floor_overheads
+
+- id: lights_going_away
+  alias: Lights - Going Away
+  description: Turn off lights when leaving home, with pseudo-presence if at night
+  mode: restart
+  triggers:
+    - trigger: state
+      entity_id: sensor.home_status
+      to:
+        - Away
+        - Extended Away
+  variables:
+    is_dim: >-
+      {{ states('input_select.sun_phase') in
+         ['Night', 'Nautical Dawn', 'Dawn', 'Golden Hour', 'Dusk'] }}
+  actions:
+    # Random delay for pseudo-presence effect
+    - alias: "Random delay for pseudo-presence"
+      delay:
+        minutes: "{{ range(5, 25) | random }}"
+    - parallel:
+        # Turn off interior lights
+        - alias: "Turn off all interior lights"
+          action: homeassistant.turn_off
+          target:
+            entity_id:
+              - light.entrance
+              - light.butlers_pantry
+              - light.main_floor_overheads
+              - light.main_floor_pendants
+              - light.living_room
+              - light.elgato_key_light_left
+              - light.elgato_key_light_right
+              - light.spare_room
+        # Pause music
+        - alias: "Pause music playback"
+          action: media_player.media_pause
+          target:
+            entity_id: media_player.living_room
+        # Disconnect outdoor speakers
+        - alias: "Disconnect outdoor speakers"
+          action: media_player.unjoin
+          target:
+            device_id:
+              - d0b9ca9193e0b053774fde7b15ba8525
+              - 7cde79fc075f43f6f3a5d11813c4e0b1
+    # If low light, turn on some lights after a short delay for pseudo-presence
+    - if:
+        - "{{ is_dim }}"
+      then:
+        - alias: "Brief delay before pseudo-presence lights"
+          delay:
+            seconds: 10
+        - alias: "Turn on pseudo-presence lights"
+          action: homeassistant.turn_on
+          target:
+            entity_id:
+              - light.living_room_primary
+              - light.kitchen_underlight
+
+- id: lights_front_door_motion
+  alias: Lights - Front Door Motion
+  description: Turn on entrance light when front door is opened or unlocked
+  mode: restart
+  triggers:
+    - trigger: state
+      entity_id: binary_sensor.front_door_open
+      to: "on"
+    - trigger: state
+      entity_id: lock.front_door
+      to: unlocked
+  actions:
+    - action: homeassistant.turn_on
+      target:
+        entity_id: light.entrance
+    - delay:
+        minutes: 3
+    - action: homeassistant.turn_off
+      target:
+        entity_id: light.entrance
+
+# =============================================================================
+# SUNRISE ALARM
+# =============================================================================
+
+- id: sunrise_alarm_winter
+  alias: Sunrise Alarm - Winter Only
+  description: Run sunrise alarm script only during winter months when home
+  triggers:
+    - trigger: time
+      at: input_datetime.sunrise_start_weekdays
+      id: weekday
+    - trigger: time
+      at: input_datetime.sunrise_start_weekends
+      id: weekend
+  variables:
+    # Winter: Oct 28 - Mar 15
+    is_winter: >-
+      {{ (now().month >= 10 and now().day >= 28) or
+         (now().month <= 3 and now().day <= 15) or
+         now().month in [11, 12, 1, 2] }}
+    is_weekday: "{{ now().weekday() < 5 }}"
+    is_weekend: "{{ now().weekday() >= 5 }}"
+    is_home: "{{ states('sensor.home_status') in ['Just Arrived', 'Some Home', 'Home'] }}"
+  conditions:
+    - "{{ is_state('input_boolean.sunrise_alarm', 'on') }}"
+    - "{{ is_winter }}"
+    - "{{ is_home }}"
+    # Check correct day of week for trigger
+    - "{{ (trigger.id == 'weekday' and is_weekday) or (trigger.id == 'weekend' and is_weekend) }}"
+  actions:
+    - action: script.bedroom_sunrise
+
+# =============================================================================
+# EIGHT SLEEP BED CONTROL
+# =============================================================================
+
+- id: eight_sleep_vacation_on
+  alias: Eight Sleep - Vacation Mode On
+  description: Turn off Eight Sleep bed when person goes on vacation
+  mode: parallel
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_select.jesse_status_dropdown
+        - input_select.andrew_status_dropdown
+      to: Extended Away
+  actions:
+    - action: eight_sleep.away_mode_start
+      target:
+        entity_id: >-
+          sensor.{{ trigger.entity_id | replace('input_select.', '')
+            | replace('_status_dropdown', '') }}_s_bed_temperature
+
+- id: eight_sleep_vacation_off
+  alias: Eight Sleep - Vacation Mode Off
+  description: Turn on Eight Sleep bed when person returns from vacation
+  mode: parallel
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_select.jesse_status_dropdown
+        - input_select.andrew_status_dropdown
+      from: Extended Away
+      to:
+        - Just Arrived
+        - Home
+  actions:
+    - action: eight_sleep.away_mode_stop
+      target:
+        entity_id: >-
+          sensor.{{ trigger.entity_id | replace('input_select.', '')
+            | replace('_status_dropdown', '') }}_s_bed_temperature
+
+# =============================================================================
+# VOICE ASSISTANT - AUDIO DUCKING
+# =============================================================================
+
+- id: assist_duck_speakers_run_start
+  alias: Assist – Duck all playing speakers (run-start)
+  description: Lower volume of playing speakers when voice assistant activates
   mode: restart
   variables:
-    run_id: '{{ trigger.event.data.run_id }}'
-    players: "{{ states.media_player\n   | selectattr('state','in',['playing','buffering'])\n
-      \  | map(attribute='entity_id') | list }}\n"
+    run_id: "{{ trigger.event.data.run_id }}"
+    players: >-
+      {{ states.media_player
+         | selectattr('state', 'in', ['playing', 'buffering'])
+         | map(attribute='entity_id') | list }}
     duck_factor: 0.4
     excluded: []
-    targets: "{{ players\n   | reject('in', excluded)\n   | list }}\n"
-- id: '1758484516060'
-  alias: Assist – Restore speakers (run-end)
+    targets: "{{ players | reject('in', excluded) | list }}"
   triggers:
-  - event_type: assist_pipeline
-    event_data:
-      type: run-end
-    trigger: event
+    - trigger: event
+      event_type: assist_pipeline
+      event_data:
+        type: run-start
+  conditions:
+    - "{{ targets | length > 0 }}"
   actions:
-  - target:
-      entity_id: scene.pre_assist_music_{{ run_id }}
-    action: scene.turn_on
+    - action: scene.create
+      data:
+        scene_id: "pre_assist_music_{{ run_id }}"
+        snapshot_entities: "{{ targets }}"
+    - delay: "00:00:00.10"
+    - repeat:
+        for_each: "{{ targets }}"
+        sequence:
+          - variables:
+              current: "{{ state_attr(repeat.item, 'volume_level') | float(0.4) }}"
+              new_vol: "{{ (current * duck_factor) | round(3) | min(1) | max(0.02) }}"
+          - action: media_player.volume_set
+            target:
+              entity_id: "{{ repeat.item }}"
+            data:
+              volume_level: "{{ new_vol }}"
+
+- id: assist_restore_speakers_run_end
+  alias: Assist – Restore speakers (run-end)
+  description: Restore speaker volumes when voice assistant finishes
   mode: restart
   variables:
-    run_id: '{{ trigger.event.data.run_id }}'
+    run_id: "{{ trigger.event.data.run_id }}"
+  triggers:
+    - trigger: event
+      event_type: assist_pipeline
+      event_data:
+        type: run-end
+  actions:
+    - action: scene.turn_on
+      target:
+        entity_id: "scene.pre_assist_music_{{ run_id }}"

@@ -1,364 +1,452 @@
+# =============================================================================
+# HOME ASSISTANT SCRIPTS
+# Modern syntax (2024.8+): action instead of service
+# =============================================================================
+
 '1514647809398':
   alias: Goodnight
-  sequence:
-  - data:
-      entity_id: input_select.light_mode_dropdown
-      option: Sleep
-    action: input_select.select_option
-  - data: {}
-    action: script.reset_speakers
-  - parallel:
-    - data: {}
-      target:
-        entity_id:
-        - media_player.bedroom
-        - media_player.deck
-        - media_player.kitchen
-        - media_player.living_room
-        - media_player.mainfloor_bathroom
-        - media_player.media_room
-        - media_player.office_andrew
-        - media_player.office_jesse
-        - media_player.sonos_move
-        - media_player.studio
-      action: media_player.clear_playlist
-    - data: {}
-      target:
-        entity_id:
-        - light.master_bathroom
-        - light.master_bedroom
-        - light.spare_room
-        - light.kitchen
-        - light.main_floor
-        - light.basement
-        - light.main_floor_overheads
-        - light.main_floor_pendants
-        - light.studio_outdoors
-        - light.outdoor_fence_plug
-        - light.studio
-        - light.living_room
-        - light.christmas_lights
-      action: homeassistant.turn_off
-    - target:
-        entity_id:
-        - lock.front_door
-        - lock.studio_door
-      data: {}
-      action: lock.lock
-  - data:
-      volume_level: 0.16
-    target:
-      entity_id: media_player.bedroom
-    enabled: false
-    action: media_player.volume_set
+  description: Turn off lights, lock doors, set sleep mode
   mode: restart
   icon: mdi:weather-night
-'1523806783160':
-  alias: Bedtime
   sequence:
-  - data: {}
-    target:
-      entity_id:
-      - light.master_suite
-    action: homeassistant.turn_on
-  - data: {}
-    target:
-      entity_id:
-      - light.butlers_pantry
-      - light.spare_room
-      - light.main_floor_pendants
-      - light.studio
-    action: homeassistant.turn_off
-  - data: {}
-    enabled: false
-    action: script.reset_speakers
-  - action: music_assistant.play_media
-    metadata: {}
-    data:
-      media_id: Bedtime Beats
-      enqueue: replace_next
-      media_type: playlist
-      radio_mode: true
-    target:
-      entity_id: media_player.ma_living_room
-  mode: restart
-  icon: mdi:weather-sunset-down
-  description: ''
-good_morning:
-  alias: Good morning
-  sequence:
-  - data:
-      entity_id: input_select.light_mode_dropdown
-      option: Sun
-    action: input_select.select_option
-    alias: Set light mode to Sun
-  - parallel:
-    - target:
-        entity_id:
-        - light.butlers_pantry
-        - light.kitchen_underlight
-        - light.christmas_lights
-      data: {}
-      action: homeassistant.turn_on
-    - data:
-        brightness_pct: 30
+    - action: input_select.select_option
       target:
-        entity_id: light.main_floor_overheads
-      action: light.turn_on
-    alias: Turn on mainfloor lights
-  - data: {}
-    action: script.reset_speakers
-  - alias: Disconnect bedroom speaker if in bed
-    if:
-    - alias: Not
-      condition: not
-      conditions:
-      - condition: state
-        entity_id: binary_sensor.andrew_s_eight_sleep_side_bed_presence
-        state:
-        - 'off'
-    then:
-    - data: {}
+        entity_id: input_select.light_mode_dropdown
+      data:
+        option: Sleep
+    - action: script.reset_speakers
+    - parallel:
+        - action: media_player.clear_playlist
+          target:
+            entity_id:
+              - media_player.bedroom
+              - media_player.deck
+              - media_player.kitchen
+              - media_player.living_room
+              - media_player.mainfloor_bathroom
+              - media_player.media_room
+              - media_player.office_andrew
+              - media_player.office_jesse
+              - media_player.sonos_move
+              - media_player.studio
+        - action: homeassistant.turn_off
+          target:
+            entity_id:
+              - light.master_bathroom
+              - light.master_bedroom
+              - light.spare_room
+              - light.kitchen
+              - light.main_floor
+              - light.basement
+              - light.main_floor_overheads
+              - light.main_floor_pendants
+              - light.studio_outdoors
+              - light.outdoor_fence_plug
+              - light.studio
+              - light.living_room
+              - light.christmas_lights
+        - action: lock.lock
+          target:
+            entity_id:
+              - lock.front_door
+              - lock.studio_door
+    - action: media_player.volume_set
       target:
         entity_id: media_player.bedroom
-      action: media_player.unjoin
-  - if:
-    - condition: template
-      value_template: '{{ now().month in [12] }}'
-      alias: Test if December
-    then:
-    - data: {}
-      alias: Shuffle Christmas music
-      enabled: true
-      action: script.play_random_christmas_music
-    else:
-    - data: {}
-      alias: Shuffle favourite music
-      enabled: true
-      action: script.play_random_media_favourites
-    alias: Shuffle music
+      data:
+        volume_level: 0.16
+      enabled: false
+
+'1523806783160':
+  alias: Bedtime
+  description: Prepare for bed - master suite on, other lights off, play music
+  mode: restart
+  icon: mdi:weather-sunset-down
+  sequence:
+    - action: homeassistant.turn_on
+      target:
+        entity_id: light.master_suite
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - light.butlers_pantry
+          - light.spare_room
+          - light.main_floor_pendants
+          - light.studio
+    - action: script.reset_speakers
+      enabled: false
+    - action: music_assistant.play_media
+      target:
+        entity_id: media_player.ma_living_room
+      data:
+        media_id: Bedtime Beats
+        enqueue: replace_next
+        media_type: playlist
+        radio_mode: true
+
+good_morning:
+  alias: Good morning
+  description: Wake up routine - lights, music, and seasonal adjustments
   mode: restart
   icon: mdi:weather-sunset-up
+  sequence:
+    - alias: Set light mode to Sun
+      action: input_select.select_option
+      target:
+        entity_id: input_select.light_mode_dropdown
+      data:
+        option: Sun
+    - alias: Turn on mainfloor lights
+      parallel:
+        - action: homeassistant.turn_on
+          target:
+            entity_id:
+              - light.butlers_pantry
+              - light.kitchen_underlight
+              - light.christmas_lights
+        - action: light.turn_on
+          target:
+            entity_id: light.main_floor_overheads
+          data:
+            brightness_pct: 30
+    - action: script.reset_speakers
+    - alias: Disconnect bedroom speaker if in bed
+      if:
+        - condition: not
+          conditions:
+            - condition: state
+              entity_id: binary_sensor.andrew_s_eight_sleep_side_bed_presence
+              state: "off"
+      then:
+        - action: media_player.unjoin
+          target:
+            entity_id: media_player.bedroom
+    - alias: Shuffle music
+      if:
+        - "{{ now().month == 12 }}"
+      then:
+        - alias: Shuffle Christmas music
+          action: script.play_random_christmas_music
+      else:
+        - alias: Shuffle favourite music
+          action: script.play_random_media_favourites
+
 im_working:
   alias: I'm working
-  sequence:
-  - service: homeassistant.turn_on
-    data: {}
-    target:
-      entity_id:
-      - light.elgato_key_light_left
-      - light.elgato_key_light_right
-      - light.office_backlight_plug
-  - service: light.turn_on
-    data:
-      brightness_pct: 60
-    target:
-      entity_id:
-      - light.hue_play_1
-      - light.hue_play_2
-  - service: homeassistant.turn_off
-    data: {}
-    target:
-      entity_id: light.spare_room_fixture
+  description: Set up office lighting for work/video calls
   mode: single
   icon: mdi:briefcase
-im_cooking:
-  alias: I’m cooking
   sequence:
-  - service: light.turn_on
-    data:
-      brightness_pct: 100
-      color_temp: 239
-    target:
-      entity_id:
-      - light.kitchen_overhead
-      - light.kitchen_pendants
-      - light.kitchen_underlight
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - light.elgato_key_light_left
+          - light.elgato_key_light_right
+          - light.office_backlight_plug
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.hue_play_1
+          - light.hue_play_2
+      data:
+        brightness_pct: 60
+    - action: homeassistant.turn_off
+      target:
+        entity_id: light.spare_room_fixture
+
+im_cooking:
+  alias: I'm cooking
+  description: Bright, cool white lighting for cooking
   mode: single
   icon: mdi:chef-hat
+  sequence:
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_overhead
+          - light.kitchen_pendants
+          - light.kitchen_underlight
+      data:
+        brightness_pct: 100
+        color_temp: 239
+
 reset_speakers:
   alias: Restore speakers
-  sequence:
-  - data:
-      group_members:
-      - media_player.ma_kitchen
-      - media_player.ma_mainfloor_bathroom
-      - media_player.ma_media_room
-      - media_player.ma_bedroom
-      - media_player.ma_sonos_move
-    target:
-      entity_id: media_player.ma_living_room
-    action: media_player.join
-  - data: {}
-    target:
-      entity_id:
-      - media_player.ma_studio
-      - media_player.ma_deck
-    action: media_player.unjoin
-  - parallel:
-    - data:
-        volume_level: 0.08
-      target:
-        entity_id:
-        - media_player.ma_bedroom
-        - media_player.ma_mainfloor_bathroom
-        - media_player.ma_office_andrew
-        - media_player.ma_office_jesse
-      action: media_player.volume_set
-    - data:
-        volume_level: 0.1
-      target:
-        entity_id:
-        - media_player.ma_kitchen
-        - media_player.ma_sonos_move
-      action: media_player.volume_set
-    - data:
-        volume_level: 0.12
-      target:
-        entity_id:
-        - media_player.ma_living_room
-        - media_player.ma_media_room
-      action: media_player.volume_set
+  description: Reset speaker groups and volumes to defaults
   mode: single
   icon: mdi:speaker-multiple
+  sequence:
+    - action: media_player.join
+      target:
+        entity_id: media_player.ma_living_room
+      data:
+        group_members:
+          - media_player.ma_kitchen
+          - media_player.ma_mainfloor_bathroom
+          - media_player.ma_media_room
+          - media_player.ma_bedroom
+          - media_player.ma_sonos_move
+    - action: media_player.unjoin
+      target:
+        entity_id:
+          - media_player.ma_studio
+          - media_player.ma_deck
+    - parallel:
+        - action: media_player.volume_set
+          target:
+            entity_id:
+              - media_player.ma_bedroom
+              - media_player.ma_mainfloor_bathroom
+              - media_player.ma_office_andrew
+              - media_player.ma_office_jesse
+          data:
+            volume_level: 0.08
+        - action: media_player.volume_set
+          target:
+            entity_id:
+              - media_player.ma_kitchen
+              - media_player.ma_sonos_move
+          data:
+            volume_level: 0.1
+        - action: media_player.volume_set
+          target:
+            entity_id:
+              - media_player.ma_living_room
+              - media_player.ma_media_room
+          data:
+            volume_level: 0.12
+
 reset_and_cycle_litter:
   alias: Reset and Cycle Litter
-  sequence:
-  - if:
-    - condition: state
-      entity_id: vacuum.the_shuttle_litter_box
-      attribute: status
-      state: Ready
-    then:
-    - device_id: 6181082952b855fd0b9556f7442c3b0d
-      domain: button
-      entity_id: button.the_shuttle_reset_waste_drawer
-      type: press
-    - device_id: 6181082952b855fd0b9556f7442c3b0d
-      domain: vacuum
-      entity_id: vacuum.the_shuttle_litter_box
-      type: clean
+  description: Reset waste drawer counter and start cleaning cycle
   mode: single
   icon: mdi:robot-vacuum
+  sequence:
+    - if:
+        - condition: state
+          entity_id: vacuum.the_shuttle_litter_box
+          attribute: status
+          state: Ready
+      then:
+        - device_id: 6181082952b855fd0b9556f7442c3b0d
+          domain: button
+          entity_id: button.the_shuttle_reset_waste_drawer
+          type: press
+        - device_id: 6181082952b855fd0b9556f7442c3b0d
+          domain: vacuum
+          entity_id: vacuum.the_shuttle_litter_box
+          type: clean
+
 toggle_car_charging:
   alias: Toggle Car Charging
-  sequence:
-  - if:
-    - condition: state
-      entity_id: binary_sensor.amplify_charger
-      state: 'on'
-    then:
-    - service: input_text.set_value
-      target:
-        entity_id: input_text.amplify_charger_initial_state
-      data:
-        value: '{{ states(''switch.amplify_charger'') }}'
-    - service: switch.toggle
-      data: {}
-      target:
-        entity_id: switch.amplify_charger
-    - wait_template: '{{ states(''switch.amplify_charger'') != states(''input_text.amplify_charger_initial_state'')
-        }}'
-      timeout: 00:00:20
-      continue_on_timeout: true
+  description: Toggle EV charger with state verification
   mode: single
   icon: mdi:ev-station
+  sequence:
+    - if:
+        - condition: state
+          entity_id: binary_sensor.amplify_charger
+          state: "on"
+      then:
+        - action: input_text.set_value
+          target:
+            entity_id: input_text.amplify_charger_initial_state
+          data:
+            value: "{{ states('switch.amplify_charger') }}"
+        - action: switch.toggle
+          target:
+            entity_id: switch.amplify_charger
+        - wait_template: >-
+            {{ states('switch.amplify_charger') !=
+               states('input_text.amplify_charger_initial_state') }}
+          timeout: "00:00:20"
+          continue_on_timeout: true
+
 play_random_media:
   alias: Play random media base
-  use_blueprint:
-    path: Talvish/play_random_media.yaml
+  description: Blueprint-based random media player
   mode: single
   icon: mdi:music-circle-outline
+  use_blueprint:
+    path: Talvish/play_random_media.yaml
+
 play_random_media_favourites:
   alias: Shuffle favourite music
-  sequence:
-  - data:
-      media_content_type: music
-      shuffle: true
-      repeat: all
-      media_content_ids:
-      - https://music.apple.com/ca/playlist/lofi-jazz/pl.f897fd4ee8144238916240f3f8f4d451
-      - https://music.apple.com/ca/playlist/electronic-pop/pl.6ce2df480c9d4eed81115f9c003ac55c
-      - https://music.apple.com/ca/playlist/chilltronics/pl.41871eaa3ab940cc8c0c60a3f70cde98
-      - https://music.apple.com/ca/playlist/pop-punk-essentials/pl.eee650f71b354e30a42531889ca5de25
-      - https://music.apple.com/ca/playlist/bedtime-beats/pl.082e7836ea7a4244bf3f9c319560718f
-      entity_id: media_player.living_room
-    action: script.play_random_media
+  description: Play random selection from favourite playlists
   mode: single
   icon: mdi:music-circle
-sunrise_alarm:
+  sequence:
+    - action: script.play_random_media
+      data:
+        media_content_type: music
+        shuffle: true
+        repeat: all
+        entity_id: media_player.living_room
+        media_content_ids:
+          - https://music.apple.com/ca/playlist/lofi-jazz/pl.f897fd4ee8144238916240f3f8f4d451
+          - https://music.apple.com/ca/playlist/electronic-pop/pl.6ce2df480c9d4eed81115f9c003ac55c
+          - https://music.apple.com/ca/playlist/chilltronics/pl.41871eaa3ab940cc8c0c60a3f70cde98
+          - https://music.apple.com/ca/playlist/pop-punk-essentials/pl.eee650f71b354e30a42531889ca5de25
+          - https://music.apple.com/ca/playlist/bedtime-beats/pl.082e7836ea7a4244bf3f9c319560718f
+
+play_random_christmas_music:
+  alias: Shuffle christmas music
+  description: Play random selection from Christmas playlists
+  mode: single
+  icon: mdi:music-circle
+  sequence:
+    - action: script.play_random_media
+      data:
+        media_content_type: music
+        shuffle: true
+        repeat: all
+        entity_id: media_player.living_room
+        media_content_ids:
+          - https://music.apple.com/ca/playlist/christmas-pop/pl.6b235c2646f347589b2e1248e022f856
+          - https://music.apple.com/ca/playlist/christmas-lofi/pl.8c69324ca6fb40ebbbc4caf7d2c1557c
+          - https://music.apple.com/ca/playlist/jazz-christmas/pl.3bf312fc0f144045bcdf41351fa6c1bf
+          - https://music.apple.com/ca/album/a-charlie-brown-christmas-original-1965-tv/1650319526
+
+stop_bedroom_sunrise:
+  alias: Stop Bedroom Sunrise
+  description: Cancel sunrise alarm and restore adaptive lighting
+  mode: single
+  icon: mdi:weather-sunny-off
+  sequence:
+    - action: script.turn_off
+      target:
+        entity_id: script.bedroom_sunrise
+    - action: adaptive_lighting.set_manual_control
+      data:
+        manual_control: false
+        lights:
+          - light.master_bathroom
+          - light.andrews_lamp
+          - light.jesses_lamp
+    - action: light.turn_off
+      target:
+        entity_id: light.master_suite
+
+# =============================================================================
+# REUSABLE LIGHTING SCRIPTS
+# Centralized control for common light groups to avoid repetition
+# =============================================================================
+
+outdoor_lights_on:
+  alias: Outdoor Lights On
+  description: Turn on all outdoor lights
+  mode: single
+  icon: mdi:outdoor-lamp
+  sequence:
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - light.outdoor_fence_plug
+          - light.outdoor_accessory_plug
+          - light.deck
+          - light.front_porch
+          - switch.front_porch_plug_socket_1
+          - switch.front_porch_plug_socket_2
+          - light.studio_outdoors
+
+outdoor_lights_off:
+  alias: Outdoor Lights Off
+  description: Turn off all outdoor lights
+  mode: single
+  icon: mdi:outdoor-lamp
+  sequence:
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - light.outdoor_fence_plug
+          - light.outdoor_accessory_plug
+          - light.deck
+          - light.front_porch
+          - switch.front_porch_plug_socket_1
+          - switch.front_porch_plug_socket_2
+          - light.studio_outdoors
+
+christmas_lights_on:
+  alias: Christmas Lights On
+  description: Turn on Christmas/seasonal lights (only if in Christmas season)
+  mode: single
+  icon: mdi:string-lights
+  sequence:
+    - if:
+        - "{{ states('input_select.seasonal_mode') in ['Christmas', 'Christmas Season'] }}"
+      then:
+        - action: homeassistant.turn_on
+          target:
+            entity_id:
+              - light.christmas_lights
+              - light.garland_plug
+
+pseudo_presence_delay:
+  alias: Pseudo-Presence Delay
+  description: Random delay for simulating presence (configurable min/max)
+  mode: parallel
+  icon: mdi:timer-sand
+  fields:
+    min_minutes:
+      description: Minimum delay in minutes
+      default: 5
+      selector:
+        number:
+          min: 0
+          max: 60
+    max_minutes:
+      description: Maximum delay in minutes
+      default: 25
+      selector:
+        number:
+          min: 1
+          max: 120
+  sequence:
+    - delay:
+        minutes: "{{ range(min_minutes | default(5), max_minutes | default(25)) | random }}"
+
+bedroom_sunrise:
   alias: Bedroom Sunrise
+  description: Gradually brightens bedroom lights over configured duration
   mode: single
   icon: mdi:weather-sunset-up
   sequence:
-  - service: adaptive_lighting.set_manual_control
-    data:
-      manual_control: true
-      lights:
-      - light.master_bathroom
-      - light.andrews_lamp
-      - light.jesses_lamp
-  - service: scene.turn_on
-    entity_id: scene.bedroom_sunrise_beginnings
-  - delay:
-      minutes: '{{ states(''input_number.sunrise_duration'')|int / 5 }}'
-  - service: scene.turn_on
-    entity_id: scene.bedroom_sunrise_first_light
-  - delay:
-      minutes: '{{ states(''input_number.sunrise_duration'')|int / 5 }}'
-  - service: scene.turn_on
-    entity_id: scene.bedroom_sunrise_horizon
-  - delay:
-      minutes: '{{ states(''input_number.sunrise_duration'')|int / 5 }}'
-  - service: scene.turn_on
-    entity_id: scene.bedroom_sunrise_valley_dawn
-  - delay:
-      minutes: '{{ states(''input_number.sunrise_duration'')|int / 5 }}'
-  - service: scene.turn_on
-    entity_id: scene.bedroom_sunrise_sunflare
-  - delay:
-      minutes: '{{ states(''input_number.sunrise_duration'')|int / 5 }}'
-  - service: adaptive_lighting.set_manual_control
-    data:
-      manual_control: false
-      lights:
-      - light.master_bathroom
-      - light.andrews_lamp
-      - light.jesses_lamp
-stop_bedroom_sunrise:
-  alias: Stop Bedroom Sunrise
-  sequence:
-  - service: script.turn_off
-    data: {}
-    target:
-      entity_id: script.bedroom_sunrise
-  - service: adaptive_lighting.set_manual_control
-    data:
-      manual_control: false
-      lights:
-      - light.master_bathroom
-      - light.andrews_lamp
-      - light.jesses_lamp
-  - service: light.turn_off
-    data: {}
-    target:
-      entity_id:
-      - light.master_suite
-  mode: single
-  icon: mdi:weather-sunny-off
-play_random_christmas_music:
-  alias: Shuffle christmas music
-  sequence:
-  - data:
-      media_content_type: music
-      shuffle: true
-      repeat: all
-      media_content_ids:
-      - https://music.apple.com/ca/playlist/christmas-pop/pl.6b235c2646f347589b2e1248e022f856
-      - https://music.apple.com/ca/playlist/christmas-lofi/pl.8c69324ca6fb40ebbbc4caf7d2c1557c
-      - https://music.apple.com/ca/playlist/jazz-christmas/pl.3bf312fc0f144045bcdf41351fa6c1bf
-      - https://music.apple.com/ca/album/a-charlie-brown-christmas-original-1965-tv/1650319526
-      entity_id: media_player.living_room
-    action: script.play_random_media
-  mode: single
-  icon: mdi:music-circle
+    - action: adaptive_lighting.set_manual_control
+      data:
+        manual_control: true
+        lights:
+          - light.master_bathroom
+          - light.andrews_lamp
+          - light.jesses_lamp
+    - action: scene.turn_on
+      target:
+        entity_id: scene.bedroom_sunrise_beginnings
+    - delay:
+        minutes: "{{ states('input_number.sunrise_duration') | int / 5 }}"
+    - action: scene.turn_on
+      target:
+        entity_id: scene.bedroom_sunrise_first_light
+    - delay:
+        minutes: "{{ states('input_number.sunrise_duration') | int / 5 }}"
+    - action: scene.turn_on
+      target:
+        entity_id: scene.bedroom_sunrise_horizon
+    - delay:
+        minutes: "{{ states('input_number.sunrise_duration') | int / 5 }}"
+    - action: scene.turn_on
+      target:
+        entity_id: scene.bedroom_sunrise_valley_dawn
+    - delay:
+        minutes: "{{ states('input_number.sunrise_duration') | int / 5 }}"
+    - action: scene.turn_on
+      target:
+        entity_id: scene.bedroom_sunrise_sunflare
+    - delay:
+        minutes: "{{ states('input_number.sunrise_duration') | int / 5 }}"
+    - action: adaptive_lighting.set_manual_control
+      data:
+        manual_control: false
+        lights:
+          - light.master_bathroom
+          - light.andrews_lamp
+          - light.jesses_lamp
