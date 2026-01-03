@@ -1,0 +1,46 @@
+- id: light_mode_manual
+  alias: Light Mode - Manual
+  description: Disable automatic lighting transitions when manual mode is selected
+  triggers:
+    - trigger: state
+      entity_id: input_select.light_mode_dropdown
+      to: Manual
+  actions:
+    - action: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.auto_scene_transitions
+
+- id: light_mode_sleep
+  alias: Light Mode - Sleep
+  description: Apply dim, warm lighting throughout the house for sleep
+  triggers:
+    - trigger: state
+      entity_id: input_select.light_mode_dropdown
+      to: Sleep
+  actions:
+    - parallel:
+        - action: script.apply_room_lighting
+          data:
+            room: living_room
+        - action: script.apply_room_lighting
+          data:
+            room: kitchen
+        - action: script.apply_room_lighting
+          data:
+            room: master_bedroom
+        - action: script.apply_room_lighting
+          data:
+            room: master_bathroom
+
+- id: light_mode_sun
+  alias: Light Mode - Sun
+  description: Enable automatic lighting transitions based on sun phase
+  triggers:
+    - trigger: state
+      entity_id: input_select.light_mode_dropdown
+      to: Sun
+  actions:
+    - action: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.auto_scene_transitions
+    - action: script.apply_all_lighting

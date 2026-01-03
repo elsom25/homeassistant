@@ -1,0 +1,127 @@
+- id: litter_robot_timed_clean
+  alias: Litter Robot — Timed Clean
+  description: Clean litter robot twice daily
+  triggers:
+    - trigger: time
+      at:
+        - "07:30:00"
+        - "22:00:00"
+  actions:
+    - action: script.reset_and_cycle_litter
+
+- id: eight_sleep_vacation_on
+  alias: Eight Sleep - Vacation Mode On
+  description: Turn off Eight Sleep bed when person goes on vacation
+  mode: parallel
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_select.jesse_status_dropdown
+        - input_select.andrew_status_dropdown
+      to: Extended Away
+  actions:
+    - action: eight_sleep.away_mode_start
+      target:
+        entity_id: >-
+          sensor.{{ trigger.entity_id | replace('input_select.', '')
+            | replace('_status_dropdown', '') }}_s_bed_temperature
+
+- id: eight_sleep_vacation_off
+  alias: Eight Sleep - Vacation Mode Off
+  description: Turn on Eight Sleep bed when person returns from vacation
+  mode: parallel
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_select.jesse_status_dropdown
+        - input_select.andrew_status_dropdown
+      from: Extended Away
+      to:
+        - Just Arrived
+        - Home
+  actions:
+    - action: eight_sleep.away_mode_stop
+      target:
+        entity_id: >-
+          sensor.{{ trigger.entity_id | replace('input_select.', '')
+            | replace('_status_dropdown', '') }}_s_bed_temperature
+
+- id: sunrise_alarm_winter
+  alias: Sunrise Alarm - Winter Only
+  description: Run sunrise alarm script only during winter months when home
+  triggers:
+    - trigger: time
+      at: input_datetime.sunrise_start_weekdays
+      id: weekday
+    - trigger: time
+      at: input_datetime.sunrise_start_weekends
+      id: weekend
+  variables:
+    is_winter: >-
+      {{ (now().month >= 10 and now().day >= 28) or
+         (now().month <= 3 and now().day <= 15) or
+         now().month in [11, 12, 1, 2] }}
+    is_weekday: "{{ now().weekday() < 5 }}"
+    is_weekend: "{{ now().weekday() >= 5 }}"
+    is_home: "{{ states('sensor.home_status') in ['Just Arrived', 'Some Home', 'Home'] }}"
+  conditions:
+    - "{{ is_state('input_boolean.sunrise_alarm', 'on') }}"
+    - "{{ is_winter }}"
+    - "{{ is_home }}"
+    - "{{ (trigger.id == 'weekday' and is_weekday) or (trigger.id == 'weekend' and is_weekend) }}"
+  actions:
+    - action: script.bedroom_sunrise
+
+- id: assist_duck_speakers_run_start
+  alias: Assist – Duck all playing speakers (run-start)
+  description: Lower volume of playing speakers when voice assistant activates
+  mode: restart
+  variables:
+    run_id: "{{ trigger.event.data.run_id }}"
+    players: >-
+      {{ states.media_player
+         | selectattr('state', 'in', ['playing', 'buffering'])
+         | map(attribute='entity_id') | list }}
+    duck_factor: 0.4
+    excluded: []
+    targets: "{{ players | reject('in', excluded) | list }}"
+  triggers:
+    - trigger: event
+      event_type: assist_pipeline
+      event_data:
+        type: run-start
+  conditions:
+    - "{{ targets | length > 0 }}"
+  actions:
+    - action: scene.create
+      data:
+        scene_id: "pre_assist_music_{{ run_id }}"
+        snapshot_entities: "{{ targets }}"
+    - delay: "00:00:00.10"
+    - repeat:
+        for_each: "{{ targets }}"
+        sequence:
+          - variables:
+              current: "{{ state_attr(repeat.item, 'volume_level') | float(0.4) }}"
+              new_vol: "{{ (current * duck_factor) | round(3) | min(1) | max(0.02) }}"
+          - action: media_player.volume_set
+            target:
+              entity_id: "{{ repeat.item }}"
+            data:
+              volume_level: "{{ new_vol }}"
+
+- id: assist_restore_speakers_run_end
+  alias: Assist – Restore speakers (run-end)
+  description: Restore speaker volumes when voice assistant finishes
+  mode: restart
+  variables:
+    run_id: "{{ trigger.event.data.run_id }}"
+  triggers:
+    - trigger: event
+      event_type: assist_pipeline
+      event_data:
+        type: run-end
+  actions:
+    - action: scene.turn_on
+      target:
+        entity_id: "scene.pre_assist_music_{{ run_id }}"
