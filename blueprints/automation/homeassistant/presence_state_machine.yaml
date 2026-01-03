@@ -1,0 +1,142 @@
+blueprint:
+  name: Presence State Machine
+  description: >-
+    Manages person presence states with timed transitions.
+    States: Home, Just Arrived, Just Left, Away, Extended Away.
+    Uses mode: restart to automatically cancel timers when presence changes.
+  domain: automation
+  input:
+    person_entity:
+      name: Person
+      description: The person entity to track
+      selector:
+        entity:
+          domain: person
+    status_dropdown:
+      name: Status Dropdown
+      description: The input_select that holds the presence status
+      selector:
+        entity:
+          domain: input_select
+    vacation_toggle:
+      name: Vacation Toggle
+      description: When on, presence state changes are skipped
+      default: input_boolean.vacation
+      selector:
+        entity:
+          domain: input_boolean
+    just_arrived_delay:
+      name: Just Arrived to Home delay
+      description: Minutes to wait before transitioning from Just Arrived to Home
+      default: 10
+      selector:
+        number:
+          min: 1
+          max: 60
+          unit_of_measurement: minutes
+    just_left_delay:
+      name: Just Left to Away delay
+      description: Minutes to wait before transitioning from Just Left to Away
+      default: 10
+      selector:
+        number:
+          min: 1
+          max: 60
+          unit_of_measurement: minutes
+    away_to_extended_delay:
+      name: Away to Extended Away delay
+      description: Hours to wait before transitioning from Away to Extended Away
+      default: 20
+      selector:
+        number:
+          min: 1
+          max: 48
+          unit_of_measurement: hours
+
+# mode: restart ensures that when the person's state changes,
+# any running delays are cancelled and the automation restarts
+mode: restart
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: !input person_entity
+
+condition:
+  # Skip state machine updates when on vacation
+  - condition: state
+    entity_id: !input vacation_toggle
+    state: "off"
+
+action:
+  - choose:
+      # Person arrived home
+      - conditions:
+          - condition: state
+            entity_id: !input person_entity
+            state: "home"
+        sequence:
+          - choose:
+              # Quick return: If they were "Just Left", go directly to "Home"
+              - conditions:
+                  - condition: state
+                    entity_id: !input status_dropdown
+                    state: "Just Left"
+                sequence:
+                  - service: input_select.select_option
+                    target:
+                      entity_id: !input status_dropdown
+                    data:
+                      option: "Home"
+            # Normal arrival: Just Arrived → delay → Home
+            default:
+              - service: input_select.select_option
+                target:
+                  entity_id: !input status_dropdown
+                data:
+                  option: "Just Arrived"
+              - delay:
+                  minutes: !input just_arrived_delay
+              - service: input_select.select_option
+                target:
+                  entity_id: !input status_dropdown
+                data:
+                  option: "Home"
+
+      # Person left home
+      - conditions:
+          - condition: state
+            entity_id: !input person_entity
+            state: "not_home"
+        sequence:
+          # Only update if not already in a "leaving" state
+          - condition: not
+            conditions:
+              - condition: state
+                entity_id: !input status_dropdown
+                state:
+                  - "Just Left"
+                  - "Away"
+                  - "Extended Away"
+          # Set to Just Left
+          - service: input_select.select_option
+            target:
+              entity_id: !input status_dropdown
+            data:
+              option: "Just Left"
+          # Wait, then set to Away
+          - delay:
+              minutes: !input just_left_delay
+          - service: input_select.select_option
+            target:
+              entity_id: !input status_dropdown
+            data:
+              option: "Away"
+          # Wait, then set to Extended Away
+          - delay:
+              hours: !input away_to_extended_delay
+          - service: input_select.select_option
+            target:
+              entity_id: !input status_dropdown
+            data:
+              option: "Extended Away"

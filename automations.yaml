@@ -278,3 +278,21 @@
   mode: restart
   variables:
     run_id: '{{ trigger.event.data.run_id }}'
+- id: presence_jesse
+  alias: Presence State Machine - Jesse
+  description: Manages Jesse's presence state with timed transitions (Just Arrived,
+    Just Left, Away, Extended Away)
+  use_blueprint:
+    path: homeassistant/presence_state_machine.yaml
+    input:
+      person_entity: person.jesse
+      status_dropdown: input_select.jesse_status_dropdown
+- id: presence_andrew
+  alias: Presence State Machine - Andrew
+  description: Manages Andrew's presence state with timed transitions (Just Arrived,
+    Just Left, Away, Extended Away)
+  use_blueprint:
+    path: homeassistant/presence_state_machine.yaml
+    input:
+      person_entity: person.andrew
+      status_dropdown: input_select.andrew_status_dropdown
