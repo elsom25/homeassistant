@@ -228,14 +228,14 @@ reset_and_cycle_litter:
           attribute: status
           state: Ready
       then:
-        - device_id: 6181082952b855fd0b9556f7442c3b0d
-          domain: button
-          entity_id: button.the_shuttle_reset_waste_drawer
-          type: press
-        - device_id: 6181082952b855fd0b9556f7442c3b0d
-          domain: vacuum
-          entity_id: vacuum.the_shuttle_litter_box
-          type: clean
+        - alias: Reset waste drawer counter
+          action: button.press
+          target:
+            entity_id: button.the_shuttle_reset_waste_drawer
+        - alias: Start cleaning cycle
+          action: vacuum.start
+          target:
+            entity_id: vacuum.the_shuttle_litter_box
 
 toggle_car_charging:
   alias: Toggle Car Charging

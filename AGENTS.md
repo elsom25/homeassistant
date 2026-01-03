@@ -56,23 +56,23 @@ All actions SHOULD have:
 
 ### Notify Configuration
 
-Use modern `members:` syntax:
+Use `services:` syntax with `service:` prefix for each member:
 
 ```yaml
 # ✅ CORRECT
 notify:
   - name: ALL_DEVICES
     platform: group
-    members:
-      - mobile_app_jesse_iphone
-      - mobile_app_andrew_iphone
+    services:
+      - service: mobile_app_jesse_iphone
+      - service: mobile_app_andrew_iphone
 
-# ❌ WRONG
+# ❌ WRONG - members: syntax does not exist
 notify:
   - name: ALL_DEVICES
     platform: group
-    services:
-      - service: mobile_app_jesse_iphone
+    members:
+      - mobile_app_jesse_iphone
 ```
 
 ## Repository Structure
