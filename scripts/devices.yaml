@@ -1,0 +1,67 @@
+reset_and_cycle_litter:
+  alias: Reset and Cycle Litter
+  description: Reset waste drawer counter and start cleaning cycle
+  mode: single
+  icon: mdi:robot-vacuum
+  sequence:
+    - if:
+        - condition: state
+          entity_id: vacuum.the_shuttle_litter_box
+          attribute: status
+          state: Ready
+      then:
+        - action: button.press
+          target:
+            entity_id: button.the_shuttle_reset_waste_drawer
+        - action: vacuum.start
+          target:
+            entity_id: vacuum.the_shuttle_litter_box
+
+toggle_car_charging:
+  alias: Toggle Car Charging
+  description: Toggle EV charger with state verification
+  mode: single
+  icon: mdi:ev-station
+  sequence:
+    - if:
+        - condition: state
+          entity_id: binary_sensor.amplify_charger
+          state: "on"
+      then:
+        - action: input_text.set_value
+          target:
+            entity_id: input_text.amplify_charger_initial_state
+          data:
+            value: "{{ states('switch.amplify_charger') }}"
+        - action: switch.toggle
+          target:
+            entity_id: switch.amplify_charger
+        - wait_template: >-
+            {{ states('switch.amplify_charger') !=
+               states('input_text.amplify_charger_initial_state') }}
+          timeout: "00:00:20"
+          continue_on_timeout: true
+
+pseudo_presence_delay:
+  alias: Pseudo-Presence Delay
+  description: Random delay for simulating presence (configurable min/max)
+  mode: parallel
+  icon: mdi:timer-sand
+  fields:
+    min_minutes:
+      description: Minimum delay in minutes
+      default: 5
+      selector:
+        number:
+          min: 0
+          max: 60
+    max_minutes:
+      description: Maximum delay in minutes
+      default: 25
+      selector:
+        number:
+          min: 1
+          max: 120
+  sequence:
+    - delay:
+        minutes: "{{ range(min_minutes | default(5), max_minutes | default(25)) | random }}"

@@ -1,0 +1,90 @@
+reset_speakers:
+  alias: Restore speakers
+  description: Reset speaker groups and volumes to defaults
+  mode: single
+  icon: mdi:speaker-multiple
+  sequence:
+    - action: media_player.join
+      target:
+        entity_id: media_player.ma_living_room
+      data:
+        group_members:
+          - media_player.ma_kitchen
+          - media_player.ma_mainfloor_bathroom
+          - media_player.ma_media_room
+          - media_player.ma_bedroom
+          - media_player.ma_sonos_move
+    - action: media_player.unjoin
+      target:
+        entity_id:
+          - media_player.ma_studio
+          - media_player.ma_deck
+    - parallel:
+        - action: media_player.volume_set
+          target:
+            entity_id:
+              - media_player.ma_bedroom
+              - media_player.ma_mainfloor_bathroom
+              - media_player.ma_office_andrew
+              - media_player.ma_office_jesse
+          data:
+            volume_level: 0.08
+        - action: media_player.volume_set
+          target:
+            entity_id:
+              - media_player.ma_kitchen
+              - media_player.ma_sonos_move
+          data:
+            volume_level: 0.1
+        - action: media_player.volume_set
+          target:
+            entity_id:
+              - media_player.ma_living_room
+              - media_player.ma_media_room
+          data:
+            volume_level: 0.12
+
+play_random_media:
+  alias: Play random media base
+  description: Blueprint-based random media player
+  mode: single
+  icon: mdi:music-circle-outline
+  use_blueprint:
+    path: Talvish/play_random_media.yaml
+
+play_random_media_favourites:
+  alias: Shuffle favourite music
+  description: Play random selection from favourite playlists
+  mode: single
+  icon: mdi:music-circle
+  sequence:
+    - action: script.play_random_media
+      data:
+        media_content_type: music
+        shuffle: true
+        repeat: all
+        entity_id: media_player.living_room
+        media_content_ids:
+          - https://music.apple.com/ca/playlist/lofi-jazz/pl.f897fd4ee8144238916240f3f8f4d451
+          - https://music.apple.com/ca/playlist/electronic-pop/pl.6ce2df480c9d4eed81115f9c003ac55c
+          - https://music.apple.com/ca/playlist/chilltronics/pl.41871eaa3ab940cc8c0c60a3f70cde98
+          - https://music.apple.com/ca/playlist/pop-punk-essentials/pl.eee650f71b354e30a42531889ca5de25
+          - https://music.apple.com/ca/playlist/bedtime-beats/pl.082e7836ea7a4244bf3f9c319560718f
+
+play_random_christmas_music:
+  alias: Shuffle christmas music
+  description: Play random selection from Christmas playlists
+  mode: single
+  icon: mdi:music-circle
+  sequence:
+    - action: script.play_random_media
+      data:
+        media_content_type: music
+        shuffle: true
+        repeat: all
+        entity_id: media_player.living_room
+        media_content_ids:
+          - https://music.apple.com/ca/playlist/christmas-pop/pl.6b235c2646f347589b2e1248e022f856
+          - https://music.apple.com/ca/playlist/christmas-lofi/pl.8c69324ca6fb40ebbbc4caf7d2c1557c
+          - https://music.apple.com/ca/playlist/jazz-christmas/pl.3bf312fc0f144045bcdf41351fa6c1bf
+          - https://music.apple.com/ca/album/a-charlie-brown-christmas-original-1965-tv/1650319526

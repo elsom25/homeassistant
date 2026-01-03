@@ -1,0 +1,84 @@
+- id: notification_water_leak
+  alias: "Notification: Water leak"
+  description: Send critical notification if any water leak is detected
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.boiler_water_leak_xs_sensor_water_leak_detected
+        - binary_sensor.cellar_cooler_water_leak_sensor_water_leak_detected
+        - binary_sensor.hot_water_heater_water_leak_sensor_water_leak_detected
+        - binary_sensor.storage_stairs_water_leak_sensor_water_leak_detected
+        - binary_sensor.cellar_cooler_water_leak_detected
+        - binary_sensor.hot_water_heater_leak_detected
+        - binary_sensor.storage_stairs_water_leak_detected
+      to: "on"
+    - trigger: state
+      entity_id: input_button.test_notifications
+  actions:
+    - action: notify.notify
+      data:
+        title: There's a water leak!
+        message: "{{ trigger.to_state.name }} has detected water."
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1
+
+- id: notification_door_open_leaving
+  alias: "Notification: Door open when leaving"
+  description: Alert if any door is left open when leaving home
+  triggers:
+    - trigger: state
+      entity_id: sensor.home_status
+      to: Away
+    - trigger: state
+      entity_id: input_button.test_notifications
+  conditions:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.front_door_open
+          state: "on"
+        - condition: state
+          entity_id: binary_sensor.studio_door_open
+          state: "on"
+        - condition: state
+          entity_id: cover.studio_garage_door
+          state: open
+  actions:
+    - action: notify.notify
+      data:
+        title: Door left open!
+        message: One of our doors was left open.
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1
+
+- id: notification_door_opened_while_away
+  alias: "Notification: Door opened while away"
+  description: Alert if a door is unlocked/opened while we're away
+  triggers:
+    - trigger: state
+      entity_id: input_button.test_notifications
+    - trigger: state
+      entity_id:
+        - lock.front_door
+        - lock.studio_door
+      to: unlocked
+    - trigger: state
+      entity_id: cover.studio_garage_door
+      to: opening
+  conditions:
+    - "{{ states('sensor.home_status') in ['Away', 'Extended Away'] }}"
+  actions:
+    - action: notify.notify
+      data:
+        title: Someone unlocked a door
+        message: >-
+          {{ trigger.to_state.name }} has changed to {{ trigger.to_state.state }}
+          at {{ now().strftime('%X') }}.

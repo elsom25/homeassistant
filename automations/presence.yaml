@@ -1,0 +1,198 @@
+- id: presence_jesse
+  alias: Presence State Machine - Jesse
+  description: Manages Jesse's presence state with timed transitions
+  use_blueprint:
+    path: homeassistant/presence_state_machine.yaml
+    input:
+      person_entity: person.jesse
+      status_dropdown: input_select.jesse_status_dropdown
+
+- id: presence_andrew
+  alias: Presence State Machine - Andrew
+  description: Manages Andrew's presence state with timed transitions
+  use_blueprint:
+    path: homeassistant/presence_state_machine.yaml
+    input:
+      person_entity: person.andrew
+      status_dropdown: input_select.andrew_status_dropdown
+
+- id: presence_coming_home
+  alias: Presence - Coming Home
+  description: Apply welcome lighting when arriving home from away
+  triggers:
+    - trigger: state
+      entity_id: sensor.home_status
+      from:
+        - Away
+        - Extended Away
+      to:
+        - Just Arrived
+        - Some Home
+        - Home
+  actions:
+    - parallel:
+        - action: script.apply_all_lighting
+        - action: media_player.media_play
+          target:
+            entity_id: media_player.living_room
+        - action: script.christmas_lights_on
+
+- id: presence_going_away
+  alias: Presence - Going Away
+  description: Turn off lights when leaving home, with pseudo-presence if at night
+  mode: restart
+  triggers:
+    - trigger: state
+      entity_id: sensor.home_status
+      to:
+        - Away
+        - Extended Away
+  variables:
+    is_dim: >-
+      {{ states('input_select.sun_phase') in
+         ['Night', 'Nautical Dawn', 'Dawn', 'Golden Hour', 'Dusk'] }}
+  actions:
+    - delay:
+        minutes: "{{ range(5, 25) | random }}"
+    - parallel:
+        - action: homeassistant.turn_off
+          target:
+            entity_id:
+              - light.entrance
+              - light.butlers_pantry
+              - light.main_floor_overheads
+              - light.main_floor_pendants
+              - light.living_room
+              - light.elgato_key_light_left
+              - light.elgato_key_light_right
+              - light.spare_room
+        - action: media_player.media_pause
+          target:
+            entity_id: media_player.living_room
+        - action: media_player.unjoin
+          target:
+            device_id:
+              - d0b9ca9193e0b053774fde7b15ba8525
+              - 7cde79fc075f43f6f3a5d11813c4e0b1
+    - if:
+        - "{{ is_dim }}"
+      then:
+        - delay:
+            seconds: 10
+        - action: homeassistant.turn_on
+          target:
+            entity_id:
+              - light.living_room_primary
+              - light.kitchen_underlight
+
+- id: presence_front_door_motion
+  alias: Presence - Front Door Motion
+  description: Turn on entrance light when front door is opened or unlocked
+  mode: restart
+  triggers:
+    - trigger: state
+      entity_id: binary_sensor.front_door_open
+      to: "on"
+    - trigger: state
+      entity_id: lock.front_door
+      to: unlocked
+  actions:
+    - action: script.apply_room_lighting
+      data:
+        room: entrance
+    - delay:
+        minutes: 3
+    - action: homeassistant.turn_off
+      target:
+        entity_id: light.entrance
+
+- id: presence_vacation_simulation
+  alias: Presence - Vacation Simulation
+  description: Simulate realistic daily activity patterns when on vacation
+  mode: single
+  triggers:
+    - trigger: time
+      at: "08:00:00"
+      id: weekday_morning
+    - trigger: time
+      at: "08:30:00"
+      id: weekday_bedroom_off
+    - trigger: time
+      at: "08:45:00"
+      id: weekday_office_on
+    - trigger: time
+      at: "09:00:00"
+      id: weekend_morning
+    - trigger: time
+      at: "09:30:00"
+      id: weekend_bedroom_off
+    - trigger: time
+      at: "17:30:00"
+      id: weekday_office_off
+    - trigger: time
+      at: "22:00:00"
+      id: bedtime
+    - trigger: time
+      at: "00:30:00"
+      id: goodnight
+  variables:
+    is_weekday: "{{ now().weekday() < 5 }}"
+    is_weekend: "{{ now().weekday() >= 5 }}"
+    random_delay: "{{ range(0, 20) | random }}"
+  conditions:
+    - condition: or
+      conditions:
+        - "{{ is_state('sensor.home_status', 'Extended Away') }}"
+        - "{{ trigger.id == 'goodnight' and is_state('sensor.home_status', 'Away') }}"
+  actions:
+    - delay:
+        minutes: "{{ random_delay }}"
+    - choose:
+        - conditions:
+            - "{{ trigger.id == 'weekday_morning' and is_weekday }}"
+          sequence:
+            - parallel:
+                - action: script.good_morning
+                - action: script.christmas_lights_on
+        - conditions:
+            - "{{ trigger.id == 'weekday_bedroom_off' and is_weekday }}"
+          sequence:
+            - action: homeassistant.turn_off
+              target:
+                entity_id: light.master_suite
+        - conditions:
+            - "{{ trigger.id == 'weekday_office_on' and is_weekday }}"
+          sequence:
+            - action: homeassistant.turn_on
+              target:
+                entity_id: light.spare_room
+        - conditions:
+            - "{{ trigger.id == 'weekday_office_off' and is_weekday }}"
+          sequence:
+            - action: homeassistant.turn_off
+              target:
+                entity_id: light.spare_room
+        - conditions:
+            - "{{ trigger.id == 'weekend_morning' and is_weekend }}"
+          sequence:
+            - parallel:
+                - action: script.good_morning
+                - action: script.christmas_lights_on
+        - conditions:
+            - "{{ trigger.id == 'weekend_bedroom_off' and is_weekend }}"
+          sequence:
+            - action: homeassistant.turn_off
+              target:
+                entity_id: light.master_suite
+        - conditions:
+            - "{{ trigger.id == 'bedtime' }}"
+          sequence:
+            - action: script.turn_on
+              target:
+                entity_id: script.1523806783160
+        - conditions:
+            - "{{ trigger.id == 'goodnight' }}"
+          sequence:
+            - action: script.turn_on
+              target:
+                entity_id: script.1514647809398

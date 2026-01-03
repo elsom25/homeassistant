@@ -1,0 +1,111 @@
+'1514647809398':
+  alias: Goodnight
+  description: Turn off lights, lock doors, set sleep mode
+  mode: restart
+  icon: mdi:weather-night
+  sequence:
+    - action: input_select.select_option
+      target:
+        entity_id: input_select.light_mode_dropdown
+      data:
+        option: Sleep
+    - action: script.reset_speakers
+    - parallel:
+        - action: media_player.clear_playlist
+          target:
+            entity_id:
+              - media_player.bedroom
+              - media_player.deck
+              - media_player.kitchen
+              - media_player.living_room
+              - media_player.mainfloor_bathroom
+              - media_player.media_room
+              - media_player.office_andrew
+              - media_player.office_jesse
+              - media_player.sonos_move
+              - media_player.studio
+        - action: homeassistant.turn_off
+          target:
+            entity_id:
+              - light.master_bathroom
+              - light.master_bedroom
+              - light.spare_room
+              - light.kitchen
+              - light.main_floor
+              - light.basement
+              - light.main_floor_overheads
+              - light.main_floor_pendants
+              - light.studio_outdoors
+              - light.outdoor_fence_plug
+              - light.studio
+              - light.living_room
+              - light.christmas_lights
+        - action: lock.lock
+          target:
+            entity_id:
+              - lock.front_door
+              - lock.studio_door
+    - action: media_player.volume_set
+      target:
+        entity_id: media_player.bedroom
+      data:
+        volume_level: 0.16
+      enabled: false
+
+'1523806783160':
+  alias: Bedtime
+  description: Prepare for bed - master suite on, other lights off, play music
+  mode: restart
+  icon: mdi:weather-sunset-down
+  sequence:
+    - action: homeassistant.turn_on
+      target:
+        entity_id: light.master_suite
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - light.butlers_pantry
+          - light.spare_room
+          - light.main_floor_pendants
+          - light.studio
+    - action: script.reset_speakers
+      enabled: false
+    - action: music_assistant.play_media
+      target:
+        entity_id: media_player.ma_living_room
+      data:
+        media_id: Bedtime Beats
+        enqueue: replace_next
+        media_type: playlist
+        radio_mode: true
+
+good_morning:
+  alias: Good morning
+  description: Wake up routine - lights, music, and seasonal adjustments
+  mode: restart
+  icon: mdi:weather-sunset-up
+  sequence:
+    - action: input_select.select_option
+      target:
+        entity_id: input_select.light_mode_dropdown
+      data:
+        option: Sun
+    - action: script.apply_all_lighting
+    - action: script.christmas_lights_on
+    - action: script.reset_speakers
+    - if:
+        - condition: not
+          conditions:
+            - condition: state
+              entity_id: binary_sensor.andrew_s_eight_sleep_side_bed_presence
+              state: "off"
+      then:
+        - action: media_player.unjoin
+          target:
+            entity_id: media_player.bedroom
+    - if:
+        - "{{ now().month == 12 }}"
+      then:
+        - action: script.play_random_christmas_music
+      else:
+        - action: script.play_random_media_favourites

@@ -1,0 +1,421 @@
+apply_room_lighting:
+  alias: Apply Room Lighting
+  description: Apply phase-appropriate lighting to a specific room (Hue scene if specified, else calculated)
+  mode: parallel
+  icon: mdi:lightbulb-group
+  fields:
+    room:
+      description: Room identifier
+      required: true
+      selector:
+        select:
+          options:
+            - living_room
+            - kitchen
+            - dining_room
+            - butlers_pantry
+            - entrance
+            - master_bedroom
+            - master_bathroom
+            - office_jesse
+            - media_room
+            - basement_lounge
+  variables:
+    phase_key: "{{ states('input_select.sun_phase') | lower | replace(' ', '_') }}"
+    phase_settings:
+      night: { brightness_pct: 10, kelvin: 2200 }
+      nautical_dawn: { brightness_pct: 20, kelvin: 2400 }
+      dawn: { brightness_pct: 40, kelvin: 2700 }
+      day: { brightness_pct: 100, kelvin: 4000 }
+      golden_hour: { brightness_pct: 60, kelvin: 2700 }
+      dusk: { brightness_pct: 40, kelvin: 2400 }
+    dim_settings: { brightness_pct: 30, kelvin: 3000 }
+    rooms:
+      living_room:
+        hue_group: "Living Room"
+        ambient:
+          - light.living_room_primary
+          - light.living_room_corner
+          - light.bar
+          - light.coffee_left
+          - light.coffee_right
+        task:
+          - light.living_room_overhead
+        phases:
+          night: { ambient: "on", task: "off" }
+          nautical_dawn: { ambient: "on", task: "off" }
+          dawn: { ambient: "on", task: "dim" }
+          day: { ambient: "off", task: "on" }
+          golden_hour: { ambient: "on", task: "dim", hue_scene: "Relax" }
+          dusk: { ambient: "on", task: "off", hue_scene: "Dimmed" }
+      kitchen:
+        ambient:
+          - light.kitchen_underlight
+        task:
+          - light.kitchen_overhead
+          - light.kitchen_pendants
+        phases:
+          night: { ambient: "on", task: "off" }
+          nautical_dawn: { ambient: "on", task: "off" }
+          dawn: { ambient: "on", task: "dim" }
+          day: { ambient: "off", task: "on" }
+          golden_hour: { ambient: "on", task: "dim" }
+          dusk: { ambient: "on", task: "off" }
+      dining_room:
+        hue_group: "Dining Chandelier"
+        ambient:
+          - light.dining_chandelier
+        task:
+          - light.dining_room_overhead
+        phases:
+          night: { ambient: "on", task: "off" }
+          nautical_dawn: { ambient: "on", task: "off" }
+          dawn: { ambient: "on", task: "dim" }
+          day: { ambient: "off", task: "on" }
+          golden_hour: { ambient: "on", task: "dim" }
+          dusk: { ambient: "on", task: "off" }
+      butlers_pantry:
+        ambient:
+          - light.butlers_pantry
+        task: []
+        phases:
+          night: { ambient: "on", task: "off" }
+          nautical_dawn: { ambient: "on", task: "off" }
+          dawn: { ambient: "on", task: "off" }
+          day: { ambient: "off", task: "off" }
+          golden_hour: { ambient: "on", task: "off" }
+          dusk: { ambient: "on", task: "off" }
+      entrance:
+        ambient:
+          - light.entrance
+        task: []
+        phases:
+          night: { ambient: "on", task: "off" }
+          nautical_dawn: { ambient: "on", task: "off" }
+          dawn: { ambient: "on", task: "off" }
+          day: { ambient: "on", task: "off" }
+          golden_hour: { ambient: "on", task: "off" }
+          dusk: { ambient: "on", task: "off" }
+      master_bedroom:
+        hue_group: "Master Bedroom"
+        ambient:
+          - light.jesses_lamp
+          - light.andrews_lamp
+        task: []
+        phases:
+          night: { ambient: "on", task: "off", hue_scene: "Nightlight" }
+          nautical_dawn: { ambient: "on", task: "off" }
+          dawn: { ambient: "on", task: "off" }
+          day: { ambient: "off", task: "off" }
+          golden_hour: { ambient: "on", task: "off", hue_scene: "Relax" }
+          dusk: { ambient: "on", task: "off", hue_scene: "Dimmed" }
+      master_bathroom:
+        hue_group: "Master Bathroom"
+        ambient: []
+        task:
+          - light.master_bathroom
+        phases:
+          night: { ambient: "off", task: "dim", hue_scene: "Nightlight" }
+          nautical_dawn: { ambient: "off", task: "dim" }
+          dawn: { ambient: "off", task: "on" }
+          day: { ambient: "off", task: "on", hue_scene: "Bright" }
+          golden_hour: { ambient: "off", task: "on" }
+          dusk: { ambient: "off", task: "dim" }
+      office_jesse:
+        hue_group: "Spare Room"
+        ambient:
+          - light.spare_room
+          - light.hue_play_1
+          - light.hue_play_2
+          - light.office_backlight_plug
+        task:
+          - light.elgato_key_light_left
+          - light.elgato_key_light_right
+        phases:
+          night: { ambient: "on", task: "off" }
+          nautical_dawn: { ambient: "on", task: "off" }
+          dawn: { ambient: "on", task: "off" }
+          day: { ambient: "on", task: "off" }
+          golden_hour: { ambient: "on", task: "off" }
+          dusk: { ambient: "on", task: "off" }
+      media_room:
+        ambient:
+          - light.media_room_lamp
+        task:
+          - light.basement_media_r1
+          - light.basement_media_r2
+          - light.basement_media_l1
+          - light.basement_media_l2
+        phases:
+          night: { ambient: "on", task: "off" }
+          nautical_dawn: { ambient: "on", task: "off" }
+          dawn: { ambient: "on", task: "dim" }
+          day: { ambient: "off", task: "on" }
+          golden_hour: { ambient: "on", task: "dim" }
+          dusk: { ambient: "on", task: "off" }
+      basement_lounge:
+        ambient:
+          - light.basement_lounge_r2
+        task: []
+        phases:
+          night: { ambient: "on", task: "off" }
+          nautical_dawn: { ambient: "on", task: "off" }
+          dawn: { ambient: "on", task: "off" }
+          day: { ambient: "on", task: "off" }
+          golden_hour: { ambient: "on", task: "off" }
+          dusk: { ambient: "on", task: "off" }
+    room_config: "{{ rooms[room] }}"
+    current_phase: "{{ phase_settings[phase_key] }}"
+    room_phase: "{{ room_config.phases[phase_key] }}"
+    ambient_lights: "{{ room_config.ambient }}"
+    task_lights: "{{ room_config.task }}"
+    hue_group: "{{ room_config.get('hue_group', '') }}"
+    hue_scene: "{{ room_phase.get('hue_scene', '') }}"
+    # Construct scene entity_id: scene.<group_snake_case>_<scene_snake_case>
+    hue_scene_entity: >-
+      {% if hue_scene and hue_group %}
+        scene.{{ hue_group | lower | replace(' ', '_') }}_{{ hue_scene | lower | replace(' ', '_') }}
+      {% else %}
+        none
+      {% endif %}
+  sequence:
+    - choose:
+        - conditions: "{{ hue_scene_entity != 'none' }}"
+          sequence:
+            - alias: "Activate Hue scene for {{ room }}"
+              action: scene.turn_on
+              target:
+                entity_id: "{{ hue_scene_entity }}"
+            - if:
+                - "{{ room_phase.task == 'off' and task_lights | length > 0 }}"
+              then:
+                - action: light.turn_off
+                  target:
+                    entity_id: "{{ task_lights }}"
+            - if:
+                - "{{ room_phase.task == 'on' and task_lights | length > 0 }}"
+              then:
+                - action: light.turn_on
+                  target:
+                    entity_id: "{{ task_lights }}"
+                  data:
+                    brightness_pct: 100
+            - if:
+                - "{{ room_phase.task == 'dim' and task_lights | length > 0 }}"
+              then:
+                - action: light.turn_on
+                  target:
+                    entity_id: "{{ task_lights }}"
+                  data:
+                    brightness_pct: "{{ dim_settings.brightness_pct }}"
+      default:
+        - choose:
+            - conditions: "{{ room_phase.ambient == 'on' and ambient_lights | length > 0 }}"
+              sequence:
+                - action: light.turn_on
+                  target:
+                    entity_id: "{{ ambient_lights }}"
+                  data:
+                    brightness_pct: "{{ current_phase.brightness_pct }}"
+                    color_temp_kelvin: "{{ current_phase.kelvin }}"
+            - conditions: "{{ room_phase.ambient == 'off' and ambient_lights | length > 0 }}"
+              sequence:
+                - action: light.turn_off
+                  target:
+                    entity_id: "{{ ambient_lights }}"
+        - choose:
+            - conditions: "{{ room_phase.task == 'on' and task_lights | length > 0 }}"
+              sequence:
+                - action: light.turn_on
+                  target:
+                    entity_id: "{{ task_lights }}"
+                  data:
+                    brightness_pct: 100
+            - conditions: "{{ room_phase.task == 'dim' and task_lights | length > 0 }}"
+              sequence:
+                - action: light.turn_on
+                  target:
+                    entity_id: "{{ task_lights }}"
+                  data:
+                    brightness_pct: "{{ dim_settings.brightness_pct }}"
+            - conditions: "{{ room_phase.task == 'off' and task_lights | length > 0 }}"
+              sequence:
+                - action: light.turn_off
+                  target:
+                    entity_id: "{{ task_lights }}"
+
+apply_all_lighting:
+  alias: Apply All Room Lighting
+  description: Apply phase-appropriate lighting to all main rooms
+  mode: single
+  icon: mdi:home-lightbulb
+  sequence:
+    - parallel:
+        - action: script.apply_room_lighting
+          data:
+            room: living_room
+        - action: script.apply_room_lighting
+          data:
+            room: kitchen
+        - action: script.apply_room_lighting
+          data:
+            room: dining_room
+        - action: script.apply_room_lighting
+          data:
+            room: butlers_pantry
+        - action: script.apply_room_lighting
+          data:
+            room: entrance
+
+apply_upstairs_lighting:
+  alias: Apply Upstairs Lighting
+  description: Apply phase-appropriate lighting to upstairs rooms
+  mode: single
+  icon: mdi:home-floor-2
+  sequence:
+    - parallel:
+        - action: script.apply_room_lighting
+          data:
+            room: master_bedroom
+        - action: script.apply_room_lighting
+          data:
+            room: master_bathroom
+        - action: script.apply_room_lighting
+          data:
+            room: office_jesse
+
+apply_basement_lighting:
+  alias: Apply Basement Lighting
+  description: Apply phase-appropriate lighting to basement rooms
+  mode: single
+  icon: mdi:home-floor-b
+  sequence:
+    - parallel:
+        - action: script.apply_room_lighting
+          data:
+            room: media_room
+        - action: script.apply_room_lighting
+          data:
+            room: basement_lounge
+
+outdoor_lights_on:
+  alias: Outdoor Lights On
+  description: Turn on all outdoor lights
+  mode: single
+  icon: mdi:outdoor-lamp
+  sequence:
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - light.outdoor_fence_plug
+          - light.outdoor_accessory_plug
+          - light.deck
+          - light.front_porch
+          - switch.front_porch_plug_socket_1
+          - switch.front_porch_plug_socket_2
+          - light.studio_outdoors
+
+outdoor_lights_off:
+  alias: Outdoor Lights Off
+  description: Turn off all outdoor lights
+  mode: single
+  icon: mdi:outdoor-lamp
+  sequence:
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - light.outdoor_fence_plug
+          - light.outdoor_accessory_plug
+          - light.deck
+          - light.front_porch
+          - switch.front_porch_plug_socket_1
+          - switch.front_porch_plug_socket_2
+          - light.studio_outdoors
+
+christmas_lights_on:
+  alias: Christmas Lights On
+  description: Turn on Christmas/seasonal lights (only if in Christmas season)
+  mode: single
+  icon: mdi:string-lights
+  sequence:
+    - if:
+        - "{{ states('input_select.seasonal_mode') in ['Christmas', 'Christmas Season'] }}"
+      then:
+        - action: homeassistant.turn_on
+          target:
+            entity_id:
+              - light.christmas_lights
+              - light.garland_plug
+
+im_working:
+  alias: I'm working
+  description: Set up office lighting for work/video calls
+  mode: single
+  icon: mdi:briefcase
+  sequence:
+    - action: scene.turn_on
+      target:
+        entity_id: scene.activity_working
+
+im_cooking:
+  alias: I'm cooking
+  description: Bright, cool white lighting for cooking
+  mode: single
+  icon: mdi:chef-hat
+  sequence:
+    - action: scene.turn_on
+      target:
+        entity_id: scene.activity_cooking
+
+bedroom_sunrise:
+  alias: Bedroom Sunrise
+  description: Gradually brightens bedroom lights over configured duration
+  mode: single
+  icon: mdi:weather-sunset-up
+  variables:
+    step_duration: "{{ states('input_number.sunrise_duration') | int / 5 }}"
+  sequence:
+    - action: scene.turn_on
+      target:
+        entity_id: scene.bedroom_sunrise_beginnings
+    - delay:
+        minutes: "{{ step_duration }}"
+    - action: scene.turn_on
+      target:
+        entity_id: scene.bedroom_sunrise_first_light
+    - delay:
+        minutes: "{{ step_duration }}"
+    - action: scene.turn_on
+      target:
+        entity_id: scene.bedroom_sunrise_horizon
+    - delay:
+        minutes: "{{ step_duration }}"
+    - action: scene.turn_on
+      target:
+        entity_id: scene.bedroom_sunrise_valley_dawn
+    - delay:
+        minutes: "{{ step_duration }}"
+    - action: scene.turn_on
+      target:
+        entity_id: scene.bedroom_sunrise_sunflare
+    - delay:
+        minutes: "{{ step_duration }}"
+    - action: script.apply_room_lighting
+      data:
+        room: master_bedroom
+
+stop_bedroom_sunrise:
+  alias: Stop Bedroom Sunrise
+  description: Cancel sunrise alarm and restore normal lighting
+  mode: single
+  icon: mdi:weather-sunny-off
+  sequence:
+    - action: script.turn_off
+      target:
+        entity_id: script.bedroom_sunrise
+    - action: light.turn_off
+      target:
+        entity_id: light.master_suite
+    - action: script.apply_room_lighting
+      data:
+        room: master_bedroom
