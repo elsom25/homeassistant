@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_number",
+  "data": {
+    "items": [
+      {
+        "id": "sunrise_duration",
+        "min": 5.0,
+        "max": 60.0,
+        "name": "Sunrise Duration",
+        "icon": "mdi:timer-sand",
+        "unit_of_measurement": "minutes",
+        "step": 5.0,
+        "mode": "box"
+      }
+    ]
+  }
+}

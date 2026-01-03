@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace_resources",
+  "data": {
+    "items": [
+      {
+        "url": "/hacsfiles/hass-hue-icons/hass-hue-icons.js?hacstag=3844345221253",
+        "type": "module",
+        "id": "e8acc82e9e5649cabe892a1279dbd007"
+      },
+      {
+        "url": "/hacsfiles/button-card/button-card.js?hacstag=146194325701",
+        "type": "module",
+        "id": "2267d430733f4d9197bd7db2e9efd30e"
+      },
+      {
+        "url": "/hacsfiles/custom-sonos-card/custom-sonos-card.js?hacstag=449416816970",
+        "type": "module",
+        "id": "46757722ea794a6e82b5a84eec57c806"
+      },
+      {
+        "url": "/hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js?hacstag=142051833101",
+        "type": "module",
+        "id": "ab71b86e18a247838ab66f0d7386594a"
+      },
+      {
+        "url": "/hacsfiles/lovelace-auto-entities/auto-entities.js?hacstag=1677445841161",
+        "type": "module",
+        "id": "40d3f295cbd8490b835d64add75e03f3"
+      },
+      {
+        "url": "/hacsfiles/lovelace-layout-card/layout-card.js?hacstag=156434866247",
+        "type": "module",
+        "id": "ad2ed3de1ac049f38439569d4211839c"
+      },
+      {
+        "url": "/hacsfiles/lovelace-mushroom/mushroom.js?hacstag=444350375509",
+        "type": "module",
+        "id": "440aa293abfa41878afe170034c51bbf"
+      },
+      {
+        "url": "/hacsfiles/mini-graph-card/mini-graph-card-bundle.js?hacstag=1512800620130",
+        "type": "module",
+        "id": "607f3cd728c449b4baa2eb9720ef8faa"
+      },
+      {
+        "url": "/hacsfiles/lovelace-card-mod/card-mod.js?hacstag=190927524410",
+        "type": "module",
+        "id": "19918a18ee0b4ebfb3a075967f157315"
+      },
+      {
+        "url": "/hacsfiles/my-cards/my-cards.js?hacstag=399108901106",
+        "type": "module",
+        "id": "4ba6b7c1cef24d1caeb410d7984f86c6"
+      },
+      {
+        "url": "/hacsfiles/kiosk-mode/kiosk-mode.js?hacstag=303101606172",
+        "type": "module",
+        "id": "5e8fe9bcb09d406cb56b7093da1b6283"
+      },
+      {
+        "url": "/browser_mod.js?automatically-added",
+        "type": "module",
+        "id": "fbc9779017e341ca86309bfbdfa0bb47"
+      }
+    ]
+  }
+}

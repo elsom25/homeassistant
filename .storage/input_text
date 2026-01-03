@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_text",
+  "data": {
+    "items": [
+      {
+        "id": "amplify_charger_initial_state",
+        "name": "amplify_charger_initial_state",
+        "icon": "mdi:ev-station",
+        "mode": "text",
+        "min": 0,
+        "max": 100
+      }
+    ]
+  }
+}

@@ -1,0 +1,2489 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "homeassistant.exposed_entities",
+  "data": {
+    "assistants": {
+      "cloud.google_assistant": {
+        "expose_new": true
+      },
+      "conversation": {
+        "expose_new": false
+      }
+    },
+    "exposed_entities": {
+      "group.all_input_selects": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          },
+          "conversation": {
+            "should_expose": false
+          },
+          "cloud.alexa": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.home_status": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          },
+          "cloud.google_assistant": {
+            "should_expose": false
+          },
+          "cloud.alexa": {
+            "should_expose": false
+          }
+        }
+      },
+      "sun.sun": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          },
+          "cloud.google_assistant": {
+            "should_expose": false
+          },
+          "cloud.alexa": {
+            "should_expose": false
+          }
+        }
+      },
+      "zone.home": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          },
+          "cloud.google_assistant": {
+            "should_expose": false
+          },
+          "cloud.alexa": {
+            "should_expose": false
+          }
+        }
+      },
+      "persistent_notification.config_entry_discovery": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          },
+          "cloud.alexa": {
+            "should_expose": false
+          },
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "persistent_notification.config_entry_reconfigure": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          },
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_3_node_status": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "button.node_3_ping": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_3_successful_commands_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_3_successful_commands_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_3_commands_dropped_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_3_commands_dropped_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_3_timed_out_responses": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_3_round_trip_time": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_3_rssi": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.washing_machine_water_leak_sensor_battery_level": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "update.washing_machine_water_leak_sensor_firmware_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "button.washing_machine_water_leak_sensor_identify": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "number.washing_machine_water_leak_sensor_indicator_value_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.washing_machine_water_leak_sensor_low_battery_level_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.washing_machine_water_leak_sensor_sensor_state_water_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "number.washing_machine_water_leak_sensor_alarm_clear_delay_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "number.washing_machine_water_leak_sensor_battery_report_threshold_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "number.washing_machine_water_leak_sensor_low_battery_alarm_threshold_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "select.washing_machine_water_leak_sensor_group_2_basic_set_commands_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "select.washing_machine_water_leak_sensor_led_indicator_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.washing_machine_water_leak_sensor_alarmlevel": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.washing_machine_water_leak_sensor_alarmtype": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_4_node_status": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "button.node_4_ping": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_4_successful_commands_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_4_successful_commands_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_4_commands_dropped_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_4_commands_dropped_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_4_timed_out_responses": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_4_round_trip_time": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_4_rssi": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.water_leak_xs_sensor_sensor_state_water_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "select.water_leak_xs_sensor_led_indicator_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "number.water_leak_xs_sensor_alarm_clear_delay_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "number.water_leak_xs_sensor_battery_report_threshold_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "number.water_leak_xs_sensor_low_battery_alarm_threshold_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "select.water_leak_xs_sensor_group_2_basic_set_commands_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.water_leak_xs_sensor_alarmtype": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.water_leak_xs_sensor_alarmlevel": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.water_leak_xs_sensor_battery_level": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.water_leak_xs_sensor_low_battery_level_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "number.water_leak_xs_sensor_indicator_value_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "button.water_leak_xs_sensor_identify": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "update.water_leak_xs_sensor_firmware_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_7_node_status": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "button.node_7_ping": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_7_successful_commands_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_7_successful_commands_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_7_commands_dropped_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_7_commands_dropped_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_7_timed_out_responses": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_7_round_trip_time": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_7_rssi": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_8_node_status": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "button.node_8_ping": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_8_successful_commands_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_8_successful_commands_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_8_commands_dropped_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_8_commands_dropped_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_8_timed_out_responses": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_8_round_trip_time": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_8_rssi": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_9_node_status": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "button.node_9_ping": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_9_successful_commands_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_9_successful_commands_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_9_commands_dropped_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_9_commands_dropped_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_9_timed_out_responses": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_9_round_trip_time": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_9_rssi": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_10_node_status": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "button.node_10_ping": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_10_successful_commands_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_10_successful_commands_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_10_commands_dropped_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_10_commands_dropped_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_10_timed_out_responses": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_10_round_trip_time": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_10_rssi": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_5_node_status": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "button.node_5_ping": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_5_successful_commands_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_5_successful_commands_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_5_commands_dropped_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_5_commands_dropped_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_5_timed_out_responses": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_5_round_trip_time": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_5_rssi": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_13_node_status": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "button.node_13_ping": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_13_successful_commands_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_13_successful_commands_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_13_commands_dropped_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_13_commands_dropped_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_13_timed_out_responses": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_13_round_trip_time": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_13_rssi": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.water_leak_xs_sensor_water_leak_detected": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.water_leak_xs_sensor_water_alarm_sensor_status": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "button.water_leak_xs_sensor_idle_water_alarm_sensor_status": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_12_node_status": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "button.node_12_ping": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_12_successful_commands_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_12_successful_commands_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_12_commands_dropped_rx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_12_commands_dropped_tx": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_12_timed_out_responses": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_12_round_trip_time": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.node_12_rssi": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "automation.litter_robot_reset_status": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.b9afd4bf_8e3137c1_browser_path": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.b9afd4bf_8e3137c1_browser_visibility": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.b9afd4bf_8e3137c1_browser_useragent": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.b9afd4bf_8e3137c1_browser_user": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.b9afd4bf_8e3137c1_browser_width": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.b9afd4bf_8e3137c1_browser_height": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.b9afd4bf_8e3137c1_browser_dark_mode": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.b9afd4bf_8e3137c1_browser_fullykiosk": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.b9afd4bf_8e3137c1": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "light.b9afd4bf_8e3137c1_screen": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "media_player.b9afd4bf_8e3137c1": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "scene.turn_off_all_sockets": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "scene.turn_on_all_sockets": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "device_tracker.andrews_iphone": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "device_tracker.jesses_iphone": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "scene.master_suite_concentrate": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "scene.master_suite_read": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "scene.master_suite_relax": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "scene.master_suite_energize": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "scene.master_suite_nightlight": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "scene.master_suite_dimmed": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "scene.master_suite_tropical_twilight": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "scene.master_suite_bright": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.eight_right_sleep_session": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.eight_right_sleep_fitness": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.eight_right_previous_sleep_session": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.eight_right_bed_state": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.eight_right_bed_temperature": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.eight_right_sleep_stage": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.eight_left_sleep_session": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.eight_left_sleep_fitness": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.eight_left_previous_sleep_session": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.eight_left_bed_state": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.eight_left_bed_temperature": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.eight_left_sleep_stage": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.eight_room_temperature": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.eight_right_bed_presence": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.eight_left_bed_presence": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "input_boolean.sunrise_lights_manual_control": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "automation.light_mode_sun_sunrise": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "switch.adaptive_lighting_sleep_mode_master_suite": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "switch.adaptive_lighting_adapt_color_master_suite": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "switch.adaptive_lighting_adapt_brightness_master_suite": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "switch.adaptive_lighting_master_suite": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "automation.stop_today_s_sunrise_alarm": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "input_button.stop_today_sunrise_alarm": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "light.christmas_tree_plug": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "sensor.christmas_tree_plug_zigbee_connectivity": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.dexcom_elsom25_glucose_trend": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.dexcom_elsom25_glucose_value": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.adguard_home_dns_queries": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "switch.adguard_home_protection": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "sensor.adguard_home_dns_queries_blocked": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.adguard_home_dns_queries_blocked_ratio": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.adguard_home_parental_control_blocked": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.adguard_home_safe_browsing_blocked": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "switch.adguard_home_parental_control": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "sensor.adguard_home_rules_count": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.adguard_home_safe_searches_enforced": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.adguard_home_average_processing_speed": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "switch.adguard_home_safe_search": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "switch.adguard_home_safe_browsing": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "switch.adguard_home_filtering": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "switch.adguard_home_query_log": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "conversation.home_assistant": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          },
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.basement_ap_flexhd_cpu_utilization": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.basement_ap_flexhd_memory_utilization": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.stargate_power_core_lite_8_poe_cpu_utilization": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.stargate_power_core_lite_8_poe_memory_utilization": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.studio_ap_u6_pro_cpu_utilization": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.studio_ap_u6_pro_memory_utilization": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.upstairs_ap_u6_iw_cpu_utilization": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.upstairs_ap_u6_iw_memory_utilization": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.main_ap_u6_iw_cpu_utilization": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.main_ap_u6_iw_memory_utilization": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_activity": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_battery_level": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_storage": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_battery_state": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_ssid": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_connection_type": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_bssid": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_sim_1": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_sim_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_geocoded_location": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.jesse_focus": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_last_update_trigger": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_average_active_pace": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_distance": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_floors_ascended": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_floors_descended": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_steps": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "device_tracker.jesse": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_app_version": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_watch_battery": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_location_permission": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_activity_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_average_active_pace_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_battery_state_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_bssid_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_connection_type_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_distance_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_floors_ascended_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_floors_descended_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.jesse_iphone_focus_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_geocoded_location_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_last_update_trigger_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_sim_1_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_sim_2_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_ssid_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_steps_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_storage_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "device_tracker.jesse_iphone": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_activity": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_distance": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_floors_ascended": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_battery_state": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_storage": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_floors_descended": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_steps": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_battery_level": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_ssid": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_bssid": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_sim_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_connection_type": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_sim_1": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.jesse_iphone_focus": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_last_update_trigger": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_app_version_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.jesse_iphone_location_permission_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "light.bedroom_3": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "sensor.bedroom_3_zigbee_connectivity": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "light.bedroom_1": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "sensor.bedroom_1_zigbee_connectivity": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "light.bedroom_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "sensor.bedroom_2_zigbee_connectivity": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.hue_filament_bulb_1_zigbee_connectivity": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "light.hue_filament_bulb_1": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "sensor.hue_filament_bulb_2_zigbee_connectivity": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "light.hue_filament_bulb_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "sensor.hue_filament_bulb_3_zigbee_connectivity": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "light.hue_filament_bulb_3": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "sensor.hue_filament_bulb_4_zigbee_connectivity": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "light.hue_filament_bulb_4": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "light.bedroom_fixture": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "scene.top_floor_golden_hours": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "scene.top_floor_arise": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "scene.top_floor_shine": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "scene.top_floor_storybook": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "scene.top_floor_unwind": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "scene.top_floor_sleepy": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.spotify_elsom25": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "sensor.spotify_elsom25_song_tempo": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_elsom25_song_danceability": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_elsom25_song_energy": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_elsom25_song_mode": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_elsom25_song_speechiness": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_elsom25_song_acousticness": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_elsom25_song_instrumentalness": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_elsom25_song_liveness": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_elsom25_song_valence": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_elsom25_song_time_signature": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_elsom25_song_key": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "media_player.spotify_awfisher2142": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "sensor.spotify_awfisher2142_song_tempo": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_awfisher2142_song_danceability": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_awfisher2142_song_energy": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_awfisher2142_song_mode": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_awfisher2142_song_speechiness": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_awfisher2142_song_acousticness": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_awfisher2142_song_instrumentalness": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_awfisher2142_song_liveness": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_awfisher2142_song_valence": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_awfisher2142_song_time_signature": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_awfisher2142_song_key": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "media_player.spotify_stargate_command": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "sensor.spotify_stargate_command_song_tempo": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_stargate_command_song_danceability": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_stargate_command_song_energy": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_stargate_command_song_mode": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_stargate_command_song_speechiness": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_stargate_command_song_acousticness": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_stargate_command_song_instrumentalness": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_stargate_command_song_liveness": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_stargate_command_song_valence": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_stargate_command_song_time_signature": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "sensor.spotify_stargate_command_song_key": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "media_player.media_room_3": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.mainfloor_bathroom_3": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.office_jesse_3": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.studio_3": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.living_room_3": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.deck_3": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.bedroom_3": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.office_andrew_3": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.kitchen_3": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.sonos_move_3": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "scene.main_floor_concentrate": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "scene.main_floor_relax": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "scene.main_floor_natural_light": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "scene.main_floor_painted_sky": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "scene.main_floor_smitten": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "scene.main_floor_nightlight": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "scene.main_floor_rest": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "scene.main_floor_read": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "scene.main_floor_energize": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.media_room_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.mainfloor_bathroom_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.office_jesse_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.studio_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.living_room_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.deck_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.bedroom_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.office_andrew_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.kitchen_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.sonos_move_2": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "select.home_assistant_voice_09a05c_assistant": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "select.home_assistant_voice_09a05c_finished_speaking_detection": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.home_assistant_voice_09a05c_assist_in_progress": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "light.home_assistant_voice_09a05c_led_ring": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "switch.home_assistant_voice_09a05c_mute": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "switch.home_assistant_voice_09a05c_wake_sound": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "switch.home_assistant_voice_09a05c_beta_firmware": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "media_player.home_assistant_voice_09a05c_media_player": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": true
+          }
+        }
+      },
+      "event.home_assistant_voice_09a05c_button_press": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "update.home_assistant_voice_09a05c_home_assistant_voice_09a05c": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "select.home_assistant_voice_09a05c_wake_word": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "assist_satellite.home_assistant_voice_09a05c_assist_satellite": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "input_select.area_map_living_room": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "zone.work_andrew": {
+        "assistants": {
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "scene.pre_assist_music": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      }
+    }
+  }
+}

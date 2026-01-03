@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_boolean",
+  "data": {
+    "items": [
+      {
+        "name": "Vacation?",
+        "icon": "mdi:palm-tree",
+        "id": "vacation"
+      },
+      {
+        "name": "Cooking?",
+        "icon": "mdi:chef-hat",
+        "id": "cooking"
+      },
+      {
+        "id": "sunrise_alarm",
+        "name": "Sunrise Alarm",
+        "icon": "mdi:weather-sunset-up"
+      }
+    ]
+  }
+}

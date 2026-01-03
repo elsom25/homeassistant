@@ -1,9 +1,33 @@
 .storage/*
-!.storage/hacs
-!.storage/hacs.repositories
-!.storage/hacs.hacs
+
+# Core registries (entity/device/area organization)
 !.storage/core.config
+!.storage/core.entity_registry
+!.storage/core.device_registry
+!.storage/core.area_registry
+!.storage/core.floor_registry
+
+# Input helpers defined via UI
+!.storage/input_boolean
+!.storage/input_button
+!.storage/input_datetime
+!.storage/input_number
+!.storage/input_select
+!.storage/input_text
+
+# Lovelace dashboards
 !.storage/lovelace
+!.storage/lovelace.*
+!.storage/lovelace_dashboards
+!.storage/lovelace_resources
+
+# HACS (installed integrations only, not the full catalog)
+!.storage/hacs
+!.storage/hacs.hacs
+
+# Voice assistant exposure config
+!.storage/homeassistant.exposed_entities
+
 
 .cloud
 .HA_VERSION
