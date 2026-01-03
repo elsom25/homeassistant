@@ -58,17 +58,17 @@ blueprint:
 mode: restart
 max_exceeded: silent
 
-trigger:
-  - platform: state
+triggers:
+  - trigger: state
     entity_id: !input person_entity
 
-condition:
+conditions:
   # Skip state machine updates when on vacation
   - condition: state
     entity_id: !input vacation_toggle
     state: "off"
 
-action:
+actions:
   - choose:
       # Person arrived home
       - conditions:
@@ -76,28 +76,27 @@ action:
             entity_id: !input person_entity
             state: "home"
         sequence:
-          - choose:
+          - if:
               # Quick return: If they were "Just Left", go directly to "Home"
-              - conditions:
-                  - condition: state
-                    entity_id: !input status_dropdown
-                    state: "Just Left"
-                sequence:
-                  - service: input_select.select_option
-                    target:
-                      entity_id: !input status_dropdown
-                    data:
-                      option: "Home"
-            # Normal arrival: Just Arrived → delay → Home
-            default:
-              - service: input_select.select_option
+              - condition: state
+                entity_id: !input status_dropdown
+                state: "Just Left"
+            then:
+              - action: input_select.select_option
+                target:
+                  entity_id: !input status_dropdown
+                data:
+                  option: "Home"
+            else:
+              # Normal arrival: Just Arrived → delay → Home
+              - action: input_select.select_option
                 target:
                   entity_id: !input status_dropdown
                 data:
                   option: "Just Arrived"
               - delay:
                   minutes: !input just_arrived_delay
-              - service: input_select.select_option
+              - action: input_select.select_option
                 target:
                   entity_id: !input status_dropdown
                 data:
@@ -119,7 +118,7 @@ action:
                   - "Away"
                   - "Extended Away"
           # Set to Just Left
-          - service: input_select.select_option
+          - action: input_select.select_option
             target:
               entity_id: !input status_dropdown
             data:
@@ -127,7 +126,7 @@ action:
           # Wait, then set to Away
           - delay:
               minutes: !input just_left_delay
-          - service: input_select.select_option
+          - action: input_select.select_option
             target:
               entity_id: !input status_dropdown
             data:
@@ -135,7 +134,7 @@ action:
           # Wait, then set to Extended Away
           - delay:
               hours: !input away_to_extended_delay
-          - service: input_select.select_option
+          - action: input_select.select_option
             target:
               entity_id: !input status_dropdown
             data:
