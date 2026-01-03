@@ -306,12 +306,14 @@
       to: Nautical Dawn
   actions:
     - parallel:
-        - action: input_select.select_option
+        - alias: "Set light mode to Sun"
+          action: input_select.select_option
           target:
             entity_id: input_select.light_mode_dropdown
           data:
             option: Sun
-        - action: script.outdoor_lights_off
+        - alias: "Turn off outdoor lights"
+          action: script.outdoor_lights_off
 
 - id: lights_golden_hour
   alias: Lights - Golden Hour
@@ -323,7 +325,8 @@
   conditions:
     - "{{ states('sensor.home_status') in ['Just Arrived', 'Some Home', 'Home'] }}"
   actions:
-    - action: homeassistant.turn_on
+    - alias: "Turn on main floor lights"
+      action: homeassistant.turn_on
       target:
         entity_id:
           - light.main_floor_pendants
@@ -343,32 +346,38 @@
     is_away: "{{ is_state('sensor.home_status', 'Away') }}"
   actions:
     # Always turn off overheads at sunset
-    - action: homeassistant.turn_off
+    - alias: "Turn off main floor overheads"
+      action: homeassistant.turn_off
       target:
         entity_id: light.main_floor_overheads
     # Turn on outdoor lights (except Halloween)
     - if:
         - "{{ not is_halloween }}"
       then:
-        - action: script.outdoor_lights_on
+        - alias: "Turn on outdoor lights"
+          action: script.outdoor_lights_on
     # If home or on vacation, turn on indoor lights
     - if:
         - "{{ is_home or is_vacation }}"
       then:
         - parallel:
-            - action: homeassistant.turn_on
+            - alias: "Turn on main floor interior lights"
+              action: homeassistant.turn_on
               target:
                 entity_id:
                   - light.main_floor_pendants
                   - light.main_floor
-            - action: script.christmas_lights_on
+            - alias: "Turn on Christmas lights if in season"
+              action: script.christmas_lights_on
     # If away (not vacation), simulate presence with random delay
     - if:
         - "{{ is_away }}"
       then:
-        - delay:
+        - alias: "Random delay for pseudo-presence"
+          delay:
             minutes: "{{ range(0, 20) | random }}"
-        - action: homeassistant.turn_on
+        - alias: "Turn on presence simulation lights"
+          action: homeassistant.turn_on
           target:
             entity_id:
               - light.living_room_primary
@@ -382,16 +391,20 @@
       at: "23:30:00"
   actions:
     # Turn off outdoor lights with small random delay
-    - delay:
+    - alias: "Random delay for pseudo-presence"
+      delay:
         minutes: "{{ range(0, 10) | random }}"
-    - action: script.outdoor_lights_off
+    - alias: "Turn off outdoor lights"
+      action: script.outdoor_lights_off
     # If on vacation, run goodnight script with additional random delay
     - if:
         - "{{ is_state('sensor.home_status', 'Extended Away') }}"
       then:
-        - delay:
+        - alias: "Additional random delay for vacation mode"
+          delay:
             minutes: "{{ range(0, 20) | random }}"
-        - action: script.turn_on
+        - alias: "Run goodnight script"
+          action: script.turn_on
           target:
             entity_id: script.1514647809398
 
@@ -442,7 +455,8 @@
         # Goodnight also runs for Away status
         - "{{ trigger.id == 'goodnight' and is_state('sensor.home_status', 'Away') }}"
   actions:
-    - delay:
+    - alias: "Random delay for realistic timing"
+      delay:
         minutes: "{{ random_delay }}"
     - choose:
         # Weekday morning - Good morning routine
@@ -450,14 +464,17 @@
             - "{{ trigger.id == 'weekday_morning' and is_weekday }}"
           sequence:
             - parallel:
-                - action: script.good_morning
-                - action: script.christmas_lights_on
+                - alias: "Run good morning script"
+                  action: script.good_morning
+                - alias: "Turn on Christmas lights if in season"
+                  action: script.christmas_lights_on
 
         # Weekday - Master suite off
         - conditions:
             - "{{ trigger.id == 'weekday_bedroom_off' and is_weekday }}"
           sequence:
-            - action: homeassistant.turn_off
+            - alias: "Turn off master suite"
+              action: homeassistant.turn_off
               target:
                 entity_id: light.master_suite
 
@@ -465,7 +482,8 @@
         - conditions:
             - "{{ trigger.id == 'weekday_office_on' and is_weekday }}"
           sequence:
-            - action: homeassistant.turn_on
+            - alias: "Turn on office (spare room)"
+              action: homeassistant.turn_on
               target:
                 entity_id: light.spare_room
 
@@ -473,7 +491,8 @@
         - conditions:
             - "{{ trigger.id == 'weekday_office_off' and is_weekday }}"
           sequence:
-            - action: homeassistant.turn_off
+            - alias: "Turn off office (spare room)"
+              action: homeassistant.turn_off
               target:
                 entity_id: light.spare_room
 
@@ -482,14 +501,17 @@
             - "{{ trigger.id == 'weekend_morning' and is_weekend }}"
           sequence:
             - parallel:
-                - action: script.good_morning
-                - action: script.christmas_lights_on
+                - alias: "Run good morning script"
+                  action: script.good_morning
+                - alias: "Turn on Christmas lights if in season"
+                  action: script.christmas_lights_on
 
         # Weekend - Master suite off
         - conditions:
             - "{{ trigger.id == 'weekend_bedroom_off' and is_weekend }}"
           sequence:
-            - action: homeassistant.turn_off
+            - alias: "Turn off master suite"
+              action: homeassistant.turn_off
               target:
                 entity_id: light.master_suite
 
@@ -497,7 +519,8 @@
         - conditions:
             - "{{ trigger.id == 'bedtime' }}"
           sequence:
-            - action: script.turn_on
+            - alias: "Run bedtime script"
+              action: script.turn_on
               target:
                 entity_id: script.1523806783160
 
@@ -505,7 +528,8 @@
         - conditions:
             - "{{ trigger.id == 'goodnight' }}"
           sequence:
-            - action: script.turn_on
+            - alias: "Run goodnight script"
+              action: script.turn_on
               target:
                 entity_id: script.1514647809398
 
@@ -533,29 +557,34 @@
   actions:
     - parallel:
         # Always turn on these lights
-        - action: homeassistant.turn_on
+        - alias: "Turn on bar and kitchen underlight"
+          action: homeassistant.turn_on
           target:
             entity_id:
               - light.butlers_pantry
               - light.kitchen_underlight
         # Resume music
-        - action: media_player.media_play
+        - alias: "Resume music playback"
+          action: media_player.media_play
           target:
             entity_id: media_player.living_room
         # Christmas lights if in season
-        - action: script.christmas_lights_on
+        - alias: "Turn on Christmas lights if in season"
+          action: script.christmas_lights_on
     # Daytime (bright): turn on overheads
     - if:
         - "{{ is_bright }}"
       then:
-        - action: homeassistant.turn_on
+        - alias: "Turn on overheads for daytime arrival"
+          action: homeassistant.turn_on
           target:
             entity_id: light.main_floor_overheads
     # Low light (twilight/dark): turn on living room and pendants
     - if:
         - "{{ is_dim }}"
       then:
-        - action: homeassistant.turn_on
+        - alias: "Turn on all main floor lights for evening arrival"
+          action: homeassistant.turn_on
           target:
             entity_id:
               - light.living_room
@@ -578,11 +607,13 @@
          ['Night', 'Nautical Dawn', 'Dawn', 'Golden Hour', 'Dusk'] }}
   actions:
     # Random delay for pseudo-presence effect
-    - delay:
+    - alias: "Random delay for pseudo-presence"
+      delay:
         minutes: "{{ range(5, 25) | random }}"
     - parallel:
         # Turn off interior lights
-        - action: homeassistant.turn_off
+        - alias: "Turn off all interior lights"
+          action: homeassistant.turn_off
           target:
             entity_id:
               - light.entrance
@@ -594,11 +625,13 @@
               - light.elgato_key_light_right
               - light.spare_room
         # Pause music
-        - action: media_player.media_pause
+        - alias: "Pause music playback"
+          action: media_player.media_pause
           target:
             entity_id: media_player.living_room
         # Disconnect outdoor speakers
-        - action: media_player.unjoin
+        - alias: "Disconnect outdoor speakers"
+          action: media_player.unjoin
           target:
             device_id:
               - d0b9ca9193e0b053774fde7b15ba8525
@@ -607,9 +640,11 @@
     - if:
         - "{{ is_dim }}"
       then:
-        - delay:
+        - alias: "Brief delay before pseudo-presence lights"
+          delay:
             seconds: 10
-        - action: homeassistant.turn_on
+        - alias: "Turn on pseudo-presence lights"
+          action: homeassistant.turn_on
           target:
             entity_id:
               - light.living_room_primary

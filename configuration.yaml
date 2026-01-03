@@ -87,10 +87,10 @@ http:
 notify:
   - name: ALL_DEVICES
     platform: group
-    services:
-      - service: mobile_app_jesse_iphone
-      - service: mobile_app_jesses_ipad_pro
-      - service: mobile_app_andrew_iphone
+    members:
+      - mobile_app_jesse_iphone
+      - mobile_app_jesses_ipad_pro
+      - mobile_app_andrew_iphone
 
 tts:
   - platform: google_translate
