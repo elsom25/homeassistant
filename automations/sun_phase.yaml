@@ -1,0 +1,150 @@
+- id: sun_phase_auto_set
+  alias: Sun Phase - Auto Set
+  description: Track sun phases using elevation angles for accuracy across seasons
+  mode: single
+  triggers:
+    - trigger: numeric_state
+      entity_id: sun.sun
+      attribute: elevation
+      above: -12
+      id: nautical_dawn
+    - trigger: numeric_state
+      entity_id: sun.sun
+      attribute: elevation
+      above: -6
+      id: dawn
+    - trigger: numeric_state
+      entity_id: sun.sun
+      attribute: elevation
+      above: 0
+      id: day
+    - trigger: numeric_state
+      entity_id: sun.sun
+      attribute: elevation
+      below: 6
+      id: golden_hour
+    - trigger: numeric_state
+      entity_id: sun.sun
+      attribute: elevation
+      below: 0
+      id: dusk
+    - trigger: numeric_state
+      entity_id: sun.sun
+      attribute: elevation
+      below: -6
+      id: night
+    - trigger: homeassistant
+      event: start
+      id: startup
+  actions:
+    - action: input_select.select_option
+      target:
+        entity_id: input_select.sun_phase
+      data:
+        option: >-
+          {% if trigger.id == 'startup' %}
+            {% set elev = state_attr('sun.sun', 'elevation') | float(0) %}
+            {% set rising = state_attr('sun.sun', 'rising') | default(true) %}
+            {% if elev < -12 %}Night
+            {% elif elev < -6 %}{{ 'Nautical Dawn' if rising else 'Night' }}
+            {% elif elev < 0 %}{{ 'Dawn' if rising else 'Dusk' }}
+            {% elif elev < 6 %}{{ 'Day' if rising else 'Golden Hour' }}
+            {% else %}Day
+            {% endif %}
+          {% else %}
+            {{ {
+              'nautical_dawn': 'Nautical Dawn',
+              'dawn': 'Dawn',
+              'day': 'Day',
+              'golden_hour': 'Golden Hour',
+              'dusk': 'Dusk',
+              'night': 'Night'
+            }.get(trigger.id, 'Day') }}
+          {% endif %}
+
+- id: sun_phase_apply_lighting
+  alias: Sun Phase - Apply Lighting
+  description: Apply room lighting when sun phase changes (if auto transitions enabled)
+  mode: single
+  triggers:
+    - trigger: state
+      entity_id: input_select.sun_phase
+  conditions:
+    - condition: state
+      entity_id: input_boolean.auto_scene_transitions
+      state: "on"
+    - condition: state
+      entity_id: input_select.light_mode_dropdown
+      state: Sun
+    - "{{ states('sensor.home_status') in ['Just Arrived', 'Some Home', 'Home'] }}"
+  actions:
+    - action: script.apply_all_lighting
+
+- id: sun_phase_dawn_reset
+  alias: Sun Phase - Dawn Reset
+  description: At nautical dawn, reset light mode to Sun and turn off outdoor lights
+  triggers:
+    - trigger: state
+      entity_id: input_select.sun_phase
+      to: Nautical Dawn
+  actions:
+    - parallel:
+        - action: input_select.select_option
+          target:
+            entity_id: input_select.light_mode_dropdown
+          data:
+            option: Sun
+        - action: script.outdoor_lights_off
+
+- id: sun_phase_dusk_routine
+  alias: Sun Phase - Dusk Routine
+  description: At dusk, adjust lighting based on home status and season
+  triggers:
+    - trigger: state
+      entity_id: input_select.sun_phase
+      to: Dusk
+  variables:
+    is_halloween: "{{ is_state('input_select.seasonal_mode', 'Halloween') }}"
+    is_home: "{{ states('sensor.home_status') in ['Just Arrived', 'Some Home', 'Home'] }}"
+    is_vacation: "{{ is_state('sensor.home_status', 'Extended Away') }}"
+    is_away: "{{ is_state('sensor.home_status', 'Away') }}"
+  actions:
+    - if:
+        - "{{ not is_halloween }}"
+      then:
+        - action: script.outdoor_lights_on
+    - if:
+        - "{{ is_home or is_vacation }}"
+      then:
+        - parallel:
+            - action: script.apply_all_lighting
+            - action: script.christmas_lights_on
+    - if:
+        - "{{ is_away }}"
+      then:
+        - delay:
+            minutes: "{{ range(0, 20) | random }}"
+        - action: homeassistant.turn_on
+          target:
+            entity_id:
+              - light.living_room_primary
+              - light.kitchen_underlight
+
+- id: sun_phase_late_night
+  alias: Sun Phase - Late Night Off
+  description: At 23:30, turn off outdoor lights and run goodnight if on vacation
+  triggers:
+    - trigger: time
+      at: "23:30:00"
+  actions:
+    - delay:
+        minutes: "{{ range(0, 10) | random }}"
+    - action: script.outdoor_lights_off
+    - if:
+        - "{{ is_state('sensor.home_status', 'Extended Away') }}"
+      then:
+        - delay:
+            minutes: "{{ range(0, 20) | random }}"
+        - action: script.turn_on
+          target:
+            entity_id: script.1514647809398

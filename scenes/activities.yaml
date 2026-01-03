@@ -1,0 +1,116 @@
+- id: activity_cooking
+  name: "Activity - Cooking"
+  entities:
+    light.kitchen_overhead:
+      state: "on"
+      brightness: 255
+      color_temp_kelvin: 4000
+    light.kitchen_pendants:
+      state: "on"
+    light.kitchen_underlight:
+      state: "on"
+      brightness: 255
+      color_temp_kelvin: 4000
+
+- id: activity_dining
+  name: "Activity - Dining"
+  entities:
+    light.kitchen_overhead:
+      state: "off"
+    light.kitchen_pendants:
+      state: "on"
+    light.dining_room_overhead:
+      state: "off"
+    light.dining_chandelier:
+      state: "on"
+      brightness: 153
+      color_temp_kelvin: 2700
+
+- id: activity_working
+  name: "Activity - Working"
+  entities:
+    light.elgato_key_light_left:
+      state: "on"
+      brightness: 255
+      color_temp_kelvin: 4500
+    light.elgato_key_light_right:
+      state: "on"
+      brightness: 255
+      color_temp_kelvin: 4500
+    light.office_backlight_plug:
+      state: "on"
+    light.hue_play_1:
+      state: "on"
+      brightness: 153
+    light.hue_play_2:
+      state: "on"
+      brightness: 153
+    light.spare_room:
+      state: "off"
+
+- id: activity_movie
+  name: "Activity - Movie"
+  entities:
+    light.media_room_lamp:
+      state: "on"
+      brightness: 13
+      color_temp_kelvin: 2200
+    light.basement_media_r1:
+      state: "off"
+    light.basement_media_r2:
+      state: "off"
+    light.basement_media_l1:
+      state: "off"
+    light.basement_media_l2:
+      state: "off"
+
+- id: activity_reading_media_room
+  name: "Activity - Reading (Media Room)"
+  entities:
+    light.media_room_lamp:
+      state: "on"
+      brightness: 204
+      color_temp_kelvin: 3000
+    light.basement_media_r1:
+      state: "off"
+    light.basement_media_r2:
+      state: "off"
+    light.basement_media_l1:
+      state: "off"
+    light.basement_media_l2:
+      state: "off"
+
+- id: activity_reading_living_room
+  name: "Activity - Reading (Living Room)"
+  entities:
+    light.living_room_primary:
+      state: "on"
+      brightness: 204
+      color_temp_kelvin: 3000
+    light.living_room_overhead:
+      state: "on"
+      brightness: 128
+
+- id: activity_reading_bedroom
+  name: "Activity - Reading (Bedroom)"
+  entities:
+    light.jesses_lamp:
+      state: "on"
+      brightness: 179
+      color_temp_kelvin: 3000
+    light.andrews_lamp:
+      state: "on"
+      brightness: 179
+      color_temp_kelvin: 3000
+
+- id: activity_sleep
+  name: "Activity - Sleep"
+  entities:
+    light.jesses_lamp:
+      state: "off"
+    light.andrews_lamp:
+      state: "off"
+    light.master_bathroom:
+      state: "on"
+      brightness: 13
+      color_temp_kelvin: 2200

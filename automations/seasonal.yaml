@@ -1,0 +1,24 @@
+- id: seasonal_mode_auto_set
+  alias: Seasonal Mode - Auto Set
+  description: Automatically set seasonal mode based on current date
+  triggers:
+    - trigger: time
+      at: "00:00:00"
+    - trigger: homeassistant
+      event: start
+  actions:
+    - action: input_select.select_option
+      target:
+        entity_id: input_select.seasonal_mode
+      data:
+        option: >-
+          {% set month, day = now().month, now().day %}
+          {% if month == 10 and day == 31 %}
+            Halloween
+          {% elif month == 12 and day <= 25 %}
+            Christmas
+          {% elif month in [11, 12, 1] %}
+            Christmas Season
+          {% else %}
+            Normal
+          {% endif %}
