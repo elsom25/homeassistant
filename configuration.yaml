@@ -40,6 +40,39 @@ input_select:
       - Sleep
       - Manual
     initial: Sun
+  seasonal_mode:
+    name: Seasonal Mode
+    options:
+      - Normal
+      - Halloween
+      - Christmas
+      - Christmas Season
+    initial: Normal
+    icon: mdi:calendar-star
+  # Sun Phase - tracks the current phase of daylight for lighting automations
+  # Uses sun elevation angles for accuracy across seasons (twilight is longer in summer)
+  #
+  # Timeline: Night → Nautical Dawn → Dawn → Day → Golden Hour → Dusk → Night
+  #
+  # Night:         Elevation < -6° (civil twilight ended, full darkness)
+  # Nautical Dawn: Elevation crosses -12° rising (early lightening, sunrise alarms)
+  # Dawn:          Elevation crosses -6° rising (civil twilight, sky getting bright)
+  # Day:           Elevation > 0° rising (sunrise, full daylight)
+  # Golden Hour:   Elevation crosses 6° falling (warm light, ~1hr before sunset)
+  # Dusk:          Elevation crosses 0° falling (sunset, civil twilight begins)
+  #
+  # Reference: https://www.home-assistant.io/docs/automation/trigger/#sun-elevation-trigger
+  sun_phase:
+    name: Sun Phase
+    options:
+      - Night
+      - Nautical Dawn
+      - Dawn
+      - Day
+      - Golden Hour
+      - Dusk
+    initial: Day
+    icon: mdi:weather-sunny
 
 homeassistant:
   customize: !include customize.yaml
